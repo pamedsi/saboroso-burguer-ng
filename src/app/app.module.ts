@@ -8,6 +8,9 @@ import { WelcomeHeaderComponent } from './components/welcome-header/welcome-head
 import { ShowBurgersButtonComponent } from './components/show-burgers-button/show-burgers-button.component';
 import { SeparatorLineComponent } from './components/separator-line/separator-line.component';
 import { ButtonsContainerComponent } from './components/buttons-container/buttons-container.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { MenuBurgerComponent } from './components/menu-burger/menu-burger.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -17,11 +20,14 @@ import { ButtonsContainerComponent } from './components/buttons-container/button
     WelcomeHeaderComponent,
     ShowBurgersButtonComponent,
     SeparatorLineComponent,
-    ButtonsContainerComponent
+    ButtonsContainerComponent,
+    MenuBurgerComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

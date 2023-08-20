@@ -1,0 +1,8 @@
+<section *ngFor="let burger of menuBurgerList">
+  <img ngSrc="{{burger.getPic()}}" fill="false" alt="">
+  <div class="description">
+      <div class="title">{{burger.getTitle()}}</div>
+      <div class="ingredients">{{burger.ingredientsToString()}}</div>
+      <div class="price">{{burger.getPrice()}}</div>
+  </div>
+</section>
