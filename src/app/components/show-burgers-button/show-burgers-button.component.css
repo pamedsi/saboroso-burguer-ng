@@ -4,6 +4,7 @@ div {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .pressed {
   background-color: yellow;
@@ -13,4 +14,7 @@ div {
   /*background-color: black;*/
   border: 0.15rem solid #5A5858;
   color: yellow;
+}
+.not-pressed:hover{
+  background-color: #4b4b4b;
 }

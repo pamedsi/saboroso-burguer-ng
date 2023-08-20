@@ -4,11 +4,3 @@ body {
   align-items: center;
 
 }
-
-.buttons {
-  width: 15rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}

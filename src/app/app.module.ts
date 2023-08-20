@@ -6,6 +6,8 @@ import { OrderFromComponent } from './pages/order-from/order-from.component';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { WelcomeHeaderComponent } from './components/welcome-header/welcome-header.component';
 import { ShowBurgersButtonComponent } from './components/show-burgers-button/show-burgers-button.component';
+import { SeparatorLineComponent } from './components/separator-line/separator-line.component';
+import { ButtonsContainerComponent } from './components/buttons-container/buttons-container.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { ShowBurgersButtonComponent } from './components/show-burgers-button/sho
     OrderFromComponent,
     OrderConfirmationComponent,
     WelcomeHeaderComponent,
-    ShowBurgersButtonComponent
+    ShowBurgersButtonComponent,
+    SeparatorLineComponent,
+    ButtonsContainerComponent
   ],
   imports: [
     BrowserModule
