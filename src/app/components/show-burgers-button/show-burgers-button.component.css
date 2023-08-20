@@ -1,0 +1,16 @@
+div {
+  height: 2rem;
+  width: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pressed {
+  background-color: yellow;
+  color: black;
+}
+.not-pressed {
+  /*background-color: black;*/
+  border: 0.15rem solid #5A5858;
+  color: yellow;
+}

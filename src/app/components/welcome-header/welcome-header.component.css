@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  position: absolute;
+  color: white;
+}
+
+h1 {
+  margin-top: 2.4rem;
+  color: yellow;
+}
