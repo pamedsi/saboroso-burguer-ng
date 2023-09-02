@@ -2,31 +2,41 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { OrderFromComponent } from './pages/order-from/order-from.component';
+import { HighlightsAndMenu } from './components/highlights-and-menu/highlights-and-menu';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { WelcomeHeaderComponent } from './components/welcome-header/welcome-header.component';
 import { ShowBurgersButtonComponent } from './components/show-burgers-button/show-burgers-button.component';
 import { SeparatorLineComponent } from './components/separator-line/separator-line.component';
 import { ButtonsContainerComponent } from './components/buttons-container/buttons-container.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/menu-burger/menu-burger.component';
 import {NgOptimizedImage} from "@angular/common";
+import { LoginComponent } from './pages/login/login.component';
+import {AppRoutingModule} from "./app-routing.module";
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OrderFromComponent,
+    HighlightsAndMenu,
     OrderConfirmationComponent,
     WelcomeHeaderComponent,
     ShowBurgersButtonComponent,
     SeparatorLineComponent,
     ButtonsContainerComponent,
-    MenuBurgerComponent
+    MenuBurgerComponent,
+    LoginComponent,
+    NotFoundComponent,
+    MenuManagementComponent,
+    HomeComponent
   ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

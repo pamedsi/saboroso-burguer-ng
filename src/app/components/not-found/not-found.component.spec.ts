@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderFromComponent } from './order-from.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('OrderFromComponent', () => {
-  let component: OrderFromComponent;
-  let fixture: ComponentFixture<OrderFromComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OrderFromComponent]
+      declarations: [NotFoundComponent]
     });
-    fixture = TestBed.createComponent(OrderFromComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
