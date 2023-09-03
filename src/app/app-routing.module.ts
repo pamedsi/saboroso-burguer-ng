@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "./pages/login-form/login.component";
+import { LoginComponent } from "./pages/login-form/login-form.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { MenuManagementComponent } from "./pages/menu-management/menu-management.component";
 import {HomeComponent} from "./pages/home/home.component";
@@ -11,7 +11,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'login-form',
+    path: 'login',
     component: LoginComponent
   },
   {

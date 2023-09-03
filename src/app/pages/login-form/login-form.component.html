@@ -1,7 +1,7 @@
 <section>
   <label for="login">login: </label>
-  <input id="login">
+  <input id="login" type="text" [(ngModel)]="login">
   <label for="password">senha: </label>
-  <input id="password" type="password">
-  <button>Entrar</button>
+  <input id="password" type="password" [(ngModel)]="password">
+  <button (click)="sigIn()" >Entrar</button>
 </section>

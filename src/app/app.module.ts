@@ -16,6 +16,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -32,12 +33,13 @@ import { HomeComponent } from './pages/home/home.component';
     MenuManagementComponent,
     HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        NgOptimizedImage,
-        AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    AppRoutingModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
