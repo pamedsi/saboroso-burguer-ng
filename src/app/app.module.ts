@@ -11,7 +11,7 @@ import { ButtonsContainerComponent } from './components/buttons-container/button
 import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/menu-burger/menu-burger.component';
 import {NgOptimizedImage} from "@angular/common";
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './pages/login-form/login-form.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
