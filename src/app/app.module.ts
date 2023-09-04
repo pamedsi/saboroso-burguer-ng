@@ -11,8 +11,8 @@ import { ButtonsContainerComponent } from './components/buttons-container/button
 import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/menu-burger/menu-burger.component';
 import {NgOptimizedImage} from "@angular/common";
-import { LoginComponent } from './pages/login-form/login-form.component';
-import {AppRoutingModule} from "./app-routing.module";
+import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -28,7 +28,7 @@ import { FormsModule } from "@angular/forms";
     SeparatorLineComponent,
     ButtonsContainerComponent,
     MenuBurgerComponent,
-    LoginComponent,
+    LoginFormComponent,
     NotFoundComponent,
     MenuManagementComponent,
     HomeComponent

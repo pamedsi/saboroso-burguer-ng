@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuBurger } from "./MenuBurger";
 import { BurgerService } from "../../services/BurgerService";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-menuBurger',
@@ -13,15 +12,13 @@ export class MenuBurgerComponent {
   highLightBurgerList!: MenuBurger[]
   constructor(
     private burgerService: BurgerService,
-    private router: Router
-    ) {
-  }
+    ) {}
   ngOnInit(){
     this.burgerService.getBurgersForMenu().subscribe((burgerList) =>{
       this.menuBurgerList = burgerList.map(burger => new MenuBurger(burger))
     })
-    this.burgerService.getBurgersForHighLight().subscribe((burgerList) =>{
-      this.menuBurgerList = burgerList.map(burger => new MenuBurger(burger))
+    this.burgerService.getBurgersForHighLight().subscribe((burgerList) => {
+      this.highLightBurgerList = burgerList.map(burger => new MenuBurger(burger))
     })
   }
 }

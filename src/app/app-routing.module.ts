@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "./pages/login-form/login-form.component";
+import { LoginFormComponent } from "./pages/login-form/login-form.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { MenuManagementComponent } from "./pages/menu-management/menu-management.component";
-import {HomeComponent} from "./pages/home/home.component";
+import { HomeComponent } from "./pages/home/home.component";
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginFormComponent
   },
   {
     path: 'menu-management',

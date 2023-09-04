@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { environment } from "../../environment/environment.prod";
+import { environment } from "../../environment/environment";
+import { LoginForm } from "../models/LoginForm";
+import { JWT } from "../models/JWT";
+import { Injectable } from "@angular/core";
 
-interface LoginForm {
-  login: string,
-  password: string
-}
-
-export class LoginComponent {
+@Injectable({
+  providedIn: "root"
+})
+export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(loginForm: LoginForm) {
-    return this.http.post(`environment.API_URL/login`, loginForm)
+    return this.http.post<JWT>(`${environment.API_URL}/login`, loginForm)
   }
 }
