@@ -7,11 +7,9 @@ import { TokenValidationService } from 'src/app/services/TokenValidatorService';
   styleUrls: ['./order-management.component.css']
 })
 export class OrderManagementComponent {
-  constructor(
-    private tokenValidation: TokenValidationService
-    ){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.tokenValidation.forRouteAccess('/order-management')
+    sessionStorage.removeItem('redirectingTo')
   }
 }

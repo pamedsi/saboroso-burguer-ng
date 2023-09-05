@@ -6,6 +6,7 @@ import { MenuManagementComponent } from "./pages/menu-management/menu-management
 import { HomeComponent } from "./pages/home/home.component";
 import { ManagementComponent } from "./pages/management/management.component";
 import { OrderManagementComponent } from "./pages/order-management/order-management.component"
+import { canActivate } from "./services/AuthGuardService";
 
 const routes: Routes = [
   {
@@ -18,15 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'management',
-    component: ManagementComponent
+    component: ManagementComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'order-management',
-    component: OrderManagementComponent
+    component: OrderManagementComponent,
+    canActivate: [canActivate]
   },
   {
     path: 'menu-management',
-    component: MenuManagementComponent
+    component: MenuManagementComponent,
+    canActivate: [canActivate]
   },
   {
     path: '**',

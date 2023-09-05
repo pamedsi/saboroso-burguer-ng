@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from "../../services/LoginService";
 import { LoginForm } from "../../models/LoginForm";
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/AuthenticationService';
 
 @Component({
   selector: 'app-login-form',
@@ -11,13 +11,19 @@ import { Router } from '@angular/router';
 export class LoginFormComponent{
   login!: String
   password!: String
-  
+
   constructor (
-    private loginService: LoginService,
+    private authService: AuthenticationService,
+    private router: Router
     ) {}
 
   sigIn() {
     const credentials = {login: this.login, password: this.password} as LoginForm
-    this.loginService.login(credentials)
+
+    this.authService.login(credentials).subscribe(validCredentials => {
+      if (validCredentials) {
+        const redirectingTo = sessionStorage.getItem('redirectingTo')
+        this.router.navigate([redirectingTo ?? '/management'])
+    }})
   }
 }

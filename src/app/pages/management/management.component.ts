@@ -8,11 +8,9 @@ import { TokenValidationService } from 'src/app/services/TokenValidatorService';
   styleUrls: ['./management.component.css']
 })
 export class ManagementComponent implements OnInit {
-  constructor(
-    private tokenVlidation: TokenValidationService
-    ){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.tokenVlidation.forRouteAccess('/management')
+    sessionStorage.removeItem('redirectingTo')
   }
 }
