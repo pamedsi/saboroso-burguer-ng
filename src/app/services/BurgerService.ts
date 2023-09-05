@@ -7,7 +7,7 @@ import { menuBurgerDTO } from "../components/menu-burger/MenuBurger";
   providedIn: "root"
 })
 export class BurgerService {
-    constructor(private http: HttpClient) {console.log(environment.API_URL)}
+    constructor(private http: HttpClient) {}
   getBurgersForMenu (){
     return this.http.get<menuBurgerDTO[]>(`${environment.API_URL}/get-menu`)
   }

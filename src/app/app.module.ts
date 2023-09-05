@@ -11,12 +11,14 @@ import { ButtonsContainerComponent } from './components/buttons-container/button
 import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/menu-burger/menu-burger.component';
 import {NgOptimizedImage} from "@angular/common";
-import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { LoginFormComponent } from './pages/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from "@angular/forms";
+import { OrderManagementComponent } from './pages/order-management/order-management.component';
+import { ManagementComponent } from './pages/management/management.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { FormsModule } from "@angular/forms";
     LoginFormComponent,
     NotFoundComponent,
     MenuManagementComponent,
-    HomeComponent
+    HomeComponent,
+    OrderManagementComponent,
+    ManagementComponent
   ],
   imports: [
     BrowserModule,

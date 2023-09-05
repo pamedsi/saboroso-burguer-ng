@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
 
 @Component({
-  selector: 'app-menu-management',
-  templateUrl: './menu-management.component.html',
-  styleUrls: ['./menu-management.component.css']
+  selector: 'app-order-management',
+  templateUrl: './order-management.component.html',
+  styleUrls: ['./order-management.component.css']
 })
-export class MenuManagementComponent {
+export class OrderManagementComponent {
   constructor(
     private tokenService: TokenValidatorService
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateToken('/menu-management')
+    this.tokenService.validateToken('/order-management')
   }
 }
