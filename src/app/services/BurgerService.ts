@@ -12,6 +12,6 @@ export class BurgerService {
     return this.http.get<menuBurgerDTO[]>(`${environment.API_URL}/get-menu`)
   }
   getBurgersForHighLight() {
-    return this.http.get<menuBurgerDTO[]>(`${environment.API_URL}/high-light-burgers`)
+    return this.http.get<menuBurgerDTO[]>(`${environment.API_URL}/highlight-burgers`)
   }
 }

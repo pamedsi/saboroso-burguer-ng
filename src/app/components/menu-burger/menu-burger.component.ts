@@ -15,10 +15,12 @@ export class MenuBurgerComponent {
     ) {}
   ngOnInit(){
     this.burgerService.getBurgersForMenu().subscribe((burgerList) =>{
-      this.menuBurgerList = burgerList.map(burger => new MenuBurger(burger))
+      // if (burgerList) this.menuBurgerList = burgerList.map(burger => new MenuBurger(burger))
+       console.log('cardápio:', burgerList)
     })
     this.burgerService.getBurgersForHighLight().subscribe((burgerList) => {
-      this.highLightBurgerList = burgerList.map(burger => new MenuBurger(burger))
+      if (burgerList) this.highLightBurgerList = burgerList.map(burger => new MenuBurger(burger))
+      else console.log('destaques:', burgerList)
     })
   }
 }

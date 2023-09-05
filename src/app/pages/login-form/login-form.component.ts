@@ -8,7 +8,7 @@ import { LoginForm } from "../../models/LoginForm";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  login!: String
+  login!  : String
   password!: String
   private token!: String
 
@@ -16,6 +16,7 @@ export class LoginFormComponent {
 
   sigIn() {
     const credentials = {login: this.login, password: this.password} as LoginForm
+    console.log(credentials)
     this.loginService.login(credentials).subscribe(JWT => {
       this.token = JWT.token
       console.log(this.token)
