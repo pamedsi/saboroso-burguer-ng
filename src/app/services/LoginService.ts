@@ -17,8 +17,9 @@ export class LoginService {
 
   login(loginForm: LoginForm) {
     return this.http.post<JWT>(`${environment.API_URL}/login`, loginForm, {headers}).subscribe(({token}) => {
+      const redirectingTo = sessionStorage.getItem('redirectingTo')
       localStorage.setItem('token', token)
-      this.router.navigate([localStorage.getItem('redirectingTo') ?? '/management'])
+      this.router.navigate([redirectingTo ?? '/management'])
     })
   }
 }

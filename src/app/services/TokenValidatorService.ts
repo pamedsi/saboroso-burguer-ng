@@ -8,16 +8,17 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
-export class TokenValidatorService {
+export class TokenValidationService {
+  private token = localStorage.getItem('token')
+
   constructor(
     private http: HttpClient,
     private router: Router
     ){}
 
-  validateTokenForRouteAccess(route: string) {
-    const token = localStorage.getItem('token')
-    this.http.post<JWT>(`${environment.API_URL}/token`, {token}, {headers}).subscribe(({token}) => {
-      localStorage.setItem('redirectingTo', route)
+  forRouteAccess(route: string) {
+    return this.http.post<JWT>(`${environment.API_URL}/token`, {token: this.token}, {headers}).subscribe(({token}) => {
+      sessionStorage.setItem('redirectingTo', route)
       if (!token) this.router.navigate(['/login'])
       else this.router.navigate([route])
     }) 

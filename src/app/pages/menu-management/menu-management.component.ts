@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
-import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
+import { Component, OnInit } from '@angular/core';
+import { TokenValidationService } from 'src/app/services/TokenValidatorService';
 
 @Component({
   selector: 'app-menu-management',
   templateUrl: './menu-management.component.html',
   styleUrls: ['./menu-management.component.css']
 })
-export class MenuManagementComponent {
+export class MenuManagementComponent implements OnInit {
+  burgers!: []
+  portions!: []
+  drinks!: []
+
   constructor(
-    private tokenService: TokenValidatorService
+    private tokenValidation: TokenValidationService
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateTokenForRouteAccess('/menu-management')
+    this.tokenValidation.forRouteAccess('/menu-management')
   }
 }

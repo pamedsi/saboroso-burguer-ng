@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
+import { TokenValidationService } from 'src/app/services/TokenValidatorService';
 
 @Component({
   selector: 'app-management',
@@ -9,10 +9,10 @@ import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
 })
 export class ManagementComponent implements OnInit {
   constructor(
-    private tokenService: TokenValidatorService
+    private tokenVlidation: TokenValidationService
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateTokenForRouteAccess('/management')
+    this.tokenVlidation.forRouteAccess('/management')
   }
 }

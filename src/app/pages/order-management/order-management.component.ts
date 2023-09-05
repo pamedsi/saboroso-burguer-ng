@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
+import { TokenValidationService } from 'src/app/services/TokenValidatorService';
 
 @Component({
   selector: 'app-order-management',
@@ -8,10 +8,10 @@ import { TokenValidatorService } from 'src/app/services/TokenValidatorService';
 })
 export class OrderManagementComponent {
   constructor(
-    private tokenService: TokenValidatorService
+    private tokenValidation: TokenValidationService
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateTokenForRouteAccess('/order-management')
+    this.tokenValidation.forRouteAccess('/order-management')
   }
 }
