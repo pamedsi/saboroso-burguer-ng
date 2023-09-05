@@ -14,7 +14,7 @@ export class TokenValidatorService {
     private router: Router
     ){}
 
-  validateToken(route: string) {
+  validateTokenForRouteAccess(route: string) {
     const token = localStorage.getItem('token')
     this.http.post<JWT>(`${environment.API_URL}/token`, {token}, {headers}).subscribe(({token}) => {
       localStorage.setItem('redirectingTo', route)

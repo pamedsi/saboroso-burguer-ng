@@ -12,6 +12,6 @@ export class MenuManagementComponent {
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateToken('/menu-management')
+    this.tokenService.validateTokenForRouteAccess('/menu-management')
   }
 }

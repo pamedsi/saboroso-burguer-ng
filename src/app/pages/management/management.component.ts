@@ -13,6 +13,6 @@ export class ManagementComponent implements OnInit {
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateToken('/management')
+    this.tokenService.validateTokenForRouteAccess('/management')
   }
 }

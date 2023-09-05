@@ -12,6 +12,6 @@ export class OrderManagementComponent {
     ){}
 
   ngOnInit(): void {
-    this.tokenService.validateToken('/order-management')
+    this.tokenService.validateTokenForRouteAccess('/order-management')
   }
 }
