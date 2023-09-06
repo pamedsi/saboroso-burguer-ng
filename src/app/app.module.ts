@@ -19,6 +19,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from "@angular/forms";
 import { OrderManagementComponent } from './pages/order-management/order-management.component';
 import { ManagementComponent } from './pages/management/management.component';
+import { BurgerListForManagementComponent } from './components/burger-list-for-management/burger-list-for-management.component';
+import { PortionListForManagementComponent } from './components/portion-list-for-management/portion-list-for-management.component';
+import { DrinkListForManagementComponent } from './components/drink-list-for-management/drink-list-for-management.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { ManagementComponent } from './pages/management/management.component';
     MenuManagementComponent,
     HomeComponent,
     OrderManagementComponent,
-    ManagementComponent
+    ManagementComponent,
+    BurgerListForManagementComponent,
+    PortionListForManagementComponent,
+    DrinkListForManagementComponent
   ],
   imports: [
     BrowserModule,

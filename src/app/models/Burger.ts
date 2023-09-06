@@ -1,25 +1,16 @@
-interface ingredientForMenuBurger {
-  title: string,
-  grams: number | null
-}
-export interface menuBurgerDTO {
-  identifier: string,
-  category: "SMASH_ARTESANAL" | "SMASH_DUPLO",
-  title: string,
-  price: number,
-  pic: string | null,
-  ingredients: ingredientForMenuBurger[]
-}
 
-export class MenuBurger {
+import { IngredientDTO } from "src/app/dto/IngredientDTO"
+import { BurgerDTO } from "../dto/BurgerDTO"
+
+export class Burger {
   private readonly identifier: string
-  private readonly category: "SMASH_ARTESANAL" | "SMASH_DUPLO"
+  private readonly category: string
   private readonly title: string
   private readonly price: number
   private readonly pic: string | null
-  private readonly ingredientsList: ingredientForMenuBurger[]
+  private readonly ingredientsList: IngredientDTO[]
 
-  constructor(burgerFromRequest: menuBurgerDTO) {
+  constructor(burgerFromRequest: BurgerDTO) {
     this.identifier = burgerFromRequest.identifier
     this.category = burgerFromRequest.category
     this.title = burgerFromRequest.title
@@ -31,7 +22,7 @@ export class MenuBurger {
     return this.identifier;
   }
 
-  getCategory(): "SMASH_ARTESANAL" | "SMASH_DUPLO" {
+  getCategory(): string {
     return this.category;
   }
 

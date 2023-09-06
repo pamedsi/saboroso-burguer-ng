@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginForm } from '../models/LoginForm';
+import { LoginForm } from '../dto/LoginForm';
 import { environment } from 'src/environment/environment';
-import { headers } from '../models/Headers';
-import { JWT } from '../models/JWT';
+import { headers } from '../dto/Headers';
+import { JWT } from '../dto/JWT';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';

@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environment/environment";
-import { headers } from "../models/Headers";
-import { JWT } from "../models/JWT";
+import { headers } from "../dto/Headers";
+import { JWT } from "../dto/JWT";
 import { Router } from "@angular/router";
 
 @Injectable({

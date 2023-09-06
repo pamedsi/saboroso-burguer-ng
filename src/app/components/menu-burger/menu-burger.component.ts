@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuBurger } from "./MenuBurger";
+
 import { BurgerService } from "../../services/BurgerService";
+import { Burger } from 'src/app/models/Burger';
 
 @Component({
   selector: 'app-menu-menuBurger',
@@ -8,21 +9,14 @@ import { BurgerService } from "../../services/BurgerService";
   styleUrls: ['./menu-burger.component.css']
 })
 export class MenuBurgerComponent {
-  menuBurgerList!: MenuBurger[]
-  highLightBurgerList!: MenuBurger[]
+  menuBurgerList!: Burger[]
+  highLightBurgerList!: Burger[]
   constructor(
     private burgerService: BurgerService,
     ) {}
     
   ngOnInit(){
-    this.burgerService.getBurgersForMenu().subscribe((burgerList) => {
-      // if (burgerList) this.menuBurgerList = burgerList.map(burger => new MenuBurger(burger))
-       console.log('cardápio:', burgerList)
-    })
-    this.burgerService.getBurgersForHighLight().subscribe((burgerList) => {
-      if (burgerList) this.highLightBurgerList = burgerList.map(burger => new MenuBurger(burger))
-      else console.log('destaques:', burgerList)
-      this.highLightBurgerList = [] as MenuBurger[]
-    })
+    this.burgerService.getBurgersForMenu().subscribe(burgerList => this.menuBurgerList = burgerList)
+    this.burgerService.getBurgersForHighLight().subscribe(burgerList => this.highLightBurgerList = burgerList)
   }
 }
