@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { BurgerService } from "../../services/BurgerService";
+import { BurgerService } from "../../../services/BurgerService";
 import { Burger } from 'src/app/models/Burger';
 
 @Component({

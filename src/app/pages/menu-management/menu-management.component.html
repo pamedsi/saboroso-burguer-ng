@@ -1,4 +1,20 @@
 <p>Gestor de cardápio</p>
-<app-burger-list-for-management></app-burger-list-for-management>
-<app-portion-list-for-management></app-portion-list-for-management>
-<app-drink-list-for-management></app-drink-list-for-management>
+<section class="burgers">
+  <div>Hambúrgueres</div>
+  <section class="burger-list-and-form">
+      <app-burger-list-for-management></app-burger-list-for-management>
+      <app-add-burger-form></app-add-burger-form>
+  </section>
+</section>
+<section class="ingredients">
+  <div>Ingredientes</div>
+  <app-ingredient-list-for-management></app-ingredient-list-for-management>
+</section>
+<section class="portions">
+  <div>Porções</div>
+  <app-portion-list-for-management></app-portion-list-for-management>
+</section>
+<section class="drinks">
+  <div>Bebidas</div>
+  <app-drink-list-for-management></app-drink-list-for-management>
+</section>

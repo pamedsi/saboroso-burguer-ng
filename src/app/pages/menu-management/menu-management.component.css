@@ -1,0 +1,10 @@
+section {
+  margin: 1rem;
+  border: white solid 0.1rem;
+}
+
+.burger-list-and-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

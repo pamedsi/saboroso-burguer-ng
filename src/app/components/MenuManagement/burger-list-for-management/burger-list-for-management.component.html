@@ -1,0 +1,17 @@
+
+<section>
+  <header>Gerir Hambúrgueres</header>
+  <section *ngFor="let burger of burgerList">
+  <div>Título: {{burger.getTitle()}}</div>
+  <div>Categoria: {{burger.getCategory()}}</div>
+  <div>Preço: {{burger.getPrice()}}</div>
+  <div>
+    <div *ngIf="burger.getPic(); else noPic">
+      <div>Foto:</div>
+      <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+    </div>
+    <ng-template #noPic>Foto: Sem foto</ng-template>
+  </div>
+  <div>Ingredientes: {{burger.ingredientsToString()}}</div>
+  <button>Editar</button>
+</section>

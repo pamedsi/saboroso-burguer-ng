@@ -1,0 +1,10 @@
+section {
+  margin: 1rem;
+  padding: 0.5rem;
+  border: white solid 0.1rem;
+  max-width: 40rem;
+}
+
+header {
+  text-align: center;
+}

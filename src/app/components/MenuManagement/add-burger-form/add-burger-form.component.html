@@ -1,0 +1,48 @@
+<section>
+  <header>Adicionar Hambúrguer</header>
+  <div>
+    <label for="title">Título:</label>
+    <input id="title">
+  </div>
+
+  <div>
+    <label for="category">Categoria:</label>
+    <select id="category">
+      <option>SMASH</option>
+      <option>SMASH_DUPLO</option>
+      <option>PREMIUM</option>
+      <option>PREMIUM_DUPLO</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="price">Preço:</label>
+    <input id="price">
+  </div>
+  <div>
+    <label for="pic">Foto:</label>
+    <input id="pic">
+  </div>
+
+  <div>Ingredientes:</div>
+  <div class="ingredients-container">
+    <div *ngFor="let ingredient of selectedIngredients">{{ingredient}}</div>
+  </div>
+  <div>
+      <label for="ingredients">Adicionar ingrediente:</label>
+      <select id="ingredients" [(ngModel)]="selectedOption" (ngModelChange)="addIngredient($event)">
+        <option *ngFor="let ingredient of ingredients" id="{{ingredient.getIdentifier()}}">
+          {{ingredient.ingredientToString()}}
+        </option>
+      </select>
+  </div>
+
+  <div>
+    <label for="in-stock">Em estoque:</label>
+    <select id="in-stock" >
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+  </div>
+  <button>Adicionar</button>
+</section>

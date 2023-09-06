@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginForm } from '../dto/LoginForm';
+import { LoginForm } from '../types/LoginFormDTO';
 import { environment } from 'src/environment/environment';
-import { headers } from '../dto/Headers';
-import { JWT } from '../dto/JWT';
+import { defaultHeaders } from '../types/Headers';
+import { JWT } from '../types/JWTDTO';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class AuthenticationService {
 
   validToken(): Observable<boolean> {
       const token = localStorage.getItem('token')
-      return this.http.post<JWT>(`${environment.API_URL}/token`, {token}, {headers})
+      return this.http.post<JWT>(`${environment.API_URL}/token`, {token}, {headers: defaultHeaders})
         .pipe(
           map(({token}) => Boolean(token)),
           catchError(_ => of(false))
@@ -29,7 +29,7 @@ export class AuthenticationService {
   }    
 
   login(credentials: LoginForm): Observable<boolean> {
-    return this.http.post<JWT>(`${environment.API_URL}/login`, credentials, {headers})
+    return this.http.post<JWT>(`${environment.API_URL}/login`, credentials, {headers: defaultHeaders})
       .pipe(
         map(({token}) => {
           if (!token) throw new Error("Login ou senha incorretos!");
