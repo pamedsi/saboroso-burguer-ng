@@ -19,7 +19,6 @@ export class LoginFormComponent{
 
   sigIn() {
     const credentials = {login: this.login, password: this.password} as LoginForm
-
     this.authService.login(credentials).subscribe(validCredentials => {
       if (validCredentials) {
         const redirectingTo = sessionStorage.getItem('redirectingTo')

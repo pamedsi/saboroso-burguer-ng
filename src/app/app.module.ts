@@ -25,6 +25,7 @@ import { DrinkListForManagementComponent } from './components/MenuManagement/dri
 import { AddBurgerFormComponent } from './components/MenuManagement/add-burger-form/add-burger-form.component';
 import { IngredientListForManagementComponent } from './components/MenuManagement/ingredient-list-for-management/ingredient-list-for-management.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {NgxCurrencyDirective} from "ngx-currency";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         NgOptimizedImage,
         AppRoutingModule,
         FormsModule,
-        NgMultiSelectDropDownModule
+        NgMultiSelectDropDownModule,
+        NgxCurrencyDirective
     ],
   providers: [],
   bootstrap: [AppComponent]

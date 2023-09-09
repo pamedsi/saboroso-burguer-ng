@@ -2,26 +2,24 @@
   <header>Adicionar Hambúrguer</header>
   <div>
     <label for="title">Título:</label>
-    <input id="title">
+    <input id="title" [(ngModel)]="title" placeholder="Nome do Hambúrguer">
   </div>
 
   <div>
     <label for="category">Categoria:</label>
-    <select id="category">
-      <option>SMASH</option>
-      <option>SMASH_DUPLO</option>
-      <option>PREMIUM</option>
-      <option>PREMIUM_DUPLO</option>
+    <select id="category" (change)="setCategory($event.target?.valueOf())">
+      <option *ngFor="let category of allCategories">{{category}}</option>
     </select>
   </div>
 
   <div>
     <label for="price">Preço:</label>
-    <input id="price">
+    <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
   </div>
   <div>
     <label for="pic">Foto:</label>
-    <input id="pic">
+    <input id="pic" [(ngModel)]="pic">
   </div>
 
   <div>Ingredientes:</div>
@@ -34,8 +32,7 @@
   <div>
       <label for="ingredients">Adicionar ingrediente:</label>
       <select id="ingredients" (change)="addIngredient($event.target?.valueOf())">
-        <option *ngFor="let ingredient of ingredients"
-        id="{{ingredient.getIdentifier()}}">
+        <option *ngFor="let ingredient of allIngredients">
           {{ingredient.ingredientToString()}}
         </option>
       </select>
