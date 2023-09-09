@@ -1,10 +1,23 @@
-section {
-  margin: 1rem;
-  padding: 0.5rem;
+main {
   border: white solid 0.1rem;
-  max-width: 40rem;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
 }
-
-header {
+.prop-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+h2 {
   text-align: center;
+}
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

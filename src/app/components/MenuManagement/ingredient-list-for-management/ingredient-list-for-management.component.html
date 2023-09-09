@@ -1,1 +1,19 @@
-<p>ingredient-list-for-management works!</p>
+<h2>Gerir Ingredientes</h2>
+<section class="title-container" *ngFor="let ingredient of allIngredients">
+
+  <div class="prop-container">
+    <label for="title">Título:</label>
+    <div id="title">{{ingredient.getTitle()}}</div>
+  </div>
+
+  <div class="prop-container">
+    <label for="grams">Gramas:</label>
+    <div id="grams">{{ingredient.gramsToString()}}</div>
+  </div>
+
+  <div class="buttons">
+    <button>Editar</button>
+    <button>Excluir</button>
+  </div>
+
+</section>

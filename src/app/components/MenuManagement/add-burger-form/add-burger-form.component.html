@@ -1,5 +1,5 @@
 <section>
-  <header>Adicionar Hambúrguer</header>
+  <h2>Adicionar Hambúrguer</h2>
   <div>
     <label for="title">Título:</label>
     <input id="title" [(ngModel)]="title" placeholder="Nome do Hambúrguer">
@@ -17,6 +17,7 @@
     <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
   </div>
+
   <div>
     <label for="pic">Foto:</label>
     <input id="pic" [(ngModel)]="pic">
@@ -29,6 +30,7 @@
       <div class="x" (click)="removeIngredient(ingredient)">x</div>
     </div>
   </div>
+
   <div>
       <label for="ingredients">Adicionar ingrediente:</label>
       <select id="ingredients" (change)="addIngredient($event.target?.valueOf())">
@@ -46,4 +48,5 @@
     </select>
   </div>
   <button>Adicionar</button>
+
 </section>

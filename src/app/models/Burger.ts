@@ -31,8 +31,8 @@ export class Burger {
     return this.title;
   }
 
-  getPrice(): number {
-    return this.price;
+  getPrice(): string {
+    return `R$ ${this.price.toFixed(2).replace('.', ',')}`
   }
 
   getPic(): string | null {

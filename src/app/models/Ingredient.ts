@@ -14,6 +14,9 @@ export class Ingredient {
   ingredientToString(): string {
     return this.grams ? `${this.title} ${this.grams}` : this.title;
   }
+  gramsToString(): string {
+    return this.grams ? `${this.grams.toString()}` : "Sem gramas"
+  }
   getIdentifier(){
     return this.identifier
   }
@@ -23,7 +26,7 @@ export class Ingredient {
   setTitle(value: string) {
     this.title = value;
   }
-  geGrams(): number | null {
+  getGrams(): number | null {
     return this.grams;
   }
   seGrams(value: number | null) {

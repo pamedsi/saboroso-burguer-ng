@@ -1,0 +1,21 @@
+section {
+  border: white solid 0.1rem;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+}
+
+.prop-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.2rem;
+}
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

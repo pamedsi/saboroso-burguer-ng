@@ -1,17 +1,43 @@
+<main>
+  <h2>Gerir Hambúrgueres</h2>
 
-<section>
-  <header>Gerir Hambúrgueres</header>
   <section *ngFor="let burger of burgerList">
-  <div>Título: {{burger.getTitle()}}</div>
-  <div>Categoria: {{burger.getCategory()}}</div>
-  <div>Preço: {{burger.getPrice()}}</div>
-  <div>
-    <div *ngIf="burger.getPic(); else noPic">
-      <div>Foto:</div>
-      <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+
+    <div class="prop-container">
+      <label for="title">Título:</label>
+      <div id="title">{{burger.getTitle()}}</div>
     </div>
-    <ng-template #noPic>Foto: Sem foto</ng-template>
-  </div>
-  <div>Ingredientes: {{burger.ingredientsToString()}}</div>
-  <button>Editar</button>
-</section>
+
+    <div class="prop-container">
+      <label for="category">Categoria:</label>
+      <div id="category">{{burger.getCategory()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <label for="price">Preço:</label>
+      <div id="price">{{burger.getPrice()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div *ngIf="burger.getPic(); else noPic">
+        <label for="pic">Foto:</label>
+        <img id="pic" ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+      </div>
+      <ng-template #noPic>
+        <label for="no-pic">Foto:</label>
+        <div id="no-pic">sem foto</div>
+      </ng-template>
+    </div>
+
+    <div class="prop-container">
+      <label for="ingredients">Ingredientes:</label>
+       <div id="ingredients">{{burger.ingredientsToString()}}</div>
+    </div>
+
+    <div class="buttons">
+      <button>Editar</button>
+      <button>Excluir</button>
+    </div>
+
+  </section>
+</main>
