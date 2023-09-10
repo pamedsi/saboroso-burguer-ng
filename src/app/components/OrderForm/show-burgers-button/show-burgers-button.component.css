@@ -5,15 +5,16 @@ div {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 0.2rem;
 }
 .pressed {
-  background-color: yellow;
-  color: black;
+  background-color: #EDD925;
+  color: #232222;
 }
 .not-pressed {
   /*background-color: black;*/
   border: 0.15rem solid #5A5858;
-  color: yellow;
+  color: white;
 }
 .not-pressed:hover{
   background-color: #4b4b4b;

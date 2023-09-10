@@ -6,14 +6,15 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./buttons-container.component.css']
 })
 export class ButtonsContainerComponent {
-  @Input() highLights = true;
-  @Input() menu = !this.highLights;
+  @Input() highlights = true;
+  @Input() menu = !this.highlights;
+
   onHighlightsClick () {
-    if (!this.highLights) this.highLights = true
+    if (!this.highlights) this.highlights = true
     this.menu = false
   }
   onMenuClick(){
     if (!this.menu) this.menu = true
-    this.highLights = false
+    this.highlights = false
   }
 }
