@@ -7,10 +7,19 @@ import { TokenValidationService } from 'src/app/services/TokenValidatorService';
   templateUrl: './management.component.html',
   styleUrls: ['./management.component.css']
 })
-export class ManagementComponent {//implements OnInit {
-  // constructor(){}
+export class ManagementComponent implements OnInit{
 
-  // ngOnInit(): void {
-  //   sessionStorage.removeItem('redirectingTo')
-  // }
+  constructor(private router: Router){}
+
+  ngOnInit(): void {
+    sessionStorage.removeItem('redirectingTo')
+  }
+
+  redirectToMenuManagement() {
+    this.router.navigate(['/menu-management'])
+  }
+
+  redirectToOrderManagement() {
+    this.router.navigate(['/order-management'])
+  }
 }
