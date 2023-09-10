@@ -6,17 +6,20 @@ main {
   flex-direction: column;
   min-width: 20rem;
 }
+section {
+  border: white solid 0.1rem;
+}
 .prop-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0.5rem;
 }
-h2 {
+h3 {
   text-align: center;
 }
 .buttons {
-  margin-top: 1.5rem;
+  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

@@ -26,6 +26,8 @@ import { AddBurgerFormComponent } from './components/MenuManagement/add-burger-f
 import { IngredientListForManagementComponent } from './components/MenuManagement/ingredient-list-for-management/ingredient-list-for-management.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {NgxCurrencyDirective} from "ngx-currency";
+import { AddIngredientFormComponent } from './components/MenuManagement/add-ingredient-form/add-ingredient-form.component';
+import { AddCategoryFormComponent } from './components/MenuManagement/add-category-form/add-category-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import {NgxCurrencyDirective} from "ngx-currency";
     DrinkListForManagementComponent,
     AddBurgerFormComponent,
     IngredientListForManagementComponent,
+    AddIngredientFormComponent,
+    AddCategoryFormComponent,
   ],
     imports: [
         BrowserModule,

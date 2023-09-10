@@ -1,0 +1,48 @@
+body{
+  height: 35rem;
+}
+
+/* Butões */
+
+section{
+  /* Alinhamentos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Fontes */
+  font-weight: 600;
+  font-family: 'League Spartan', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-size: small;
+  /* Tamanho */
+  height: 100%;
+}
+
+.button-manager{
+  background-color: #EDD925;
+  color: #303030;
+  border-radius: 0.5rem;
+  width: 10rem;
+  height: 3.2rem;
+  border-style: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0 0.5rem 0;
+  cursor: pointer;
+}
+
+.button-manager:hover {
+  background-color: #bbaa11;
+}
+
+ /* Header */
+
+ header {
+  background-color: #2D2D2D;
+  width: auto;
+  height: 15rem;
+  border-radius: 0 0 1.875rem 1.875rem;
+ }
