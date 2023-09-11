@@ -24,7 +24,6 @@ div:active{
 }
 
 .not-pressed {
-  /*background-color: black;*/
   border: 0.15rem solid #5A5858;
   color: white;
 }
