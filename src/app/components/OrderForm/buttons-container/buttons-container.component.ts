@@ -10,10 +10,12 @@ export class ButtonsContainerComponent {
   @Input() menu = !this.highlights;
 
   onHighlightsClick () {
+    console.log("Destaques")
     if (!this.highlights) this.highlights = true
     this.menu = false
   }
   onMenuClick(){
+    console.log("Cardápio")
     if (!this.menu) this.menu = true
     this.highlights = false
   }

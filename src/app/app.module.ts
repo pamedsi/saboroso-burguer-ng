@@ -28,6 +28,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {NgxCurrencyDirective} from "ngx-currency";
 import { AddIngredientFormComponent } from './components/MenuManagement/add-ingredient-form/add-ingredient-form.component';
 import { AddCategoryFormComponent } from './components/MenuManagement/add-category-form/add-category-form.component';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import {TextFieldModule} from "@angular/cdk/text-field";
 
 @NgModule({
   declarations: [
@@ -52,16 +54,18 @@ import { AddCategoryFormComponent } from './components/MenuManagement/add-catego
     IngredientListForManagementComponent,
     AddIngredientFormComponent,
     AddCategoryFormComponent,
+    AdminHeaderComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        NgOptimizedImage,
-        AppRoutingModule,
-        FormsModule,
-        NgMultiSelectDropDownModule,
-        NgxCurrencyDirective
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    AppRoutingModule,
+    FormsModule,
+    NgMultiSelectDropDownModule,
+    NgxCurrencyDirective,
+    TextFieldModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

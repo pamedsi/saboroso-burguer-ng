@@ -1,12 +1,12 @@
 
 import { IngredientDTO } from "src/app/types/IngredientDTO"
 import { BurgerDTO } from "../types/BurgerDTO"
-import { BurgerCategory } from "../types/BurgerCategory"
+import {CategoryDTO} from "../types/CategoryDTO";
 
 export class Burger {
   private readonly identifier: string
   private title: string
-  private category: BurgerCategory
+  private category: CategoryDTO
   private price: number
   private pic: string | null
   private ingredients: IngredientDTO[]
@@ -23,7 +23,7 @@ export class Burger {
     return this.identifier;
   }
 
-  getCategory(): string {
+  getCategory(): CategoryDTO {
     return this.category;
   }
 
@@ -47,7 +47,7 @@ export class Burger {
     const lastIngredient = stringToBeReturned.pop();
     return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
   }
-  setCategory(category: BurgerCategory){ this.category = category }
+  setCategory(category: CategoryDTO){ this.category = category }
   setTitle(title: string){ this.title = title}
   setPrice(price: number){ this.price = price }
   setPic(pic: string){ this.pic = pic }

@@ -1,7 +1,36 @@
-<section>
-  <label for="login">login: </label>
-  <input id="login" type="text" [(ngModel)]="login">
-  <label for="password">senha: </label>
-  <input id="password" type="password" [(ngModel)]="password">
-  <button (click)="sigIn()" >Entrar</button>
-</section>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700;900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<!-- Fonte do Header -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=League+Spartan:wght@400;500;700;900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<!-- Fonte do Header (ADM) -->
+
+<app-admin-header></app-admin-header>
+
+<body>
+  <section>
+    <h1>
+      Login
+    </h1>
+
+    <div class="label"><label for="login">Usuário</label></div>
+    <div class="container">
+      <img src="./assets/Usuario-Icon.png" alt="" class="Icon">
+      <div class="separator"></div>
+      <input id="login" type="text" [(ngModel)]="login" placeholder="Digite seu login" autocomplete="off">
+    </div>
+
+    <div class="label"><label for="password">Senha</label></div>
+    <div class="container">
+      <img src="./assets/Senha-Icon.png" alt="" class="Icon">
+      <div class="separator"></div>
+      <input id="password" type="password" [(ngModel)]="password" placeholder="Digite sua senha" autocomplete="off">
+    </div>
+
+    <button (click)="sigIn()">Entrar</button>
+
+    <h3>Esqueceu sua senha?</h3>
+  </section>
+</body>

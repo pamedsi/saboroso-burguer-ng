@@ -6,11 +6,23 @@ div {
   justify-content: center;
   cursor: pointer;
   border-radius: 0.2rem;
+  font-family: 'Poppins', sans-serif;
 }
+
+div:active{
+  transform: scale(0.96);
+}
+
 .pressed {
   background-color: #EDD925;
+  border: 0.15rem solid #EDD925;
   color: #232222;
 }
+
+.pressed:hover{
+  background-color: #f1ed08;
+}
+
 .not-pressed {
   /*background-color: black;*/
   border: 0.15rem solid #5A5858;

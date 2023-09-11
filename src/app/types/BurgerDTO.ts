@@ -1,9 +1,9 @@
-import { BurgerCategory } from "./BurgerCategory";
 import { IngredientDTO } from "./IngredientDTO";
+import {CategoryDTO} from "./CategoryDTO";
 
 export interface BurgerDTO {
   identifier: string
-  category: BurgerCategory
+  category: CategoryDTO
   title: string
   price: number
   pic: string | null
