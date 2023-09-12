@@ -4,7 +4,7 @@ import { environment } from "../../environment/environment";
 import { BurgerDTO } from "../types/BurgerDTO";
 import { Observable, map } from 'rxjs';
 import { Burger } from "../models/Burger";
-import { withTokenHeaders } from "../types/Headers";
+import { defaultWithToken } from "../types/Headers";
 
 @Injectable({
   providedIn: "root"
@@ -27,7 +27,7 @@ export class BurgerService {
       )
     }
   getBurgersForMenuManagement(){
-    return this.http.get<BurgerDTO[]>(`${environment.API_URL}/burgers-management`, {headers: withTokenHeaders}).pipe(
+    return this.http.get<BurgerDTO[]>(`${environment.API_URL}/burgers-management`, {headers: defaultWithToken}).pipe(
       map(burgersDTO => {
         return burgersDTO.map(burgerDTO => new Burger(burgerDTO))
       })

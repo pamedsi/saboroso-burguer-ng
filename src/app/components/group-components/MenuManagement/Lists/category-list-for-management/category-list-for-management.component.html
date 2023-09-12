@@ -1,0 +1,14 @@
+<h3>Gerir categorias</h3>
+<section *ngFor="let category of allCategories">
+  <main>
+    <div class="title-container">
+      <div>Nome:</div>
+      <div>{{category.title}}</div>
+    </div>
+
+    <div class="buttons-container">
+      <button (click)="editCategory()">Editar</button>
+      <button (click)="deleteCategory()" >Excluir</button>
+    </div>
+  </main>
+</section>

@@ -30,7 +30,7 @@ import { AddIngredientFormComponent } from './components/group-components/MenuMa
 import { AddCategoryFormComponent } from './components/group-components/MenuManagement/Forms/add-category-form/add-category-form.component';
 import { AdminHeaderComponent } from './components/single-components/admin-header/admin-header.component';
 import {TextFieldModule} from "@angular/cdk/text-field";
-import { CategoryListForManagementComponent } from './components/group-components/MenuManagement/Forms/category-list-for-management/category-list-for-management.component';
+import { CategoryListForManagementComponent } from './components/group-components/MenuManagement/Lists/category-list-for-management/category-list-for-management.component';
 
 @NgModule({
   declarations: [

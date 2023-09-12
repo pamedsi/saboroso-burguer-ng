@@ -1,0 +1,8 @@
+section {
+  border: white solid 0.1rem;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+}
