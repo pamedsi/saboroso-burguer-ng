@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
 import { LoginFormComponent } from "./pages/login/login-form.component";
-import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { NotFoundComponent } from "./components/single-components/not-found/not-found.component";
 import { MenuManagementComponent } from "./pages/menu-management/menu-management.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { ManagementComponent } from "./pages/management/management.component";

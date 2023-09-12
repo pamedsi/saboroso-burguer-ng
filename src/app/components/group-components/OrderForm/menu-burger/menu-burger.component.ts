@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { BurgerService } from "../../../services/BurgerService";
+import { BurgerService } from "../../../../services/BurgerService";
 import { Burger } from 'src/app/models/Burger';
 
 @Component({
@@ -14,7 +14,7 @@ export class MenuBurgerComponent {
   constructor(
     private burgerService: BurgerService,
     ) {}
-    
+
   ngOnInit(){
     this.burgerService.getBurgersForMenu().subscribe(burgerList => this.menuBurgerList = burgerList)
     this.burgerService.getBurgersForHighLight().subscribe(burgerList => this.highLightBurgerList = burgerList)
