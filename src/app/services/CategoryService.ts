@@ -10,24 +10,24 @@ import {ResponseMessage} from "../types/ResponseMessage";
   providedIn: `root`
 })
 export class CategoryService {
-  private categoriesSource = new BehaviorSubject<CategoryDTO[]>([]);
-  currentCategories = this.categoriesSource.asObservable();
+  private categoriesSource = new BehaviorSubject<CategoryDTO[]>([])
+  currentCategories = this.categoriesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
   getCategoriesForManagement(): Observable<CategoryDTO[]> {
     this.http.get<CategoryDTO[]>(`${environment.API_URL}/get-all-categories`, {headers: defaultWithToken})
       .subscribe(categories => {
-        this.categoriesSource.next(categories);
-      });
-    return this.currentCategories;
+        this.categoriesSource.next(categories)
+      })
+    return this.currentCategories
   }
 
   createCategory(categoryDTO: CategoryDTO) {
     return this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenHeadersForPost})
       .subscribe(({message}) => {
         console.info(message);
-        this.getCategoriesForManagement();
+        this.getCategoriesForManagement()
       });
   }
 

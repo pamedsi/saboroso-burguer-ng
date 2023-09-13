@@ -8,11 +8,9 @@ import {CategoryDTO} from "../../../../../types/CategoryDTO";
   styleUrls: ['./add-category-form.component.css']
 })
 export class AddCategoryFormComponent {
-  @Output() newCategoryAdded
   categoryName!: string
 
   constructor(private categoryService: CategoryService) {
-    this.newCategoryAdded = new EventEmitter()
   }
   addCategory() {
     if (!this.categoryName) return
@@ -20,6 +18,5 @@ export class AddCategoryFormComponent {
     this.categoryService.createCategory({title} as CategoryDTO)
     this.categoryService.getCategoriesForManagement().pipe()
     this.categoryName = ''
-    this.newCategoryAdded.emit()
   }
 }

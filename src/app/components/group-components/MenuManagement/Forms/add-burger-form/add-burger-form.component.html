@@ -8,6 +8,7 @@
   <div>
     <label for="category">Categoria:</label>
     <select id="category" (change)="setCategory($event.target?.valueOf())">
+      <option>Selecione</option>
       <option *ngFor="let category of allCategories">{{category.title}}</option>
     </select>
   </div>

@@ -12,7 +12,6 @@ import {CategoryDTO} from "../../../../../types/CategoryDTO";
 })
 export class AddBurgerFormComponent implements OnInit{
   private readonly titleOfOptions: Ingredient
-  private readonly titleOfCategoryOptions: CategoryDTO
   allIngredients!: Ingredient[]
   allCategories!: CategoryDTO[]
   selectedIngredients: Ingredient[] = [];
@@ -25,12 +24,10 @@ export class AddBurgerFormComponent implements OnInit{
   constructor(
     private ingredientService: IngredientService,
     private categoryService: CategoryService
-
   ) {
     this.titleOfOptions = new Ingredient({title: 'Selecione'} as IngredientDTO)
-    this.titleOfCategoryOptions = {title: 'Selecione'} as CategoryDTO
+  }
 
-    }
   ngOnInit() {
     this.ingredientService.getIngredients().subscribe
     (ingredients => {
@@ -41,7 +38,6 @@ export class AddBurgerFormComponent implements OnInit{
     this.categoryService.getCategoriesForManagement().subscribe(
       categories => {
         this.allCategories = categories
-        this.allCategories.unshift(this.titleOfCategoryOptions)
       }
     )
   }

@@ -9,7 +9,6 @@ import {BurgerCategory} from "../../../../../models/BurgerCategory";
 export class CategoryListForManagementComponent implements OnInit{
   allCategories!: BurgerCategory[]
   initialCategoryName!: string
-  @Input() updatedCategories!: BurgerCategory[]
 
   constructor(private categoryService: CategoryService) {
   }
