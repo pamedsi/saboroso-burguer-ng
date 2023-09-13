@@ -4,6 +4,7 @@ import {environment} from "../../environment/environment";
 import {withTokenHeadersForPost, defaultWithToken} from "../types/Headers";
 import {CategoryDTO} from "../types/CategoryDTO";
 import {Observable} from "rxjs";
+import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: `root`
@@ -17,11 +18,12 @@ export class CategoryService {
   creatCategory(categoryDTO: CategoryDTO) {
     return this.http.post(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenHeadersForPost})
   }
-  editCategory(categoryDTO: CategoryDTO){
-    return this.http.put(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenHeadersForPost})
+  updateCategory(categoryDTO: CategoryDTO){
+      this.http.put<ResponseMessage>(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenHeadersForPost})
+        .subscribe(({message}) => console.info(message))
   }
   removeCategory(categoryIdentifier: string){
-    return this.http.put(`${environment.API_URL}/remove-category/${categoryIdentifier}`, {headers: defaultWithToken})
+    return this.http.delete<ResponseMessage>(`${environment.API_URL}/remove-category/${categoryIdentifier}`, {headers: defaultWithToken})
+      .subscribe(({message}) => console.info(message))
   }
 }
-

@@ -1,14 +1,31 @@
 <h3>Gerir categorias</h3>
 <section *ngFor="let category of allCategories">
-  <main>
-    <div class="title-container">
-      <div>Nome:</div>
-      <div>{{category.title}}</div>
-    </div>
+  <main *ngIf="!category.getEditable()" class="main">
 
-    <div class="buttons-container">
-      <button (click)="editCategory()">Editar</button>
-      <button (click)="deleteCategory()" >Excluir</button>
-    </div>
+      <div class="title-container">
+        <div>Nome:</div>
+        <div>{{category.getTitle()}}</div>
+      </div>
+
+      <div class="button-container">
+        <button (click)="category.setEditable(true); initialCategoryName=category.getTitle()">Editar</button>
+        <button (click)="deleteCategory(category.getIdentifier())">Excluir</button>
+      </div>
+
+  </main>
+
+  <main *ngIf="category.getEditable()" class="main">
+
+      <div class="title-container">
+        <div>Nome:</div>
+        <input [(ngModel)]="category.editing">
+      </div>
+
+      <div class="button-container">
+        <button (click)="editCategory(category.getIdentifier())">Confirmar</button>
+        <button (click)="cancelEditing(category.getIdentifier())">Cancelar</button>
+        <button (click)="deleteCategory(category.getIdentifier())">Excluir</button>
+      </div>
+
   </main>
 </section>
