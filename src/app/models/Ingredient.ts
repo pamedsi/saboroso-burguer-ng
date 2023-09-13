@@ -12,7 +12,7 @@ export class Ingredient {
   }
 
   ingredientToString(): string {
-    return this.grams ? `${this.title} ${this.grams}` : this.title;
+    return this.grams ? `${this.title} ${this.grams} gramas` : this.title;
   }
   gramsToString(): string {
     return this.grams ? `${this.grams.toString()}` : "Sem gramas"

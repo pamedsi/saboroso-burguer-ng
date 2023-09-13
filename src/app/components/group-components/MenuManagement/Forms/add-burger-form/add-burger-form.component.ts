@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IngredientService} from "../../../../../services/IngredientService";
 import {Ingredient} from "../../../../../models/Ingredient";
-import {IngredientDTO} from "../../../../../types/IngredientDTO";
 import {CategoryService} from "../../../../../services/CategoryService";
-import {CategoryDTO} from "../../../../../types/CategoryDTO";
 import {BurgerCategory} from "../../../../../models/BurgerCategory";
 
 @Component({

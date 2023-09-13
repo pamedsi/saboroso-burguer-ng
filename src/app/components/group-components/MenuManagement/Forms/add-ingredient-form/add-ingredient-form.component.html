@@ -1,1 +1,12 @@
-<p>add-ingredient-form works!</p>
+<h3>Adicionar Ingrediente</h3>
+<section>
+  <div>
+    <label for="ingredient">Titulo do novo ingrediente:</label>
+    <input id="ingredient" [(ngModel)]="title">
+  </div>
+  <div>
+    <label for="grams">Quantidade de gramas (opcional)</label>
+    <input type="number" id="grams" [(ngModel)]="grams">
+  </div>
+  <button (click)="addIngredient()">Adicionar</button>
+</section>
