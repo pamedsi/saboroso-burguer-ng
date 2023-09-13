@@ -10,12 +10,11 @@ export class CategoryListForManagementComponent implements OnInit{
   allCategories!: BurgerCategory[]
   initialCategoryName!: string
 
-  constructor(private categoryService: CategoryService) {
-  }
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
     this.categoryService.currentCategories.subscribe(categories => {
-      this.allCategories = categories.map(category => new BurgerCategory(category))
+      this.allCategories = categories
     });
     this.categoryService.getCategoriesForManagement();
   }
@@ -49,7 +48,7 @@ export class CategoryListForManagementComponent implements OnInit{
   }
   refresh(){
     this.categoryService.getCategoriesForManagement().subscribe(categories => {
-      this.allCategories = categories.map(category => new BurgerCategory(category))
+      this.allCategories = categories
     })
   }
 }

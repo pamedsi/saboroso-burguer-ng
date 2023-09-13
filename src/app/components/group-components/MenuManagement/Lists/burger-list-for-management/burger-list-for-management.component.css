@@ -24,3 +24,7 @@ h3 {
   align-items: center;
   justify-content: space-evenly;
 }
+
+.empty-message {
+  text-align: center;
+}

@@ -10,6 +10,7 @@ export class Burger {
   private price: number
   private pic: string | null
   private ingredients: IngredientDTO[]
+  private inStock: boolean
 
   constructor(burgerFromRequest: BurgerDTO) {
     this.identifier = burgerFromRequest.identifier
@@ -18,6 +19,7 @@ export class Burger {
     this.price = burgerFromRequest.price
     this.pic = burgerFromRequest.pic
     this.ingredients = burgerFromRequest.ingredients
+    this.inStock = burgerFromRequest.inStock
   }
   getIdentifier(): string {
     return this.identifier;
@@ -46,6 +48,12 @@ export class Burger {
     const stringToBeReturned: string[] = this.ingredients.map(ingredient => ingredient.grams ? `${ingredient.grams} gramas de ${ingredient.title}` : ingredient.title);
     const lastIngredient = stringToBeReturned.pop();
     return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
+  }
+  getInStock(): boolean {
+    return this.inStock
+  }
+  setInStock(inStock: boolean) {
+    this.inStock = inStock
   }
   setCategory(category: CategoryDTO){ this.category = category }
   setTitle(title: string){ this.title = title}

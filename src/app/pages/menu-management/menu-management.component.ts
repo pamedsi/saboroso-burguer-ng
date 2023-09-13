@@ -21,13 +21,4 @@ export class MenuManagementComponent implements AfterViewInit {
   ngOnInit(): void {
     sessionStorage.removeItem('redirectingTo')
   }
-  async refreshList() {
-    return await this.categoryService.getCategoriesForManagement().forEach(categories => {
-      categories.map(category => new BurgerCategory(category));
-    });
-  }
-
-  handleNewCategory() {
-
-  }
 }

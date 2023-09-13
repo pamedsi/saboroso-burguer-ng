@@ -13,6 +13,7 @@ export class BurgerListForManagementComponent implements OnInit {
   constructor(private burgerService: BurgerService) {}
 
   ngOnInit(){
-    this.burgerService.getBurgersForMenuManagement().subscribe(burgers => this.burgerList = burgers)
-  }
+    this.burgerService.getBurgersForMenuManagement().subscribe(
+      burgers => this.burgerList = burgers
+    )}
 }

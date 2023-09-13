@@ -1,37 +1,42 @@
 <main>
   <h3>Gerir Hambúrgueres</h3>
-
   <section *ngFor="let burger of burgerList">
 
     <div class="prop-container">
-      <label for="title">Título:</label>
-      <div id="title">{{burger.getTitle()}}</div>
+      <div>Título:</div>
+      <div>{{burger.getTitle()}}</div>
     </div>
 
     <div class="prop-container">
-      <label for="category">Categoria:</label>
-      <div id="category">{{burger.getCategory()}}</div>
+      <div>Categoria:</div>
+      <div>{{burger.getCategory()}}</div>
     </div>
 
     <div class="prop-container">
-      <label for="price">Preço:</label>
-      <div id="price">{{burger.getPrice()}}</div>
+      <div>Preço:</div>
+      <div>{{burger.getPrice()}}</div>
     </div>
 
     <div class="prop-container">
       <div *ngIf="burger.getPic(); else noPic">
-        <label for="pic">Foto:</label>
-        <img id="pic" ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+        <div>Foto:</div>
+        <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
       </div>
       <ng-template #noPic>
-        <label for="no-pic">Foto:</label>
-        <div id="no-pic">sem foto</div>
+        <div>Foto:</div>
+        <div>sem foto</div>
       </ng-template>
     </div>
 
     <div class="prop-container">
-      <label for="ingredients">Ingredientes:</label>
-       <div id="ingredients">{{burger.ingredientsToString()}}</div>
+      <div>Ingredientes:</div>
+       <div>{{burger.ingredientsToString()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div>Em estoque:</div>
+      <div *ngIf="burger.getInStock()">Sim</div>
+      <div *ngIf="!burger.getInStock()">Não</div>
     </div>
 
     <div class="buttons">
@@ -41,3 +46,4 @@
 
   </section>
 </main>
+<div class="empty-message" *ngIf="burgerList.length === 0">Sem hambúrgueres, adicione novos</div>

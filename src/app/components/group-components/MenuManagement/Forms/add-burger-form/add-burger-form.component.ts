@@ -4,6 +4,7 @@ import {Ingredient} from "../../../../../models/Ingredient";
 import {IngredientDTO} from "../../../../../types/IngredientDTO";
 import {CategoryService} from "../../../../../services/CategoryService";
 import {CategoryDTO} from "../../../../../types/CategoryDTO";
+import {BurgerCategory} from "../../../../../models/BurgerCategory";
 
 @Component({
   selector: 'app-add-burger-form',
@@ -11,28 +12,24 @@ import {CategoryDTO} from "../../../../../types/CategoryDTO";
   styleUrls: ['./add-burger-form.component.css']
 })
 export class AddBurgerFormComponent implements OnInit{
-  private readonly titleOfOptions: Ingredient
   allIngredients!: Ingredient[]
-  allCategories!: CategoryDTO[]
+  allCategories!: BurgerCategory[]
   selectedIngredients: Ingredient[] = [];
 
   title!: string
-  category!: CategoryDTO
+  category!: BurgerCategory
   price!: number
   pic!: string
 
   constructor(
     private ingredientService: IngredientService,
     private categoryService: CategoryService
-  ) {
-    this.titleOfOptions = new Ingredient({title: 'Selecione'} as IngredientDTO)
-  }
+  ) {}
 
   ngOnInit() {
     this.ingredientService.getIngredients().subscribe
     (ingredients => {
       this.allIngredients = ingredients
-      this.allIngredients.unshift(this.titleOfOptions)
     })
 
     this.categoryService.getCategoriesForManagement().subscribe(
@@ -42,7 +39,7 @@ export class AddBurgerFormComponent implements OnInit{
     )
   }
   addIngredient(ingredientIndex: any) {
-    const index = ingredientIndex.options.selectedIndex
+    const index = ingredientIndex.options.selectedIndex - 1
     const alreadyInList = this.selectedIngredients.some(ingredient =>
       ingredient.getIdentifier() === this.allIngredients[index].getIdentifier()
     )
@@ -53,7 +50,7 @@ export class AddBurgerFormComponent implements OnInit{
       i => i.getIdentifier() !== ingredient.getIdentifier())
   }
   setCategory(category: any){
-    const index = category.options.selectedIndex
+    const index = category.options.selectedIndex - 1
     if (index) this.category = this.allCategories[index]
   }
 }

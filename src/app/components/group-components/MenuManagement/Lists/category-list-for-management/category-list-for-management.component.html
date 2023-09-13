@@ -1,4 +1,5 @@
 <h3>Gerir categorias</h3>
+<div *ngIf="allCategories.length === 0">Sem categorias, adicione novas</div>
 <section *ngFor="let category of allCategories">
   <main *ngIf="!category.getEditable()" class="main">
 

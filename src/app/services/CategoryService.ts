@@ -5,20 +5,23 @@ import {withTokenHeadersForPost, defaultWithToken} from "../types/Headers";
 import {CategoryDTO} from "../types/CategoryDTO";
 import {Observable, BehaviorSubject} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
+import {BurgerCategory} from "../models/BurgerCategory";
+import {Burger} from "../models/Burger";
 
 @Injectable({
   providedIn: `root`
 })
 export class CategoryService {
-  private categoriesSource = new BehaviorSubject<CategoryDTO[]>([])
+  private categoriesSource = new BehaviorSubject<BurgerCategory[]>([])
   currentCategories = this.categoriesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  getCategoriesForManagement(): Observable<CategoryDTO[]> {
+  getCategoriesForManagement(): Observable<BurgerCategory[]> {
     this.http.get<CategoryDTO[]>(`${environment.API_URL}/get-all-categories`, {headers: defaultWithToken})
       .subscribe(categories => {
-        this.categoriesSource.next(categories)
+        const burgerCategories = categories.map(category => new BurgerCategory(category))
+        this.categoriesSource.next(burgerCategories)
       })
     return this.currentCategories
   }
