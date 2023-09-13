@@ -3,27 +3,47 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
 import {withTokenHeadersForPost, defaultWithToken} from "../types/Headers";
 import {CategoryDTO} from "../types/CategoryDTO";
-import {Observable} from "rxjs";
+import {Observable, BehaviorSubject} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: `root`
 })
 export class CategoryService {
+  private categoriesSource = new BehaviorSubject<CategoryDTO[]>([]);
+  currentCategories = this.categoriesSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   getCategoriesForManagement(): Observable<CategoryDTO[]> {
-    return this.http.get<CategoryDTO[]>(`${environment.API_URL}/get-all-categories`, {headers: defaultWithToken})
+    this.http.get<CategoryDTO[]>(`${environment.API_URL}/get-all-categories`, {headers: defaultWithToken})
+      .subscribe(categories => {
+        this.categoriesSource.next(categories);
+      });
+    return this.currentCategories;
   }
-  creatCategory(categoryDTO: CategoryDTO) {
-    return this.http.post(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenHeadersForPost})
+
+  createCategory(categoryDTO: CategoryDTO) {
+    return this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenHeadersForPost})
+      .subscribe(({message}) => {
+        console.info(message);
+        this.getCategoriesForManagement();
+      });
   }
+
   updateCategory(categoryDTO: CategoryDTO){
-      this.http.put<ResponseMessage>(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenHeadersForPost})
-        .subscribe(({message}) => console.info(message))
+    this.http.put<ResponseMessage>(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenHeadersForPost})
+      .subscribe(({message}) => {
+        console.info(message);
+        this.getCategoriesForManagement();
+      });
   }
+
   removeCategory(categoryIdentifier: string){
     return this.http.delete<ResponseMessage>(`${environment.API_URL}/remove-category/${categoryIdentifier}`, {headers: defaultWithToken})
-      .subscribe(({message}) => console.info(message))
+      .subscribe(({message}) => {
+        console.info(message);
+        this.getCategoriesForManagement();
+      });
   }
 }

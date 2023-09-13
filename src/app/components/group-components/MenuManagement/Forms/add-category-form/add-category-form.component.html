@@ -1,1 +1,6 @@
-<p>add-category-form works!</p>
+<h3>Adicionar categoria</h3>
+<section>
+  <label for="category">Nome da nova categoria:</label>
+  <input id="category" placeholder="Digite aqui" [(ngModel)]="categoryName">
+  <button (click)="addCategory()">Adicionar</button>
+</section>

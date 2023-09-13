@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CategoryService} from "../../../../../services/CategoryService";
 import {BurgerCategory} from "../../../../../models/BurgerCategory";
 @Component({
@@ -9,13 +9,16 @@ import {BurgerCategory} from "../../../../../models/BurgerCategory";
 export class CategoryListForManagementComponent implements OnInit{
   allCategories!: BurgerCategory[]
   initialCategoryName!: string
+  @Input() updatedCategories!: BurgerCategory[]
 
   constructor(private categoryService: CategoryService) {
   }
+
   ngOnInit() {
-    this.categoryService.getCategoriesForManagement().subscribe(categories => {
+    this.categoryService.currentCategories.subscribe(categories => {
       this.allCategories = categories.map(category => new BurgerCategory(category))
-    })
+    });
+    this.categoryService.getCategoriesForManagement();
   }
   editCategory(identifier: string) {
     const category = this.getCategory(identifier)
@@ -44,5 +47,10 @@ export class CategoryListForManagementComponent implements OnInit{
     if (!category) return
     category.editing = this.initialCategoryName
     category.setEditable(false)
+  }
+  refresh(){
+    this.categoryService.getCategoriesForManagement().subscribe(categories => {
+      this.allCategories = categories.map(category => new BurgerCategory(category))
+    })
   }
 }

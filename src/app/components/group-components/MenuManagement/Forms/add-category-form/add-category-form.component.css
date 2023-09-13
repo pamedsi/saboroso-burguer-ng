@@ -1,0 +1,8 @@
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+section > * {
+  margin: 0.2rem;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Burger } from 'src/app/models/Burger';
 import { BurgerService } from 'src/app/services/BurgerService';
 
@@ -7,10 +7,9 @@ import { BurgerService } from 'src/app/services/BurgerService';
   templateUrl: './burger-list-for-management.component.html',
   styleUrls: ['./burger-list-for-management.component.css']
 })
-export class BurgerListForManagementComponent {
-
+export class BurgerListForManagementComponent implements OnInit {
   burgerList!: Burger[]
-  
+
   constructor(private burgerService: BurgerService) {}
 
   ngOnInit(){
