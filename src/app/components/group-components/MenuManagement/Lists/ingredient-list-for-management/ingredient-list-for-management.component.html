@@ -1,20 +1,53 @@
 <h2>Gerir Ingredientes</h2>
 <div *ngIf="allIngredients.length === 0">Sem ingredientes, adicione novos</div>
 <section class="title-container" *ngFor="let ingredient of allIngredients">
+  <main *ngIf="!ingredient.getEditable()">
+    <div class="prop-container">
+      <div>Título:</div>
+      <div>{{ingredient.getTitle()}}</div>
+    </div>
 
-  <div class="prop-container">
-    <div>Título:</div>
-    <div>{{ingredient.getTitle()}}</div>
-  </div>
+    <div class="prop-container">
+      <div>Gramas:</div>
+      <div>{{ingredient.gramsToString()}}</div>
+    </div>
 
-  <div class="prop-container">
-    <div>Gramas:</div>
-    <div>{{ingredient.gramsToString()}}</div>
-  </div>
+    <div class="prop-container">
+      <div>Em estoque:</div>
+      <div *ngIf="ingredient.getInStock()">Sim</div>
+      <div *ngIf="!ingredient.getInStock()"> Não</div>
+    </div>
 
-  <div class="buttons">
-    <button>Editar</button>
-    <button>Excluir</button>
-  </div>
+    <div class="buttons">
+      <button (click)="ingredient.setEditable(true)">Editar</button>
+      <button (click)="deleteIngredient(ingredient.getIdentifier())">Excluir</button>
+    </div>
+  </main>
+
+  <main *ngIf="ingredient.getEditable()">
+    <div class="prop-container">
+      <div>Título:</div>
+      <input [(ngModel)]="ingredient.titleEditing">
+    </div>
+
+    <div class="prop-container">
+      <div>Gramas:</div>
+      <input type="number" [(ngModel)]="ingredient.gramsEditing">
+    </div>
+
+    <div class="prop-container">
+      <label>Em estoque:</label>
+      <select (change)="ingredient.onOptionSelected($event.target)">
+        <option *ngFor="let option of ingredient.getOptionsForInStock()">{{option}}</option>
+      </select>
+
+    </div>
+
+    <div class="buttons">
+      <button (click)="editIngredient(ingredient.getIdentifier())">Confirmar</button>
+      <button (click)="cancelEditing(ingredient.getIdentifier())">Cancelar</button>
+      <button>Excluir</button>
+    </div>
+  </main>
 
 </section>

@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
-import {withTokenHeadersForPost, defaultWithToken} from "../types/Headers";
+import {withTokenAndBody, defaultWithToken} from "../types/Headers";
 import {CategoryDTO} from "../types/CategoryDTO";
 import {Observable, BehaviorSubject} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
 import {BurgerCategory} from "../models/BurgerCategory";
-import {Burger} from "../models/Burger";
 
 @Injectable({
   providedIn: `root`
@@ -27,7 +26,7 @@ export class CategoryService {
   }
 
   createCategory(categoryDTO: CategoryDTO) {
-    return this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenHeadersForPost})
+    return this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenAndBody})
       .subscribe(({message}) => {
         console.info(message);
         this.getCategoriesForManagement()
@@ -35,7 +34,7 @@ export class CategoryService {
   }
 
   updateCategory(categoryDTO: CategoryDTO){
-    this.http.put<ResponseMessage>(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenHeadersForPost})
+    this.http.put<ResponseMessage>(`${environment.API_URL}/edit-category`, categoryDTO, {headers: withTokenAndBody})
       .subscribe(({message}) => {
         console.info(message);
         this.getCategoriesForManagement();

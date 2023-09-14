@@ -16,4 +16,36 @@ export class IngredientListForManagementComponent implements OnInit{
       this.allIngredients = ingredients
     })
   }
+  deleteIngredient(identifier: string) {
+    this.allIngredients = this.allIngredients.filter(ingredient => ingredient.getIdentifier() !== identifier)
+    this.ingredientService.removeIngredient(identifier)
+  }
+  cancelEditing(identifier: string) {
+    const ingredient = this.allIngredients.find(ingredient => ingredient.getIdentifier() === identifier)
+    if (!ingredient) return
+    ingredient.titleEditing = ingredient.getTitle()
+    if (ingredient.getGrams()) ingredient.gramsEditing = ingredient.getGrams()
+    ingredient.setEditable(false)
+  }
+  editIngredient(identifier: string) {
+    const ingredient = this.allIngredients.find(ingredient => ingredient.getIdentifier() === identifier)
+    if (!ingredient) return
+    if(!this.anyChanges(ingredient)) {
+      ingredient.setEditable(false)
+      return
+    }
+
+    ingredient.setTitle(ingredient.titleEditing)
+    if (ingredient.gramsEditing) ingredient.setGrams(Number(ingredient.gramsEditing))
+    ingredient.setInStock()
+    ingredient.setEditable(false)
+
+    this.ingredientService.updateIngredient(ingredient.toDTO())
+  }
+  anyChanges(ingredient: Ingredient): boolean {
+    if (ingredient.getTitle() !== ingredient.titleEditing || ingredient.gramsEditing !== ingredient.getGrams()) return true
+    if (ingredient.inStockEditing && ingredient.getInStock()) return true
+    const clicked = typeof ingredient.inStockEditing  === 'boolean'
+    return clicked && (ingredient.inStockEditing !== ingredient.getInStock())
+  }
 }

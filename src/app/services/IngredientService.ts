@@ -5,7 +5,7 @@ import {IngredientDTO} from "../types/IngredientDTO";
 import {Ingredient} from "../models/Ingredient";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {withTokenHeadersForPost} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Headers";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +17,7 @@ export class IngredientService {
   constructor(private http: HttpClient) {}
 
   getIngredients(): Observable<Ingredient[]>{
-    this.http.get<IngredientDTO[]>(`${environment.API_URL}/menu-ingredients`)
+    this.http.get<IngredientDTO[]>(`${environment.API_URL}/menu-ingredients-management`, {headers: defaultWithToken})
       .subscribe(
       ingredientsDTO => {
         const ingredients = ingredientsDTO.map(ingredient => new Ingredient(ingredient))
@@ -25,12 +25,18 @@ export class IngredientService {
       })
     return this.currentIngredients
   }
-
   createIngredient(ingredient: IngredientDTO){
-    return this.http.post<ResponseMessage>(`${environment.API_URL}/insert-ingredient`, ingredient, {headers: withTokenHeadersForPost}).subscribe(
+    this.http.post<ResponseMessage>(`${environment.API_URL}/insert-ingredient`, ingredient, {headers: withTokenAndBody}).subscribe(
       ({message}) => {
         console.info(message)
         this.getIngredients()
       })
+  }
+  updateIngredient(ingredient: IngredientDTO) {
+    return this.http.put(`${environment.API_URL}/update-ingredient`, ingredient, {headers: withTokenAndBody})
+      .subscribe(console.log)
+  }
+  removeIngredient(identifier: string) {
+
   }
 }

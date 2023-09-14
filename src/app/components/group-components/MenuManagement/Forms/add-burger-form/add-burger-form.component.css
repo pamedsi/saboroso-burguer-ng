@@ -20,6 +20,10 @@ button {
   margin-top: 0.7rem;
 }
 
+label {
+  padding-right: 1rem;
+}
+
 .selected-ingredient {
   position: relative;
   display: flex;
