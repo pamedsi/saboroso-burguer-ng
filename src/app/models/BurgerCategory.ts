@@ -3,14 +3,12 @@ import {CategoryDTO} from "../types/CategoryDTO";
 export class BurgerCategory {
   private readonly identifier: string
   private title: string
-  private deleted: boolean
   private editable: boolean
   public editing: string
 
   constructor(categoryDTO: CategoryDTO) {
     this.identifier = categoryDTO.identifier
     this.title = categoryDTO.title
-    this.deleted = categoryDTO.deleted
     this.editable = false
     this.editing = categoryDTO.title
   }
@@ -22,9 +20,6 @@ export class BurgerCategory {
   }
   setTitle(value: string) {
     this.title = value.toUpperCase();
-  }
-  setDeleted(value: boolean) {
-    this.deleted = value;
   }
   getEditable() {
     return this.editable

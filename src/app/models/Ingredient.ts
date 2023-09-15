@@ -53,9 +53,8 @@ export class Ingredient {
     this.grams = value;
   }
   toDTO(){
-    let ingredientDTO = {identifier: this.identifier, title: this.title, inStock: this.inStock} as IngredientDTO
-    if (this.grams) ingredientDTO = {identifier: this.identifier, title: this.title, grams: this.grams, inStock: this.inStock} as IngredientDTO
-    return ingredientDTO
+    if (!this.grams) return {identifier: this.identifier, title: this.title, inStock: this.inStock} as IngredientDTO
+    return {identifier: this.identifier, title: this.title, grams: this.grams, inStock: this.inStock} as IngredientDTO
   }
   getInStock() {
     return this.inStock

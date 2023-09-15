@@ -31,7 +31,6 @@ export class CategoryListForManagementComponent implements OnInit{
       const category = this.getCategory(identifier)
       if (!category) return
 
-      category.setDeleted(true)
       this.allCategories = this.allCategories.filter(category => category.getIdentifier() !== identifier)
       this.categoryService.removeCategory(identifier)
   }

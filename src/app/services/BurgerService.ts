@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environment/environment";
-import { BurgerDTO } from "../types/BurgerDTO";
+import {BurgerDTO, InputBurgerDTO} from "../types/BurgerDTO";
 import {Observable, map, BehaviorSubject} from 'rxjs';
 import { Burger } from "../models/Burger";
-import { defaultWithToken } from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: "root"
@@ -31,9 +32,15 @@ export class BurgerService {
     }
   getBurgersForMenuManagement(){
     this.http.get<BurgerDTO[]>(`${environment.API_URL}/burgers-management`, {headers: defaultWithToken})
-      .subscribe( burgers => {
-        return burgers.map(burgerDTO => new Burger(burgerDTO))
+      .subscribe( burgersDTO => {
+        const burgers = burgersDTO.map(burgerDTO => new Burger(burgerDTO))
+        this.burgersSource.next(burgers)
       })
     return this.currentBurgersForManagement
+  }
+  addNewBurger(burgerDTO: InputBurgerDTO){
+      this.http.post<ResponseMessage>(`${environment.API_URL}/save-burger`, burgerDTO,{headers: withTokenAndBody})
+          .subscribe(message => {console.info(message)})
+      return this.currentBurgersForManagement
   }
 }

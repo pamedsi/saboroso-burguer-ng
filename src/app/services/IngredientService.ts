@@ -27,17 +27,17 @@ export class IngredientService {
   }
   createIngredient(ingredient: IngredientDTO){
     this.http.post<ResponseMessage>(`${environment.API_URL}/insert-ingredient`, ingredient, {headers: withTokenAndBody}).subscribe(
-      ({message}) => {
+      message => {
         console.info(message)
         this.getIngredients()
       })
   }
   updateIngredient(ingredient: IngredientDTO) {
     return this.http.put(`${environment.API_URL}/update-ingredient`, ingredient, {headers: withTokenAndBody})
-      .subscribe(console.log)
+      .subscribe(message => console.info(message))
   }
   removeIngredient(identifier: string) {
     return this.http.delete(`${environment.API_URL}/remove-ingredient/${identifier}`, {headers: defaultWithToken})
-      .subscribe(console.log)
+      .subscribe(console.info)
   }
 }

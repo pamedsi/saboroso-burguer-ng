@@ -10,3 +10,12 @@ export interface BurgerDTO {
   inStock: boolean
   ingredients: IngredientDTO[]
 }
+
+export interface InputBurgerDTO {
+  title: string
+  categoryIdentifier: string
+  price: number
+  pic: string | null
+  inStock: boolean
+  ingredients: IngredientDTO[]
+}

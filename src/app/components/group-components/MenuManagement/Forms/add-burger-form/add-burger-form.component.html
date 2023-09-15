@@ -36,19 +36,17 @@
       <label for="ingredients">Adicionar ingrediente:</label>
       <select id="ingredients" (change)="addIngredient($event.target?.valueOf())">
         <option>Selecione</option>
-        <option *ngFor="let ingredient of allIngredients">
-          {{ingredient.ingredientToString()}}
-        </option>
+        <option *ngFor="let ingredient of allIngredients">{{ingredient.ingredientToString()}}</option>
       </select>
   </div>
 
   <div>
     <label for="in-stock">Em estoque:</label>
-    <select id="in-stock" >
+    <select id="in-stock" (change)="setInStock($event.target)">
       <option>Sim</option>
       <option>Não</option>
     </select>
   </div>
-  <button>Adicionar</button>
+  <button (click)="addBurger()">Adicionar</button>
 
 </section>
