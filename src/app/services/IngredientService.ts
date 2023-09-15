@@ -37,6 +37,7 @@ export class IngredientService {
       .subscribe(console.log)
   }
   removeIngredient(identifier: string) {
-
+    return this.http.delete(`${environment.API_URL}/remove-ingredient/${identifier}`, {headers: defaultWithToken})
+      .subscribe(console.log)
   }
 }

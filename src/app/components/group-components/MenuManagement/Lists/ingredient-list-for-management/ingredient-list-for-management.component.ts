@@ -36,7 +36,8 @@ export class IngredientListForManagementComponent implements OnInit{
     }
 
     ingredient.setTitle(ingredient.titleEditing)
-    if (ingredient.gramsEditing) ingredient.setGrams(Number(ingredient.gramsEditing))
+    if (!ingredient.gramsEditing) ingredient.setGrams(null)
+    else ingredient.setGrams(Number(ingredient.gramsEditing))
     ingredient.setInStock()
     ingredient.setEditable(false)
 
