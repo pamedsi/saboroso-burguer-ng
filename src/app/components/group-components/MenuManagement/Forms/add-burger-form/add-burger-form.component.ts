@@ -3,7 +3,7 @@ import {IngredientService} from "../../../../../services/IngredientService";
 import {Ingredient} from "../../../../../models/Ingredient";
 import {CategoryService} from "../../../../../services/CategoryService";
 import {BurgerCategory} from "../../../../../models/BurgerCategory";
-import {BurgerDTO, InputBurgerDTO} from "../../../../../types/BurgerDTO";
+import {InputBurgerDTO} from "../../../../../types/BurgerDTO";
 import {BurgerService} from "../../../../../services/BurgerService";
 
 @Component({
@@ -78,5 +78,9 @@ export class AddBurgerFormComponent implements OnInit{
     } as InputBurgerDTO
 
     this.burgerService.addNewBurger(burgerDTO)
+
+    this.title = ''
+    this.price = 0
+    this.selectedIngredients = []
   }
 }
