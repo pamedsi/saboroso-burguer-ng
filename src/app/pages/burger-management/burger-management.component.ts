@@ -1,10 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {
-  CategoryListForManagementComponent
-} from "../../components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component";
-import {CategoryService} from "../../services/CategoryService";
-import {Observable} from "rxjs";
-import {BurgerCategory} from "../../models/BurgerCategory";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-burger-management',
@@ -13,12 +8,17 @@ import {BurgerCategory} from "../../models/BurgerCategory";
 })
 export class BurgerManagementComponent implements AfterViewInit {
 
-  constructor(private categoryService: CategoryService){}
+  constructor(
+    private router: Router
+  ){}
 
   ngAfterViewInit() {
   }
 
   ngOnInit(): void {
     sessionStorage.removeItem('redirectingTo')
+  }
+  goToAdminPage(): void {
+    this.router.navigate(['/admin'])
   }
 }
