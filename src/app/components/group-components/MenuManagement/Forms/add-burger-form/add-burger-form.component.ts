@@ -78,7 +78,6 @@ export class AddBurgerFormComponent implements OnInit{
     } as InputBurgerDTO
 
     this.burgerService.addNewBurger(burgerDTO)
-    this.burgerService.getBurgersForMenuManagement().pipe()
 
     this.title = ''
     this.price = 0

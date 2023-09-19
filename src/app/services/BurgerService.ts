@@ -44,8 +44,10 @@ export class BurgerService {
   }
   addNewBurger(burgerDTO: InputBurgerDTO){
       this.http.post<ResponseMessage>(`${environment.API_URL}/save-burger`, burgerDTO,{headers: withTokenAndBody})
-          .subscribe(message => {console.info(message)})
-      return this.currentBurgersForManagement
+          .subscribe(message => {
+            console.info(message)
+            this.getBurgersForMenuManagement()
+          })
   }
   updateBurger(burgerDTO: BurgerDTO) {
     this.http.put<ResponseMessage>(`${environment.API_URL}/update-burger`, burgerDTO,{headers: withTokenAndBody})
