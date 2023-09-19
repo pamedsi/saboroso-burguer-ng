@@ -45,7 +45,7 @@
     <div class="buttons">
       <button (click)="editIngredient(ingredient.getIdentifier())">Confirmar</button>
       <button (click)="cancelEditing(ingredient.getIdentifier())">Cancelar</button>
-      <button>Excluir</button>
+      <button (click)="deleteIngredient(ingredient.getIdentifier())">Excluir</button>
     </div>
   </main>
 
