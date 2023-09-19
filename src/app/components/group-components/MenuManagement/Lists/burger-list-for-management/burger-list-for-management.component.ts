@@ -99,7 +99,7 @@ export class BurgerListForManagementComponent implements OnInit {
     burger.setEditable(false)
     return true
   }
-    cancelEditing(burger: Burger) {
+  cancelEditing(burger: Burger) {
         burger.titleEditing = burger.getTitle()
         burger.categoryEditing = burger.getCategory()
         burger.priceEditing = burger.getPrice()
@@ -107,5 +107,10 @@ export class BurgerListForManagementComponent implements OnInit {
         burger.ingredientsEditing = burger.getIngredients()
         burger.inStockEditing = burger.getInStock()
         burger.setEditable(false)
-    }
+  }
+
+  deleteBurger(identifier: string) {
+    this.burgerList = this.burgerList.filter(burger => burger.getIdentifier() !== identifier)
+    this.burgerService.removeBurger(identifier)
+  }
 }

@@ -52,4 +52,10 @@ export class BurgerService {
       .subscribe(console.info)
     return this.currentBurgersForManagement
   }
+
+  removeBurger(identifier: string) {
+    this.http.delete<ResponseMessage>(`${environment.API_URL}/delete-burger/${identifier}`, {headers: defaultWithToken})
+      .subscribe(console.info)
+    return this.currentBurgersForManagement
+  }
 }
