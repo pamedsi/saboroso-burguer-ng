@@ -13,10 +13,10 @@ export class CategoryListForManagementComponent implements OnInit{
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
-    this.categoryService.currentCategories.subscribe(categories => {
-      this.allCategories = categories
-    });
-    this.categoryService.getCategoriesForManagement();
+    this.categoryService.currentCategories.subscribe(
+      categories => this.allCategories = categories
+    )
+    this.categoryService.getCategoriesForManagement()
   }
   editCategory(identifier: string) {
     const category = this.getCategory(identifier)

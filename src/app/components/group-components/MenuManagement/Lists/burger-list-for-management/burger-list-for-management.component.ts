@@ -23,9 +23,11 @@ export class BurgerListForManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(){
-    this.burgerService.getBurgersForMenuManagement().subscribe(
+    this.burgerService.currentBurgersForManagement.subscribe(
       burgers => this.burgerList = burgers
     )
+    this.burgerService.getBurgersForMenuManagement()
+
     this.categoryService.getCategoriesForManagement().subscribe(
       categories => this.allCategories = categories
     )
