@@ -8,7 +8,7 @@ import {ResponseMessage} from "../types/ResponseMessage";
 import {BurgerCategory} from "../models/BurgerCategory";
 
 @Injectable({
-  providedIn: `root`
+  providedIn: 'root'
 })
 export class CategoryService {
   private categoriesSource = new BehaviorSubject<BurgerCategory[]>([])

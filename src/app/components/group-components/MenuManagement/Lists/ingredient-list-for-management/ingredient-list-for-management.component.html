@@ -40,7 +40,6 @@
       <select (change)="ingredient.onOptionSelected($event.target)">
         <option *ngFor="let option of ingredient.getOptionsForInStock()">{{option}}</option>
       </select>
-
     </div>
 
     <div class="buttons">

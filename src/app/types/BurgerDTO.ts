@@ -5,7 +5,7 @@ export interface BurgerDTO {
   identifier: string
   category: CategoryDTO
   title: string
-  price: number
+  price: number | string
   pic: string | null
   inStock: boolean
   ingredients: IngredientDTO[]

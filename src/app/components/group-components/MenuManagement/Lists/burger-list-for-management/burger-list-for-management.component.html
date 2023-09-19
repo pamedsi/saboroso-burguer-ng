@@ -1,49 +1,103 @@
-<main>
-  <h3>Gerir Hambúrgueres</h3>
-  <section *ngFor="let burger of burgerList">
+<h3>Gerir Hambúrgueres</h3>
+<main *ngFor="let burger of burgerList">
 
-    <div class="prop-container">
-      <div>Título:</div>
-      <div>{{burger.getTitle()}}</div>
-    </div>
-
-    <div class="prop-container">
-      <div>Categoria:</div>
-      <div>{{burger.getCategory().title}}</div>
-    </div>
-
-    <div class="prop-container">
-      <div>Preço:</div>
-      <div>{{burger.getPrice()}}</div>
-    </div>
-
-    <div class="prop-container">
-      <div *ngIf="burger.getPic(); else noPic">
-        <div>Foto:</div>
-        <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+  <section *ngIf="!burger.getEditable()">
+      <div class="prop-container">
+        <div>Título:</div>
+        <div>{{burger.getTitle()}}</div>
       </div>
-      <ng-template #noPic>
-        <div>Foto:</div>
-        <div>sem foto</div>
-      </ng-template>
+
+      <div class="prop-container">
+        <div>Categoria:</div>
+        <div>{{burger.getCategory().getTitle()}}</div>
+      </div>
+
+      <div class="prop-container">
+        <div>Preço:</div>
+        <div>{{burger.getPriceToString()}}</div>
+      </div>
+
+      <div class="prop-container">
+        <div *ngIf="burger.getPic(); else noPic">
+          <div>Foto:</div>
+          <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+        </div>
+        <ng-template #noPic>
+          <div>Foto:</div>
+          <div>sem foto</div>
+        </ng-template>
+      </div>
+
+      <div class="prop-container">
+        <div>Ingredientes:</div>
+        <div class="ingredients-container" >{{burger.ingredientsToString()}}</div>
+      </div>
+
+      <div class="prop-container">
+        <div>Em estoque:</div>
+        <div *ngIf="burger.getInStock()">Sim</div>
+        <div *ngIf="!burger.getInStock()">Não</div>
+      </div>
+
+      <div class="buttons">
+        <button (click)="burger.setEditable(true)">Editar</button>
+        <button>Excluir</button>
+      </div>
+  </section>
+
+  <section *ngIf="burger.getEditable()">
+    <div class="prop-container">
+      <label for="input-editing">Título:</label>
+      <input id="input-editing" [(ngModel)]="burger.titleEditing">
     </div>
 
     <div class="prop-container">
-      <div>Ingredientes:</div>
-       <div>{{burger.ingredientsToString()}}</div>
+      <label>Categoria:</label>
+      <select (change)="burger.onCategorySelected($event.target, allCategories)">
+        <option *ngFor="let option of burger.getOptionsForCategories(allCategories)">{{option.getTitle()}}</option>
+      </select>
     </div>
 
     <div class="prop-container">
-      <div>Em estoque:</div>
-      <div *ngIf="burger.getInStock()">Sim</div>
-      <div *ngIf="!burger.getInStock()">Não</div>
+      <label>Preço:</label>
+      <input id="price" type="text" currencyMask [(ngModel)]="burger.priceEditing" placeholder="R$ 0,00"
+             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    </div>
+
+    <div class="prop-container">
+        <label for="pic">Foto:</label>
+        <input id="pic" [(ngModel)]="burger.picEditing">
+    </div>
+
+    <div>Ingredientes:</div>
+      <div class="ingredients-container">
+        <div class="selected-ingredient" *ngFor="let ingredient of burger.ingredientsEditing">
+          <div class="ingredient-title">{{ingredient.ingredientToString()}}</div>
+          <div class="x" (click)="removeIngredient(ingredient.getIdentifier(), burger)">x</div>
+      </div>
+    </div>
+
+    <div>
+      <label for="ingredients">Adicionar ingrediente:</label>
+      <select id="ingredients" (change)="addIngredient($event.target?.valueOf(), burger)">
+        <option>Selecione</option>
+        <option *ngFor="let ingredient of allIngredients">{{ingredient.ingredientToString()}}</option>
+      </select>
+    </div>
+
+    <div class="prop-container">
+      <label>Em estoque:</label>
+      <select (change)="burger.onInStockSelected($event.target)">
+        <option *ngFor="let option of burger.getOptionsForInStock()">{{option}}</option>
+      </select>
     </div>
 
     <div class="buttons">
-      <button>Editar</button>
-      <button>Excluir</button>
+      <button type="button" (click)="editBurger(burger)">Confirmar</button>
+      <button type="button" (click)="cancelEditing(burger)">Cancelar</button>
+      <button type="button">Excluir</button>
     </div>
-
   </section>
+
 </main>
 <div class="empty-message" *ngIf="burgerList.length === 0">Sem hambúrgueres, adicione novos</div>
