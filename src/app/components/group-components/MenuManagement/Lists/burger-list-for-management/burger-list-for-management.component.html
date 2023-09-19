@@ -71,7 +71,7 @@
 
     <div>Ingredientes:</div>
       <div class="ingredients-container">
-        <div class="selected-ingredient" *ngFor="let ingredient of burger.ingredientsEditing">
+        <div class="selected-ingredient" *ngFor="let ingredient of burger.getSelectedIngredients(allIngredients)">
           <div class="ingredient-title">{{ingredient.ingredientToString()}}</div>
           <div class="x" (click)="removeIngredient(ingredient.getIdentifier(), burger)">x</div>
       </div>
@@ -81,7 +81,7 @@
       <label for="ingredients">Adicionar ingrediente:</label>
       <select id="ingredients" (change)="addIngredient($event.target?.valueOf(), burger)">
         <option>Selecione</option>
-        <option *ngFor="let ingredient of allIngredients">{{ingredient.ingredientToString()}}</option>
+        <option *ngFor="let ingredient of burger.getOptionsForIngredients(allIngredients)">{{ingredient.ingredientToString()}}</option>
       </select>
     </div>
 

@@ -2,6 +2,7 @@ import {IngredientDTO} from "../types/IngredientDTO";
 
 export class Ingredient {
   private readonly identifier: string
+  private readonly deleted: boolean
   private title: string
   private grams: number | null
   private inStock: boolean
@@ -17,6 +18,7 @@ export class Ingredient {
     this.title = ingredientDTO.title
     this.grams = ingredientDTO.grams
     this.inStock = ingredientDTO.inStock
+    this.deleted = ingredientDTO.deleted
 
     this.titleEditing = ingredientDTO.title
     if (ingredientDTO.grams) this.gramsEditing = ingredientDTO.grams
@@ -59,6 +61,11 @@ export class Ingredient {
   getInStock() {
     return this.inStock
   }
+  getDeleted(): boolean {
+    return this.deleted
+  }
+
+  // Component props
   setInStock() {
     if (typeof this.inStockEditing === 'string') return
     this.inStock = this.inStockEditing;

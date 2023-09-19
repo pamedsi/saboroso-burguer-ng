@@ -3,4 +3,5 @@ export interface IngredientDTO {
   title: string
   grams: number | null
   inStock: boolean
+  deleted: boolean
 }

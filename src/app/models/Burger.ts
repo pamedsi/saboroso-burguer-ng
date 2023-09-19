@@ -70,7 +70,11 @@ export class Burger {
   }
   ingredientsToString(): string {
     if (this.ingredients.length === 0) return "Sem ingredientes"
-    const stringToBeReturned: string[] = this.ingredients.map(ingredient => ingredient.getGrams() ? `${ingredient.getGrams()} gramas de ${ingredient.getTitle()}` : ingredient.getTitle());
+    const stringToBeReturned: string[] =
+      this.ingredients.filter(ingredient => !ingredient.getDeleted())
+        .map(ingredient =>
+      ingredient.getGrams() ? `${ingredient.getGrams()} gramas de ${ingredient.getTitle()}` : ingredient.getTitle()
+    );
     const lastIngredient = stringToBeReturned.pop();
     return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
   }
@@ -141,6 +145,26 @@ export class Burger {
 
     listWithoutCurrentCategory.unshift(currentCategory)
     return listWithoutCurrentCategory
+  }
+  getOptionsForIngredients(allIngredients: Ingredient[]) {
+    const ingredientDeleted = this.ingredientsEditing.find(ingredient =>
+      !allIngredients.includes(ingredient)
+    )
+    if (!ingredientDeleted) return allIngredients
+
+    return allIngredients.filter(ingredient =>
+      ingredient.getIdentifier() !== ingredientDeleted.getIdentifier()
+    )
+  }
+  getSelectedIngredients(allIngredients: Ingredient[]) {
+    const ingredientDeleted = this.ingredientsEditing.find(ingredient =>
+      !allIngredients.includes(ingredient)
+    )
+    if (!ingredientDeleted) return this.ingredientsEditing
+
+    return this.ingredientsEditing.filter(ingredient =>
+      ingredient.getIdentifier() !== ingredientDeleted.getIdentifier()
+    )
   }
 
   // Service methods
