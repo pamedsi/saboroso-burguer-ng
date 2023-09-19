@@ -2,6 +2,7 @@ import { IngredientDTO } from "src/app/types/IngredientDTO"
 import { BurgerDTO } from "../types/BurgerDTO"
 import {Ingredient} from "./Ingredient";
 import {BurgerCategory} from "./BurgerCategory";
+import {CategoryDTO} from "../types/CategoryDTO";
 
 export class Burger {
   private readonly identifier: string
@@ -129,7 +130,11 @@ export class Burger {
     const currentCategory = categories.find(category =>
       category.getIdentifier() === this.categoryEditing.getIdentifier()
     )
-    if (!currentCategory) return
+    if (!currentCategory) {
+      const listToReturn = [...categories]
+      listToReturn.unshift(new BurgerCategory({title: "Categoria deletada!"} as CategoryDTO))
+      return listToReturn
+    }
     const listWithoutCurrentCategory = categories.filter( category =>
       category.getIdentifier() !== currentCategory.getIdentifier()
     )
