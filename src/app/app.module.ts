@@ -14,23 +14,23 @@ import {NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './pages/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './components/single-components/not-found/not-found.component';
-import { MenuManagementComponent } from './pages/menu-management/menu-management.component';
+import { BurgerManagementComponent } from './pages/burger-management/burger-management.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from "@angular/forms";
 import { OrderManagementComponent } from './pages/order-management/order-management.component';
 import { ManagementComponent } from './pages/management/management.component';
-import { BurgerListForManagementComponent } from './components/group-components/MenuManagement/Lists/burger-list-for-management/burger-list-for-management.component';
-import { PortionListForManagementComponent } from './components/group-components/MenuManagement/Lists/portion-list-for-management/portion-list-for-management.component';
-import { DrinkListForManagementComponent } from './components/group-components/MenuManagement/Lists/drink-list-for-management/drink-list-for-management.component';
-import { AddBurgerFormComponent } from './components/group-components/MenuManagement/Forms/add-burger-form/add-burger-form.component';
-import { IngredientListForManagementComponent } from './components/group-components/MenuManagement/Lists/ingredient-list-for-management/ingredient-list-for-management.component';
+import { BurgerListForManagementComponent } from './components/group-components/BurgersManagement/Lists/burger-list-for-management/burger-list-for-management.component';
+import { PortionListForManagementComponent } from './components/group-components/PortionsManagement/portion-list-for-management/portion-list-for-management.component';
+import { DrinkListForManagementComponent } from './components/group-components/DrinksManagement/drink-list-for-management/drink-list-for-management.component';
+import { AddBurgerFormComponent } from './components/group-components/BurgersManagement/Forms/add-burger-form/add-burger-form.component';
+import { IngredientListForManagementComponent } from './components/group-components/BurgersManagement/Lists/ingredient-list-for-management/ingredient-list-for-management.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {NgxCurrencyDirective} from "ngx-currency";
-import { AddIngredientFormComponent } from './components/group-components/MenuManagement/Forms/add-ingredient-form/add-ingredient-form.component';
-import { AddCategoryFormComponent } from './components/group-components/MenuManagement/Forms/add-category-form/add-category-form.component';
+import { AddIngredientFormComponent } from './components/group-components/BurgersManagement/Forms/add-ingredient-form/add-ingredient-form.component';
+import { AddCategoryFormComponent } from './components/group-components/BurgersManagement/Forms/add-category-form/add-category-form.component';
 import { AdminHeaderComponent } from './components/single-components/admin-header/admin-header.component';
 import {TextFieldModule} from "@angular/cdk/text-field";
-import { CategoryListForManagementComponent } from './components/group-components/MenuManagement/Lists/category-list-for-management/category-list-for-management.component';
+import { CategoryListForManagementComponent } from './components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { CategoryListForManagementComponent } from './components/group-component
     MenuBurgerComponent,
     LoginFormComponent,
     NotFoundComponent,
-    MenuManagementComponent,
+    BurgerManagementComponent,
     HomeComponent,
     OrderManagementComponent,
     ManagementComponent,

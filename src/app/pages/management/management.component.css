@@ -1,20 +1,24 @@
 body{
-  height: 35rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
-/* Butões */
+/* Botões */
 section{
   /* Alinhamentos */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   /* Fontes */
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
   font-size: small;
+
   /* Tamanho */
-  height: 100%;
 }
 
 /* Estilização dos botões */

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuManagementComponent } from './menu-management.component';
+import { MenuManagementComponent } from './burger-management.component';
 
 describe('MenuManagementComponent', () => {
   let component: MenuManagementComponent;

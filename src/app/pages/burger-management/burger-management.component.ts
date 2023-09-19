@@ -1,17 +1,17 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {
   CategoryListForManagementComponent
-} from "../../components/group-components/MenuManagement/Lists/category-list-for-management/category-list-for-management.component";
+} from "../../components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component";
 import {CategoryService} from "../../services/CategoryService";
 import {Observable} from "rxjs";
 import {BurgerCategory} from "../../models/BurgerCategory";
 
 @Component({
-  selector: 'app-menu-management',
-  templateUrl: './menu-management.component.html',
-  styleUrls: ['./menu-management.component.css']
+  selector: 'app-burger-management',
+  templateUrl: './burger-management.component.html',
+  styleUrls: ['./burger-management.component.css']
 })
-export class MenuManagementComponent implements AfterViewInit {
+export class BurgerManagementComponent implements AfterViewInit {
 
   constructor(private categoryService: CategoryService){}
 

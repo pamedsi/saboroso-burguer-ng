@@ -6,17 +6,31 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=League+Spartan:wght@400;500;700;900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <!-- Fonte do Header (ADM) -->
-
+<app-admin-header></app-admin-header>
 <body>
-  <app-admin-header></app-admin-header>
+  <section>
+    <H1>Cardápio:</H1>
+    <div class="button-manager" (click)="redirectToMenuManagement()">
+      GESTOR DE HAMBÚRGUERES
+    </div>
+    <div class="button-manager">
+      GESTOR DE PORÇÕES
+    </div>
+    <div class="button-manager">
+      GESTOR DE BEBIDAS
+    </div>
+    <div class="button-manager">
+      GESTOR DE ADICIONAIS
+    </div>
+  </section>
 
   <section>
-    <div class="button-manager" (click)="redirectToMenuManagement()">
-      GESTOR DE CARDÁPIO
-    </div>
-
+    <h1>Pedidos</h1>
     <div class="button-manager" (click)="redirectToOrderManagement()">
       GESTOR DE PEDIDOS
+    </div>
+    <div class="button-manager">
+      HISTÓRICO DE PEDIDOS
     </div>
   </section>
 </body>

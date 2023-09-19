@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
 import { LoginFormComponent } from "./pages/login/login-form.component";
 import { NotFoundComponent } from "./components/single-components/not-found/not-found.component";
-import { MenuManagementComponent } from "./pages/menu-management/menu-management.component";
+import { BurgerManagementComponent } from "./pages/burger-management/burger-management.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { ManagementComponent } from "./pages/management/management.component";
 import { OrderManagementComponent } from "./pages/order-management/order-management.component"
@@ -18,7 +18,7 @@ const routes: Routes = [
     component: LoginFormComponent
   },
   {
-    path: 'management',
+    path: 'admin',
     component: ManagementComponent,
     canActivate: [canActivate]
   },
@@ -28,8 +28,8 @@ const routes: Routes = [
     canActivate: [canActivate]
   },
   {
-    path: 'menu-management',
-    component: MenuManagementComponent,
+    path: 'burger-management',
+    component: BurgerManagementComponent,
     canActivate: [canActivate]
   },
   {

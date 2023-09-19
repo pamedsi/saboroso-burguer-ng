@@ -16,7 +16,7 @@ export class ManagementComponent implements OnInit{
   }
 
   redirectToMenuManagement() {
-    this.router.navigate(['/menu-management'])
+    this.router.navigate(['/burger-management'])
   }
 
   redirectToOrderManagement() {
