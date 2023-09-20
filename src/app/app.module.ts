@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HighlightsAndMenu } from './components/group-components/OrderForm/highlights-and-menu/highlights-and-menu';
-import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
+import { OrderConfirmationComponent } from './pages/ClientSide/order-confirmation/order-confirmation.component';
 import { WelcomeHeaderComponent } from './components/single-components/welcome-header/welcome-header.component';
 import { ShowBurgersButtonComponent } from './components/group-components/OrderForm/show-burgers-button/show-burgers-button.component';
 import { SeparatorLineComponent } from './components/group-components/OrderForm/separator-line/separator-line.component';
@@ -11,14 +11,14 @@ import { ButtonsContainerComponent } from './components/group-components/OrderFo
 import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/group-components/OrderForm/menu-burger/menu-burger.component';
 import {NgOptimizedImage} from "@angular/common";
-import { LoginFormComponent } from './pages/login/login-form.component';
+import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './components/single-components/not-found/not-found.component';
-import { BurgerManagementComponent } from './pages/burger-management/burger-management.component';
-import { HomeComponent } from './pages/home/home.component';
+import { BurgerManagementComponent } from './pages/AdminSide/burger-management/burger-management.component';
+import { HomeComponent } from './pages/ClientSide/home/home.component';
 import { FormsModule } from "@angular/forms";
-import { OrderManagementComponent } from './pages/order-management/order-management.component';
-import { ManagementComponent } from './pages/management/management.component';
+import { OrderManagementComponent } from './pages/AdminSide/order-management/order-management.component';
+import { AdminComponent } from './pages/AdminSide/admin/admin.component';
 import { BurgerListForManagementComponent } from './components/group-components/BurgersManagement/Lists/burger-list-for-management/burger-list-for-management.component';
 import { PortionListForManagementComponent } from './components/group-components/PortionsManagement/portion-list-for-management/portion-list-for-management.component';
 import { DrinkListForManagementComponent } from './components/group-components/DrinksManagement/drink-list-for-management/drink-list-for-management.component';
@@ -47,7 +47,7 @@ import { CategoryListForManagementComponent } from './components/group-component
     BurgerManagementComponent,
     HomeComponent,
     OrderManagementComponent,
-    ManagementComponent,
+    AdminComponent,
     BurgerListForManagementComponent,
     PortionListForManagementComponent,
     DrinkListForManagementComponent,

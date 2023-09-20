@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginForm } from "../../types/LoginFormDTO";
+import { LoginForm } from "../../../types/LoginFormDTO";
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/AuthenticationService';
 
@@ -22,7 +22,7 @@ export class LoginFormComponent{
     this.authService.login(credentials).subscribe(validCredentials => {
       if (validCredentials) {
         const redirectingTo = sessionStorage.getItem('redirectingTo')
-        this.router.navigate([redirectingTo ?? '/management'])
+        this.router.navigate([redirectingTo ?? '/admin'])
     }})
   }
 }

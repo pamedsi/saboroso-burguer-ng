@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
-import { LoginFormComponent } from "./pages/login/login-form.component";
+import { LoginFormComponent } from "./pages/AdminSide/login/login-form.component";
 import { NotFoundComponent } from "./components/single-components/not-found/not-found.component";
-import { BurgerManagementComponent } from "./pages/burger-management/burger-management.component";
-import { HomeComponent } from "./pages/home/home.component";
-import { ManagementComponent } from "./pages/management/management.component";
-import { OrderManagementComponent } from "./pages/order-management/order-management.component"
+import { BurgerManagementComponent } from "./pages/AdminSide/burger-management/burger-management.component";
+import { HomeComponent } from "./pages/ClientSide/home/home.component";
+import { AdminComponent } from "./pages/AdminSide/admin/admin.component";
+import { OrderManagementComponent } from "./pages/AdminSide/order-management/order-management.component"
 import { canActivate } from "./services/AuthGuardService";
 
 const routes: Routes = [
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: ManagementComponent,
+    component: AdminComponent,
     canActivate: [canActivate]
   },
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate: [canActivate]
   },
   {
-    path: 'burger-management',
+    path: 'burger-admin',
     component: BurgerManagementComponent,
     canActivate: [canActivate]
   },

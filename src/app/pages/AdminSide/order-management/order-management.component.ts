@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TokenValidationService } from 'src/app/services/TokenValidatorService';
 
 @Component({
-  selector: 'app-order-management',
+  selector: 'app-order-admin',
   templateUrl: './order-management.component.html',
   styleUrls: ['./order-management.component.css']
 })
