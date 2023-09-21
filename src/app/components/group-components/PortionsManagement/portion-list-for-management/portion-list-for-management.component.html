@@ -7,30 +7,30 @@
     </div>
 
     <div class="prop-container">
-      <div>Descrição:</div>
-      <div>{{portion.getDescription()}}</div>
+      <div class="key">Descrição:</div>
+      <div class="value">{{portion.getDescription()}}</div>
     </div>
 
     <div class="prop-container">
-      <div>Preço:</div>
-      <div>{{portion.getPriceToString()}}</div>
+      <div class="key">Preço:</div>
+      <div class="value">{{portion.getPriceToString()}}</div>
     </div>
 
     <div class="prop-container">
       <div *ngIf="portion.getPic(); else noPic">
-        <div>Foto:</div>
-        <img ngSrc="{{portion.getPic()}}" alt="{{portion.getTitle()}}" fill="false">
+        <div class="key">>Foto:</div>
+        <img class="value" ngSrc="{{portion.getPic()}}" alt="{{portion.getTitle()}}" fill="false">
       </div>
       <ng-template #noPic>
-        <div>Foto:</div>
-        <div>sem foto</div>
+        <div class="key">Foto:</div>
+        <div class="value">sem foto</div>
       </ng-template>
     </div>
 
     <div class="prop-container">
       <div>Em estoque:</div>
-      <div *ngIf="portion.getInStock()">Sim</div>
-      <div *ngIf="!portion.getInStock()">Não</div>
+      <div class="key" *ngIf="portion.getInStock()">Sim</div>
+      <div class="value" *ngIf="!portion.getInStock()">Não</div>
     </div>
 
     <div class="buttons">

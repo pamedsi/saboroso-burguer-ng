@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {PortionService} from "../../../../services/PortionService";
-import {Portion} from "../../../../models/Portion";
 import {PortionDTO} from "../../../../types/PortionDTO";
 
 @Component({
@@ -33,6 +32,12 @@ export class AddPortionFormComponent {
       pic: this.pic ? this.pic: null,
       inStock: this.inStock
     } as PortionDTO
+
+    this.title = ''
+    this.description = ''
+    this.price = 0
+    this.pic = ''
+    this.inStock = true
 
     this.portionService.addNewPortion(newPortion)
   }
