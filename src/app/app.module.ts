@@ -31,6 +31,8 @@ import { AddCategoryFormComponent } from './components/group-components/BurgersM
 import { AdminHeaderComponent } from './components/single-components/admin-header/admin-header.component';
 import {TextFieldModule} from "@angular/cdk/text-field";
 import { CategoryListForManagementComponent } from './components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component';
+import { AddPortionFormComponent } from './components/group-components/PortionsManagement/add-portion-form/add-portion-form.component';
+import { PortionsManagementComponent } from './pages/AdminSide/portions-management/portions-management.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { CategoryListForManagementComponent } from './components/group-component
     AddCategoryFormComponent,
     AdminHeaderComponent,
     CategoryListForManagementComponent,
+    AddPortionFormComponent,
+    PortionsManagementComponent,
   ],
   imports: [
     BrowserModule,

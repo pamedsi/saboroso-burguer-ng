@@ -7,6 +7,7 @@ import { HomeComponent } from "./pages/ClientSide/home/home.component";
 import { AdminComponent } from "./pages/AdminSide/admin/admin.component";
 import { OrderManagementComponent } from "./pages/AdminSide/order-management/order-management.component"
 import { canActivate } from "./services/AuthGuardService";
+import {PortionsManagementComponent} from "./pages/AdminSide/portions-management/portions-management.component";
 
 const routes: Routes = [
   {
@@ -23,13 +24,18 @@ const routes: Routes = [
     canActivate: [canActivate]
   },
   {
-    path: 'order-management',
+    path: 'orders-management',
     component: OrderManagementComponent,
     canActivate: [canActivate]
   },
   {
-    path: 'burger-admin',
+    path: 'burgers-management',
     component: BurgerManagementComponent,
+    canActivate: [canActivate]
+  },
+  {
+    path: 'portions-management',
+    component: PortionsManagementComponent,
     canActivate: [canActivate]
   },
   {

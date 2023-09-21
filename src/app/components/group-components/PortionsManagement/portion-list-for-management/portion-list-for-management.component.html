@@ -1,1 +1,43 @@
-<p>portion-list-for-management works!</p>
+<div class="empty-message" *ngIf="allPortions.length === 0">Sem porções, adicione novas</div>
+<main *ngFor="let portion of allPortions">
+  <section *ngIf="!portion.getEditable()">
+    <div class="prop-container">
+      <div>Nome:</div>
+      <div>{{portion.getTitle()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div>Descrição:</div>
+      <div>{{portion.getDescription()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div>Preço:</div>
+      <div>{{portion.getPriceToString()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div *ngIf="portion.getPic(); else noPic">
+        <div>Foto:</div>
+        <img ngSrc="{{portion.getPic()}}" alt="{{portion.getTitle()}}" fill="false">
+      </div>
+      <ng-template #noPic>
+        <div>Foto:</div>
+        <div>sem foto</div>
+      </ng-template>
+    </div>
+
+    <div class="prop-container">
+      <div>Em estoque:</div>
+      <div *ngIf="portion.getInStock()">Sim</div>
+      <div *ngIf="!portion.getInStock()">Não</div>
+    </div>
+
+    <div class="buttons">
+      <button (click)="portion.setEditable(true)">Editar</button>
+      <button (click)="deleteBurger(portion.getIdentifier())">Excluir</button>
+    </div>
+  </section>
+  <section *ngIf="portion.getEditable()">
+  </section>
+</main>

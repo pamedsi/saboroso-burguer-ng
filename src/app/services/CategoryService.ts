@@ -26,7 +26,7 @@ export class CategoryService {
   }
 
   createCategory(categoryDTO: CategoryDTO) {
-    return this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenAndBody})
+    this.http.post<ResponseMessage>(`${environment.API_URL}/add-category`, categoryDTO, {headers: withTokenAndBody})
       .subscribe((message) => {
         console.info(message);
         this.getCategoriesForManagement()

@@ -1,4 +1,5 @@
 <h3>Gerir Hambúrgueres</h3>
+<div class="empty-message" *ngIf="burgerList.length === 0">Sem hambúrgueres, adicione novos</div>
 <main *ngFor="let burger of burgerList">
 
   <section *ngIf="!burger.getEditable()">
@@ -100,4 +101,3 @@
   </section>
 
 </main>
-<div class="empty-message" *ngIf="burgerList.length === 0">Sem hambúrgueres, adicione novos</div>
