@@ -19,14 +19,14 @@ export class AuthenticationService {
     private router: Router
     ) {}
 
-  validToken(): Observable<boolean> {
+  validTokenForAdmin(): Observable<boolean> {
       const token = localStorage.getItem('token')
-      return this.http.post<JWT>(`${environment.API_URL}/token`, {token}, {headers: defaultHeaders})
+      return this.http.post<JWT>(`${environment.API_URL}/admin-token`, {token}, {headers: defaultHeaders})
         .pipe(
-          map(({token}) => Boolean(token)),
+          map(({role}) => role === "ADMIN"),
           catchError(_ => of(false))
         )
-  }    
+  }
 
   login(credentials: LoginForm): Observable<boolean> {
     return this.http.post<JWT>(`${environment.API_URL}/login`, credentials, {headers: defaultHeaders})

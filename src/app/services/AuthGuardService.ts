@@ -6,8 +6,8 @@ import { map } from 'rxjs';
 export const canActivate: CanActivateFn = (_route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const authService = inject(AuthenticationService);
   const router = inject(Router);
-  
-  return authService.validToken().pipe(
+
+  return authService.validTokenForAdmin().pipe(
     map(isValid => {
       if (!isValid) {
           sessionStorage.setItem('redirectingTo', state.url)
