@@ -1,4 +1,5 @@
 import {PortionDTO} from "../types/PortionDTO"
+import { CurrencyPipe } from '@angular/common';
 
 export class Portion {
   // Model props:
@@ -42,7 +43,7 @@ export class Portion {
   getTitle(): string {
     return this.title
   }
-  getPrice(): number | string {
+  getPrice(): number {
     return this.price
   }
   getDescription(): string {
@@ -78,8 +79,7 @@ export class Portion {
   setEditable(value: boolean){
     this.editable = value
   }
-  getPriceToString() {
-    return `R$ ${this.price.toFixed(2).replace('.', ',')}`
+  setInStockSelect(target: any) {
+    this.inStock = target.value === 'Sim'
   }
-
 }

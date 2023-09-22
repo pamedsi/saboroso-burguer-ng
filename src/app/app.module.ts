@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { SeparatorLineComponent } from './components/group-components/OrderForm/
 import { ButtonsContainerComponent } from './components/group-components/OrderForm/buttons-container/buttons-container.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MenuBurgerComponent } from './components/group-components/OrderForm/menu-burger/menu-burger.component';
-import {NgOptimizedImage} from "@angular/common";
+import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './components/single-components/not-found/not-found.component';
@@ -33,7 +33,10 @@ import {TextFieldModule} from "@angular/cdk/text-field";
 import { CategoryListForManagementComponent } from './components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component';
 import { AddPortionFormComponent } from './components/group-components/PortionsManagement/add-portion-form/add-portion-form.component';
 import { PortionsManagementComponent } from './pages/AdminSide/portions-management/portions-management.component';
+import { registerLocaleData } from '@angular/common';
+import localePtBr from '@angular/common/locales/pt';
 
+registerLocaleData(localePtBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +75,10 @@ import { PortionsManagementComponent } from './pages/AdminSide/portions-manageme
     NgxCurrencyDirective,
     TextFieldModule
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

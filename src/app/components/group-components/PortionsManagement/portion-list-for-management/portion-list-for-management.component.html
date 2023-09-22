@@ -2,7 +2,7 @@
 <main *ngFor="let portion of allPortions">
   <section *ngIf="!portion.getEditable()">
     <div class="prop-container">
-      <div>Nome:</div>
+      <div>Título:</div>
       <div>{{portion.getTitle()}}</div>
     </div>
 
@@ -13,7 +13,9 @@
 
     <div class="prop-container">
       <div class="key">Preço:</div>
-      <div class="value">{{portion.getPriceToString()}}</div>
+      <div class="value">
+           {{getFormattedPrice(portion.getPrice())}}
+      </div>
     </div>
 
     <div class="prop-container">
@@ -39,6 +41,39 @@
     </div>
   </section>
   <section *ngIf="portion.getEditable()">
+    <div class="prop-container">
+      <label for="input-editing">Título:</label>
+      <input id="input-editing" [(ngModel)]="portion.titleEditing">
+    </div>
+
+    <div class="description-container">
+      <label for="description">Descrição:</label>
+      <textarea
+        id="description" [(ngModel)]="portion.descriptionEditing"
+        placeholder="Digite aqui a descrição da porção"
+        rows="5" cols="30"
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="price">Preço:</label>
+      <input id="price" type="text" currencyMask [(ngModel)]="portion.priceEditing" placeholder="R$ 0,00"
+             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    </div>
+
+    <div>
+      <label for="pic">Foto:</label>
+      <input id="pic" [(ngModel)]="portion.picEditing">
+    </div>
+
+    <div>
+      <label for="in-stock">Em estoque:</label>
+      <select id="in-stock" (change)="portion.setInStockSelect($event.target)">
+        <option>Sim</option>
+        <option>Não</option>
+      </select>
+    </div>
+
     <div class="buttons">
       <button (click)="editPortion(portion)">Confirmar</button>
       <button (click)="cancelEditing(portion)">Cancelar</button>
