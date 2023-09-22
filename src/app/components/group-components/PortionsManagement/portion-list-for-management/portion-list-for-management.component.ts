@@ -40,6 +40,34 @@ export class PortionListForManagementComponent implements OnInit{
   }
 
   editPortion(portion: Portion) {
+    let changes = 0
+    if (portion.getTitle() !== portion.titleEditing) {
+      portion.setTitle(portion.titleEditing);
+      changes++
+    }
+    if (portion.getDescription() !== portion.descriptionEditing) {
+      portion.setDescription(portion.descriptionEditing);
+      changes++
+    }
+    if (portion.getPrice() !== portion.priceEditing) {
+      portion.setPrice(portion.priceEditing);
+      changes++
+    }
+    if (portion.getPic() !== portion.picEditing) {
+      portion.setPic(portion.picEditing ? portion.picEditing : null);
+      changes++
+    }
+    if (portion.getInStock() !== portion.inStockEditing) {
+      portion.setInStock(portion.inStockEditing);
+      changes++
+    }
+    if (!changes) {
+      console.info('Nenhuma mudança foi feita!')
+      portion.setEditable(false)
+      return
+    }
 
+    this.portionService.updatePortion(portion.toDTO())
+    portion.setEditable(false)
   }
 }

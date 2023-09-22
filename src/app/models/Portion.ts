@@ -67,7 +67,7 @@ export class Portion {
   setInStock(value: boolean){
     this.inStock = value
   }
-  setPic(pic: string) {
+  setPic(pic: string | null) {
     this.pic = pic
   }
 
@@ -81,5 +81,18 @@ export class Portion {
   }
   setInStockSelect(target: any) {
     this.inStockEditing = target.value === 'Sim'
+  }
+  toDTO(): PortionDTO{
+    return {
+      identifier: this.identifier,
+      title: this.title,
+      price: this.price,
+      description: this.description,
+      pic: this.pic ? this.pic : null,
+      inStock: this.inStock
+    } as PortionDTO
+  }
+  getOptionsForInStock() {
+      return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
   }
 }

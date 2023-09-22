@@ -40,4 +40,12 @@ export class PortionService {
         this.getPortions()
       })
     }
+
+  updatePortion(portionDTO: PortionDTO) {
+    this.http.put<ResponseMessage>(`${environment.API_URL}/update-portion`, portionDTO, {headers: withTokenAndBody})
+      .subscribe(message => {
+        console.info(message)
+        this.getPortions()
+      })
+  }
 }
