@@ -46,7 +46,7 @@
       <input id="input-editing" [(ngModel)]="portion.titleEditing">
     </div>
 
-    <div class="description-container">
+    <div class="description-container prop-container">
       <label for="description">Descrição:</label>
       <textarea
         id="description" [(ngModel)]="portion.descriptionEditing"
@@ -55,18 +55,18 @@
       ></textarea>
     </div>
 
-    <div>
+    <div class="prop-container">
       <label for="price">Preço:</label>
       <input id="price" type="text" currencyMask [(ngModel)]="portion.priceEditing" placeholder="R$ 0,00"
              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
     </div>
 
-    <div>
+    <div class="prop-container">
       <label for="pic">Foto:</label>
       <input id="pic" [(ngModel)]="portion.picEditing">
     </div>
 
-    <div>
+    <div class="prop-container">
       <label for="in-stock">Em estoque:</label>
       <select id="in-stock" (change)="portion.setInStockSelect($event.target)">
         <option>Sim</option>

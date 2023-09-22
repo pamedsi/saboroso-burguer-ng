@@ -80,6 +80,6 @@ export class Portion {
     this.editable = value
   }
   setInStockSelect(target: any) {
-    this.inStock = target.value === 'Sim'
+    this.inStockEditing = target.value === 'Sim'
   }
 }

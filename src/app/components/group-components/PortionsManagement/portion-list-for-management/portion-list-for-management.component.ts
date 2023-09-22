@@ -31,7 +31,12 @@ export class PortionListForManagementComponent implements OnInit{
   }
 
   cancelEditing(portion: Portion) {
-
+    portion.titleEditing = portion.getTitle()
+    portion.descriptionEditing = portion.getDescription()
+    portion.priceEditing = portion.getPrice()
+    portion.picEditing = portion.getPic()
+    portion.inStockEditing = portion.getInStock()
+    portion.setEditable(false)
   }
 
   editPortion(portion: Portion) {
