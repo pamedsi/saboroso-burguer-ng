@@ -1,0 +1,22 @@
+section {
+  border: white solid 0.1rem;
+}
+.prop-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+h3 {
+  text-align: center;
+}
+.buttons {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.empty-message {
+  text-align: center;
+}

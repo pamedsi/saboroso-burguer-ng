@@ -42,7 +42,7 @@ export class CategoryService {
   }
 
   removeCategory(categoryIdentifier: string){
-    return this.http.delete<ResponseMessage>(`${environment.API_URL}/remove-category/${categoryIdentifier}`, {headers: defaultWithToken})
+    this.http.delete<ResponseMessage>(`${environment.API_URL}/remove-category/${categoryIdentifier}`, {headers: defaultWithToken})
       .subscribe(({message}) => {
         console.info(message);
         this.getCategoriesForManagement();

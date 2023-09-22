@@ -1,11 +1,18 @@
 import {DrinkDTO} from "../types/DrinkDTO";
 
 export class Drink {
-  private identifier: string;
+  private readonly identifier: string;
   private title: string;
   private ml: number;
   private price: number;
   private inStock: boolean;
+
+  // Component props
+  titleEditing: string;
+  mlEditing: number;
+  priceEditing: number;
+  inStockEditing: boolean;
+  editable: boolean
 
   constructor(drinkDTO: DrinkDTO) {
     this.identifier = drinkDTO.identifier;
@@ -13,14 +20,24 @@ export class Drink {
     this.ml = drinkDTO.ml;
     this.price = drinkDTO.price;
     this.inStock = drinkDTO.inStock;
+
+    this.titleEditing = this.title
+    this.mlEditing = this.ml
+    this.priceEditing = this.price
+    this.inStockEditing = this.inStock
+    this.editable = false
+  }
+
+  // Component Methods
+  getEditable(): boolean {
+    return this.editable
+  }
+  setEditable(value: boolean): void {
+    this.editable = value
   }
 
   getIdentifier(): string {
     return this.identifier;
-  }
-
-  setIdentifier(value: string) {
-    this.identifier = value;
   }
 
   getTitle(): string {

@@ -4,20 +4,24 @@ import {HttpClient} from "@angular/common/http";
 import {Drink} from "../models/Drink";
 import {DrinkDTO} from "../types/DrinkDTO";
 import {environment} from "../../environment/environment";
-import {withTokenAndBody} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Headers";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DrinkService {
   private drinksSource = new BehaviorSubject<Drink[]>([])
-  currentCategories = this.drinksSource.asObservable()
+  currentDrinks = this.drinksSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-
   getDrinks() {
-
+    this.http.get<DrinkDTO[]>(`${environment.API_URL}/get-drinks`, {headers: defaultWithToken})
+      .subscribe(drinks => {
+        const allDrinks = drinks.map(drink => new Drink(drink))
+        this.drinksSource.next(allDrinks)
+      })
+    return this.currentDrinks
   }
 
   saveDrink(drinkDTO: DrinkDTO) {
@@ -28,4 +32,11 @@ export class DrinkService {
       })
   }
 
+  removeDrink(identifier: string) {
+    this.http.delete(`${environment.API_URL}/remove-drink/${identifier}`, {headers: defaultWithToken})
+      .subscribe(message => {
+        console.info((message))
+        this.getDrinks()
+      })
+  }
 }
