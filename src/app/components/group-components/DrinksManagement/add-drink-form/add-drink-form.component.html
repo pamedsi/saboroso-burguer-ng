@@ -1,0 +1,27 @@
+<section>
+  <div>
+    <label for="title">Título:</label>
+    <input id="title" [(ngModel)]="title" placeholder="Nome da bebida">
+  </div>
+
+  <div>
+    <label for="price">Preço:</label>
+    <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
+           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+  </div>
+
+  <div>
+    <label for="ml">mL</label>
+    <input [(ngModel)]="ml" id="ml" type="number" placeholder="Digite quantos mL:"/>
+  </div>
+
+  <div>
+    <label for="in-stock">Em estoque:</label>
+    <select id="in-stock" (change)="setInStock($event.target)">
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+  </div>
+
+  <button (click)="addDrink()">Adicionar</button>
+</section>

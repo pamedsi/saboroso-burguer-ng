@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-drink-list-for-admin',
+  selector: 'app-drink-list-for-management',
   templateUrl: './drink-list-for-management.component.html',
   styleUrls: ['./drink-list-for-management.component.css']
 })

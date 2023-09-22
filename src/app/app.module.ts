@@ -35,6 +35,8 @@ import { AddPortionFormComponent } from './components/group-components/PortionsM
 import { PortionsManagementComponent } from './pages/AdminSide/portions-management/portions-management.component';
 import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
+import { DrinksManagementComponent } from './pages/AdminSide/drinks-management/drinks-management.component';
+import { AddDrinkFormComponent } from './components/group-components/DrinksManagement/add-drink-form/add-drink-form.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -64,6 +66,8 @@ registerLocaleData(localePtBr);
     CategoryListForManagementComponent,
     AddPortionFormComponent,
     PortionsManagementComponent,
+    DrinksManagementComponent,
+    AddDrinkFormComponent,
   ],
   imports: [
     BrowserModule,
