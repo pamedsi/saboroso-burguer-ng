@@ -19,8 +19,17 @@ export class PortionListForManagementComponent implements OnInit{
     this.portionService.getPortions()
   }
 
-  deleteBurger(portionIdentifier: string) {
+  deletePortion(portionIdentifier: string) {
     if (portionIdentifier.length !== 36) return
     this.allPortions = this.allPortions.filter(portion => portion.getIdentifier() !== portionIdentifier)
+    this.portionService.removePortion(portionIdentifier);
+  }
+
+  cancelEditing(portion: Portion) {
+
+  }
+
+  editPortion(portion: Portion) {
+
   }
 }

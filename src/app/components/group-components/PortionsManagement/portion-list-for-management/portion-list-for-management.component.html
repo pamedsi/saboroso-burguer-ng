@@ -35,9 +35,14 @@
 
     <div class="buttons">
       <button (click)="portion.setEditable(true)">Editar</button>
-      <button (click)="deleteBurger(portion.getIdentifier())">Excluir</button>
+      <button (click)="deletePortion(portion.getIdentifier())">Excluir</button>
     </div>
   </section>
   <section *ngIf="portion.getEditable()">
+    <div class="buttons">
+      <button (click)="editPortion(portion)">Confirmar</button>
+      <button (click)="cancelEditing(portion)">Cancelar</button>
+      <button (click)="deletePortion(portion.getIdentifier())">Excluir</button>
+    </div>
   </section>
 </main>

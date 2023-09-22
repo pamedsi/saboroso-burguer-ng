@@ -32,4 +32,12 @@ export class PortionService {
         this.getPortions()
       })
   }
+
+  removePortion(portionIdentifier: string) {
+    this.http.delete<ResponseMessage>(`${environment.API_URL}/remove-portion/${portionIdentifier}`, {headers: defaultWithToken})
+      .subscribe(message => {
+        console.info(message)
+        this.getPortions()
+      })
+    }
 }
