@@ -10,6 +10,7 @@ import { canActivate } from "./services/AuthGuardService";
 import {PortionsManagementComponent} from "./pages/AdminSide/portions-management/portions-management.component";
 import {DrinksManagementComponent} from "./pages/AdminSide/drinks-management/drinks-management.component";
 import {AddOnsManagementComponent} from "./pages/AdminSide/add-ons-management/add-ons-management.component";
+import {CombosManagementComponent} from "./pages/AdminSide/combos-management/combos-management.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'add-ons-management',
     component: AddOnsManagementComponent,
+    canActivate: [canActivate]
+  },
+  {
+    path: 'combos-management',
+    component: CombosManagementComponent,
     canActivate: [canActivate]
   },
   {

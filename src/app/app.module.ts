@@ -40,6 +40,9 @@ import { AddDrinkFormComponent } from './components/group-components/DrinksManag
 import { AddOnsManagementComponent } from './pages/AdminSide/add-ons-management/add-ons-management.component';
 import { CreateAddOnFormComponent } from './components/group-components/AddOnManagement/create-add-on-form/create-add-on-form.component';
 import { AddOnListForManagementComponent } from './components/group-components/AddOnManagement/add-on-list-for-management/add-on-list-for-management.component';
+import { CombosManagementComponent } from './pages/AdminSide/combos-management/combos-management.component';
+import { AddComboFormComponent } from './components/group-components/CombosManagement/add-combo-form/add-combo-form.component';
+import { ComboListForManagementComponent } from './components/group-components/CombosManagement/combo-list-for-management/combo-list-for-management.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -74,6 +77,9 @@ registerLocaleData(localePtBr);
     AddOnsManagementComponent,
     CreateAddOnFormComponent,
     AddOnListForManagementComponent,
+    CombosManagementComponent,
+    AddComboFormComponent,
+    ComboListForManagementComponent,
   ],
   imports: [
     BrowserModule,

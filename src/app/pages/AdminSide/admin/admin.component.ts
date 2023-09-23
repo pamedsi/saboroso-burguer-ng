@@ -13,12 +13,9 @@ export class AdminComponent implements OnInit{
   ngOnInit(): void {
     sessionStorage.removeItem('redirectingTo')
   }
-
+  // Menu Management
   redirectToBurgersManagement() {
     this.router.navigate(['/burgers-management'])
-  }
-  redirectToOrderManagement() {
-    this.router.navigate(['/orders-management'])
   }
   redirectToPortionsManagement() {
     this.router.navigate(['/portions-management'])
@@ -29,7 +26,15 @@ export class AdminComponent implements OnInit{
   redirectToAddOnsManagement() {
     this.router.navigate(['/add-ons-management'])
   }
+  redirectToCombosManagement() {
+    this.router.navigate(['/combos-management'])
+  }
+
+  // Orders
   redirectToOrderHistory(){
     this.router.navigate(['/order-history'])
+  }
+  redirectToOrderManagement() {
+    this.router.navigate(['/orders-management'])
   }
 }
