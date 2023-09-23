@@ -9,6 +9,7 @@ import { OrderManagementComponent } from "./pages/AdminSide/order-management/ord
 import { canActivate } from "./services/AuthGuardService";
 import {PortionsManagementComponent} from "./pages/AdminSide/portions-management/portions-management.component";
 import {DrinksManagementComponent} from "./pages/AdminSide/drinks-management/drinks-management.component";
+import {AddOnsManagementComponent} from "./pages/AdminSide/add-ons-management/add-ons-management.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'portions-management',
     component: PortionsManagementComponent,
+    canActivate: [canActivate]
+  },
+  {
+    path: 'add-ons-management',
+    component: AddOnsManagementComponent,
     canActivate: [canActivate]
   },
   {

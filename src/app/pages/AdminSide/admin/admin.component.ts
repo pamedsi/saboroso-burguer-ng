@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit{
     this.router.navigate(['/drinks-management'])
   }
   redirectToAddOnsManagement() {
-    this.router.navigate(['/portion-management'])
+    this.router.navigate(['/add-ons-management'])
   }
   redirectToOrderHistory(){
     this.router.navigate(['/order-history'])

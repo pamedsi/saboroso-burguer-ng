@@ -37,6 +37,7 @@ import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 import { DrinksManagementComponent } from './pages/AdminSide/drinks-management/drinks-management.component';
 import { AddDrinkFormComponent } from './components/group-components/DrinksManagement/add-drink-form/add-drink-form.component';
+import { AddOnsManagementComponent } from './pages/AdminSide/add-ons-management/add-ons-management.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -68,6 +69,7 @@ registerLocaleData(localePtBr);
     PortionsManagementComponent,
     DrinksManagementComponent,
     AddDrinkFormComponent,
+    AddOnsManagementComponent,
   ],
   imports: [
     BrowserModule,
