@@ -27,7 +27,11 @@ export class DrinkListForManagementComponent implements OnInit{
   }
 
   cancelEditing(drink: Drink) {
-
+    drink.titleEditing = drink.getTitle();
+    drink.priceEditing = drink.getPrice();
+    drink.mlEditing = drink.getMl();
+    drink.inStockEditing = drink.isInStock();
+    drink.setEditable(false);
   }
 
   editDrink(drink: Drink) {
