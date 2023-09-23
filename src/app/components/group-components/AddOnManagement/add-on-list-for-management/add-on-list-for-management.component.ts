@@ -31,6 +31,26 @@ export class AddOnListForManagementComponent implements OnInit{
   }
 
   editAddOn(addOn: AddOn) {
+      let changes = 0
+      if (addOn.getTitle() !== addOn.titleEditing) {
+        addOn.setTitle(addOn.titleEditing);
+        changes++
+      }
+      if (addOn.getPrice() !== addOn.priceEditing) {
+        addOn.setPrice(addOn.priceEditing);
+        changes++
+      }
+      if (addOn.isInStock() !== addOn.inStockEditing) {
+        addOn.setInStock(addOn.inStockEditing);
+        changes++
+      }
+      if (!changes) {
+        console.info('Nenhuma mudança foi feita!')
+        addOn.setEditable(false)
+        return
+      }
 
+      this.addOnService.updateAddOn(addOn.toDTO())
+      addOn.setEditable(false)
   }
 }

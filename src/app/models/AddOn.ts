@@ -62,4 +62,13 @@ export class AddOn {
   setInStock(inStock: boolean): void {
     this.inStock = inStock;
   }
+
+  toDTO() {
+    return {
+      identifier: this.identifier,
+      title: this.title,
+      price: this.price,
+      inStock: this.inStock
+    } as AddOnDTO
+  }
 }

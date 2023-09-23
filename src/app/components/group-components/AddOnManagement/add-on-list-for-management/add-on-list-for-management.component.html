@@ -24,6 +24,28 @@
   </section>
 
   <section *ngIf="addOn.isEditable()">
+    <div class="prop-container">
+      <label for="input-editing">Título:</label>
+      <input id="input-editing" [(ngModel)]="addOn.titleEditing">
+    </div>
 
+    <div class="prop-container">
+      <label for="price">Preço:</label>
+      <input id="price" type="text" currencyMask [(ngModel)]="addOn.priceEditing" placeholder="R$ 0,00"
+             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    </div>
+
+    <div class="prop-container">
+      <label>Em estoque:</label>
+      <select title="in-stock" (change)="addOn.setInStockSelect($event.target)">
+        <option *ngFor="let option of addOn.getOptionsForInStock()">{{option}}</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button (click)="editAddOn(addOn)">Confirmar</button>
+      <button (click)="cancelEditing(addOn)">Cancelar</button>
+      <button (click)="deleteAddOn(addOn.getIdentifier())">Excluir</button>
+    </div>
   </section>
 </main>
