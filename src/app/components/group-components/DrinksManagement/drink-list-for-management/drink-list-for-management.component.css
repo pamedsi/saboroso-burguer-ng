@@ -20,3 +20,9 @@ h3 {
 .empty-message {
   text-align: center;
 }
+.key {
+  margin-right: 1rem;
+}
+.value {
+  margin-left: 1rem;
+}

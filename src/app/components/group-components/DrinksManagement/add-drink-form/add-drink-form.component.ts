@@ -7,16 +7,13 @@ import {DrinkDTO} from "../../../../types/DrinkDTO";
   templateUrl: './add-drink-form.component.html',
   styleUrls: ['./add-drink-form.component.css']
 })
-export class AddDrinkFormComponent implements OnInit {
+export class AddDrinkFormComponent {
   title!: string
   ml!: number
   inStock = true
   price!: number
 
   constructor(private drinkService: DrinkService) {}
-
-  ngOnInit() {
-  }
 
   setInStock(target: any) {
     this.inStock = target.value === 'Sim'
@@ -43,6 +40,8 @@ export class AddDrinkFormComponent implements OnInit {
     this.title = ''
     this.price = 0
     this.ml = 0
+    this.inStock = true
+
     this.drinkService.saveDrink(drinkDTO)
   }
 }

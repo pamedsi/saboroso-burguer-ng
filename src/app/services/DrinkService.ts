@@ -5,6 +5,7 @@ import {Drink} from "../models/Drink";
 import {DrinkDTO} from "../types/DrinkDTO";
 import {environment} from "../../environment/environment";
 import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class DrinkService {
   }
 
   saveDrink(drinkDTO: DrinkDTO) {
-    this.http.post(`${environment.API_URL}/save-drink`, drinkDTO, {headers: withTokenAndBody})
+    this.http.post<ResponseMessage>(`${environment.API_URL}/save-drink`, drinkDTO, {headers: withTokenAndBody})
       .subscribe(message => {
         console.info(message)
         this.getDrinks()

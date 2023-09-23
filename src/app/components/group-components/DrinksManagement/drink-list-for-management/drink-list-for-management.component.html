@@ -2,29 +2,29 @@
 <main *ngFor="let drink of allDrinks">
   <section *ngIf="!drink.getEditable()">
     <div class="prop-container">
-      <div>Título:</div>
-      <div>{{drink.getTitle()}}</div>
+      <div class="key">Título:</div>
+      <div class="value">{{drink.getTitle()}}</div>
     </div>
 
     <div class="prop-container">
-      <div>Preço:</div>
-      <div>{{formatPrice(drink.getPrice())}}</div>
+      <div class="key">Preço:</div>
+      <div class="value">{{formatPrice(drink.getPrice())}}</div>
     </div>
 
     <div class="prop-container">
-      <div>mL:</div>
-      <div>{{drink.getMl()}}</div>
+      <div class="key">mL:</div>
+      <div class="value">{{drink.getMl()}}</div>
     </div>
 
     <div class="prop-container">
-      <div>Em estoque:</div>
-      <div *ngIf="drink.isInStock()">Sim</div>
-      <div *ngIf="!drink.isInStock()">Não</div>
+      <div class="key">Em estoque:</div>
+      <div class="value" *ngIf="drink.isInStock()">Sim</div>
+      <div class="value" *ngIf="!drink.isInStock()">Não</div>
     </div>
 
     <div class="buttons">
-      <button (click)="drink.setEditable(true)">Editar</button>
-      <button (click)="deleteDrink(drink.getIdentifier())">Excluir</button>
+      <button class="key" (click)="drink.setEditable(true)">Editar</button>
+      <button class="value" (click)="deleteDrink(drink.getIdentifier())">Excluir</button>
     </div>
   </section>
 
