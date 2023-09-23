@@ -1,1 +1,14 @@
-<p>add-ons-management works!</p>
+<header>
+  <button (click)="goToAdminPage()">Voltar</button>
+</header>
+<h1>Gerir Adicionais</h1>
+<main>
+  <section>
+    <h3>Todas os adicionais</h3>
+    <app-add-on-list-for-management></app-add-on-list-for-management>
+  </section>
+  <section>
+    <h3>Criar novo adicional</h3>
+    <app-create-add-on-form></app-create-add-on-form>
+  </section>
+</main>

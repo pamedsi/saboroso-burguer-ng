@@ -1,0 +1,29 @@
+<div class="empty-message" *ngIf="allAddOns.length === 0">Sem bebidas, adicione novas</div>
+<main *ngFor="let addOn of allAddOns">
+  <section *ngIf="!addOn.isEditable()">
+    <div class="prop-container">
+      <div class="key">Título:</div>
+      <div class="value">{{addOn.getTitle()}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div class="key">Preço:</div>
+      <div class="value">{{formatPrice(addOn.getPrice())}}</div>
+    </div>
+
+    <div class="prop-container">
+      <div class="key">Em estoque:</div>
+      <div class="value" *ngIf="addOn.isInStock()">Sim</div>
+      <div class="value" *ngIf="!addOn.isInStock()">Não</div>
+    </div>
+
+    <div class="buttons">
+      <button (click)="addOn.setEditable(true)">Editar</button>
+      <button (click)="deleteAddOn(addOn.getIdentifier())">Excluir</button>
+    </div>
+  </section>
+
+  <section *ngIf="addOn.isEditable()">
+
+  </section>
+</main>

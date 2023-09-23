@@ -38,6 +38,8 @@ import localePtBr from '@angular/common/locales/pt';
 import { DrinksManagementComponent } from './pages/AdminSide/drinks-management/drinks-management.component';
 import { AddDrinkFormComponent } from './components/group-components/DrinksManagement/add-drink-form/add-drink-form.component';
 import { AddOnsManagementComponent } from './pages/AdminSide/add-ons-management/add-ons-management.component';
+import { CreateAddOnFormComponent } from './components/group-components/AddOnManagement/create-add-on-form/create-add-on-form.component';
+import { AddOnListForManagementComponent } from './components/group-components/AddOnManagement/add-on-list-for-management/add-on-list-for-management.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -70,6 +72,8 @@ registerLocaleData(localePtBr);
     DrinksManagementComponent,
     AddDrinkFormComponent,
     AddOnsManagementComponent,
+    CreateAddOnFormComponent,
+    AddOnListForManagementComponent,
   ],
   imports: [
     BrowserModule,

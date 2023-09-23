@@ -1,0 +1,22 @@
+<section>
+  <div>
+    <label for="title">Título:</label>
+    <textarea id="title" [(ngModel)]="title" placeholder="Nome do adicional" rows="5" cols="25"></textarea>
+  </div>
+
+  <div>
+    <label for="price">Preço:</label>
+    <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
+           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+  </div>
+
+  <div>
+    <label for="in-stock">Em estoque:</label>
+    <select id="in-stock" (change)="setInStock($event.target)">
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+  </div>
+
+  <button (click)="createAddOn()">Adicionar</button>
+</section>
