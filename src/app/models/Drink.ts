@@ -28,13 +28,30 @@ export class Drink {
     this.editable = false
   }
 
-  // Component Methods
+  // Component methods
   getEditable(): boolean {
     return this.editable
   }
   setEditable(value: boolean): void {
     this.editable = value
   }
+  setInStockSelect(target: any) {
+    this.inStockEditing = target.value === 'Sim'
+  }
+  getOptionsForInStock() {
+    return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
+  }
+  toDTO() {
+    return {
+      identifier: this.identifier,
+      title: this.title,
+      ml: this.ml,
+      price: this.price,
+      inStock: this.inStock
+    } as DrinkDTO
+  }
+
+  // Model methods
 
   getIdentifier(): string {
     return this.identifier;

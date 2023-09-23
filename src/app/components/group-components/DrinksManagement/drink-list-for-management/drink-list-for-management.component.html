@@ -29,6 +29,33 @@
   </section>
 
   <section *ngIf="drink.getEditable()">
+    <div class="prop-container">
+      <label for="input-editing">Título:</label>
+      <input id="input-editing" [(ngModel)]="drink.titleEditing">
+    </div>
 
+    <div class="prop-container">
+      <label for="price">Preço:</label>
+      <input id="price" type="text" currencyMask [(ngModel)]="drink.priceEditing" placeholder="R$ 0,00"
+             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    </div>
+
+    <div class="prop-container">
+      <label for="ml">mL:</label>
+      <input id="ml" type="text" [(ngModel)]="drink.mlEditing"/>
+    </div>
+
+    <div class="prop-container">
+      <label>Em estoque:</label>
+      <select title="in-stock" (change)="drink.setInStockSelect($event.target)">
+        <option *ngFor="let option of drink.getOptionsForInStock()">{{option}}</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button (click)="editDrink(drink)">Confirmar</button>
+      <button (click)="cancelEditing(drink)">Cancelar</button>
+      <button (click)="deleteDrink(drink.getIdentifier())">Excluir</button>
+    </div>
   </section>
 </main>

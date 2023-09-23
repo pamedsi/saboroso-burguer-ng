@@ -24,6 +24,66 @@ export class DrinkListForManagementComponent implements OnInit{
 
   deleteDrink(identifier: string) {
     this.drinkService.removeDrink(identifier)
-    this.drinkService.getDrinks()
   }
+
+  cancelEditing(drink: Drink) {
+
+  }
+
+  editDrink(drink: Drink) {
+    let changes = 0
+    if (drink.getTitle() !== drink.titleEditing) {
+      drink.setTitle(drink.titleEditing);
+      changes++
+    }
+    if (drink.getPrice() !== drink.priceEditing) {
+      drink.setPrice(drink.priceEditing);
+      changes++
+    }
+    if (drink.getMl() !== drink.mlEditing) {
+      drink.setMl(drink.mlEditing);
+      changes++
+    }
+    if (drink.isInStock() !== drink.inStockEditing) {
+      drink.setInStock(drink.inStockEditing);
+      changes++
+    }
+    if (!changes) {
+      console.info('Nenhuma mudança foi feita!')
+      drink.setEditable(false)
+      return
+    }
+
+    this.drinkService.updateDrink(drink.toDTO())
+    drink.setEditable(false)
+  }
+
+  // updateProperty(drink: Drink, property: string): boolean {
+  //   const originalValue = (drink[`get${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof Drink] as Function)();
+  //   const editingValue = drink[`${property.toLowerCase()}Editing` as keyof Drink];
+  //
+  //   if (originalValue !== editingValue) {
+  //     (drink[`set${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof Drink] as Function)(editingValue);
+  //     return true;
+  //   }
+  //
+  //   return false;
+  // }
+  //
+  // editDrink(drink: Drink) {
+  //   const properties = ['title', 'price', 'ml', 'inStock']
+  //   const changes = properties.map(property => this.updateProperty(drink, property)).filter(Boolean).length;
+  //
+  //   if (!changes) {
+  //     console.info(`Nenhuma mudança foi feita na bebida ${drink.getTitle()}!`);
+  //     drink.setEditable(false);
+  //     return;
+  //   }
+  //   try {
+  //     this.drinkService.updateDrink(drink.toDTO());
+  //     drink.setEditable(false);
+  //   } catch (error) {
+  //     console.error(`Erro ao atualizar a bebida ${drink.getTitle()}: ${error}`);
+  //   }
+  // }
 }

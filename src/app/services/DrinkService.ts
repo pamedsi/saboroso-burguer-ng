@@ -40,4 +40,12 @@ export class DrinkService {
         this.getDrinks()
       })
   }
+
+  updateDrink(drinkDTO: DrinkDTO) {
+    this.http.put<ResponseMessage>(`${environment.API_URL}/update-drink`, drinkDTO,{headers: withTokenAndBody})
+      .subscribe(message => {
+        console.info(message)
+        this.getDrinks()
+      })
+  }
 }

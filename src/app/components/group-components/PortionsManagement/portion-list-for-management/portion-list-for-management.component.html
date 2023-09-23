@@ -40,6 +40,7 @@
       <button (click)="deletePortion(portion.getIdentifier())">Excluir</button>
     </div>
   </section>
+
   <section *ngIf="portion.getEditable()">
     <div class="prop-container">
       <label for="input-editing">Título:</label>

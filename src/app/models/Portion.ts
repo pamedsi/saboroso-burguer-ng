@@ -1,5 +1,5 @@
 import {PortionDTO} from "../types/PortionDTO"
-import { CurrencyPipe } from '@angular/common';
+
 
 export class Portion {
   // Model props:
