@@ -1,0 +1,19 @@
+section {
+    border: white solid 0.1rem;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 20rem;
+}
+
+div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0.2rem;
+}
+
+button {
+    margin-top: 0.7rem;
+}

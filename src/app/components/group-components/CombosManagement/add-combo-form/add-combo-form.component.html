@@ -1,1 +1,32 @@
-<p>add-combo-form works!</p>
+<section>
+  <div>
+    <label for="title">Nome:</label>
+    <input id="title" [(ngModel)]="title" placeholder="Nome do combo">
+  </div>
+
+  <div class="description-container">
+    <label for="description">Descrição:</label>
+    <textarea
+      id="description" [(ngModel)]="description"
+      placeholder="Digite aqui a descrição do combo"
+      rows="5" cols="30"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="price">Preço:</label>
+    <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
+           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+  </div>
+
+  <div>
+    <label for="in-stock">Em estoque:</label>
+    <select id="in-stock" (change)="setInStock($event.target)">
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+  </div>
+
+  <button (click)="addCombo()">Adicionar</button>
+
+</section>

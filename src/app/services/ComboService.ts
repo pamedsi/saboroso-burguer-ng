@@ -10,13 +10,13 @@ import {Injectable} from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
-export class DrinkService {
+export class ComboService {
   private combosSource = new BehaviorSubject<Combo[]>([])
   currentCombos = this.combosSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  getCombos(): Observable<Combo> {
+  getCombos(): Observable<Combo[]> {
     this.http.get<ComboDTO[]>(`${environment.API_URL}/get-all-combos`, {headers: defaultWithToken})
       .subscribe(combos => {
         const allCombos = combos.map(combo => new Combo(combo))
