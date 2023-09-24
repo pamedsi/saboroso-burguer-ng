@@ -13,7 +13,7 @@ import { MenuBurgerComponent } from './components/group-components/OrderForm/men
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { NotFoundComponent } from './components/single-components/not-found/not-found.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BurgerManagementComponent } from './pages/AdminSide/burger-management/burger-management.component';
 import { HomeComponent } from './pages/ClientSide/home/home.component';
 import { FormsModule } from "@angular/forms";
