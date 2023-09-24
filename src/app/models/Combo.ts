@@ -81,7 +81,7 @@ export class Combo {
     this.description = value;
   }
 
-  getInStock(): boolean {
+  isInStock(): boolean {
     return this.inStock;
   }
 
