@@ -1,1 +1,67 @@
-<p>combo-list-for-management works!</p>
+<div class="empty-message" *ngIf="allCombos.length === 0">Sem bebidas, adicione novas</div>
+<main *ngFor="let combo of allCombos">
+    <section *ngIf="!combo.isEditable()">
+        <div class="prop-container">
+            <div class="key">Título:</div>
+            <div class="value">{{combo.getTitle()}}</div>
+        </div>
+
+        <div class="prop-container">
+            <div class="key">Descrição:</div>
+            <div class="value">{{combo.getDescription()}}</div>
+        </div>
+
+        <div class="prop-container">
+            <div class="key">Preço:</div>
+            <div class="value">{{formatPrice(combo.getPrice())}}</div>
+        </div>
+
+        <div class="prop-container">
+            <div class="key">Em estoque:</div>
+            <div class="value" *ngIf="combo.isInStock()">Sim</div>
+            <div class="value" *ngIf="!combo.isInStock()">Não</div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="combo.setEditable(true)">Editar</button>
+            <button (click)="deleteCombo(combo.getIdentifier())">Excluir</button>
+        </div>
+    </section>
+
+
+    <section *ngIf="combo.isEditable()">
+        <div class="prop-container">
+            <label for="input-editing">Título:</label>
+            <input id="input-editing" [(ngModel)]="combo.titleEditing">
+        </div>
+
+        <div class="description-container prop-container">
+            <label for="description">Descrição:</label>
+            <textarea
+                    id="description" [(ngModel)]="combo.descriptionEditing"
+                    placeholder="Digite aqui a descrição da porção"
+                    rows="5" cols="30"
+            ></textarea>
+        </div>
+
+        <div class="prop-container">
+            <label for="price">Preço:</label>
+            <input id="price" type="text" currencyMask [(ngModel)]="combo.priceEditing" placeholder="R$ 0,00"
+                   [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+        </div>
+
+        <div class="prop-container">
+            <label>Em estoque:</label>
+            <select title="in-stock" (change)="combo.setInStockSelect($event.target)">
+                <option *ngFor="let option of combo.getOptionsForInStock()">{{option}}</option>
+            </select>
+        </div>
+
+        <div class="buttons">
+            <button (click)="editCombo(combo)">Confirmar</button>
+            <button (click)="cancelEditing(combo)">Cancelar</button>
+            <button (click)="deleteCombo(combo.getIdentifier())">Excluir</button>
+        </div>
+    </section>
+</main>
+
