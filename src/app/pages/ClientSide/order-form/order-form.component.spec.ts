@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HighlightsAndMenu } from './highlights-and-menu';
+import { OrderFormComponent } from './order-form.component';
 
-describe('OrderFromComponent', () => {
-  let component: HighlightsAndMenu;
-  let fixture: ComponentFixture<HighlightsAndMenu>;
+describe('OrderFormComponent', () => {
+  let component: OrderFormComponent;
+  let fixture: ComponentFixture<OrderFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HighlightsAndMenu]
+      declarations: [OrderFormComponent]
     });
-    fixture = TestBed.createComponent(HighlightsAndMenu);
+    fixture = TestBed.createComponent(OrderFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

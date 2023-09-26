@@ -21,13 +21,13 @@ export class BurgerService {
   ) {}
 
   getBurgersForMenu(): Observable<Burger[]>{
-    return this.http.get<BurgerDTO[]>(`${environment.API_URL}/get-menu`).pipe(
+    return this.http.get<BurgerDTO[]>(`${environment.API_URL}/get-burgers-for-menu`).pipe(
       map(burgersDTO => {
         return burgersDTO.map(burgerDTO => new Burger(burgerDTO))
       })
     )
   }
-  getBurgersForHighLight(): Observable<Burger[]> {
+  getBurgersForHighlight(): Observable<Burger[]> {
       return this.http.get<BurgerDTO[]>(`${environment.API_URL}/highlight-burgers`).pipe(
         map(burgersDTO => {
           return burgersDTO.map(burgerDTO => new Burger(burgerDTO))

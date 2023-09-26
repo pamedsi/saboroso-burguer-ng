@@ -2,14 +2,10 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HighlightsAndMenu } from './components/group-components/OrderForm/highlights-and-menu/highlights-and-menu';
 import { OrderConfirmationComponent } from './pages/ClientSide/order-confirmation/order-confirmation.component';
 import { WelcomeHeaderComponent } from './components/single-components/welcome-header/welcome-header.component';
-import { ShowBurgersButtonComponent } from './components/group-components/OrderForm/show-burgers-button/show-burgers-button.component';
-import { SeparatorLineComponent } from './components/group-components/OrderForm/separator-line/separator-line.component';
 import { ButtonsContainerComponent } from './components/group-components/OrderForm/buttons-container/buttons-container.component';
 import { HttpClientModule } from "@angular/common/http";
-import { MenuBurgerComponent } from './components/group-components/OrderForm/menu-burger/menu-burger.component';
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
@@ -43,18 +39,17 @@ import { AddOnListForManagementComponent } from './components/group-components/A
 import { CombosManagementComponent } from './pages/AdminSide/combos-management/combos-management.component';
 import { AddComboFormComponent } from './components/group-components/CombosManagement/add-combo-form/add-combo-form.component';
 import { ComboListForManagementComponent } from './components/group-components/CombosManagement/combo-list-for-management/combo-list-for-management.component';
+import { OrderFormComponent } from './pages/ClientSide/order-form/order-form.component';
+import { MenuComponent } from './components/group-components/OrderForm/menu/menu.component';
+import { HighlightBurgersComponent } from './components/group-components/OrderForm/highlight-burgers/highlight-burgers.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
   declarations: [
     AppComponent,
-    HighlightsAndMenu,
     OrderConfirmationComponent,
     WelcomeHeaderComponent,
-    ShowBurgersButtonComponent,
-    SeparatorLineComponent,
     ButtonsContainerComponent,
-    MenuBurgerComponent,
     LoginFormComponent,
     NotFoundComponent,
     BurgerManagementComponent,
@@ -80,6 +75,9 @@ registerLocaleData(localePtBr);
     CombosManagementComponent,
     AddComboFormComponent,
     ComboListForManagementComponent,
+    OrderFormComponent,
+    MenuComponent,
+    HighlightBurgersComponent,
   ],
   imports: [
     BrowserModule,

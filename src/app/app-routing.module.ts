@@ -11,6 +11,7 @@ import {PortionsManagementComponent} from "./pages/AdminSide/portions-management
 import {DrinksManagementComponent} from "./pages/AdminSide/drinks-management/drinks-management.component";
 import {AddOnsManagementComponent} from "./pages/AdminSide/add-ons-management/add-ons-management.component";
 import {CombosManagementComponent} from "./pages/AdminSide/combos-management/combos-management.component";
+import {OrderFormComponent} from "./pages/ClientSide/order-form/order-form.component";
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
     path: 'combos-management',
     component: CombosManagementComponent,
     canActivate: [canActivate]
+  },
+  {
+    path: 'order-form',
+    component: OrderFormComponent
   },
   {
     path: '**',

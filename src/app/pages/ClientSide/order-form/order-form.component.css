@@ -1,0 +1,10 @@
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.separator-line {
+  width: 35rem;
+  border: solid 0.1rem white;
+  margin: 1rem;
+}

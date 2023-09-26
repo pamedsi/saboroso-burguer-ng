@@ -1,4 +1,13 @@
-<div class="buttons">
-  <app-show-burgers-button label="DESTAQUES" [pressed]=highlights (click)="onHighlightsClick()"></app-show-burgers-button>
-  <app-show-burgers-button label="CARDÁPIO" [pressed]=menu (click)="onMenuClick()"></app-show-burgers-button>
-</div>
+<main>
+  <div class="buttons" *ngIf="highlights; else menuBlock">
+    <div class="pressed button">DESTAQUES</div>
+    <div class="not-pressed button" (click)="onMenuClick()">CARDÁPIO</div>
+  </div>
+
+  <ng-template #menuBlock>
+    <div class="buttons">
+      <div class="not-pressed button" (click)="onHighlightsClick()">DESTAQUES</div>
+      <div class="pressed button">CARDÁPIO</div>
+    </div>
+  </ng-template>
+</main>

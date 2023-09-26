@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-buttons-container',
@@ -8,15 +8,21 @@ import {Component, Input} from '@angular/core';
 export class ButtonsContainerComponent {
   @Input() highlights = true;
   @Input() menu = !this.highlights;
+  @Output() clickedOption = new EventEmitter()
 
   onHighlightsClick () {
-    console.log("Destaques")
-    if (!this.highlights) this.highlights = true
+    if (!this.highlights) {
+      this.highlights = true
+      this.clickedOption.emit('highlights')
+    }
     this.menu = false
   }
+
   onMenuClick(){
-    console.log("Cardápio")
-    if (!this.menu) this.menu = true
+    if (!this.menu) {
+      this.menu = true
+      this.clickedOption.emit('menu')
+    }
     this.highlights = false
   }
 }
