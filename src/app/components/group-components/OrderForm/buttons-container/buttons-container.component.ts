@@ -8,16 +8,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ButtonsContainerComponent {
   @Input() highlights = true;
   @Input() menu = !this.highlights;
-  @Output() onChange = new EventEmitter()
-
-  change(optionClicked: string) {
-    this.onChange.emit(optionClicked)
-  }
+  @Output() clickedOption = new EventEmitter()
 
   onHighlightsClick () {
     if (!this.highlights) {
       this.highlights = true
-      this.change('highlights')
+      this.clickedOption.emit('highlights')
     }
     this.menu = false
   }
@@ -25,7 +21,7 @@ export class ButtonsContainerComponent {
   onMenuClick(){
     if (!this.menu) {
       this.menu = true
-      this.change('menu')
+      this.clickedOption.emit('menu')
     }
     this.highlights = false
   }

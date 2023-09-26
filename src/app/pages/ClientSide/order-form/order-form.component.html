@@ -1,10 +1,11 @@
 <body>
   <header>
     <app-welcome-header></app-welcome-header>
-    <app-buttons-container></app-buttons-container>
+    <app-buttons-container (clickedOption)="onChangeOption($event)"></app-buttons-container>
   </header>
   <main>
     <div class="separator-line"></div>
-  <!--Implementar o if de "destaques" e "cardápio"-->
+
+
   </main>
 </body>

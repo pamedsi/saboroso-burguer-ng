@@ -6,7 +6,6 @@ import { OrderConfirmationComponent } from './pages/ClientSide/order-confirmatio
 import { WelcomeHeaderComponent } from './components/single-components/welcome-header/welcome-header.component';
 import { ButtonsContainerComponent } from './components/group-components/OrderForm/buttons-container/buttons-container.component';
 import { HttpClientModule } from "@angular/common/http";
-import { MenuBurgerComponent } from './components/group-components/OrderForm/menu-burger/menu-burger.component';
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
@@ -41,6 +40,8 @@ import { CombosManagementComponent } from './pages/AdminSide/combos-management/c
 import { AddComboFormComponent } from './components/group-components/CombosManagement/add-combo-form/add-combo-form.component';
 import { ComboListForManagementComponent } from './components/group-components/CombosManagement/combo-list-for-management/combo-list-for-management.component';
 import { OrderFormComponent } from './pages/ClientSide/order-form/order-form.component';
+import { MenuComponent } from './components/group-components/OrderForm/menu/menu.component';
+import { HighlightBurgersComponent } from './components/group-components/OrderForm/highlight-burgers/highlight-burgers.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -49,7 +50,6 @@ registerLocaleData(localePtBr);
     OrderConfirmationComponent,
     WelcomeHeaderComponent,
     ButtonsContainerComponent,
-    MenuBurgerComponent,
     LoginFormComponent,
     NotFoundComponent,
     BurgerManagementComponent,
@@ -76,6 +76,8 @@ registerLocaleData(localePtBr);
     AddComboFormComponent,
     ComboListForManagementComponent,
     OrderFormComponent,
+    MenuComponent,
+    HighlightBurgersComponent,
   ],
   imports: [
     BrowserModule,
