@@ -6,7 +6,6 @@ import {Observable, map, BehaviorSubject} from 'rxjs';
 import { Burger } from "../models/Burger";
 import {defaultWithToken, withTokenAndBody} from "../types/Headers";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {CategoryService} from "./CategoryService";
 
 @Injectable({
   providedIn: "root"
@@ -15,26 +14,34 @@ export class BurgerService {
   private burgersSource = new BehaviorSubject<Burger[]>([])
   currentBurgersForManagement = this.burgersSource.asObservable()
 
+  private highLightsSource = new BehaviorSubject<Burger[]>([])
+  currentHighlights = this.highLightsSource.asObservable()
+
+  private burgersForMenuSource = new BehaviorSubject<Burger[]>([])
+  currentMenuBurgers = this.burgersForMenuSource.asObservable()
+
   constructor(
     private http: HttpClient,
-    private categoryService: CategoryService
-  ) {}
+    ) {}
 
   getBurgersForMenu(): Observable<Burger[]>{
-    return this.http.get<BurgerDTO[]>(`${environment.API_URL}/get-burgers-for-menu`).pipe(
-      map(burgersDTO => {
-        return burgersDTO.map(burgerDTO => new Burger(burgerDTO))
-      })
-    )
+    this.http.get<BurgerDTO[]>(`${environment.API_URL}/get-burgers-for-menu`)
+        .subscribe( burgersDTO => {
+          const burgers = burgersDTO.map(burgerDTO => new Burger(burgerDTO))
+          this.burgersForMenuSource.next(burgers)
+    })
+    return this.currentMenuBurgers
   }
   getBurgersForHighlight(): Observable<Burger[]> {
-      return this.http.get<BurgerDTO[]>(`${environment.API_URL}/highlight-burgers`).pipe(
-        map(burgersDTO => {
-          return burgersDTO.map(burgerDTO => new Burger(burgerDTO))
-        })
-      )
+      this.http.get<BurgerDTO[]>(`${environment.API_URL}/highlight-burgers`)
+        .subscribe( burgersDTO => {
+          const burgers = burgersDTO.map(burgerDTO => new Burger(burgerDTO))
+          this.highLightsSource.next(burgers)
+      })
+      return this.currentHighlights
     }
-  getBurgersForMenuManagement(){
+
+  getBurgers(){
     this.http.get<BurgerDTO[]>(`${environment.API_URL}/burgers-management`, {headers: defaultWithToken})
       .subscribe( burgersDTO => {
         const burgers = burgersDTO.map(burgerDTO => new Burger(burgerDTO))
@@ -46,7 +53,7 @@ export class BurgerService {
       this.http.post<ResponseMessage>(`${environment.API_URL}/save-burger`, burgerDTO,{headers: withTokenAndBody})
           .subscribe(message => {
             console.info(message)
-            this.getBurgersForMenuManagement()
+            this.getBurgers()
           })
   }
   updateBurger(burgerDTO: BurgerDTO) {

@@ -14,7 +14,20 @@ export class ComboService {
   private combosSource = new BehaviorSubject<Combo[]>([])
   currentCombos = this.combosSource.asObservable()
 
+  private menuCombosSource = new BehaviorSubject<Combo[]>([]);
+  currentMenuCombos = this.menuCombosSource.asObservable();
+
   constructor(private http: HttpClient) {}
+
+  getCombosForMenu(): Observable<Combo[]> {
+    this.http.get<ComboDTO[]>(`${environment.API_URL}/get-combos-for-menu`)
+      .subscribe(combosDTO => {
+        const combos = combosDTO.map(comboDTO => new Combo(comboDTO));
+        this.menuCombosSource.next(combos);
+      });
+    return this.currentMenuCombos;
+  }
+
 
   getCombos(): Observable<Combo[]> {
     this.http.get<ComboDTO[]>(`${environment.API_URL}/get-all-combos`, {headers: defaultWithToken})

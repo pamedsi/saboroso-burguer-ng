@@ -1,10 +1,20 @@
+body {
+  background: brown;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+}
 main {
   display: flex;
   justify-content: center;
 }
+.line-container {
+  display: flex;
+  justify-content: center;
 
+}
 .separator-line {
   width: 35rem;
   border: solid 0.1rem white;
-  margin: 1rem;
+  margin: 2rem;
 }

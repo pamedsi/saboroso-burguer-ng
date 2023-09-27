@@ -14,7 +14,21 @@ export class PortionService {
   private portionsSource = new BehaviorSubject<Portion[]>([])
   currentPortions = this.portionsSource.asObservable()
 
+  private menuPortionsSource = new BehaviorSubject<Portion[]>([]);
+  currentMenuPortions = this.menuPortionsSource.asObservable();
+
+
   constructor(private http: HttpClient) {}
+
+  getPortionsForMenu(): Observable<Portion[]> {
+    this.http.get<PortionDTO[]>(`${environment.API_URL}/get-portions-for-menu`)
+      .subscribe(portionsDTO => {
+        const portions = portionsDTO.map(portionDTO => new Portion(portionDTO));
+        this.menuPortionsSource.next(portions);
+      });
+    return this.currentMenuPortions;
+  }
+
 
   getPortions(): Observable<Portion[]>{
     this.http.get<PortionDTO[]>(`${environment.API_URL}/get-all-portions`, {headers: defaultWithToken})

@@ -26,7 +26,7 @@ export class BurgerListForManagementComponent implements OnInit {
     this.burgerService.currentBurgersForManagement.subscribe(
       burgers => this.burgerList = burgers
     )
-    this.burgerService.getBurgersForMenuManagement()
+    this.burgerService.getBurgers()
 
     this.categoryService.getCategoriesForManagement().subscribe(
       categories => this.allCategories = categories

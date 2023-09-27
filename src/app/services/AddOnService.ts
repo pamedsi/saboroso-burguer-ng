@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {AddOn} from "../models/AddOn";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
@@ -14,7 +14,21 @@ export class AddOnService {
   private addOnSource = new BehaviorSubject<AddOn[]>([])
   currentAddOns = this.addOnSource.asObservable()
 
+  private menuAddOnSource = new BehaviorSubject<AddOn[]>([]);
+  currentMenuAddOns = this.menuAddOnSource.asObservable();
+
+
   constructor(private http: HttpClient) {}
+
+  getAddOnsForMenu(): Observable<AddOn[]> {
+    this.http.get<AddOnDTO[]>(`${environment.API_URL}/get-add-ons-for-menu`)
+      .subscribe(addOnsDTO => {
+        const addOns = addOnsDTO.map(addOnDTO => new AddOn(addOnDTO));
+        this.menuAddOnSource.next(addOns);
+      });
+    return this.currentMenuAddOns;
+  }
+
 
   getAddOns() {
     this.http.get<AddOnDTO[]>(`${environment.API_URL}/get-add-ons`, {headers: defaultWithToken})

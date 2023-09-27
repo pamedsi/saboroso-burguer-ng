@@ -3,9 +3,13 @@
     <app-welcome-header></app-welcome-header>
     <app-buttons-container (clickedOption)="onChangeOption($event)"></app-buttons-container>
   </header>
+  <div class="line-container"><div class="separator-line"></div></div>
   <main>
-    <div class="separator-line"></div>
-
-
+    <div *ngIf="onHighlights; else menu">
+      <app-highlight-burgers></app-highlight-burgers>
+    </div>
+    <ng-template #menu>
+      <app-menu></app-menu>
+    </ng-template>
   </main>
 </body>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BurgerService} from "../../../../services/BurgerService";
 import {PortionService} from "../../../../services/PortionService";
 import {ComboService} from "../../../../services/ComboService";
@@ -15,7 +15,7 @@ import {AddOn} from "../../../../models/AddOn";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
   allAvailableBurgers!: Burger[]
   allAvailablePortions!: Portion[]
   allAvailableCombos!: Combo[]
@@ -30,5 +30,31 @@ export class MenuComponent {
       private addOnService: AddOnService
   ) {}
 
+  ngOnInit() {
+    this.burgerService.currentMenuBurgers.subscribe(menuBurgers => {
+      this.allAvailableBurgers = menuBurgers;
+    });
+    this.burgerService.getBurgersForMenu();
+
+    this.portionService.currentMenuPortions.subscribe(menuPortions => {
+      this.allAvailablePortions = menuPortions;
+    });
+    this.portionService.getPortionsForMenu();
+
+    this.comboService.currentMenuCombos.subscribe(menuCombos => {
+      this.allAvailableCombos = menuCombos;
+    });
+    this.comboService.getCombosForMenu();
+
+    this.drinkService.currentMenuDrinks.subscribe(menuDrinks => {
+      this.allAvailableDrinks = menuDrinks;
+    });
+    this.drinkService.getDrinksForMenu();
+
+    this.addOnService.currentMenuAddOns.subscribe(menuAddOns => {
+      this.allAddOnsService = menuAddOns;
+    });
+    this.addOnService.getAddOnsForMenu();
+  }
 
 }
