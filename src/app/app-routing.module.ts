@@ -12,6 +12,8 @@ import {DrinksManagementComponent} from "./pages/AdminSide/drinks-management/dri
 import {AddOnsManagementComponent} from "./pages/AdminSide/add-ons-management/add-ons-management.component";
 import {CombosManagementComponent} from "./pages/AdminSide/combos-management/combos-management.component";
 import {OrderFormComponent} from "./pages/ClientSide/order-form/order-form.component";
+import {OrderStatusComponent} from "./pages/ClientSide/order-status/order-status.component";
+import {OrderConfirmationComponent} from "./pages/ClientSide/order-confirmation/order-confirmation.component";
 
 const routes: Routes = [
   {
@@ -60,6 +62,14 @@ const routes: Routes = [
   {
     path: 'order-form',
     component: OrderFormComponent
+  },
+  {
+    path: 'order-status',
+    component: OrderStatusComponent
+  },
+  {
+    path: 'order-confirmation',
+    component: OrderConfirmationComponent
   },
   {
     path: '**',

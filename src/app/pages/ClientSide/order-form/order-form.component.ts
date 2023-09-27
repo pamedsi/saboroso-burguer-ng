@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-form',
@@ -8,11 +9,15 @@ import {Component, OnInit} from '@angular/core';
 export class OrderFormComponent implements OnInit{
   onHighlights = true
 
-  constructor() {}
+  constructor(private router: Router){}
 
   ngOnInit(){}
 
   onChangeOption($event: Event){
     this.onHighlights = String($event) === 'highlights'
+  }
+
+  redirectToHome() {
+    this.router.navigate(['/'])
   }
 }

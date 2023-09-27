@@ -42,6 +42,7 @@ import { ComboListForManagementComponent } from './components/group-components/C
 import { OrderFormComponent } from './pages/ClientSide/order-form/order-form.component';
 import { MenuComponent } from './components/group-components/OrderForm/menu/menu.component';
 import { HighlightBurgersComponent } from './components/group-components/OrderForm/highlight-burgers/highlight-burgers.component';
+import { OrderStatusComponent } from './pages/ClientSide/order-status/order-status.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -78,6 +79,7 @@ registerLocaleData(localePtBr);
     OrderFormComponent,
     MenuComponent,
     HighlightBurgersComponent,
+    OrderStatusComponent,
   ],
   imports: [
     BrowserModule,
