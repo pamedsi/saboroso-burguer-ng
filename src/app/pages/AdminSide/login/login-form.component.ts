@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginForm } from "../../../types/LoginFormDTO";
+import { LoginForm } from "../../../types/Auth/LoginFormDTO";
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/AuthenticationService';
 

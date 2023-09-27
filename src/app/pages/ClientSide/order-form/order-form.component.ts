@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit{
-  onHighlights = true
+  onHighlights = false
+  order!: []
 
   constructor(private router: Router){}
 

@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit{
   ngOnInit(): void {
     sessionStorage.removeItem('redirectingTo')
   }
-  // Menu Management
+  // Menu MenuItemDTO
   redirectToBurgersManagement() {
     this.router.navigate(['/burgers-management'])
   }

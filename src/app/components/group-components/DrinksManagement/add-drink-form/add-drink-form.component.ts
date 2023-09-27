@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DrinkService} from "../../../../services/DrinkService";
-import {DrinkDTO} from "../../../../types/DrinkDTO";
+import {DrinkDTO} from "../../../../types/MenuItemDTO/DrinkDTO";
 
 @Component({
   selector: 'app-add-drink-form',

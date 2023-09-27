@@ -1,17 +1,17 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Drink} from "../models/Drink";
-import {DrinkDTO} from "../types/DrinkDTO";
+import {DrinkForManagement} from "../models/Management/DrinkForManagement";
+import {DrinkDTO} from "../types/MenuItemDTO/DrinkDTO";
 import {environment} from "../../environment/environment";
-import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Auth/Headers";
 import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DrinkService {
-  private drinksSource = new BehaviorSubject<Drink[]>([])
+  private drinksSource = new BehaviorSubject<DrinkForManagement[]>([])
   currentDrinks = this.drinksSource.asObservable()
 
   constructor(private http: HttpClient) {}
@@ -19,7 +19,7 @@ export class DrinkService {
   getDrinks() {
     this.http.get<DrinkDTO[]>(`${environment.API_URL}/get-drinks`, {headers: defaultWithToken})
       .subscribe(drinks => {
-        const allDrinks = drinks.map(drink => new Drink(drink))
+        const allDrinks = drinks.map(drink => new DrinkForManagement(drink))
         this.drinksSource.next(allDrinks)
       })
     return this.currentDrinks

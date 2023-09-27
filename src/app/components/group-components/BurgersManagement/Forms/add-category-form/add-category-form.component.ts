@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {CategoryService} from "../../../../../services/CategoryService";
-import {CategoryDTO} from "../../../../../types/CategoryDTO";
+import {CategoryDTO} from "../../../../../types/MenuItemDTO/CategoryDTO";
 
 @Component({
   selector: 'app-add-category-form',

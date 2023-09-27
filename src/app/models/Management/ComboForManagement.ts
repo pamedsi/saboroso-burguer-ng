@@ -1,4 +1,4 @@
-import {ComboDTO} from "../types/ComboDTO";
+import {ComboDTO} from "../../types/MenuItemDTO/ComboDTO";
 
 export class Combo {
   private readonly identifier: string;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Combo} from "../../../../models/Combo";
+import {Combo} from "../../../../models/Management/ComboForManagement";
 import {CurrencyPipe} from "@angular/common";
 import {ComboService} from "../../../../services/ComboService";
 

@@ -1,30 +1,30 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
-import {AddOn} from "../models/AddOn";
+import {AddOnForManagement} from "../models/Management/AddOnForManagement";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
-import {defaultWithToken, withTokenAndBody} from "../types/Headers";
-import {AddOnDTO} from "../types/AddOnDTO";
+import {defaultWithToken, withTokenAndBody} from "../types/Auth/Headers";
 import {ResponseMessage} from "../types/ResponseMessage";
+import {MenuItemDTO} from "../types/MenuItemDTO/MenuItemDTO";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddOnService {
-  private addOnSource = new BehaviorSubject<AddOn[]>([])
+  private addOnSource = new BehaviorSubject<AddOnForManagement[]>([])
   currentAddOns = this.addOnSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
   getAddOns() {
-    this.http.get<AddOnDTO[]>(`${environment.API_URL}/get-add-ons`, {headers: defaultWithToken})
+    this.http.get<MenuItemDTO[]>(`${environment.API_URL}/get-add-ons`, {headers: defaultWithToken})
       .subscribe(addOns => {
-        const allAddOns = addOns.map(addOn => new AddOn(addOn))
+        const allAddOns = addOns.map(addOn => new AddOnForManagement(addOn))
         this.addOnSource.next(allAddOns)
       })
     return this.currentAddOns
   }
-  insertAddOn(addOnDTO: AddOnDTO){
+  insertAddOn(addOnDTO: MenuItemDTO){
     this.http.post<ResponseMessage>(`${environment.API_URL}/insert-add-on`, addOnDTO,{headers: withTokenAndBody})
       .subscribe(message => {
         console.info(message)
@@ -38,7 +38,7 @@ export class AddOnService {
         this.getAddOns()
       })
   }
-  updateAddOn(addOnDTO: AddOnDTO) {
+  updateAddOn(addOnDTO: MenuItemDTO) {
     this.http.put<ResponseMessage>(`${environment.API_URL}/update-add-on`, addOnDTO,{headers: withTokenAndBody})
       .subscribe(message => {
           console.info(message)

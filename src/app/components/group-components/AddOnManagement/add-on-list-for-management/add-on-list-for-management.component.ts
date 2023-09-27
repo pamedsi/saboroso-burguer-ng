@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AddOn} from "../../../../models/AddOn";
+import {AddOnForManagement} from "../../../../models/Management/AddOnForManagement";
 import {CurrencyPipe} from "@angular/common";
 import {AddOnService} from "../../../../services/AddOnService";
 
@@ -9,7 +9,7 @@ import {AddOnService} from "../../../../services/AddOnService";
   styleUrls: ['./add-on-list-for-management.component.css']
 })
 export class AddOnListForManagementComponent implements OnInit{
-  allAddOns!: AddOn[];
+  allAddOns!: AddOnForManagement[];
 
   constructor(private addOnService: AddOnService, private currencyPipe: CurrencyPipe) {}
 
@@ -23,14 +23,14 @@ export class AddOnListForManagementComponent implements OnInit{
   deleteAddOn(identifier: string) {
     this.addOnService.removeAddOn(identifier)
   }
-  cancelEditing(addOn: AddOn) {
+  cancelEditing(addOn: AddOnForManagement) {
     addOn.titleEditing = addOn.getTitle();
     addOn.priceEditing = addOn.getPrice();
     addOn.inStockEditing = addOn.isInStock();
     addOn.setEditable(false);
   }
 
-  editAddOn(addOn: AddOn) {
+  editAddOn(addOn: AddOnForManagement) {
       let changes = 0
       if (addOn.getTitle() !== addOn.titleEditing) {
         addOn.setTitle(addOn.titleEditing);

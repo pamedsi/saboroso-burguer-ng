@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Burger} from "../../../../models/Burger";
+import {BurgerForManagement} from "../../../../models/Management/BurgerForManagement";
 import {BurgerService} from "../../../../services/BurgerService";
 
 @Component({
@@ -8,7 +8,7 @@ import {BurgerService} from "../../../../services/BurgerService";
   styleUrls: ['./highlight-burgers.component.css']
 })
 export class HighlightBurgersComponent implements OnInit{
-  highLightBurgers!: Burger[]
+  highLightBurgers!: BurgerForManagement[]
 
   constructor(private burgerService: BurgerService) {}
 

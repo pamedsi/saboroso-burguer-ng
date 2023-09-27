@@ -1,26 +1,26 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environment/environment";
-import {IngredientDTO} from "../types/IngredientDTO";
-import {Ingredient} from "../models/Ingredient";
+import {IngredientDTO} from "../types/MenuItemDTO/IngredientDTO";
+import {IngredientForManagement} from "../models/Management/IngredientForManagement";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Auth/Headers";
 
 @Injectable({
   providedIn: "root"
 })
 export class IngredientService {
-  private ingredientsSource = new BehaviorSubject<Ingredient[]>([])
+  private ingredientsSource = new BehaviorSubject<IngredientForManagement[]>([])
   currentIngredients = this.ingredientsSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  getIngredients(): Observable<Ingredient[]>{
+  getIngredients(): Observable<IngredientForManagement[]>{
     this.http.get<IngredientDTO[]>(`${environment.API_URL}/menu-ingredients-management`, {headers: defaultWithToken})
       .subscribe(
       ingredientsDTO => {
-        const ingredients = ingredientsDTO.map(ingredient => new Ingredient(ingredient))
+        const ingredients = ingredientsDTO.map(ingredient => new IngredientForManagement(ingredient))
         this.ingredientsSource.next(ingredients)
       })
     return this.currentIngredients

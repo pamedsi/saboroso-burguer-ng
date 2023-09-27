@@ -1,37 +1,36 @@
-import { IngredientDTO } from "src/app/types/IngredientDTO"
-import { BurgerDTO } from "../types/BurgerDTO"
-import {Ingredient} from "./Ingredient";
-import {BurgerCategory} from "./BurgerCategory";
-import {CategoryDTO} from "../types/CategoryDTO";
+import { IngredientDTO } from "src/app/types/MenuItemDTO/IngredientDTO"
+import { BurgerDTO } from "../../types/MenuItemDTO/BurgerDTO"
+import {IngredientForManagement} from "./IngredientForManagement";
+import {CategoryForManagement} from "./CategoryForManagement";
+import {CategoryDTO} from "../../types/MenuItemDTO/CategoryDTO";
 
-export class Burger {
+export class BurgerForManagement {
   private readonly identifier: string
   private title: string
-  private category: BurgerCategory
-  // private allCategories!: BurgerCategory[]
+  private category: CategoryForManagement
   private price: number
   private pic: string | null
-  private ingredients: Ingredient[]
+  private ingredients: IngredientForManagement[]
   private inStock: boolean
 
   // Component props:
 
   private editable: boolean
   titleEditing: string
-  categoryEditing: BurgerCategory
+  categoryEditing: CategoryForManagement
   priceEditing: number
   picEditing!: string
-  ingredientsEditing: Ingredient[]
+  ingredientsEditing: IngredientForManagement[]
   inStockEditing: boolean
   selectedCategoryIdentifier: string;
 
   constructor(burgerFromRequest: BurgerDTO) {
     this.identifier = burgerFromRequest.identifier
-    this.category = new BurgerCategory(burgerFromRequest.category)
+    this.category = new CategoryForManagement(burgerFromRequest.category)
     this.title = burgerFromRequest.title
     this.price = Number(burgerFromRequest.price)
     this.pic = burgerFromRequest.pic
-    this.ingredients = burgerFromRequest.ingredients.map(ingredient => new Ingredient(ingredient))
+    this.ingredients = burgerFromRequest.ingredients.map(ingredient => new IngredientForManagement(ingredient))
     this.inStock = burgerFromRequest.inStock
 
     // Component props
@@ -48,7 +47,7 @@ export class Burger {
     return this.identifier;
   }
 
-  getCategory(): BurgerCategory {
+  getCategory(): CategoryForManagement {
     return this.category;
   }
 
@@ -71,14 +70,13 @@ export class Burger {
   ingredientsToString(): string {
     if (this.ingredients.length === 0) return "Sem ingredientes"
     const stringToBeReturned: string[] =
-      this.ingredients.filter(ingredient => !ingredient.getDeleted())
-        .map(ingredient =>
+      this.ingredients.map(ingredient =>
       ingredient.getGrams() ? `${ingredient.getGrams()} gramas de ${ingredient.getTitle()}` : ingredient.getTitle()
     );
     const lastIngredient = stringToBeReturned.pop();
     return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
   }
-  setIngredients(ingredients: Ingredient[]){
+  setIngredients(ingredients: IngredientForManagement[]){
     this.ingredients = ingredients
   }
   getInStock(): boolean {
@@ -87,22 +85,10 @@ export class Burger {
   setInStock(inStock: boolean) {
     this.inStock = inStock
   }
-  setCategory(burgerCategory: BurgerCategory){ this.category = burgerCategory }
+  setCategory(burgerCategory: CategoryForManagement){ this.category = burgerCategory }
   setTitle(title: string){ this.title = title}
   setPrice(price: number){ this.price = price }
   setPic(pic: string){ this.pic = pic }
-
-  addIngredient(newIngredient: Ingredient){
-    if (this.ingredients.includes(newIngredient)) return false
-    this.ingredients.push(newIngredient)
-    return true
-  }
-  removeIngredient(ingredientToRemove: Ingredient): boolean{
-    if (!this.ingredients.includes(ingredientToRemove)) return false
-    this.ingredients = this.ingredients.filter(
-      ingredient => ingredient.getIdentifier() !== ingredientToRemove.getIdentifier())
-    return true
-  }
 
   // Component methods:
   getEditable(): boolean {
@@ -111,18 +97,14 @@ export class Burger {
   setEditable(value: boolean){
     this.editable = value
   }
-  updateCategoryEditing(allCategories: BurgerCategory[]) {
-    const categorySelected = allCategories.find(category => category.getIdentifier() === this.selectedCategoryIdentifier);
-    if (!categorySelected) return
-    this.categoryEditing = categorySelected
-  }
+
   onInStockSelected(target: any) {
     this.inStockEditing = target.value === 'Sim'
   }
   getOptionsForInStock() {
     return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
   }
-  onCategorySelected(target: any, categories: BurgerCategory[]) {
+  onCategorySelected(target: any, categories: CategoryForManagement[]) {
     const selectedCategory = categories.find(category => {
       return target.value === category.getTitle()
     })
@@ -130,13 +112,13 @@ export class Burger {
     if (!selectedCategory) return
     this.categoryEditing = selectedCategory
   }
-  getOptionsForCategories(categories: BurgerCategory[]){
+  getOptionsForCategories(categories: CategoryForManagement[]){
     const currentCategory = categories.find(category =>
       category.getIdentifier() === this.categoryEditing.getIdentifier()
     )
     if (!currentCategory) {
       const listToReturn = [...categories]
-      listToReturn.unshift(new BurgerCategory({title: "Categoria deletada!"} as CategoryDTO))
+      listToReturn.unshift(new CategoryForManagement({title: "Categoria deletada!"} as CategoryDTO))
       return listToReturn
     }
     const listWithoutCurrentCategory = categories.filter( category =>
@@ -146,7 +128,7 @@ export class Burger {
     listWithoutCurrentCategory.unshift(currentCategory)
     return listWithoutCurrentCategory
   }
-  getOptionsForIngredients(allIngredients: Ingredient[]) {
+  getOptionsForIngredients(allIngredients: IngredientForManagement[]) {
     const ingredientDeleted = this.ingredientsEditing.find(ingredient =>
       !allIngredients.includes(ingredient)
     )
@@ -156,7 +138,7 @@ export class Burger {
       ingredient.getIdentifier() !== ingredientDeleted.getIdentifier()
     )
   }
-  getSelectedIngredients(allIngredients: Ingredient[]) {
+  getSelectedIngredients(allIngredients: IngredientForManagement[]) {
     const ingredientDeleted = this.ingredientsEditing.find(ingredient =>
       !allIngredients.includes(ingredient)
     )
@@ -169,19 +151,18 @@ export class Burger {
 
   // Service methods
   toDTO(): BurgerDTO {
-    const burgerDTO = {
+    return {
       identifier: this.identifier,
       category: this.category.toDTO(),
       title: this.title,
-      price: this.price.toFixed(2),
+      price: this.price,
       pic: this.pic ? this.pic : null,
       inStock: this.inStock,
       ingredients: this.ingredientsToDTO(this.ingredients)
     } as BurgerDTO
-    return burgerDTO
   }
 
-  ingredientsToDTO(ingredients: Ingredient[]){
+  ingredientsToDTO(ingredients: IngredientForManagement[]){
     return ingredients.map(ingredient => {
       return {
         identifier: ingredient.getIdentifier(),

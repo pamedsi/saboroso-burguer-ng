@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environment/environment";
-import { defaultHeaders } from "../types/Headers";
-import { JWT } from "../types/JWTDTO";
+import { defaultHeaders } from "../types/Auth/Headers";
+import { JWT } from "../types/Auth/JWTDTO";
 import { Router } from "@angular/router";
 
 @Injectable({
@@ -21,6 +21,6 @@ export class TokenValidationService {
       sessionStorage.setItem('redirectingTo', route)
       if (!token) this.router.navigate(['/login'])
       else this.router.navigate([route])
-    }) 
+    })
   }
 }

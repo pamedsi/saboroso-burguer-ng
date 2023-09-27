@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IngredientService} from "../../../../../services/IngredientService";
-import {Ingredient} from "../../../../../models/Ingredient";
+import {IngredientForManagement} from "../../../../../models/Management/IngredientForManagement";
 
 @Component({
   selector: 'app-ingredient-list-for-management',
@@ -8,7 +8,7 @@ import {Ingredient} from "../../../../../models/Ingredient";
   styleUrls: ['./ingredient-list-for-management.component.css']
 })
 export class IngredientListForManagementComponent implements OnInit{
-  allIngredients!: Ingredient[]
+  allIngredients!: IngredientForManagement[]
   constructor(private ingredientService: IngredientService) {}
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class IngredientListForManagementComponent implements OnInit{
 
     this.ingredientService.updateIngredient(ingredient.toDTO())
   }
-  anyChanges(ingredient: Ingredient): boolean {
+  anyChanges(ingredient: IngredientForManagement): boolean {
     if (ingredient.getTitle() !== ingredient.titleEditing || ingredient.gramsEditing !== ingredient.getGrams()) return true
     if (ingredient.inStockEditing && ingredient.getInStock()) return true
     const clicked = typeof ingredient.inStockEditing  === 'boolean'

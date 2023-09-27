@@ -1,0 +1,31 @@
+import {MenuItemDTO} from "../../types/MenuItemDTO/MenuItemDTO";
+
+export abstract class MenuItem {
+  protected readonly identifier: string
+  protected readonly title: string
+  protected readonly price: number
+  public quantity: number
+
+  protected constructor(menuItem: MenuItemDTO) {
+    this.identifier = menuItem.identifier
+    this.title = menuItem.title
+    this.price = Number(menuItem.price)
+    this.quantity = 0
+  }
+
+  getIdentifier(){
+    return this.identifier
+  }
+  getTitle(){
+    return this.title
+  }
+  getPrice(){
+    return this.price
+  }
+  incrementQuantity() {
+    this.quantity++;
+  }
+  decrementQuantity() {
+    if (this.quantity > 0) this.quantity--
+  }
+}

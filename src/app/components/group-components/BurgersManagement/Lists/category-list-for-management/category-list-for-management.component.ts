@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CategoryService} from "../../../../../services/CategoryService";
-import {BurgerCategory} from "../../../../../models/BurgerCategory";
+import {CategoryForManagement} from "../../../../../models/Management/CategoryForManagement";
 @Component({
   selector: 'app-category-list-for-management',
   templateUrl: './category-list-for-management.component.html',
   styleUrls: ['./category-list-for-management.component.css']
 })
 export class CategoryListForManagementComponent implements OnInit{
-  allCategories!: BurgerCategory[]
+  allCategories!: CategoryForManagement[]
   initialCategoryName!: string
 
   constructor(private categoryService: CategoryService) {}

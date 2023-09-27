@@ -1,25 +1,25 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Portion} from "../models/Portion";
-import {PortionDTO} from "../types/PortionDTO";
+import {PortionForManagement} from "../models/Management/PortionForManagement";
+import {PortionDTO} from "../types/MenuItemDTO/PortionDTO";
 import {environment} from "../../environment/environment";
-import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Auth/Headers";
 import {ResponseMessage} from "../types/ResponseMessage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PortionService {
-  private portionsSource = new BehaviorSubject<Portion[]>([])
+  private portionsSource = new BehaviorSubject<PortionForManagement[]>([])
   currentPortions = this.portionsSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  getPortions(): Observable<Portion[]>{
+  getPortions(): Observable<PortionForManagement[]>{
     this.http.get<PortionDTO[]>(`${environment.API_URL}/get-all-portions`, {headers: defaultWithToken})
       .subscribe(portions => {
-        const modelPortions = portions.map(portionDTO => new Portion(portionDTO))
+        const modelPortions = portions.map(portionDTO => new PortionForManagement(portionDTO))
         this.portionsSource.next(modelPortions)
       })
     return this.currentPortions

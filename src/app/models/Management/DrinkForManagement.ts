@@ -1,6 +1,6 @@
-import {DrinkDTO} from "../types/DrinkDTO";
+import {DrinkDTO} from "../../types/MenuItemDTO/DrinkDTO";
 
-export class Drink {
+export class DrinkForManagement {
   private readonly identifier: string;
   private title: string;
   private ml: number;

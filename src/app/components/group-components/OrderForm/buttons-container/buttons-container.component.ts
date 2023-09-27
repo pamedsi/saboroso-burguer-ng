@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./buttons-container.component.css']
 })
 export class ButtonsContainerComponent {
-  @Input() highlights = true;
+  @Input() highlights = false;
   @Input() menu = !this.highlights;
   @Output() clickedOption = new EventEmitter()
 

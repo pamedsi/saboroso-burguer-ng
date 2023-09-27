@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Burger} from 'src/app/models/Burger';
+import {BurgerForManagement} from 'src/app/models/Management/BurgerForManagement';
 import {BurgerService} from 'src/app/services/BurgerService';
 import {CategoryService} from "../../../../../services/CategoryService";
 import {IngredientService} from "../../../../../services/IngredientService";
-import {BurgerCategory} from "../../../../../models/BurgerCategory";
-import {Ingredient} from "../../../../../models/Ingredient";
+import {CategoryForManagement} from "../../../../../models/Management/CategoryForManagement";
+import {IngredientForManagement} from "../../../../../models/Management/IngredientForManagement";
 
 @Component({
   selector: 'app-burger-list-for-management',
@@ -12,9 +12,9 @@ import {Ingredient} from "../../../../../models/Ingredient";
   styleUrls: ['./burger-list-for-management.component.css']
 })
 export class BurgerListForManagementComponent implements OnInit {
-  burgerList!: Burger[]
-  allCategories!: BurgerCategory[]
-  allIngredients!: Ingredient[]
+  burgerList!: BurgerForManagement[]
+  allCategories!: CategoryForManagement[]
+  allIngredients!: IngredientForManagement[]
 
   constructor(
     private burgerService: BurgerService,
@@ -36,12 +36,12 @@ export class BurgerListForManagementComponent implements OnInit {
     )
   }
 
-  removeIngredient(ingredientIdentifier: string, burger: Burger) {
+  removeIngredient(ingredientIdentifier: string, burger: BurgerForManagement) {
       burger.ingredientsEditing = burger.getIngredients().filter(ingredientToRemove => {
         return ingredientToRemove.getIdentifier() !== ingredientIdentifier
     })
   }
-  addIngredient(ingredientIndex: any, burger: Burger) {
+  addIngredient(ingredientIndex: any, burger: BurgerForManagement) {
     const index = ingredientIndex.options.selectedIndex - 1
     if (index === -1) return
     const alreadyInList = burger.ingredientsEditing.some(ingredient =>
@@ -50,7 +50,7 @@ export class BurgerListForManagementComponent implements OnInit {
     if (alreadyInList) return
     burger.ingredientsEditing.push((this.allIngredients[index]))
   }
-  editBurger(burger: Burger): boolean{
+  editBurger(burger: BurgerForManagement): boolean{
     let changes = 0
     if (burger.getTitle() !== burger.titleEditing) {
       burger.setTitle(burger.titleEditing)
@@ -99,7 +99,7 @@ export class BurgerListForManagementComponent implements OnInit {
     burger.setEditable(false)
     return true
   }
-  cancelEditing(burger: Burger) {
+  cancelEditing(burger: BurgerForManagement) {
         burger.titleEditing = burger.getTitle()
         burger.categoryEditing = burger.getCategory()
         burger.priceEditing = burger.getPrice()

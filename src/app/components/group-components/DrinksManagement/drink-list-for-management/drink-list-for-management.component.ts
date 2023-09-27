@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DrinkService} from "../../../../services/DrinkService";
-import {Drink} from "../../../../models/Drink";
+import {DrinkForManagement} from "../../../../models/Management/DrinkForManagement";
 import {CurrencyPipe} from "@angular/common";
 
 @Component({
@@ -9,7 +9,7 @@ import {CurrencyPipe} from "@angular/common";
   styleUrls: ['./drink-list-for-management.component.css']
 })
 export class DrinkListForManagementComponent implements OnInit{
-  allDrinks!: Drink[]
+  allDrinks!: DrinkForManagement[]
 
   constructor(private drinkService: DrinkService, private currencyPipe: CurrencyPipe) {}
 
@@ -26,7 +26,7 @@ export class DrinkListForManagementComponent implements OnInit{
     this.drinkService.removeDrink(identifier)
   }
 
-  cancelEditing(drink: Drink) {
+  cancelEditing(drink: DrinkForManagement) {
     drink.titleEditing = drink.getTitle();
     drink.priceEditing = drink.getPrice();
     drink.mlEditing = drink.getMl();
@@ -34,7 +34,7 @@ export class DrinkListForManagementComponent implements OnInit{
     drink.setEditable(false);
   }
 
-  editDrink(drink: Drink) {
+  editDrink(drink: DrinkForManagement) {
     let changes = 0
     if (drink.getTitle() !== drink.titleEditing) {
       drink.setTitle(drink.titleEditing);
@@ -62,19 +62,19 @@ export class DrinkListForManagementComponent implements OnInit{
     drink.setEditable(false)
   }
 
-  // updateProperty(drink: Drink, property: string): boolean {
-  //   const originalValue = (drink[`get${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof Drink] as Function)();
-  //   const editingValue = drink[`${property.toLowerCase()}Editing` as keyof Drink];
+  // updateProperty(drink: DrinkForManagement, property: string): boolean {
+  //   const originalValue = (drink[`get${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof DrinkForManagement] as Function)();
+  //   const editingValue = drink[`${property.toLowerCase()}Editing` as keyof DrinkForManagement];
   //
   //   if (originalValue !== editingValue) {
-  //     (drink[`set${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof Drink] as Function)(editingValue);
+  //     (drink[`set${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof DrinkForManagement] as Function)(editingValue);
   //     return true;
   //   }
   //
   //   return false;
   // }
   //
-  // editDrink(drink: Drink) {
+  // editDrink(drink: DrinkForManagement) {
   //   const properties = ['title', 'price', 'ml', 'inStock']
   //   const changes = properties.map(property => this.updateProperty(drink, property)).filter(Boolean).length;
   //

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {PortionService} from "../../../../services/PortionService";
-import {PortionDTO} from "../../../../types/PortionDTO";
+import {PortionDTO} from "../../../../types/MenuItemDTO/PortionDTO";
 
 @Component({
   selector: 'app-add-portion-form',

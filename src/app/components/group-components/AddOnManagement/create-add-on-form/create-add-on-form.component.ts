@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {DrinkDTO} from "../../../../types/DrinkDTO";
-import {AddOnDTO} from "../../../../types/AddOnDTO";
+
 import {AddOnService} from "../../../../services/AddOnService";
+import {MenuItemDTO} from "../../../../types/MenuItemDTO/MenuItemDTO";
 
 @Component({
   selector: 'app-create-add-on-form',
@@ -32,7 +32,7 @@ export class CreateAddOnFormComponent {
       title: this.title,
       price: this.price,
       inStock: this.inStock
-    } as AddOnDTO
+    } as MenuItemDTO
 
     this.title = ''
     this.price = 0

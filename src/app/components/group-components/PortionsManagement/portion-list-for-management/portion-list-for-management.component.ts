@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import {Portion} from "../../../../models/Portion";
+import {PortionForManagement} from "../../../../models/Management/PortionForManagement";
 import {PortionService} from "../../../../services/PortionService";
 
 
@@ -10,7 +10,7 @@ import {PortionService} from "../../../../services/PortionService";
   styleUrls: ['./portion-list-for-management.component.css']
 })
 export class PortionListForManagementComponent implements OnInit{
-  allPortions!: Portion[]
+  allPortions!: PortionForManagement[]
 
   constructor(private portionService: PortionService, private currencyPipe: CurrencyPipe) {}
 
@@ -30,7 +30,7 @@ export class PortionListForManagementComponent implements OnInit{
     this.portionService.removePortion(portionIdentifier);
   }
 
-  cancelEditing(portion: Portion) {
+  cancelEditing(portion: PortionForManagement) {
     portion.titleEditing = portion.getTitle()
     portion.descriptionEditing = portion.getDescription()
     portion.priceEditing = portion.getPrice()
@@ -39,7 +39,7 @@ export class PortionListForManagementComponent implements OnInit{
     portion.setEditable(false)
   }
 
-  editPortion(portion: Portion) {
+  editPortion(portion: PortionForManagement) {
     let changes = 0
     if (portion.getTitle() !== portion.titleEditing) {
       portion.setTitle(portion.titleEditing);

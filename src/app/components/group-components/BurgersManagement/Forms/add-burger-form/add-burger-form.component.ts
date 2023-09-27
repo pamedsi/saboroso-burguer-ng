@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {IngredientService} from "../../../../../services/IngredientService";
-import {Ingredient} from "../../../../../models/Ingredient";
+import {IngredientForManagement} from "../../../../../models/Management/IngredientForManagement";
 import {CategoryService} from "../../../../../services/CategoryService";
-import {BurgerCategory} from "../../../../../models/BurgerCategory";
-import {InputBurgerDTO} from "../../../../../types/BurgerDTO";
+import {CategoryForManagement} from "../../../../../models/Management/CategoryForManagement";
 import {BurgerService} from "../../../../../services/BurgerService";
+import {BurgerDTO} from "../../../../../types/MenuItemDTO/BurgerDTO";
 
 @Component({
   selector: 'app-add-burger-form',
@@ -12,14 +12,14 @@ import {BurgerService} from "../../../../../services/BurgerService";
   styleUrls: ['./add-burger-form.component.css']
 })
 export class AddBurgerFormComponent implements OnInit{
-  allIngredients!: Ingredient[]
-  allCategories!: BurgerCategory[]
+  allIngredients!: IngredientForManagement[]
+  allCategories!: CategoryForManagement[]
 
   title!: string
-  category!: BurgerCategory
+  category!: CategoryForManagement
   price!: number
   pic!: string
-  selectedIngredients: Ingredient[] = [];
+  selectedIngredients: IngredientForManagement[] = [];
   inStock: boolean
 
   constructor(
@@ -50,7 +50,7 @@ export class AddBurgerFormComponent implements OnInit{
     )
     if (!alreadyInList) this.selectedIngredients.push(this.allIngredients[index])
   }
-  removeIngredient(ingredient: Ingredient) {
+  removeIngredient(ingredient: IngredientForManagement) {
     this.selectedIngredients = this.selectedIngredients.filter(
       i => i.getIdentifier() !== ingredient.getIdentifier())
   }
@@ -70,12 +70,12 @@ export class AddBurgerFormComponent implements OnInit{
 
     const burgerDTO = {
       title: this.title,
-      categoryIdentifier: this.category.getIdentifier(),
+      category: this.category.toDTO(),
       price: this.price,
       pic: this.pic ? this.pic : null,
       inStock: this.inStock,
       ingredients: this.selectedIngredients.map(ingredient => ingredient.toDTO())
-    } as InputBurgerDTO
+    } as BurgerDTO
 
     this.burgerService.addNewBurger(burgerDTO)
 

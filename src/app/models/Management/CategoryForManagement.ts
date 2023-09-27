@@ -1,6 +1,6 @@
-import {CategoryDTO} from "../types/CategoryDTO";
+import {CategoryDTO} from "../../types/MenuItemDTO/CategoryDTO";
 
-export class BurgerCategory {
+export class CategoryForManagement {
   private readonly identifier: string
   private title: string
   private editable: boolean

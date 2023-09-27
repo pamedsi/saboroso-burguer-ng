@@ -1,25 +1,25 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
-import {withTokenAndBody, defaultWithToken} from "../types/Headers";
-import {CategoryDTO} from "../types/CategoryDTO";
+import {withTokenAndBody, defaultWithToken} from "../types/Auth/Headers";
+import {CategoryDTO} from "../types/MenuItemDTO/CategoryDTO";
 import {Observable, BehaviorSubject} from "rxjs";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {BurgerCategory} from "../models/BurgerCategory";
+import {CategoryForManagement} from "../models/Management/CategoryForManagement";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private categoriesSource = new BehaviorSubject<BurgerCategory[]>([])
+  private categoriesSource = new BehaviorSubject<CategoryForManagement[]>([])
   currentCategories = this.categoriesSource.asObservable()
 
   constructor(private http: HttpClient) {}
 
-  getCategoriesForManagement(): Observable<BurgerCategory[]> {
+  getCategoriesForManagement(): Observable<CategoryForManagement[]> {
     this.http.get<CategoryDTO[]>(`${environment.API_URL}/get-all-categories`, {headers: defaultWithToken})
       .subscribe(categories => {
-        const burgerCategories = categories.map(category => new BurgerCategory(category))
+        const burgerCategories = categories.map(category => new CategoryForManagement(category))
         this.categoriesSource.next(burgerCategories)
       })
     return this.currentCategories

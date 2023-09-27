@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginForm } from '../types/LoginFormDTO';
+import { LoginForm } from '../types/Auth/LoginFormDTO';
 import { environment } from 'src/environment/environment';
-import { defaultHeaders } from '../types/Headers';
-import { JWT } from '../types/JWTDTO';
+import { defaultHeaders } from '../types/Auth/Headers';
+import { JWT } from '../types/Auth/JWTDTO';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';

@@ -1,10 +1,10 @@
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Combo} from "../models/Combo";
+import {Combo} from "../models/Management/ComboForManagement";
 import {environment} from "../../environment/environment";
-import {ComboDTO} from "../types/ComboDTO";
+import {ComboDTO} from "../types/MenuItemDTO/ComboDTO";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {defaultWithToken, withTokenAndBody} from "../types/Headers";
+import {defaultWithToken, withTokenAndBody} from "../types/Auth/Headers";
 import {Injectable} from "@angular/core";
 
 @Injectable({

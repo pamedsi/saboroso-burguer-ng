@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ComboDTO} from "../../../../types/ComboDTO";
+import {ComboDTO} from "../../../../types/MenuItemDTO/ComboDTO";
 import { ComboService } from 'src/app/services/ComboService';
 
 @Component({

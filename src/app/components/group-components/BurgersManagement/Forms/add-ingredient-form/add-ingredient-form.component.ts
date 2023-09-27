@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IngredientService} from "../../../../../services/IngredientService";
-import {IngredientDTO} from "../../../../../types/IngredientDTO";
+import {IngredientDTO} from "../../../../../types/MenuItemDTO/IngredientDTO";
 
 @Component({
   selector: 'app-add-ingredient-form',

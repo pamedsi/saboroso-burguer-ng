@@ -1,7 +1,7 @@
-import {PortionDTO} from "../types/PortionDTO"
+import {PortionDTO} from "../../types/MenuItemDTO/PortionDTO"
 
 
-export class Portion {
+export class PortionForManagement {
   // Model props:
   private readonly identifier: string
   private title: string

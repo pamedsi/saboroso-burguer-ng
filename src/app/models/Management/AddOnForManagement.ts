@@ -1,6 +1,6 @@
-import {AddOnDTO} from "../types/AddOnDTO";
+import {MenuItemDTO} from "../../types/MenuItemDTO/MenuItemDTO";
 
-export class AddOn {
+export class AddOnForManagement {
   private identifier: string;
   private title: string;
   private price: number;
@@ -12,7 +12,7 @@ export class AddOn {
   inStockEditing: boolean;
   editable: boolean;
 
-  constructor(addOnDTO: AddOnDTO) {
+  constructor(addOnDTO: MenuItemDTO) {
     this.identifier = addOnDTO.identifier;
     this.title = addOnDTO.title;
     this.price = addOnDTO.price;
@@ -69,6 +69,6 @@ export class AddOn {
       title: this.title,
       price: this.price,
       inStock: this.inStock
-    } as AddOnDTO
+    } as MenuItemDTO
   }
 }
