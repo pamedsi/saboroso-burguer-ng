@@ -6,7 +6,6 @@ import {Observable, map, BehaviorSubject} from 'rxjs';
 import { Burger } from "../models/Burger";
 import {defaultWithToken, withTokenAndBody} from "../types/Headers";
 import {ResponseMessage} from "../types/ResponseMessage";
-import {MenuBurgersDTO} from "../types/MenuBurgersDTO";
 
 @Injectable({
   providedIn: "root"
@@ -18,26 +17,10 @@ export class BurgerService {
   private highLightsSource = new BehaviorSubject<Burger[]>([])
   currentHighlights = this.highLightsSource.asObservable()
 
-  private burgersForMenuSource = new BehaviorSubject<MenuBurgersDTO>({
-    smash_artesanal: [],
-    smash_duplo: [],
-    premium: [],
-    premium_duplo: [],
-    kids: []
-  })
-  currentMenuBurgers = this.burgersForMenuSource.asObservable()
-
   constructor(
     private http: HttpClient,
     ) {}
 
-  getBurgersForMenu(): Observable<MenuBurgersDTO>{
-    this.http.get<MenuBurgersDTO>(`${environment.API_URL}/get-burgers-for-menu`)
-        .subscribe( menuBurgersDTO => {
-          this.burgersForMenuSource.next(menuBurgersDTO)
-    })
-    return this.currentMenuBurgers
-  }
   getBurgersForHighlight(): Observable<Burger[]> {
       this.http.get<BurgerDTO[]>(`${environment.API_URL}/highlight-burgers`)
         .subscribe( burgersDTO => {

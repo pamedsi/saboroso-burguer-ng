@@ -14,21 +14,7 @@ export class DrinkService {
   private drinksSource = new BehaviorSubject<Drink[]>([])
   currentDrinks = this.drinksSource.asObservable()
 
-  private menuDrinksSource = new BehaviorSubject<Drink[]>([]);
-  currentMenuDrinks = this.menuDrinksSource.asObservable();
-
-
   constructor(private http: HttpClient) {}
-
-  getDrinksForMenu(): Observable<Drink[]> {
-    this.http.get<DrinkDTO[]>(`${environment.API_URL}/get-drinks-for-menu`)
-      .subscribe(drinksDTO => {
-        const drinks = drinksDTO.map(drinkDTO => new Drink(drinkDTO));
-        this.menuDrinksSource.next(drinks);
-      });
-    return this.currentMenuDrinks;
-  }
-
 
   getDrinks() {
     this.http.get<DrinkDTO[]>(`${environment.API_URL}/get-drinks`, {headers: defaultWithToken})
