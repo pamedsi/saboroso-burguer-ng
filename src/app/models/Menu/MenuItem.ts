@@ -4,7 +4,7 @@ export abstract class MenuItem {
   protected readonly identifier: string
   protected readonly title: string
   protected readonly price: number
-  public quantity: number
+  protected quantity: number
 
   protected constructor(menuItem: MenuItemDTO) {
     this.identifier = menuItem.identifier
@@ -21,6 +21,9 @@ export abstract class MenuItem {
   }
   getPrice(){
     return this.price
+  }
+  getQuantity(){
+    return this.quantity
   }
   incrementQuantity() {
     this.quantity++;

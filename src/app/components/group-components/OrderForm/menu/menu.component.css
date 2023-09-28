@@ -1,0 +1,47 @@
+/* Firefox */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    text-align: center;
+}
+
+.adding-item {
+    width: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.button{
+    background-color: #EDD925;
+    color: #303030;
+    border-radius: 0.6rem;
+    width: 10rem;
+    height: 3.2rem;
+    border-style: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0 0.5rem 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    background-color: #f1ed08;
+}
+
+.button:active {
+    transform: scale(0.96);
+}
