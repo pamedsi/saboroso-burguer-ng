@@ -20,8 +20,9 @@ export class MenuService {
   private menuSource = new BehaviorSubject<MenuForClientDTO>({
     burgers: {},
     portions: [],
-    combos: [],
     drinks: [],
+    breads: [],
+    combos: [],
     addOns: []
   })
   currentMenu = this.menuSource.asObservable()
@@ -33,7 +34,6 @@ export class MenuService {
         map(menu => this.burgersToModel(menu.burgers))
     )
   }
-
   getPortionsForMenu(): Observable<PortionForMenu[]> {
     return this.currentMenu.pipe(
         map(menu =>
@@ -41,7 +41,13 @@ export class MenuService {
         )
     )
   }
-
+  getDrinksForMenu(){
+    return this.currentMenu.pipe(
+      map(menu =>
+        menu.drinks.map(drinkDTO => new DrinkForMenu(drinkDTO))
+      )
+    );
+  }
   getCombosForMenu(){
     return this.currentMenu.pipe(
         map(menu =>
@@ -49,12 +55,10 @@ export class MenuService {
         )
     );
   }
-  getDrinksForMenu(){
+  getBreadsForMenu(){
     return this.currentMenu.pipe(
-        map(menu =>
-            menu.drinks.map(drinkDTO => new DrinkForMenu(drinkDTO))
-        )
-    );
+      map(menu => menu.breads)
+    )
   }
   getAddOnsForMenu(){
     return this.currentMenu.pipe(
@@ -63,7 +67,6 @@ export class MenuService {
         )
     );
   }
-
   getMenu(){
     this.http.get<MenuForClientDTO>(`${environment.API_URL}/get-menu`).pipe(
         tap(menu => this.menuSource.next(menu)),
@@ -73,7 +76,6 @@ export class MenuService {
         })
     ).subscribe()
   }
-
   burgersToModel(burgers: {[category: string]: BurgerDTO[]}){
     const model: any = {};
 

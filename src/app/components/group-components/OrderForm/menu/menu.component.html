@@ -1,80 +1,66 @@
-<section class="burgers">
-  <h2>Hambúrgueres:</h2>
-  <div *ngFor="let category of availableBurgers | keyvalue">
-    <h4>{{category.key}}</h4>
-    <ul>
-      <li *ngFor="let burger of category.value">
-        <h4>{{burgerCaster(burger).getTitle()}}</h4>
-        <p>{{burgerCaster(burger).ingredientsToString()}}</p>
-        <h4>{{formatPrice(burgerCaster(burger).getPrice())}}</h4>
-        <div class="adding-item">
-          <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
-          <div>{{burgerCaster(burger).getQuantity()}}</div>
-          <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+<ng-template #notHidden>
+  <main>
+    <section class="burgers">
+      <h2>Hambúrgueres:</h2>
+      <div *ngFor="let category of availableBurgers | keyvalue">
+        <h4>{{category.key}}</h4>
+        <ul>
+          <li *ngFor="let burger of category.value">
+            <h4>{{burgerCaster(burger).getTitle()}}</h4>
+            <p>{{burgerCaster(burger).ingredientsToString()}}</p>
+            <h4>{{formatPrice(burgerCaster(burger).getPrice())}}</h4>
+            <div class="adding-item">
+              <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
+              <div>{{burgerCaster(burger).getQuantity()}}</div>
+              <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-<section class="portions">
-  <h2>Porções:</h2>
-  <div *ngFor="let portion of availablePortions">
-    <ul>
-      <li>
-        <h3>{{portion.getTitle()}}</h3>
-        <p>{{portion.getDescription()}}</p>
-        <h4>{{formatPrice(portion.getPrice())}}</h4>
-        <div class="adding-item">
-          <button class="decrement-button" (click)="removeItem(portion)">-</button>
-          <div>{{portion.getQuantity()}}</div>
-          <button class="increment-button" (click)="addItem(portion)">+</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+    <section class="portions">
+      <h2>Porções:</h2>
+      <div *ngFor="let portion of availablePortions">
+        <ul>
+          <li>
+            <h3>{{portion.getTitle()}}</h3>
+            <p>{{portion.getDescription()}}</p>
+            <h4>{{formatPrice(portion.getPrice())}}</h4>
+            <div class="adding-item">
+              <button class="decrement-button" (click)="removeItem(portion)">-</button>
+              <div>{{portion.getQuantity()}}</div>
+              <button class="increment-button" (click)="addItem(portion)">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-<section class="combos">
-  <h2>Combos:</h2>
-  <div *ngFor="let combo of availableCombos">
-    <ul>
-      <li>
-        <h3>{{combo.getTitle()}}</h3>
-        <p>{{combo.getDescription()}}</p>
-        <h4>{{formatPrice(combo.getPrice())}}</h4>
-      </li>
-    </ul>
-  </div>
-</section>
+    <section class="drinks">
+      <h2>Bebidas:</h2>
+      <div *ngFor="let drink of availableDrinks">
+        <ul>
+          <li>
+            <h3>{{drink.getTitle()}} {{drink.getMl()}}mL</h3>
+            <h4>{{formatPrice(drink.getPrice())}}</h4>
+            <div class="adding-item">
+              <button class="decrement-button" (click)="removeItem(drink)">-</button>
+              <div>{{drink.getQuantity()}}</div>
+              <button class="increment-button" (click)="addItem(drink)">+</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-<section class="drinks">
-  <h2>Bebidas:</h2>
-  <div *ngFor="let drink of availableDrinks">
-    <ul>
-      <li>
-        <h3>{{drink.getTitle()}} {{drink.getMl()}}mL</h3>
-        <h4>{{formatPrice(drink.getPrice())}}</h4>
-        <div class="adding-item">
-          <button class="decrement-button" (click)="removeItem(drink)">-</button>
-          <div>{{drink.getQuantity()}}</div>
-          <button class="increment-button" (click)="addItem(drink)">+</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+    <section class="button-container">
+      <div class="button" (click)="goToNextStep()">ESCOLHER PÃES, COMBOS E ADICIONAIS</div>
+    </section>
 
-<section class="add-ons">
-  <h2>Adicionais:</h2>
-  <div *ngFor="let addOn of availableAddOns">
-    <ul>
-      <li>
-        <h3>{{addOn.getTitle()}}</h3>
-        <h4>{{formatPrice(addOn.getPrice())}}</h4>
-      </li>
-    </ul>
-  </div>
-</section>
+  </main>
+</ng-template>
 
-<div class="button" (click)="goToNextStep()">ESCOLHER PÃES E COMBOS</div>
+<div *ngIf="hidden; else notHidden">
+  <div class="button" (click)="setHidden(false)">ALTERAR PEDIDO</div>
+</div>

@@ -45,3 +45,8 @@ input {
 .button:active {
     transform: scale(0.96);
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
