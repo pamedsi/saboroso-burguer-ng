@@ -43,6 +43,8 @@ import { OrderFormComponent } from './pages/ClientSide/order-form/order-form.com
 import { MenuComponent } from './components/group-components/OrderForm/menu/menu.component';
 import { HighlightBurgersComponent } from './components/group-components/OrderForm/highlight-burgers/highlight-burgers.component';
 import { OrderStatusComponent } from './pages/ClientSide/order-status/order-status.component';
+import { AddBreadFormComponent } from './components/group-components/BurgersManagement/Forms/add-bread-form/add-bread-form.component';
+import { BreadListForManagementComponent } from './components/group-components/BurgersManagement/Lists/bread-list-for-management/bread-list-for-management.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -80,6 +82,8 @@ registerLocaleData(localePtBr);
     MenuComponent,
     HighlightBurgersComponent,
     OrderStatusComponent,
+    AddBreadFormComponent,
+    BreadListForManagementComponent,
   ],
   imports: [
     BrowserModule,

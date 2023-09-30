@@ -1,4 +1,4 @@
-<div class="empty-message" *ngIf="allAddOns.length === 0">Sem bebidas, adicione novas</div>
+<div class="empty-message" *ngIf="allAddOns.length === 0">Sem Adicionais, crie novos</div>
 <main *ngFor="let addOn of allAddOns">
   <section *ngIf="!addOn.isEditable()">
     <div class="prop-container">

@@ -1,0 +1,17 @@
+<h2>Adicionar pão</h2>
+<section>
+    <div>
+        <label for="title">Título:</label>
+        <input id="title" [(ngModel)]="title" placeholder="Nome do pão">
+    </div>
+
+    <div>
+        <label for="in-stock">Em estoque:</label>
+        <select id="in-stock" (change)="setInStock($event.target)">
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+    </div>
+
+    <button (click)="addBread()">Adicionar</button>
+</section>

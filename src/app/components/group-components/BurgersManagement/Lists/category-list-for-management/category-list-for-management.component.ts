@@ -34,11 +34,6 @@ export class CategoryListForManagementComponent implements OnInit{
       this.allCategories = this.allCategories.filter(category => category.getIdentifier() !== identifier)
       this.categoryService.removeCategory(identifier)
   }
-  private getCategory(identifier: string) {
-      return this.allCategories.find(
-          category => category.getIdentifier() === identifier
-      )
-  }
   cancelEditing(identifier: string) {
     const category = this.getCategory(identifier)
     if (!category) return
@@ -49,5 +44,11 @@ export class CategoryListForManagementComponent implements OnInit{
     this.categoryService.getCategoriesForManagement().subscribe(categories => {
       this.allCategories = categories
     })
+  }
+
+  private getCategory(identifier: string) {
+    return this.allCategories.find(
+        category => category.getIdentifier() === identifier
+    )
   }
 }

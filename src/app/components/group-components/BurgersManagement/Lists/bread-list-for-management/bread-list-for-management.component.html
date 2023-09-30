@@ -1,0 +1,41 @@
+<div class="empty-message" *ngIf="allBreads.length === 0">Sem pães, adicione novos</div>
+<h2>Gerir pães</h2>
+<main *ngFor="let bread of allBreads">
+    <section *ngIf="!bread.isEditable()">
+        <div class="prop-container">
+            <div class="key">Título:</div>
+            <div class="value">{{bread.getTitle()}}</div>
+        </div>
+
+        <div class="prop-container">
+            <div class="key">Em estoque:</div>
+            <div class="value" *ngIf="bread.isInStock()">Sim</div>
+            <div class="value" *ngIf="!bread.isInStock()">Não</div>
+        </div>
+
+        <div class="buttons">
+            <button (click)="bread.setEditable(true)">Editar</button>
+            <button (click)="deleteBread(bread.getIdentifier())">Excluir</button>
+        </div>
+    </section>
+
+    <section *ngIf="bread.isEditable()">
+        <div class="prop-container">
+            <label for="input-editing">Título:</label>
+            <input id="input-editing" [(ngModel)]="bread.titleEditing">
+        </div>
+
+        <div class="prop-container">
+            <label>Em estoque:</label>
+            <select title="in-stock" (change)="bread.setInStockSelect($event.target)">
+                <option *ngFor="let option of bread.getOptionsForInStock()">{{option}}</option>
+            </select>
+        </div>
+
+        <div class="buttons">
+            <button (click)="editBread(bread)">Confirmar</button>
+            <button (click)="cancelEditing(bread)">Cancelar</button>
+            <button (click)="deleteBread(bread.getIdentifier())">Excluir</button>
+        </div>
+    </section>
+</main>
