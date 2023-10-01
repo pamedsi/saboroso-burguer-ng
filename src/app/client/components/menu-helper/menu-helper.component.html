@@ -1,0 +1,12 @@
+<section class="portions">
+  <h3>{{listTitle}}</h3>
+  <div *ngFor="let item of itemList">
+    <ul>
+      <li>
+        <h4>{{item.getTitle()}}</h4>
+        <p *ngIf="hasDescription(item)"> {{comboCaster(item).getDescription()}}</p>
+        <h4>{{formatPrice(item.getPrice())}}</h4>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -14,15 +14,17 @@ import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
 export class OrderFormComponent implements OnInit{
   onHighlights: boolean
   order!: ClientOrderDTO
-  onBreadChoose: boolean
+  onDetails: boolean
+  onOrderReview: boolean
 
   breads!: BreadDTO[]
   combos!: ComboForMenu[]
   addOns!: AddOnForMenu[]
 
-  constructor(private router: Router, private menuService: MenuService){
+  constructor(private router: Router, private menuService: MenuService) {
     this.onHighlights = false
-    this.onBreadChoose = false
+    this.onDetails = false
+    this.onOrderReview = false
   }
 
   ngOnInit(){
@@ -40,10 +42,13 @@ export class OrderFormComponent implements OnInit{
     this.onHighlights = String($event) === 'highlights'
   }
   redirectToHome() {
-    this.router.navigate(['/'])
+    this.router.navigate!(['/'])
   }
-  onNextStep(order: ClientOrderDTO) {
+  goToDetails(order: ClientOrderDTO) {
     this.order = order
-    this.onBreadChoose = true
+    this.onDetails = true
+  }
+  updateOrder(){
+    this.onDetails = false
   }
 }

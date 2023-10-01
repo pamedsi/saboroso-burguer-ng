@@ -50,6 +50,9 @@ import { DrinksManagementComponent } from './admin/pages/MenuManagement/drinks-m
 import { AddPortionFormComponent } from './admin/pages/MenuManagement/portions-management/add-portion-form/add-portion-form.component';
 import { PortionListForManagementComponent } from './admin/pages/MenuManagement/portions-management/portion-list-for-management/portion-list-for-management.component';
 import { PortionsManagementComponent } from './admin/pages/MenuManagement/portions-management/portions-management.component';
+import { MenuHelperComponent } from './client/components/menu-helper/menu-helper.component';
+import { OnAddOnChooseComponent } from './client/components/on-add-on-choose/on-add-on-choose.component';
+import { OrderReviewComponent } from './client/pages/order-form/order-review/order-review.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -89,6 +92,9 @@ registerLocaleData(localePtBr);
     OrderStatusComponent,
     AddBreadFormComponent,
     BreadListForManagementComponent,
+    MenuHelperComponent,
+    OnAddOnChooseComponent,
+    OrderReviewComponent,
   ],
   imports: [
     BrowserModule,

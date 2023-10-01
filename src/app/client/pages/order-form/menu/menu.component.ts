@@ -6,15 +6,19 @@ import {DrinkForMenu} from "../../../factories/Menu/DrinkForMenu";
 import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {MenuItem} from "../../../factories/Menu/MenuItem";
 import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
+import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
+import {ComboService} from "../../../../admin/services/ComboService";
+import {AddOnService} from "../../../../admin/services/AddOnService";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
-
+export class MenuComponent extends WIthPriceFormatter {
   @Output() nextStep = new EventEmitter()
+  @Output() changeOrder  = new EventEmitter()
+
   hidden = false
 
   availableBurgers!: {[category: string]: BurgerForMenu[]}
@@ -25,7 +29,11 @@ export class MenuComponent implements OnInit {
   chosenPortions: PortionForMenu[]
   chosenDrinks: DrinkForMenu[]
 
-  constructor (private menuService: MenuService, private currencyPipe: CurrencyPipe) {
+  constructor (
+    private menuService: MenuService,
+    currencyPipe: CurrencyPipe
+  ) {
+    super(currencyPipe)
     this.chosenBurgers = []
     this.chosenPortions = []
     this.chosenDrinks = []
@@ -37,16 +45,13 @@ export class MenuComponent implements OnInit {
     this.menuService.getPortionsForMenu().subscribe(portions => this.availablePortions = portions)
     this.menuService.getDrinksForMenu().subscribe(drinks => this.availableDrinks = drinks)
   }
-  formatPrice(price: number) {
-    return String(this.currencyPipe.transform(price, 'BRL', 'symbol', '1.2-2', 'pt-BR'));
-  }
+
   burgerCaster(burger: any): BurgerForMenu {
     return burger as BurgerForMenu;
   }
   goToNextStep(){
     if (!this.chosenBurgers.length && !this.chosenPortions.length && !this.chosenDrinks.length) return
 
-    this.hidden = true
     const order = {
       burgers: this.chosenBurgers,
       portions: this.chosenPortions,
@@ -54,6 +59,7 @@ export class MenuComponent implements OnInit {
     } as ClientOrderDTO
 
     this.nextStep.emit(order)
+    this.hidden = true
   }
   addItem(item: MenuItem) {
     if (item instanceof BurgerForMenu) this.chosenBurgers.push(item);
@@ -92,8 +98,9 @@ export class MenuComponent implements OnInit {
     else return;
     item.decrementQuantity();
   }
-  setHidden(value: boolean){
-    this.hidden = value
+  onOrderChange(){
+    this.hidden = false
+    this.changeOrder.emit()
   }
 
 }

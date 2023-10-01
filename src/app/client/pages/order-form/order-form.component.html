@@ -13,35 +13,66 @@
       </div>
 
       <ng-template #menu>
-        <app-menu (nextStep)="onNextStep($event)"></app-menu>
+        <app-menu (nextStep)="goToDetails($event)" (changeOrder)="updateOrder()"></app-menu>
       </ng-template>
     </section>
 
-    <!--  Segunda parte, escolhendo pães e combos  -->
-    <section *ngIf="onBreadChoose">
-      <ul *ngIf="order.burgers.length">
-        <li *ngFor="let burger of order.burgers; let i = index">
-          <div>{{i + 1}}º {{burger.getTitle()}}</div>
-          <select id="bread{{i}}">
-            <option>Escolher o pão</option>
-            <option *ngFor="let bread of breads">{{bread.title}}</option>
-          </select>
+    <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
 
-          <select id="combo{{i}}">
-            <option>Escolher combo</option>
-            <option>Sem combo</option>
-            <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
-          </select>
+    <section class="details-container" *ngIf="onDetails">
+      <section class="burger-and-portion-details">
 
-          <select id="add-on{{i}}">
-            <option>Escolher adicional</option>
-            <option>Sem adicional</option>
-            <option *ngFor="let addOn of addOns">{{addOn.getTitle()}}</option>
-          </select>
-        </li>
-      </ul>
+        <section class="burger-details" *ngIf="order.burgers.length">
+          <h3>Seus Hambúrgueres</h3>
+          <ul>
+            <li class="selects" *ngFor="let burger of order.burgers; let burgerIndex = index">
+              <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
+              <select id="bread{{burgerIndex}}">
+                <option>Escolher o pão</option>
+                <option *ngFor="let bread of breads">{{bread.title}}</option>
+              </select>
+
+              <select id="combo{{burgerIndex}}">
+                <option>Escolher combo</option>
+                <option>Sem combo</option>
+                <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
+              </select>
+
+              <app-on-add-on-choose
+                [itemIndex]="burgerIndex"
+                [addOns]="addOns">
+              </app-on-add-on-choose>
+            </li>
+          </ul>
+<!--          &lt;!&ndash; Implementar &ndash;&gt;-->
+<!--          <button>Terminar hambúrguer</button>-->
+        </section>
+
+        <section class="portion-details" *ngIf="order.portions.length" >
+          <h3>Suas porções</h3>
+          <ul>
+            <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
+              <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
+              <app-on-add-on-choose
+                [itemIndex]="portionIndex"
+                [addOns]="addOns">
+              </app-on-add-on-choose>
+            </li>
+          </ul>
+        </section>
+
+      </section>
+
+      <section class="helpers">
+          <app-menu-helper listTitle="Combos" [itemList]="combos"></app-menu-helper>
+          <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
+      </section>
+
     </section>
 
+    <section *ngIf="onOrderReview">
+
+    </section>
 
   </main>
 </body>

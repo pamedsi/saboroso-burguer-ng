@@ -25,3 +25,29 @@ main {
   border: solid 0.1rem white;
   margin: 2rem;
 }
+
+.details-container {
+  min-width: 45rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+select {
+  margin: 0.5rem;
+}
+
+.selects {
+  display: flex;
+  flex-direction: column;
+}
+
+.burger-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.helpers {
+  display: flex;
+  flex-direction: column;
+}

@@ -55,12 +55,13 @@
     </section>
 
     <section class="button-container">
-      <div class="button" (click)="goToNextStep()">ESCOLHER PÃES, COMBOS E ADICIONAIS</div>
+      <div class="yellow-button" (click)="goToNextStep()">ESCOLHER PÃES, COMBOS E ADICIONAIS</div>
     </section>
 
   </main>
 </ng-template>
 
-<div *ngIf="hidden; else notHidden">
-  <div class="button" (click)="setHidden(false)">ALTERAR PEDIDO</div>
+<div *ngIf="hidden; else notHidden" class="change-order-button">
+  <h1 class="arrow-up-icon">^</h1>
+  <div class="yellow-button" (click)="onOrderChange()">ALTERAR PEDIDO</div>
 </div>
