@@ -2,49 +2,54 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { OrderConfirmationComponent } from './pages/ClientSide/order-confirmation/order-confirmation.component';
-import { WelcomeHeaderComponent } from './components/single-components/welcome-header/welcome-header.component';
-import { ButtonsContainerComponent } from './components/group-components/OrderForm/buttons-container/buttons-container.component';
+import { OrderConfirmationComponent } from './client/pages/order-confirmation/order-confirmation.component';
+import { WelcomeHeaderComponent } from './client/components/welcome-header/welcome-header.component';
+import { ButtonsContainerComponent } from './client/pages/order-form/buttons-container/buttons-container.component';
 import { HttpClientModule } from "@angular/common/http";
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
-import { LoginFormComponent } from './pages/AdminSide/login/login-form.component';
+import { LoginFormComponent } from './admin/pages/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { BurgerManagementComponent } from './pages/AdminSide/burger-management/burger-management.component';
-import { HomeComponent } from './pages/ClientSide/home/home.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+
+import { HomeComponent } from './client/pages/home/home.component';
 import { FormsModule } from "@angular/forms";
-import { OrderManagementComponent } from './pages/AdminSide/order-management/order-management.component';
-import { AdminComponent } from './pages/AdminSide/admin/admin.component';
-import { BurgerListForManagementComponent } from './components/group-components/BurgersManagement/Lists/burger-list-for-management/burger-list-for-management.component';
-import { PortionListForManagementComponent } from './components/group-components/PortionsManagement/portion-list-for-management/portion-list-for-management.component';
-import { DrinkListForManagementComponent } from './components/group-components/DrinksManagement/drink-list-for-management/drink-list-for-management.component';
-import { AddBurgerFormComponent } from './components/group-components/BurgersManagement/Forms/add-burger-form/add-burger-form.component';
-import { IngredientListForManagementComponent } from './components/group-components/BurgersManagement/Lists/ingredient-list-for-management/ingredient-list-for-management.component';
+import { OrderManagementComponent } from './admin/pages/order-management/order-management.component';
+import { HomeAdminComponent } from './admin/pages/home/home.admin.component';
+
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {NgxCurrencyDirective} from "ngx-currency";
-import { AddIngredientFormComponent } from './components/group-components/BurgersManagement/Forms/add-ingredient-form/add-ingredient-form.component';
-import { AddCategoryFormComponent } from './components/group-components/BurgersManagement/Forms/add-category-form/add-category-form.component';
-import { AdminHeaderComponent } from './components/single-components/admin-header/admin-header.component';
+
+import { AdminHeaderComponent } from './admin/components/admin-header/admin-header.component';
 import {TextFieldModule} from "@angular/cdk/text-field";
-import { CategoryListForManagementComponent } from './components/group-components/BurgersManagement/Lists/category-list-for-management/category-list-for-management.component';
-import { AddPortionFormComponent } from './components/group-components/PortionsManagement/add-portion-form/add-portion-form.component';
-import { PortionsManagementComponent } from './pages/AdminSide/portions-management/portions-management.component';
+
 import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
-import { DrinksManagementComponent } from './pages/AdminSide/drinks-management/drinks-management.component';
-import { AddDrinkFormComponent } from './components/group-components/DrinksManagement/add-drink-form/add-drink-form.component';
-import { AddOnsManagementComponent } from './pages/AdminSide/add-ons-management/add-ons-management.component';
-import { CreateAddOnFormComponent } from './components/group-components/AddOnManagement/create-add-on-form/create-add-on-form.component';
-import { AddOnListForManagementComponent } from './components/group-components/AddOnManagement/add-on-list-for-management/add-on-list-for-management.component';
-import { CombosManagementComponent } from './pages/AdminSide/combos-management/combos-management.component';
-import { AddComboFormComponent } from './components/group-components/CombosManagement/add-combo-form/add-combo-form.component';
-import { ComboListForManagementComponent } from './components/group-components/CombosManagement/combo-list-for-management/combo-list-for-management.component';
-import { OrderFormComponent } from './pages/ClientSide/order-form/order-form.component';
-import { MenuComponent } from './components/group-components/OrderForm/menu/menu.component';
-import { HighlightBurgersComponent } from './components/group-components/OrderForm/highlight-burgers/highlight-burgers.component';
-import { OrderStatusComponent } from './pages/ClientSide/order-status/order-status.component';
-import { AddBreadFormComponent } from './components/group-components/BurgersManagement/Forms/add-bread-form/add-bread-form.component';
-import { BreadListForManagementComponent } from './components/group-components/BurgersManagement/Lists/bread-list-for-management/bread-list-for-management.component';
+
+import { OrderFormComponent } from './client/pages/order-form/order-form.component';
+import { MenuComponent } from './client/pages/order-form/menu/menu.component';
+import { HighlightBurgersComponent } from './client/pages/order-form/highlight-burgers/highlight-burgers.component';
+import { OrderStatusComponent } from './client/pages/order-status/order-status.component';
+import { AddOnListForManagementComponent } from './admin/pages/MenuManagement/add-ons-management/add-on-list-for-management/add-on-list-for-management.component';
+import { AddOnsManagementComponent } from './admin/pages/MenuManagement/add-ons-management/add-ons-management.component';
+import { CreateAddOnFormComponent } from './admin/pages/MenuManagement/add-ons-management/create-add-on-form/create-add-on-form.component';
+import { BurgerManagementComponent } from './admin/pages/MenuManagement/burger-management/burger-management.component';
+import { AddBreadFormComponent } from './admin/pages/MenuManagement/burger-management/forms/add-bread-form/add-bread-form.component';
+import { AddBurgerFormComponent } from './admin/pages/MenuManagement/burger-management/forms/add-burger-form/add-burger-form.component';
+import { AddCategoryFormComponent } from './admin/pages/MenuManagement/burger-management/forms/add-category-form/add-category-form.component';
+import { AddIngredientFormComponent } from './admin/pages/MenuManagement/burger-management/forms/add-ingredient-form/add-ingredient-form.component';
+import { BreadListForManagementComponent } from './admin/pages/MenuManagement/burger-management/lists/bread-list-for-management/bread-list-for-management.component';
+import { BurgerListForManagementComponent } from './admin/pages/MenuManagement/burger-management/lists/burger-list-for-management/burger-list-for-management.component';
+import { CategoryListForManagementComponent } from './admin/pages/MenuManagement/burger-management/lists/category-list-for-management/category-list-for-management.component';
+import { IngredientListForManagementComponent } from './admin/pages/MenuManagement/burger-management/lists/ingredient-list-for-management/ingredient-list-for-management.component';
+import { AddComboFormComponent } from './admin/pages/MenuManagement/combos-management/add-combo-form/add-combo-form.component';
+import { ComboListForManagementComponent } from './admin/pages/MenuManagement/combos-management/combo-list-for-management/combo-list-for-management.component';
+import { CombosManagementComponent } from './admin/pages/MenuManagement/combos-management/combos-management.component';
+import { AddDrinkFormComponent } from './admin/pages/MenuManagement/drinks-management/add-drink-form/add-drink-form.component';
+import { DrinkListForManagementComponent } from './admin/pages/MenuManagement/drinks-management/drink-list-for-management/drink-list-for-management.component';
+import { DrinksManagementComponent } from './admin/pages/MenuManagement/drinks-management/drinks-management.component';
+import { AddPortionFormComponent } from './admin/pages/MenuManagement/portions-management/add-portion-form/add-portion-form.component';
+import { PortionListForManagementComponent } from './admin/pages/MenuManagement/portions-management/portion-list-for-management/portion-list-for-management.component';
+import { PortionsManagementComponent } from './admin/pages/MenuManagement/portions-management/portions-management.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -58,7 +63,7 @@ registerLocaleData(localePtBr);
     BurgerManagementComponent,
     HomeComponent,
     OrderManagementComponent,
-    AdminComponent,
+    HomeAdminComponent,
     BurgerListForManagementComponent,
     PortionListForManagementComponent,
     DrinkListForManagementComponent,

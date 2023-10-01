@@ -1,19 +1,21 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router";
-import { LoginFormComponent } from "./pages/AdminSide/login/login-form.component";
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
-import { BurgerManagementComponent } from "./pages/AdminSide/burger-management/burger-management.component";
-import { HomeComponent } from "./pages/ClientSide/home/home.component";
-import { AdminComponent } from "./pages/AdminSide/admin/admin.component";
-import { OrderManagementComponent } from "./pages/AdminSide/order-management/order-management.component"
-import { canActivate } from "./services/AuthGuardService";
-import {PortionsManagementComponent} from "./pages/AdminSide/portions-management/portions-management.component";
-import {DrinksManagementComponent} from "./pages/AdminSide/drinks-management/drinks-management.component";
-import {AddOnsManagementComponent} from "./pages/AdminSide/add-ons-management/add-ons-management.component";
-import {CombosManagementComponent} from "./pages/AdminSide/combos-management/combos-management.component";
-import {OrderFormComponent} from "./pages/ClientSide/order-form/order-form.component";
-import {OrderStatusComponent} from "./pages/ClientSide/order-status/order-status.component";
-import {OrderConfirmationComponent} from "./pages/ClientSide/order-confirmation/order-confirmation.component";
+import { LoginFormComponent } from "./admin/pages/login/login-form.component";
+import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
+import { HomeComponent } from "./client/pages/home/home.component";
+import { HomeAdminComponent } from "./admin/pages/home/home.admin.component";
+import { OrderManagementComponent } from "./admin/pages/order-management/order-management.component"
+import { canActivate } from "./client/security/AuthGuardService";
+import {OrderFormComponent} from "./client/pages/order-form/order-form.component";
+import {OrderStatusComponent} from "./client/pages/order-status/order-status.component";
+import {OrderConfirmationComponent} from "./client/pages/order-confirmation/order-confirmation.component";
+import {BurgerManagementComponent} from "./admin/pages/MenuManagement/burger-management/burger-management.component";
+import {DrinksManagementComponent} from "./admin/pages/MenuManagement/drinks-management/drinks-management.component";
+import {
+    PortionsManagementComponent
+} from "./admin/pages/MenuManagement/portions-management/portions-management.component";
+import {AddOnsManagementComponent} from "./admin/pages/MenuManagement/add-ons-management/add-ons-management.component";
+import {CombosManagementComponent} from "./admin/pages/MenuManagement/combos-management/combos-management.component";
 
 const routes: Routes = [
   {
@@ -26,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    component: HomeAdminComponent,
     canActivate: [canActivate]
   },
   {
