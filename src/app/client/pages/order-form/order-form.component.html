@@ -39,6 +39,7 @@
               </select>
 
               <app-on-add-on-choose
+                [item]="burger"
                 [itemIndex]="burgerIndex"
                 [addOns]="addOns">
               </app-on-add-on-choose>
@@ -52,6 +53,7 @@
             <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
               <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
               <app-on-add-on-choose
+                [item] = "portion"
                 [itemIndex]="portionIndex"
                 [addOns]="addOns">
               </app-on-add-on-choose>

@@ -62,7 +62,10 @@ export class OrderFormComponent implements OnInit{
     burger.setBread(chosenBread)
   }
 
-  onComboChange($event: any, burger: BurgerForMenu) {
-
+  onComboChange(selectedCombo: any, burger: BurgerForMenu) {
+    const index = selectedCombo.target.selectedIndex - 1
+    if (index <= -1) return
+    const chosenCombo = this.combos[index]
+    burger.setCombo(chosenCombo)
   }
 }

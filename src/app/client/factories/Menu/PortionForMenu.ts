@@ -1,9 +1,12 @@
 import {MenuItem} from "./MenuItem";
 import {PortionDTO} from "../../../shared/models/MenuItemDTO/PortionDTO";
+import {AddOnForMenu} from "./AddOnForMenu";
 
 export class PortionForMenu extends MenuItem {
     private readonly pic: string | null
     private readonly description: string
+
+    private addOns!: AddOnForMenu[]
 
     constructor(portionDTO: PortionDTO) {
         super(portionDTO);
@@ -16,5 +19,13 @@ export class PortionForMenu extends MenuItem {
     }
     getDescription(){
         return this.description
+    }
+
+    // Portion details
+    getAddOns(){
+      return this.addOns
+    }
+    setAddOns(addOns: AddOnForMenu[]){
+      this.addOns = addOns
     }
 }
