@@ -5,6 +5,7 @@ import {ComboForMenu} from "../../factories/Menu/ComboForMenu";
 import {MenuService} from "../../services/MenuService";
 import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
 import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
+import {BurgerForMenu} from "../../factories/Menu/BurgerForMenu";
 
 @Component({
   selector: 'app-order-form',
@@ -50,5 +51,18 @@ export class OrderFormComponent implements OnInit{
   }
   updateOrder(){
     this.onDetails = false
+  }
+
+  // Burger details
+  onBreadChange(selectedBread: any, burger: BurgerForMenu) {
+    const index = selectedBread.target.selectedIndex - 1
+    if (index <= -1) return
+
+    const chosenBread = this.breads[index]
+    burger.setBread(chosenBread)
+  }
+
+  onComboChange($event: any, burger: BurgerForMenu) {
+
   }
 }

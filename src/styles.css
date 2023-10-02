@@ -19,7 +19,8 @@
   transition: all 0.2s ease;
 
   margin: 0.5rem 0 0.5rem 0;
-
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .yellow-button:hover {

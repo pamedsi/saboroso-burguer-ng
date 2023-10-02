@@ -27,12 +27,12 @@
           <ul>
             <li class="selects" *ngFor="let burger of order.burgers; let burgerIndex = index">
               <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
-              <select id="bread{{burgerIndex}}">
+              <select id="bread{{burgerIndex}}" (change)="onBreadChange($event, burger)">
                 <option>Escolher o pão</option>
                 <option *ngFor="let bread of breads">{{bread.title}}</option>
               </select>
 
-              <select id="combo{{burgerIndex}}">
+              <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)">
                 <option>Escolher combo</option>
                 <option>Sem combo</option>
                 <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
@@ -44,8 +44,6 @@
               </app-on-add-on-choose>
             </li>
           </ul>
-<!--          &lt;!&ndash; Implementar &ndash;&gt;-->
-<!--          <button>Terminar hambúrguer</button>-->
         </section>
 
         <section class="portion-details" *ngIf="order.portions.length" >

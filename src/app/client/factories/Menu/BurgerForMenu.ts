@@ -2,11 +2,14 @@ import {MenuItem} from "./MenuItem";
 import {CategoryDTO} from "../../../shared/models/MenuItemDTO/CategoryDTO";
 import {IngredientDTO} from "../../../shared/models/MenuItemDTO/IngredientDTO";
 import {BurgerDTO} from "../../../shared/models/MenuItemDTO/BurgerDTO";
+import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
 
 export class BurgerForMenu extends MenuItem {
   private readonly category: CategoryDTO
   private readonly pic: string | null
   private readonly ingredients: IngredientDTO[]
+
+  private bread!: BreadDTO
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
@@ -28,5 +31,11 @@ export class BurgerForMenu extends MenuItem {
                 );
         const lastIngredient = stringToBeReturned.pop();
         return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
-    }
+  }
+  getBread(){
+    return this.bread
+  }
+  setBread(bread: BreadDTO){
+    this.bread = bread
+  }
 }
