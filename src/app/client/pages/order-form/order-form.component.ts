@@ -6,6 +6,7 @@ import {MenuService} from "../../services/MenuService";
 import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
 import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
 import {BurgerForMenu} from "../../factories/Menu/BurgerForMenu";
+import {IMissingAddon} from "../../models/IMissingAddOn";
 
 @Component({
   selector: 'app-order-form',
@@ -18,6 +19,8 @@ export class OrderFormComponent implements OnInit{
   onDetails: boolean
   onOrderReview: boolean
 
+  private finishedAddOnsChoose: IMissingAddon
+
   breads!: BreadDTO[]
   combos!: ComboForMenu[]
   addOns!: AddOnForMenu[]
@@ -26,6 +29,7 @@ export class OrderFormComponent implements OnInit{
     this.onHighlights = false
     this.onDetails = false
     this.onOrderReview = false
+    this.finishedAddOnsChoose = {allRight: true} as IMissingAddon
   }
 
   ngOnInit(){
@@ -67,5 +71,10 @@ export class OrderFormComponent implements OnInit{
     if (index <= -1) return
     const chosenCombo = this.combos[index]
     burger.setCombo(chosenCombo)
+  }
+
+  // Add-on for portion and burgers
+  onAddOnFinished(addOnStatus: IMissingAddon){
+    this.finishedAddOnsChoose = addOnStatus
   }
 }

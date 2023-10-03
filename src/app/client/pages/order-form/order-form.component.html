@@ -53,6 +53,7 @@
             <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
               <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
               <app-on-add-on-choose
+                (finishSelectingAddOns)="onAddOnFinished($event)"
                 [item] = "portion"
                 [itemIndex]="portionIndex"
                 [addOns]="addOns">
