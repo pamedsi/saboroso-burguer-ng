@@ -13,13 +13,13 @@
       </div>
 
       <ng-template #menu>
-        <app-menu (nextStep)="goToDetails($event)" (changeOrder)="updateOrder()"></app-menu>
+        <app-menu (nextStep)="goToDetails($event)" (changeOrder)="updateChosenItems()"></app-menu>
       </ng-template>
     </section>
 
     <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
 
-    <section class="details-container" *ngIf="onDetails">
+    <section class="details-container" *ngIf="state === IOrderState.ITEM_DETAILS">
       <section class="burger-and-portion-details">
 
         <section class="burger-details" *ngIf="order.burgers.length">
@@ -39,6 +39,7 @@
               </select>
 
               <app-on-add-on-choose
+                (finishSelectingAddOns)="onBurgerAddOnFinished($event)"
                 [item]="burger"
                 [itemIndex]="burgerIndex"
                 [addOns]="addOns">
@@ -53,7 +54,7 @@
             <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
               <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
               <app-on-add-on-choose
-                (finishSelectingAddOns)="onAddOnFinished($event)"
+                (finishSelectingAddOns)="onPortionAddOnFinished($event)"
                 [item] = "portion"
                 [itemIndex]="portionIndex"
                 [addOns]="addOns">
@@ -71,8 +72,28 @@
 
     </section>
 
-    <section *ngIf="onOrderReview">
+    <div  *ngIf="state === IOrderState.ITEM_DETAILS" class="yellow-button" (click)="goToOrderReview()">REVISAR PEDIDO</div>
 
+    <section *ngIf="state === IOrderState.ORDER_REVIEW">
+      <div class="change-order-button">
+        <h1 class="arrow-up-icon">^</h1>
+        <div class="yellow-button" (click)="goToDetails()" >ALTERAR DETALHES</div>
+      </div>
+
+      <h2>REVISANDO O PEDIDO</h2>
+
+      <div class="yellow-button" (click)="goToContactAndAddress()">CONTATO E ENDEREÇO</div>
+    </section>
+
+    <section *ngIf="state === IOrderState.CONTACT_INFO">
+      <div class="change-order-button">
+        <h1 class="arrow-up-icon">^</h1>
+        <div class="yellow-button" (click)="goToDetails()" >ALTERAR DETALHES</div>
+      </div>
+
+
+      <h2>Lança o endereço e o zap ae pra nós pae</h2>
+      <div class="yellow-button" >CONFIRMAR PEDIDO</div>
     </section>
 
   </main>

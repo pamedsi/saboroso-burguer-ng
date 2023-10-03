@@ -51,3 +51,8 @@ select {
   display: flex;
   flex-direction: column;
 }
+
+.order-review{
+  display: flex;
+  flex-direction: column;
+}

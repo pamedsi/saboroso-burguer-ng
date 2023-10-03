@@ -1,0 +1,6 @@
+export enum IOrderState {
+  CHOOSING_ITEMS,
+  ITEM_DETAILS,
+  ORDER_REVIEW,
+  CONTACT_INFO
+}
