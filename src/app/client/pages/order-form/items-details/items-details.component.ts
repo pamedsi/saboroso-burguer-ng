@@ -20,39 +20,45 @@ export class ItemsDetailsComponent {
 
   @Output() nextStep: EventEmitter<any>
 
-  hidden: boolean
-
   private finishedBurgerAddOns: IAddOnStatus
   private finishedPortionAddOns: IAddOnStatus
 
   constructor() {
     this.finishedBurgerAddOns = {allRight: true} as IAddOnStatus
     this.finishedPortionAddOns = {allRight: true} as IAddOnStatus
+
     this.nextStep = new EventEmitter()
-    this.hidden = false
   }
 
-  onBreadChange(selectedBread: any, burger: BurgerForMenu) {
-    const index = selectedBread.target.selectedIndex - 1
-    if (index <= -1) return
-
-    const chosenBread = this.breads[index]
-    burger.setBread(chosenBread)
-  }
   onBurgerAddOnFinished(burgerAddOnStatus: IAddOnStatus) {
-    // console.log(burgerAddOnStatus)
     this.finishedBurgerAddOns = burgerAddOnStatus
   }
+
   onPortionAddOnFinished(portionAddOnStatus: IAddOnStatus) {
     this.finishedPortionAddOns = portionAddOnStatus
   }
+
   onComboChange(selectedCombo: any, burger: BurgerForMenu) {
     const index = selectedCombo.target.selectedIndex - 1
-    if (index <= -1) return
-    const chosenCombo = this.combos[index]
-    burger.setCombo(chosenCombo)
+    if (index <= -1) {
+      burger.setCombo(undefined)
+      return
+    }
+
+    burger.setCombo(this.combos[index])
   }
 
+  onBreadChange(selectedBread: any, burger: BurgerForMenu) {
+    const index = selectedBread.target.selectedIndex
+
+    if (!index) {
+      burger.setBread(undefined)
+      return
+    }
+
+    const chosenBread = this.breads[index - 1]
+    burger.setBread(chosenBread)
+  }
   finishItemsDetails() {
     if (!this.finishedBurgerAddOns.allRight) {
       // lançar pop-up
@@ -64,10 +70,13 @@ export class ItemsDetailsComponent {
       console.log(this.finishedPortionAddOns.missing)
       return
     }
+    // Verifica se tem algum hambúrguer sem pão
+    if(this.orderItems.burgers.some(burger=> !burger.getBread())) {
+      console.info('pão pendente')
+      return
+    }
+
+    // botei qq coisa só pra ele parar de reclamar
     this.nextStep.emit(this.orderItems)
-    this.hidden = true
-  }
-  updateItemsDetails(){
-    this.hidden = false
   }
 }

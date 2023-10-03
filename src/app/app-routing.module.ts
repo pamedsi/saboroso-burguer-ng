@@ -11,9 +11,7 @@ import {OrderStatusComponent} from "./client/pages/order-status/order-status.com
 import {OrderConfirmationComponent} from "./client/pages/order-confirmation/order-confirmation.component";
 import {BurgerManagementComponent} from "./admin/pages/MenuManagement/burger-management/burger-management.component";
 import {DrinksManagementComponent} from "./admin/pages/MenuManagement/drinks-management/drinks-management.component";
-import {
-    PortionsManagementComponent
-} from "./admin/pages/MenuManagement/portions-management/portions-management.component";
+import {PortionsManagementComponent} from "./admin/pages/MenuManagement/portions-management/portions-management.component";
 import {AddOnsManagementComponent} from "./admin/pages/MenuManagement/add-ons-management/add-ons-management.component";
 import {CombosManagementComponent} from "./admin/pages/MenuManagement/combos-management/combos-management.component";
 

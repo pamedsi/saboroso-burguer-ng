@@ -1,12 +1,4 @@
-<div *ngIf="hidden; else notHidden">
-  <app-yellow-button
-    [text]="'ALTERAR DETALHES'"
-    (clicked)="updateItemsDetails()"
-  ></app-yellow-button>
-</div>
-
-<ng-template #notHidden>
-  <main>
+<main>
     <section>
       <section class="burger-details" *ngIf="orderItems.burgers.length">
         <h3>Seus Hambúrgueres</h3>
@@ -14,28 +6,27 @@
           <li class="selects" *ngFor="let burger of orderItems.burgers; let burgerIndex = index">
             <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
 
-            <div class="item-details">
+            <section class="choosing-bread">
               <label for="bread{{burgerIndex}}">Pão: </label>
               <select id="bread{{burgerIndex}}" (change)="onBreadChange($event, burger)">
                 <option>Escolher o pão</option>
                 <option *ngFor="let bread of breads">{{bread.title}}</option>
               </select>
-            </div>
+            </section>
 
-            <div class="item-details">
+            <div class="choosing-combo">
               <label for="combo{{burgerIndex}}">Combo: </label>
               <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)">
-                <option>Escolher combo</option>
                 <option>Sem combo</option>
                 <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
               </select>
             </div>
 
             <app-on-add-on-choose
-              (finishSelectingAddOns)="onBurgerAddOnFinished($event)"
+              (addOnsStatus)="onBurgerAddOnFinished($event)"
               [item]="burger"
               [itemIndex]="burgerIndex"
-              [addOns]="addOns">
+              [allAddOns]="addOns">
             </app-on-add-on-choose>
           </li>
         </ul>
@@ -47,10 +38,10 @@
           <li  class="selects"  *ngFor="let portion of orderItems.portions; let portionIndex = index">
             <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
             <app-on-add-on-choose
-              (finishSelectingAddOns)="onPortionAddOnFinished($event)"
+              (addOnsStatus)="onPortionAddOnFinished($event)"
               [item] = "portion"
               [itemIndex]="portionIndex"
-              [addOns]="addOns">
+              [allAddOns]="addOns">
             </app-on-add-on-choose>
           </li>
         </ul>
@@ -70,8 +61,7 @@
         <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
       </section>
     </section>
-  </main>
-</ng-template>
+</main>
 
 <app-yellow-button
   text="REVISAR PEDIDO"

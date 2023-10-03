@@ -25,18 +25,19 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
   availablePortions!: PortionForMenu[]
   availableDrinks!: DrinkForMenu[]
 
-  chosenBurgers: BurgerForMenu[]
-  chosenPortions: PortionForMenu[]
-  chosenDrinks: DrinkForMenu[]
+  private readonly currentOrder: ClientOrderDTO
 
   constructor (
     private menuService: MenuService,
     currencyPipe: CurrencyPipe
   ) {
     super(currencyPipe)
-    this.chosenBurgers = []
-    this.chosenPortions = []
-    this.chosenDrinks = []
+
+    this.currentOrder = {
+      burgers: [],
+      portions: [],
+      drinks: []
+    } as ClientOrderDTO
   }
 
   ngOnInit() {
@@ -50,39 +51,25 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     return burger as BurgerForMenu;
   }
   goToNextStep(){
-    if (!this.chosenBurgers.length && !this.chosenPortions.length && !this.chosenDrinks.length) return
-
-    const order = {
-      burgers: this.chosenBurgers,
-      portions: this.chosenPortions,
-      drinks: this.chosenDrinks
-    } as ClientOrderDTO
-
-    this.nextStep.emit(order)
+    if (
+      !this.currentOrder.burgers.length &&
+      !this.currentOrder.portions.length &&
+      !this.currentOrder.drinks.length
+    ) {
+      console.info('É necessário pedir pelo menos um dis itens: hambúrguer, porção ou bebida!')
+      return
+    }
+    this.nextStep.emit(this.currentOrder)
     this.hidden = true
   }
   addItem(item: MenuItem) {
-    if (item instanceof BurgerForMenu) this.chosenBurgers.push(item);
-    else if (item instanceof PortionForMenu) this.chosenPortions.push(item);
-    else if (item instanceof DrinkForMenu) this.chosenDrinks.push(item);
+    if (item instanceof BurgerForMenu) this.currentOrder.burgers.push(item);
+    else if (item instanceof PortionForMenu) this.currentOrder.portions.push(item);
+    else if (item instanceof DrinkForMenu) this.currentOrder.drinks.push(item);
     else return;
 
     item.incrementQuantity();
-
-    // const identifier = item.getIdentifier();
-    // let list: MenuItem[];
-    //
-    // if (item instanceof BurgerForMenu) list = this.chosenBurgers;
-    // else if (item instanceof PortionForMenu) list = this.chosenPortions;
-    // else if (item instanceof DrinkForMenu) list = this.chosenDrinks;
-    // else return;
-    //
-    // const existingItem = list.find(i => i.getIdentifier() === identifier);
-    // if (!existingItem) list.push(item);
-    //
-    // item.incrementQuantity();
   }
-
   removeFirstOccurrence(array: MenuItem[], item: MenuItem) {
     const index = array.findIndex(i => i.getIdentifier() === item.getIdentifier());
     if (index !== -1) {
@@ -92,15 +79,25 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
   removeItem(item: MenuItem) {
     if(item.getQuantity() <= 0) return
     const identifier = item.getIdentifier();
-    if (item instanceof BurgerForMenu) this.removeFirstOccurrence(this.chosenBurgers, item);
-    else if (item instanceof PortionForMenu) this.removeFirstOccurrence(this.chosenPortions, item);
-    else if (item instanceof DrinkForMenu) this.removeFirstOccurrence(this.chosenDrinks, item);
+    if (item instanceof BurgerForMenu) this.removeFirstOccurrence(this.currentOrder.burgers, item);
+    else if (item instanceof PortionForMenu) this.removeFirstOccurrence(this.currentOrder.portions, item);
+    else if (item instanceof DrinkForMenu) this.removeFirstOccurrence(this.currentOrder.drinks, item);
     else return;
     item.decrementQuantity();
   }
+
   onOrderChange(){
+    // Resetando detalhes do pão ao voltar à edição
+    this.currentOrder.burgers.forEach(burger => {
+      burger.setBread(undefined)
+      burger.setCombo(undefined)
+      burger.setAddOns([])
+    })
+
+    this.currentOrder.portions.forEach(portion => {
+      portion.setAddOns([])
+    })
     this.hidden = false
     this.changeOrder.emit()
   }
-
 }

@@ -14,7 +14,7 @@ select {
   flex-direction: column;
 }
 
-.item-details {
+.choosing-combo, .choosing-bread {
   display: flex;
   justify-content: space-between;
   align-items: center;

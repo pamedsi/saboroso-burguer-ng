@@ -50,8 +50,8 @@ import { DrinksManagementComponent } from './admin/pages/MenuManagement/drinks-m
 import { AddPortionFormComponent } from './admin/pages/MenuManagement/portions-management/add-portion-form/add-portion-form.component';
 import { PortionListForManagementComponent } from './admin/pages/MenuManagement/portions-management/portion-list-for-management/portion-list-for-management.component';
 import { PortionsManagementComponent } from './admin/pages/MenuManagement/portions-management/portions-management.component';
-import { MenuHelperComponent } from './client/components/menu-helper/menu-helper.component';
-import { OnAddOnChooseComponent } from './client/components/on-add-on-choose/on-add-on-choose.component';
+import { MenuHelperComponent } from './client/pages/order-form/items-details/menu-helper/menu-helper.component';
+import { OnAddOnChooseComponent } from './client/pages/order-form/items-details/on-add-on-choose/on-add-on-choose.component';
 import { OrderReviewComponent } from './client/pages/order-form/order-review/order-review.component';
 import { ItemsDetailsComponent } from './client/pages/order-form/items-details/items-details.component';
 import { ContactAndAddressComponent } from './client/pages/order-form/contact-and-address/contact-and-address.component';

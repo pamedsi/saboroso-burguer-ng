@@ -30,13 +30,22 @@
       ></app-items-details>
     </section>
 
+    <!--  Terceira parte, revisando o pedido  -->
+    <div *ngIf="state === IOrderState.ORDER_REVIEW">
+      <app-yellow-button
+        text='ALTERAR DETALHES'
+        (clicked)="updateItemsDetails()"
+      ></app-yellow-button>
+    </div>
+
     <section *ngIf="state === IOrderState.ORDER_REVIEW">
 
-      <h2>REVISANDO O PEDIDO</h2>
+      <h2>ESSE AQUI É TEU PEDIDO DA LIGADO, OLHA SÓ AS PRD</h2>
 
       <div class="yellow-button" (click)="goToContactInfo()">CONTATO E ENDEREÇO</div>
     </section>
 
+    <!--  Parte final, revisando o pedido  -->
     <section *ngIf="state === IOrderState.CONTACT_AND_ADDRESS">
       <div class="change-order-button">
         <h1 class="arrow-up-icon">^</h1>

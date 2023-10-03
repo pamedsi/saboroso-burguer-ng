@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
-import {BurgerForMenu} from "../../factories/Menu/BurgerForMenu";
-import {PortionForMenu} from "../../factories/Menu/PortionForMenu";
-import {IAddOnStatus} from "../../models/IAddOnStatus";
+import {AddOnForMenu} from "../../../../factories/Menu/AddOnForMenu";
+import {BurgerForMenu} from "../../../../factories/Menu/BurgerForMenu";
+import {PortionForMenu} from "../../../../factories/Menu/PortionForMenu";
+import {IAddOnStatus} from "../../../../models/IAddOnStatus";
 
 @Component({
   selector: 'app-on-add-on-choose',
@@ -12,9 +12,9 @@ import {IAddOnStatus} from "../../models/IAddOnStatus";
 export class OnAddOnChooseComponent {
   @Input() item!: BurgerForMenu | PortionForMenu
   @Input() itemIndex!: number
-  @Input() addOns!: AddOnForMenu[]
+  @Input() allAddOns!: AddOnForMenu[]
 
-  @Output() finishSelectingAddOns: EventEmitter<IAddOnStatus>
+  @Output() addOnsStatus: EventEmitter<IAddOnStatus>
 
   rangeToChooseAddOns!: number[]
   chosenNumberOfAddOns!: number[]
@@ -24,35 +24,33 @@ export class OnAddOnChooseComponent {
     this.rangeToChooseAddOns = Array.from({length: 10}, (_, i) => i + 1)
     this.chosenNumberOfAddOns = []
     this.chosenAddOns = []
-    this.finishSelectingAddOns = new EventEmitter()
+    this.addOnsStatus = new EventEmitter()
   }
 
   chooseNumberOfAddOns(clickedOption: any) {
     const length = clickedOption.selectedIndex
-    if (!length) this.finishSelectingAddOns.emit({allRight: true} as IAddOnStatus)
+    if (!length) this.addOnsStatus.emit({allRight: true} as IAddOnStatus)
     if (this.chosenAddOns.length) this.chosenAddOns = this.chosenAddOns.slice(0, length)
 
     this.chosenNumberOfAddOns = Array.from({length}, (_, i) => i + 1)
 
-    this.finishSelectingAddOns.emit(this.addOnsStatus())
+    this.addOnsStatus.emit(this.getAddOnStatus())
   }
 
   onAddOnChange(selectedAddOn: any, addOnIndex: number) {
-    const UNSELECTED_OPTION = -1
-    const index = selectedAddOn.target.selectedIndex - 1
+    const index = selectedAddOn.target.selectedIndex
 
     // Se for selecionada a primeira opção, que é a "Escolher adicional"
     // Ponho um 'undefined' no index pra que a verificação no método "addOnsStatus" retorne false
-    if (index <= -UNSELECTED_OPTION) this.chosenAddOns[addOnIndex] = undefined
+    if (!index)  this.chosenAddOns[addOnIndex] = undefined
 
     // Caso contrário, insiro o adicional clicado à lista de adicionais escolhidos
-    else this.chosenAddOns[addOnIndex] = this.addOns[index]
+    else  this.chosenAddOns[addOnIndex] = this.allAddOns[index - 1]
 
-    // E por fim, emito a situação de escolha dos adicionais
-    this.finishSelectingAddOns.emit(this.addOnsStatus())
+    this.addOnsStatus.emit(this.getAddOnStatus())
   }
 
-  addOnsStatus(): IAddOnStatus{
+  getAddOnStatus(): IAddOnStatus{
     let [missingChoose, index] = [false, 0]
 
     for (index = 0; index < this.chosenNumberOfAddOns.length; index++){

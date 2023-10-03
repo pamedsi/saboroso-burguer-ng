@@ -62,4 +62,7 @@ export class OrderFormComponent implements OnInit{
     this.state = IOrderState.CONTACT_AND_ADDRESS
   }
 
+  updateItemsDetails() {
+    // RESGATAR AS INFORMAÇÕE DE DETALHES E VOLTAR PARA O STATE DE ITEMS_DETAILS
+  }
 }

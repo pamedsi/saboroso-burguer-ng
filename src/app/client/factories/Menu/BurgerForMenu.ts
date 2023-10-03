@@ -11,8 +11,8 @@ export class BurgerForMenu extends MenuItem {
   private readonly pic: string | null
   private readonly ingredients: IngredientDTO[]
 
-  private bread!: BreadDTO
-  private combo!: ComboForMenu
+  private bread: BreadDTO | undefined
+  private combo: ComboForMenu | undefined
   private addOns!: AddOnForMenu[]
 
   constructor(burgerDTO: BurgerDTO) {
@@ -41,7 +41,7 @@ export class BurgerForMenu extends MenuItem {
   getBread(){
     return this.bread
   }
-  setBread(bread: BreadDTO){
+  setBread(bread: BreadDTO | undefined){
     this.bread = bread
   }
   getAddOns(){
@@ -53,7 +53,7 @@ export class BurgerForMenu extends MenuItem {
   getCombo(){
     return this.combo
   }
-  setCombo(combo: ComboForMenu){
+  setCombo(combo: ComboForMenu | undefined){
     this.combo = combo
   }
 }
