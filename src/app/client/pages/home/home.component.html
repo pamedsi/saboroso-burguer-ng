@@ -9,12 +9,8 @@
 <app-welcome-header></app-welcome-header>
 <main>
   <section>
-    <div class="yellow-button" (click)="redirectToOrderForm()">
-      FAZER UM PEDIDO
-    </div>
-    <div class="yellow-button" (click)="redirectToOrderStatus()">
-      VER COMO ESTÁ MEU PEDIDO
-    </div>
+    <app-yellow-button text="FAZER UM PEDIDO" (clicked)="redirectToOrderForm()"></app-yellow-button>
+    <app-yellow-button text="VER COMO ESTÁ MEU PEDIDO" (clicked)="redirectToOrderStatus()"></app-yellow-button>
   </section>
 </main>
 

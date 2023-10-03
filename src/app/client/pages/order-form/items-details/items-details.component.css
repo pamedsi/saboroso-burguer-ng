@@ -1,0 +1,21 @@
+main {
+  min-width: 45rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+select {
+  margin: 0.5rem;
+}
+
+.selects {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

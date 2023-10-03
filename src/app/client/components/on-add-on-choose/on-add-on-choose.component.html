@@ -5,7 +5,7 @@
     <option *ngFor="let i of rangeToChooseAddOns">{{i}}</option>
   </select>
 
-  <div *ngFor="let addOnIndex of chosenNumberOfAddons">
+  <div *ngFor="let addOnIndex of chosenNumberOfAddOns">
     <h4><label>Para o {{addOnIndex}}º adicional</label></h4>
     <select id="burger{{itemIndex}}add-on{{addOnIndex}}" (change)="onAddOnChange($event, addOnIndex - 1)">
       <option>Escolher adicional</option>

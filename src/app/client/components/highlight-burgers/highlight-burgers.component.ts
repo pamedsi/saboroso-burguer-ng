@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {BurgerForManagement} from "../../../../admin/factories/MenuManagement/BurgerForManagement";
-import {BurgerService} from "../../../../admin/services/BurgerService/BurgerService";
+import {BurgerForManagement} from "../../../admin/factories/MenuManagement/BurgerForManagement";
+import {BurgerService} from "../../../admin/services/BurgerService/BurgerService";
 
 @Component({
   selector: 'app-highlight-burgers',

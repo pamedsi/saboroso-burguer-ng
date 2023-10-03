@@ -1,0 +1,79 @@
+<div *ngIf="hidden; else notHidden">
+  <app-yellow-button
+    [text]="'ALTERAR DETALHES'"
+    (clicked)="updateItemsDetails()"
+  ></app-yellow-button>
+</div>
+
+<ng-template #notHidden>
+  <main>
+    <section>
+      <section class="burger-details" *ngIf="orderItems.burgers.length">
+        <h3>Seus Hambúrgueres</h3>
+        <ul>
+          <li class="selects" *ngFor="let burger of orderItems.burgers; let burgerIndex = index">
+            <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
+
+            <div class="item-details">
+              <label for="bread{{burgerIndex}}">Pão: </label>
+              <select id="bread{{burgerIndex}}" (change)="onBreadChange($event, burger)">
+                <option>Escolher o pão</option>
+                <option *ngFor="let bread of breads">{{bread.title}}</option>
+              </select>
+            </div>
+
+            <div class="item-details">
+              <label for="combo{{burgerIndex}}">Combo: </label>
+              <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)">
+                <option>Escolher combo</option>
+                <option>Sem combo</option>
+                <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
+              </select>
+            </div>
+
+            <app-on-add-on-choose
+              (finishSelectingAddOns)="onBurgerAddOnFinished($event)"
+              [item]="burger"
+              [itemIndex]="burgerIndex"
+              [addOns]="addOns">
+            </app-on-add-on-choose>
+          </li>
+        </ul>
+      </section>
+
+      <section class="portion-details" *ngIf="orderItems.portions.length">
+        <h3>Suas porções</h3>
+        <ul>
+          <li  class="selects"  *ngFor="let portion of orderItems.portions; let portionIndex = index">
+            <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
+            <app-on-add-on-choose
+              (finishSelectingAddOns)="onPortionAddOnFinished($event)"
+              [item] = "portion"
+              [itemIndex]="portionIndex"
+              [addOns]="addOns">
+            </app-on-add-on-choose>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="helpers">
+      <section *ngIf="orderItems.burgers.length">
+        <h3>Entenda os combos</h3>
+        <app-menu-helper listTitle="Combos" [itemList]="combos"></app-menu-helper>
+        <h3>Entenda os Adicionais</h3>
+        <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
+      </section>
+
+      <section *ngIf="orderItems.portions.length">
+        <h3>Entenda os Adicionais</h3>
+        <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
+      </section>
+    </section>
+  </main>
+</ng-template>
+
+<app-yellow-button
+  text="REVISAR PEDIDO"
+  (clicked)="finishItemsDetails()"
+></app-yellow-button>

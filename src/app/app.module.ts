@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { OrderConfirmationComponent } from './client/pages/order-confirmation/order-confirmation.component';
 import { WelcomeHeaderComponent } from './client/components/welcome-header/welcome-header.component';
-import { ButtonsContainerComponent } from './client/pages/order-form/buttons-container/buttons-container.component';
+import { HighlightsAndMenuButtonsComponent } from './client/components/highlights-and-menu-buttons/highlights-and-menu-buttons.component';
 import { HttpClientModule } from "@angular/common/http";
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import { LoginFormComponent } from './admin/pages/login/login-form.component';
@@ -26,8 +26,8 @@ import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 
 import { OrderFormComponent } from './client/pages/order-form/order-form.component';
-import { MenuComponent } from './client/pages/order-form/menu/menu.component';
-import { HighlightBurgersComponent } from './client/pages/order-form/highlight-burgers/highlight-burgers.component';
+import { ChoosingItemsComponent } from './client/pages/order-form/choosing-items/choosing-items.component';
+import { HighlightBurgersComponent } from './client/components/highlight-burgers/highlight-burgers.component';
 import { OrderStatusComponent } from './client/pages/order-status/order-status.component';
 import { AddOnListForManagementComponent } from './admin/pages/MenuManagement/add-ons-management/add-on-list-for-management/add-on-list-for-management.component';
 import { AddOnsManagementComponent } from './admin/pages/MenuManagement/add-ons-management/add-ons-management.component';
@@ -53,6 +53,9 @@ import { PortionsManagementComponent } from './admin/pages/MenuManagement/portio
 import { MenuHelperComponent } from './client/components/menu-helper/menu-helper.component';
 import { OnAddOnChooseComponent } from './client/components/on-add-on-choose/on-add-on-choose.component';
 import { OrderReviewComponent } from './client/pages/order-form/order-review/order-review.component';
+import { ItemsDetailsComponent } from './client/pages/order-form/items-details/items-details.component';
+import { ContactAndAddressComponent } from './client/pages/order-form/contact-and-address/contact-and-address.component';
+import { YellowButtonComponent } from './shared/components/yellow-button/yellow-button.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -60,7 +63,7 @@ registerLocaleData(localePtBr);
     AppComponent,
     OrderConfirmationComponent,
     WelcomeHeaderComponent,
-    ButtonsContainerComponent,
+    HighlightsAndMenuButtonsComponent,
     LoginFormComponent,
     NotFoundComponent,
     BurgerManagementComponent,
@@ -87,7 +90,7 @@ registerLocaleData(localePtBr);
     AddComboFormComponent,
     ComboListForManagementComponent,
     OrderFormComponent,
-    MenuComponent,
+    ChoosingItemsComponent,
     HighlightBurgersComponent,
     OrderStatusComponent,
     AddBreadFormComponent,
@@ -95,6 +98,9 @@ registerLocaleData(localePtBr);
     MenuHelperComponent,
     OnAddOnChooseComponent,
     OrderReviewComponent,
+    ItemsDetailsComponent,
+    ContactAndAddressComponent,
+    YellowButtonComponent,
   ],
   imports: [
     BrowserModule,

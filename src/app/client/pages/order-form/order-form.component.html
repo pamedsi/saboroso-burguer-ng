@@ -2,9 +2,11 @@
   <header>
     <button class="home-button" (click)="redirectToHome()">Voltar</button>
     <app-welcome-header></app-welcome-header>
-    <app-buttons-container (clickedOption)="onChangeOption($event)"></app-buttons-container>
+    <app-highlights-and-menu-buttons (clickedOption)="onChangeOption($event)"></app-highlights-and-menu-buttons>
   </header>
+
   <div class="line-container"><div class="separator-line"></div></div>
+
   <main>
     <!--  Primeira parte do pedido:  -->
     <section>
@@ -13,84 +15,33 @@
       </div>
 
       <ng-template #menu>
-        <app-menu (nextStep)="goToDetails($event)" (changeOrder)="updateChosenItems()"></app-menu>
+        <app-choosing-items (nextStep)="goToItemDetails($event)" (changeOrder)="goToChoosingItems()"></app-choosing-items>
       </ng-template>
     </section>
 
     <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
-
-    <section class="details-container" *ngIf="state === IOrderState.ITEM_DETAILS">
-      <section class="burger-and-portion-details">
-
-        <section class="burger-details" *ngIf="order.burgers.length">
-          <h3>Seus Hambúrgueres</h3>
-          <ul>
-            <li class="selects" *ngFor="let burger of order.burgers; let burgerIndex = index">
-              <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
-              <select id="bread{{burgerIndex}}" (change)="onBreadChange($event, burger)">
-                <option>Escolher o pão</option>
-                <option *ngFor="let bread of breads">{{bread.title}}</option>
-              </select>
-
-              <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)">
-                <option>Escolher combo</option>
-                <option>Sem combo</option>
-                <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
-              </select>
-
-              <app-on-add-on-choose
-                (finishSelectingAddOns)="onBurgerAddOnFinished($event)"
-                [item]="burger"
-                [itemIndex]="burgerIndex"
-                [addOns]="addOns">
-              </app-on-add-on-choose>
-            </li>
-          </ul>
-        </section>
-
-        <section class="portion-details" *ngIf="order.portions.length" >
-          <h3>Suas porções</h3>
-          <ul>
-            <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
-              <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
-              <app-on-add-on-choose
-                (finishSelectingAddOns)="onPortionAddOnFinished($event)"
-                [item] = "portion"
-                [itemIndex]="portionIndex"
-                [addOns]="addOns">
-              </app-on-add-on-choose>
-            </li>
-          </ul>
-        </section>
-
-      </section>
-
-      <section class="helpers">
-          <app-menu-helper listTitle="Combos" [itemList]="combos"></app-menu-helper>
-          <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
-      </section>
-
+    <section *ngIf="state === IOrderState.ITEMS_DETAILS">
+      <app-items-details
+        [orderItems]="order"
+        [addOns]="addOns"
+        [combos]="combos"
+        [breads]="breads"
+        (nextStep)="goToOrderReview()"
+      ></app-items-details>
     </section>
 
-    <div  *ngIf="state === IOrderState.ITEM_DETAILS" class="yellow-button" (click)="goToOrderReview()">REVISAR PEDIDO</div>
-
     <section *ngIf="state === IOrderState.ORDER_REVIEW">
-      <div class="change-order-button">
-        <h1 class="arrow-up-icon">^</h1>
-        <div class="yellow-button" (click)="goToDetails()" >ALTERAR DETALHES</div>
-      </div>
 
       <h2>REVISANDO O PEDIDO</h2>
 
-      <div class="yellow-button" (click)="goToContactAndAddress()">CONTATO E ENDEREÇO</div>
+      <div class="yellow-button" (click)="goToContactInfo()">CONTATO E ENDEREÇO</div>
     </section>
 
-    <section *ngIf="state === IOrderState.CONTACT_INFO">
+    <section *ngIf="state === IOrderState.CONTACT_AND_ADDRESS">
       <div class="change-order-button">
         <h1 class="arrow-up-icon">^</h1>
-        <div class="yellow-button" (click)="goToDetails()" >ALTERAR DETALHES</div>
+        <div class="yellow-button" (click)="goToItemDetails(order)">ALTERAR DETALHES</div>
       </div>
-
 
       <h2>Lança o endereço e o zap ae pra nós pae</h2>
       <div class="yellow-button" >CONFIRMAR PEDIDO</div>

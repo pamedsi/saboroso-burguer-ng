@@ -11,11 +11,11 @@ import {ComboService} from "../../../../admin/services/ComboService";
 import {AddOnService} from "../../../../admin/services/AddOnService";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-choosing-items',
+  templateUrl: './choosing-items.component.html',
+  styleUrls: ['./choosing-items.component.css']
 })
-export class MenuComponent extends WIthPriceFormatter {
+export class ChoosingItemsComponent extends WIthPriceFormatter {
   @Output() nextStep = new EventEmitter()
   @Output() changeOrder  = new EventEmitter()
 
