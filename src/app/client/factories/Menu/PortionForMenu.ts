@@ -28,4 +28,15 @@ export class PortionForMenu extends MenuItem {
     setAddOns(addOns: AddOnForMenu[]){
       this.addOns = addOns
     }
+
+    // Components methods
+    toDTO() {
+      return {
+        identifier: this.identifier,
+        title: this.title,
+        price: this.price,
+        description: this.description,
+        pic: this.pic
+      } as PortionDTO
+  }
 }

@@ -61,8 +61,12 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     this.hidden = true
   }
   addItem(item: MenuItem) {
-    if (item instanceof BurgerForMenu) this.currentOrder.burgers.push(item);
-    else if (item instanceof PortionForMenu) this.currentOrder.portions.push(item);
+    if (item instanceof BurgerForMenu) {
+      this.currentOrder.burgers.push(new BurgerForMenu(item.toDTO()));
+    }
+    else if (item instanceof PortionForMenu) {
+      this.currentOrder.portions.push(new PortionForMenu(item.toDTO()));
+    }
     else if (item instanceof DrinkForMenu) this.currentOrder.drinks.push(item);
     else return;
 
@@ -88,7 +92,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     // Resetando detalhes do pão ao voltar à edição
     this.currentOrder.burgers.forEach(burger => {
       burger.setBread(undefined)
-      burger.setCombo(undefined)
+      burger.setCombo(null)
       burger.setAddOns([])
     })
 

@@ -38,6 +38,7 @@ export class OrderFormComponent implements OnInit{
     this.menuService.getBreadsForMenu().subscribe(breads =>
       this.breads = breads
     )
+
   }
   onChangeOption($event: Event){
     this.onHighlights = String($event) === 'highlights'

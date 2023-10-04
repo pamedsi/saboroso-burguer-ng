@@ -12,18 +12,20 @@ export class BurgerForMenu extends MenuItem {
   private readonly ingredients: IngredientDTO[]
 
   private bread: BreadDTO | undefined
-  private combo: ComboForMenu | undefined
+  private combo: ComboForMenu | null
   private addOns!: AddOnForMenu[]
 
   // Component Props
 
-  breadEditing: BreadDTO | undefined
+  breadEditing: any
+  comboEditing: any
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
     this.category = burgerDTO.category
     this.pic = burgerDTO.pic
     this.ingredients = burgerDTO.ingredients
+    this.combo = null
   }
   getCategory() {
     return this.category;
@@ -48,7 +50,7 @@ export class BurgerForMenu extends MenuItem {
   getCombo(){
     return this.combo
   }
-  setCombo(combo: ComboForMenu | undefined){
+  setCombo(combo: ComboForMenu | null){
     this.combo = combo
   }
 
@@ -63,5 +65,16 @@ export class BurgerForMenu extends MenuItem {
     return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
   }
 
-
+  toDTO(): BurgerDTO{
+    return {
+      identifier: this.identifier,
+      title: this.title,
+      price: this.price,
+      category: this.category,
+      pic: this.pic,
+      ingredients: this.ingredients,
+      bread: this.bread,
+      combo: this.combo
+    } as BurgerDTO
+  }
 }

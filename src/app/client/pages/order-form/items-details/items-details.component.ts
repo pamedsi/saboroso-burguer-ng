@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
 import {AddOnForMenu} from "../../../factories/Menu/AddOnForMenu";
 import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
@@ -11,7 +11,7 @@ import {ComboForMenu} from "../../../factories/Menu/ComboForMenu";
   templateUrl: './items-details.component.html',
   styleUrls: ['./items-details.component.css']
 })
-export class ItemsDetailsComponent {
+export class ItemsDetailsComponent implements OnInit{
   @Input() orderItems!: ClientOrderDTO
 
   @Input() addOns!: AddOnForMenu[]
@@ -31,6 +31,9 @@ export class ItemsDetailsComponent {
     this.nextStep = new EventEmitter()
   }
 
+  ngOnInit() {
+  }
+
   onBurgerAddOnFinished(burgerAddOnStatus: IAddOnStatus) {
     this.finishedBurgerAddOns = burgerAddOnStatus
   }
@@ -41,24 +44,17 @@ export class ItemsDetailsComponent {
 
   onComboChange(selectedCombo: any, burger: BurgerForMenu) {
     const index = selectedCombo.target.selectedIndex - 1
-    if (index <= -1) {
-      burger.setCombo(undefined)
-      return
-    }
 
-    burger.setCombo(this.combos[index])
+    // Caso a opção "Sem Combo" seja selecionada
+    if (index <= -1) burger.setCombo(null)
+
+    // Caso contrário
+    else burger.setCombo(this.combos[index])
   }
 
   onBreadChange(selectedBread: any, burger: BurgerForMenu) {
     const index = selectedBread.target.selectedIndex
-
-    if (!index) {
-      burger.setBread(undefined)
-      return
-    }
-
-    const chosenBread = this.breads[index - 1]
-    burger.setBread(chosenBread)
+    burger.setBread(this.breads[index])
   }
   finishItemsDetails() {
     if (!this.finishedBurgerAddOns.allRight) {
