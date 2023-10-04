@@ -5,7 +5,7 @@ import { NotFoundComponent } from "./shared/components/not-found/not-found.compo
 import { HomeComponent } from "./client/pages/home/home.component";
 import { HomeAdminComponent } from "./admin/pages/home/home.admin.component";
 import { OrderManagementComponent } from "./admin/pages/order-management/order-management.component"
-import { canActivate } from "./client/security/AuthGuardService";
+import { canActivate } from "./shared/security/AuthGuardService";
 import {OrderFormComponent} from "./client/pages/order-form/order-form.component";
 import {OrderStatusComponent} from "./client/pages/order-status/order-status.component";
 import {OrderConfirmationComponent} from "./client/pages/order-confirmation/order-confirmation.component";
