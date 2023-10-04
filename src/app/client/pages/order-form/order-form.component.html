@@ -20,8 +20,9 @@
     </section>
 
     <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
-    <section *ngIf="state === IOrderState.ITEMS_DETAILS">
+    <section *ngIf="state !== IOrderState.CHOOSING_ITEMS">
       <app-items-details
+        [hidden]="state !== IOrderState.ITEMS_DETAILS"
         [orderItems]="order"
         [addOns]="addOns"
         [combos]="combos"
@@ -29,14 +30,6 @@
         (nextStep)="goToOrderReview()"
       ></app-items-details>
     </section>
-
-    <!--  Terceira parte, revisando o pedido  -->
-    <div *ngIf="state === IOrderState.ORDER_REVIEW">
-      <app-yellow-button
-        text='ALTERAR DETALHES'
-        (clicked)="updateItemsDetails()"
-      ></app-yellow-button>
-    </div>
 
     <section *ngIf="state === IOrderState.ORDER_REVIEW">
 

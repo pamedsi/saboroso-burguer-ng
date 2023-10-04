@@ -22,6 +22,7 @@ export class ItemsDetailsComponent {
 
   private finishedBurgerAddOns: IAddOnStatus
   private finishedPortionAddOns: IAddOnStatus
+  @Input() hidden!: boolean;
 
   constructor() {
     this.finishedBurgerAddOns = {allRight: true} as IAddOnStatus
@@ -78,5 +79,11 @@ export class ItemsDetailsComponent {
 
     // botei qq coisa só pra ele parar de reclamar
     this.nextStep.emit(this.orderItems)
+    this.hidden = !this.hidden
+  }
+
+  updateItemsDetails(){
+    console.log('oieee')
+    this.hidden = false
   }
 }

@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="!hidden">
     <section>
       <section class="burger-details" *ngIf="orderItems.burgers.length">
         <h3>Seus Hambúrgueres</h3>
@@ -63,7 +63,13 @@
     </section>
 </main>
 
-<app-yellow-button
+<app-yellow-button *ngIf="!hidden"
   text="REVISAR PEDIDO"
   (clicked)="finishItemsDetails()"
+></app-yellow-button>
+
+<app-yellow-button
+  *ngIf="hidden"
+  text="ALTERAR DETALHES"
+  (clicked)="updateItemsDetails()"
 ></app-yellow-button>

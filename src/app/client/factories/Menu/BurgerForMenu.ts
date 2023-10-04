@@ -15,6 +15,10 @@ export class BurgerForMenu extends MenuItem {
   private combo: ComboForMenu | undefined
   private addOns!: AddOnForMenu[]
 
+  // Component Props
+
+  breadEditing: BreadDTO | undefined
+
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
     this.category = burgerDTO.category
@@ -26,15 +30,6 @@ export class BurgerForMenu extends MenuItem {
   }
   getPic() {
     return this.pic;
-  }
-  ingredientsToString(): string {
-        if (this.ingredients.length === 0) return "Sem ingredientes"
-        const stringToBeReturned: string[] =
-            this.ingredients.map(ingredient =>
-                    ingredient.grams ? `${ingredient.grams} gramas de ${ingredient.title}` : ingredient.title
-                );
-        const lastIngredient = stringToBeReturned.pop();
-        return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
   }
 
   // Order details
@@ -56,4 +51,17 @@ export class BurgerForMenu extends MenuItem {
   setCombo(combo: ComboForMenu | undefined){
     this.combo = combo
   }
+
+  // Component methods:
+  ingredientsToString(): string {
+    if (this.ingredients.length === 0) return "Sem ingredientes"
+    const stringToBeReturned: string[] =
+      this.ingredients.map(ingredient =>
+        ingredient.grams ? `${ingredient.grams} gramas de ${ingredient.title}` : ingredient.title
+      );
+    const lastIngredient = stringToBeReturned.pop();
+    return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
+  }
+
+
 }

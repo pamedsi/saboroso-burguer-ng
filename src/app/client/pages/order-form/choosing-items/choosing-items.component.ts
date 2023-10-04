@@ -7,8 +7,6 @@ import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {MenuItem} from "../../../factories/Menu/MenuItem";
 import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
-import {ComboService} from "../../../../admin/services/ComboService";
-import {AddOnService} from "../../../../admin/services/AddOnService";
 
 @Component({
   selector: 'app-choosing-items',
