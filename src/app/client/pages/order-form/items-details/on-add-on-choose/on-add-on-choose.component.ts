@@ -13,52 +13,42 @@ export class OnAddOnChooseComponent {
   @Input() item!: BurgerForMenu | PortionForMenu
   @Input() itemIndex!: number
   @Input() allAddOns!: AddOnForMenu[]
-
   @Output() addOnsStatus: EventEmitter<IAddOnStatus>
-
-  rangeToChooseAddOns!: number[]
-  chosenNumberOfAddOns!: number[]
-  chosenAddOns!: (AddOnForMenu | undefined)[]
+  rangeToChooseAddOns: number[]
 
   constructor() {
     this.rangeToChooseAddOns = Array.from({length: 10}, (_, i) => i + 1)
-    this.chosenNumberOfAddOns = []
-    this.chosenAddOns = []
     this.addOnsStatus = new EventEmitter()
   }
 
   chooseNumberOfAddOns(clickedOption: any) {
     const length = clickedOption.selectedIndex
-    if (!length) this.addOnsStatus.emit({allRight: true} as IAddOnStatus)
-    if (this.chosenAddOns.length) this.chosenAddOns = this.chosenAddOns.slice(0, length)
 
-    this.chosenNumberOfAddOns = Array.from({length}, (_, i) => i + 1)
+    if (this.item.addOnsEditing.length > length) {
+      this.item.addOnsEditing = this.item.addOnsEditing.slice(0, length)
+    }
+    else {
+      this.item.addOnsEditing.push(...new Array(length - this.item.addOnsEditing.length))
+    }
 
     this.addOnsStatus.emit(this.getAddOnStatus())
   }
 
-  onAddOnChange(selectedAddOn: any, addOnIndex: number) {
-    const index = selectedAddOn.target.selectedIndex
-
-    // Se for selecionada a primeira opção, que é a "Escolher adicional"
-    // Ponho um 'undefined' no index pra que a verificação no método "addOnsStatus" retorne false
-    if (!index)  this.chosenAddOns[addOnIndex] = undefined
-
-    // Caso contrário, insiro o adicional clicado à lista de adicionais escolhidos
-    else  this.chosenAddOns[addOnIndex] = this.allAddOns[index - 1]
-
+  onAddOnChange() {
+    console.log(this.item.addOnsEditing)
     this.addOnsStatus.emit(this.getAddOnStatus())
   }
 
   getAddOnStatus(): IAddOnStatus{
     let [missingChoose, index] = [false, 0]
 
-    for (index = 0; index < this.chosenNumberOfAddOns.length; index++){
-      if(!this.chosenAddOns[index]) {
+    for (index = 0; index < Number(this.item.numberOfAddOns); index++){
+      if(!this.item.addOnsEditing[index]) {
         missingChoose = true
         break
       }
     }
+
     if (missingChoose) {
       const allRight = false
       const missing = `${index + 1}º adicional do ${this.itemIndex + 1}º item pendente!`

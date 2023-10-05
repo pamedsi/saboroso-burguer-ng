@@ -8,10 +8,15 @@ export class PortionForMenu extends MenuItem {
 
     private addOns!: AddOnForMenu[]
 
+    addOnsEditing: any
+    numberOfAddOns!: number | string
+
     constructor(portionDTO: PortionDTO) {
         super(portionDTO);
         this.pic = portionDTO.pic
         this.description = portionDTO.description
+
+      this.addOnsEditing = []
     }
 
     getPic(){
