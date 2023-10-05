@@ -1,0 +1,36 @@
+div {
+  font-family: 'Poppins', sans-serif;
+}
+
+.yellow-button {
+  background-color: #EDD925;
+  color: #303030;
+  border-radius: 0.6rem;
+  min-width: 15rem;
+  height: 3.2rem;
+  border-style: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  margin: 0.5rem 0 0.5rem 0;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.yellow-button:hover {
+  background-color: #f1ed08;
+}
+
+.yellow-button:active {
+  transform: scale(0.96);
+}
+
+.yellow-button-container {
+  display: flex;
+  justify-content: center;
+}
+

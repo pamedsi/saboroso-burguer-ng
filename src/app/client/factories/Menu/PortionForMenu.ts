@@ -8,10 +8,16 @@ export class PortionForMenu extends MenuItem {
 
     private addOns!: AddOnForMenu[]
 
+    addOnsEditing: any
+    numberOfAddOns!: number | string
+
     constructor(portionDTO: PortionDTO) {
         super(portionDTO);
         this.pic = portionDTO.pic
         this.description = portionDTO.description
+
+        this.addOnsEditing = new Array(0)
+        this.numberOfAddOns = ''
     }
 
     getPic(){
@@ -28,4 +34,15 @@ export class PortionForMenu extends MenuItem {
     setAddOns(addOns: AddOnForMenu[]){
       this.addOns = addOns
     }
+
+    // Components methods
+    toDTO() {
+      return {
+        identifier: this.identifier,
+        title: this.title,
+        price: this.price,
+        description: this.description,
+        pic: this.pic
+      } as PortionDTO
+  }
 }

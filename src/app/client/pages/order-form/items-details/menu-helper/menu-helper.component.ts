@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {WIthPriceFormatter} from "../../../shared/utils/PriceFormatter";
-import {MenuItem} from "../../factories/Menu/MenuItem";
-import {ComboForMenu} from "../../factories/Menu/ComboForMenu";
-import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
+import {WIthPriceFormatter} from "../../../../../shared/utils/PriceFormatter";
+import {MenuItem} from "../../../../factories/Menu/MenuItem";
+import {ComboForMenu} from "../../../../factories/Menu/ComboForMenu";
+import {AddOnForMenu} from "../../../../factories/Menu/AddOnForMenu";
 import {CurrencyPipe} from "@angular/common";
 
 @Component({

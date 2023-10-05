@@ -1,0 +1,18 @@
+<section class="choosing-add-ons">
+  <section class="selecting-amount">
+    <label for="add-on-amount{{itemIndex}}">Quantos adicionais?</label>
+    <select id="add-on-amount{{itemIndex}}" [(ngModel)]="item.numberOfAddOns" (change)="chooseNumberOfAddOns()">
+      <option [value]="''" disabled>Selecionar um número</option>
+      <option *ngFor="let i of rangeToChooseAddOns">{{!i ? 'Sem adicional' : i }}</option>
+    </select>
+  </section>
+
+  <section *ngFor="let addOnIndex of indexesOfChosenAddOns">
+    <label for="item{{itemIndex}}add-on{{addOnIndex}}">Para o {{addOnIndex + 1}}º adicional</label>
+    <select [(ngModel)]="item.addOnsEditing[addOnIndex]" id="item{{itemIndex}}add-on{{addOnIndex}}" (change)="onAddOnChange()">
+      <option [ngValue]="addOnOption" *ngFor="let addOnOption of allAddOns">
+        {{addOnOption.getTitle()}}
+      </option>
+    </select>
+  </section>
+</section>

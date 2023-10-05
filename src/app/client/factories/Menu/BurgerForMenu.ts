@@ -11,15 +11,26 @@ export class BurgerForMenu extends MenuItem {
   private readonly pic: string | null
   private readonly ingredients: IngredientDTO[]
 
-  private bread!: BreadDTO
-  private combo!: ComboForMenu
+  private bread: BreadDTO | undefined
+  private combo: ComboForMenu | null
   private addOns!: AddOnForMenu[]
+
+  // Component Props
+
+  breadEditing: any
+  comboEditing: any
+  addOnsEditing: any
+  numberOfAddOns: number | string
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
     this.category = burgerDTO.category
     this.pic = burgerDTO.pic
     this.ingredients = burgerDTO.ingredients
+    this.combo = null
+
+    this.addOnsEditing = new Array(0)
+    this.numberOfAddOns = ''
   }
   getCategory() {
     return this.category;
@@ -27,21 +38,12 @@ export class BurgerForMenu extends MenuItem {
   getPic() {
     return this.pic;
   }
-  ingredientsToString(): string {
-        if (this.ingredients.length === 0) return "Sem ingredientes"
-        const stringToBeReturned: string[] =
-            this.ingredients.map(ingredient =>
-                    ingredient.grams ? `${ingredient.grams} gramas de ${ingredient.title}` : ingredient.title
-                );
-        const lastIngredient = stringToBeReturned.pop();
-        return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
-  }
 
   // Order details
   getBread(){
     return this.bread
   }
-  setBread(bread: BreadDTO){
+  setBread(bread: BreadDTO | undefined){
     this.bread = bread
   }
   getAddOns(){
@@ -53,7 +55,31 @@ export class BurgerForMenu extends MenuItem {
   getCombo(){
     return this.combo
   }
-  setCombo(combo: ComboForMenu){
+  setCombo(combo: ComboForMenu | null){
     this.combo = combo
+  }
+
+  // Component methods:
+  ingredientsToString(): string {
+    if (this.ingredients.length === 0) return "Sem ingredientes"
+    const stringToBeReturned: string[] =
+      this.ingredients.map(ingredient =>
+        ingredient.grams ? `${ingredient.grams} gramas de ${ingredient.title}` : ingredient.title
+      );
+    const lastIngredient = stringToBeReturned.pop();
+    return `${stringToBeReturned.join(', ')} e ${lastIngredient}.`;
+  }
+
+  toDTO(): BurgerDTO{
+    return {
+      identifier: this.identifier,
+      title: this.title,
+      price: this.price,
+      category: this.category,
+      pic: this.pic,
+      ingredients: this.ingredients,
+      bread: this.bread,
+      combo: this.combo
+    } as BurgerDTO
   }
 }

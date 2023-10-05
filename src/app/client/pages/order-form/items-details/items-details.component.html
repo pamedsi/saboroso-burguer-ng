@@ -1,0 +1,74 @@
+<main *ngIf="!hidden">
+    <section>
+      <section class="burger-details" *ngIf="orderItems.burgers.length">
+        <h3>Seus Hambúrgueres</h3>
+        <ul>
+          <li class="selects" *ngFor="let burger of orderItems.burgers; let burgerIndex = index">
+            <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
+
+            <section class="choosing-bread">
+              <label for="bread{{burgerIndex}}">Pão: </label>
+              <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing" (change)="onBreadChange($event, burger)">
+                <option *ngFor="let bread of breads">{{bread.title}}</option>
+              </select>
+            </section>
+
+            <section class="choosing-combo">
+              <label for="combo{{burgerIndex}}">Combo: </label>
+              <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)" [(ngModel)]="burger.comboEditing">
+                <option>Sem combo</option>
+                <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
+              </select>
+            </section>
+
+            <app-on-add-on-choose
+              (addOnsStatus)="onBurgerAddOnFinished($event)"
+              [item]="burger"
+              [itemIndex]="burgerIndex"
+              [allAddOns]="addOns">
+            </app-on-add-on-choose>
+          </li>
+        </ul>
+      </section>
+
+      <section class="portion-details" *ngIf="orderItems.portions.length">
+        <h3>Suas porções</h3>
+        <ul>
+          <li  class="selects"  *ngFor="let portion of orderItems.portions; let portionIndex = index">
+            <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
+            <app-on-add-on-choose
+              (addOnsStatus)="onPortionAddOnFinished($event)"
+              [item] = "portion"
+              [itemIndex]="portionIndex"
+              [allAddOns]="addOns">
+            </app-on-add-on-choose>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="helpers">
+      <section *ngIf="orderItems.burgers.length">
+        <h3>Entenda os combos</h3>
+        <app-menu-helper listTitle="Combos" [itemList]="combos"></app-menu-helper>
+        <h3>Entenda os Adicionais</h3>
+        <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
+      </section>
+
+      <section *ngIf="orderItems.portions.length">
+        <h3>Entenda os Adicionais</h3>
+        <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
+      </section>
+    </section>
+</main>
+
+<app-yellow-button *ngIf="!hidden"
+  text="REVISAR PEDIDO"
+  (clicked)="finishItemsDetails()"
+></app-yellow-button>
+
+<app-yellow-button
+  *ngIf="hidden"
+  text="ALTERAR DETALHES"
+  (clicked)="updateItemsDetails()"
+></app-yellow-button>

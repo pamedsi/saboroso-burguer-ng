@@ -1,5 +1,6 @@
 <ng-template #notHidden>
   <main>
+
     <section class="burgers">
       <h2>Hambúrgueres:</h2>
       <div *ngFor="let category of availableBurgers | keyvalue">
@@ -54,14 +55,16 @@
       </div>
     </section>
 
-    <section class="button-container">
-      <div class="yellow-button" (click)="goToNextStep()">ESCOLHER PÃES, COMBOS E ADICIONAIS</div>
-    </section>
+    <app-yellow-button
+      [text]="'ESCOLHER PÃES, COMBOS E ADICIONAIS'"
+      (clicked)="goToNextStep()"
+    ></app-yellow-button>
 
   </main>
 </ng-template>
 
-<div *ngIf="hidden; else notHidden" class="change-order-button">
-  <h1 class="arrow-up-icon">^</h1>
-  <div class="yellow-button" (click)="onOrderChange()">ALTERAR PEDIDO</div>
-</div>
+<app-yellow-button
+  *ngIf="hidden; else notHidden"
+  [text]="'ALTERAR PEDIDO'"
+  (clicked)="onOrderChange()"
+></app-yellow-button>

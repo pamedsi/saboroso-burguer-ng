@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-buttons-container',
-  templateUrl: './buttons-container.component.html',
-  styleUrls: ['./buttons-container.component.css']
+  selector: 'app-highlights-and-menu-buttons',
+  templateUrl: './highlights-and-menu-buttons.component.html',
+  styleUrls: ['./highlights-and-menu-buttons.component.css']
 })
-export class ButtonsContainerComponent {
+export class HighlightsAndMenuButtonsComponent {
   @Input() highlights = false;
   @Input() menu = !this.highlights;
   @Output() clickedOption = new EventEmitter()
