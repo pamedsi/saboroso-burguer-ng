@@ -20,7 +20,7 @@ export class BurgerForMenu extends MenuItem {
   breadEditing: any
   comboEditing: any
   addOnsEditing: any
-  numberOfAddOns!: number
+  numberOfAddOns: number | string
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
@@ -29,7 +29,8 @@ export class BurgerForMenu extends MenuItem {
     this.ingredients = burgerDTO.ingredients
     this.combo = null
 
-    this.addOnsEditing = []
+    this.addOnsEditing = new Array(0)
+    this.numberOfAddOns = ''
   }
   getCategory() {
     return this.category;

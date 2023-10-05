@@ -14,23 +14,28 @@ export class OnAddOnChooseComponent {
   @Input() itemIndex!: number
   @Input() allAddOns!: AddOnForMenu[]
   @Output() addOnsStatus: EventEmitter<IAddOnStatus>
-  rangeToChooseAddOns: number[]
+  rangeToChooseAddOns: (number | string)[]
+
+  indexesOfChosenAddOns!: number[];
 
   constructor() {
     this.rangeToChooseAddOns = Array.from({length: 10}, (_, i) => i + 1)
+    this.rangeToChooseAddOns.unshift('')
     this.addOnsStatus = new EventEmitter()
   }
 
-  chooseNumberOfAddOns(clickedOption: any) {
-    const length = clickedOption.selectedIndex
+  chooseNumberOfAddOns() {
+    let chosenLength = Number(this.item.numberOfAddOns)
+    if(isNaN(chosenLength)) chosenLength = 0
 
-    if (this.item.addOnsEditing.length > length) {
-      this.item.addOnsEditing = this.item.addOnsEditing.slice(0, length)
+    if (this.item.addOnsEditing.length > chosenLength) {
+      this.item.addOnsEditing = this.item.addOnsEditing.slice(0, chosenLength)
     }
     else {
-      this.item.addOnsEditing.push(...new Array(length - this.item.addOnsEditing.length))
+      this.item.addOnsEditing.push(...new Array(chosenLength - this.item.addOnsEditing.length))
     }
 
+    this.indexesOfChosenAddOns = Array.from({length: chosenLength}, (_, i) => i)
     this.addOnsStatus.emit(this.getAddOnStatus())
   }
 

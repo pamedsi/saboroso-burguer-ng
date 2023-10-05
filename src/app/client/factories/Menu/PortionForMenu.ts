@@ -16,7 +16,8 @@ export class PortionForMenu extends MenuItem {
         this.pic = portionDTO.pic
         this.description = portionDTO.description
 
-      this.addOnsEditing = []
+        this.addOnsEditing = new Array(0)
+        this.numberOfAddOns = ''
     }
 
     getPic(){
