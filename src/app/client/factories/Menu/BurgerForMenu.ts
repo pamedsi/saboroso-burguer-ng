@@ -17,9 +17,9 @@ export class BurgerForMenu extends MenuItem {
 
   // Component Props
 
-  breadEditing: any
-  comboEditing: any
-  addOnsEditing: any
+  breadEditing: '' | BreadDTO
+  comboEditing: '' | ComboForMenu
+  addOnsEditing:  (AddOnForMenu | '')[]
   numberOfAddOns: number | string
 
   constructor(burgerDTO: BurgerDTO) {
@@ -31,6 +31,8 @@ export class BurgerForMenu extends MenuItem {
 
     this.addOnsEditing = new Array(0)
     this.numberOfAddOns = ''
+    this.comboEditing = ''
+    this.breadEditing = ''
   }
   getCategory() {
     return this.category;

@@ -51,11 +51,6 @@ export class ItemsDetailsComponent implements OnInit{
     // Caso contrário
     else burger.setCombo(this.combos[index])
   }
-
-  onBreadChange(selectedBread: any, burger: BurgerForMenu) {
-    const index = selectedBread.target.selectedIndex
-    burger.setBread(this.breads[index])
-  }
   finishItemsDetails() {
     if (!this.finishedBurgerAddOns.allRight) {
       // lançar pop-up
@@ -68,7 +63,7 @@ export class ItemsDetailsComponent implements OnInit{
       return
     }
     // Verifica se tem algum hambúrguer sem pão
-    if(this.orderItems.burgers.some(burger=> !burger.getBread())) {
+    if(this.orderItems.burgers.some(burger=> !burger.breadEditing)) {
       console.info('pão pendente')
       return
     }

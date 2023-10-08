@@ -32,7 +32,7 @@ export class OnAddOnChooseComponent {
       this.item.addOnsEditing = this.item.addOnsEditing.slice(0, chosenLength)
     }
     else {
-      this.item.addOnsEditing.push(...new Array(chosenLength - this.item.addOnsEditing.length))
+      this.item.addOnsEditing.push(...new Array(chosenLength - this.item.addOnsEditing.length).fill(''))
     }
 
     this.indexesOfChosenAddOns = Array.from({length: chosenLength}, (_, i) => i)
@@ -40,7 +40,6 @@ export class OnAddOnChooseComponent {
   }
 
   onAddOnChange() {
-    console.log(this.item.addOnsEditing)
     this.addOnsStatus.emit(this.getAddOnStatus())
   }
 

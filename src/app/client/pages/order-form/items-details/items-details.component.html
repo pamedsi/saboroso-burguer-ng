@@ -8,14 +8,16 @@
 
             <section class="choosing-bread">
               <label for="bread{{burgerIndex}}">Pão: </label>
-              <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing" (change)="onBreadChange($event, burger)">
-                <option *ngFor="let bread of breads">{{bread.title}}</option>
+              <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing">
+                <option [value]="''" disabled>Escolher pão</option>
+                <option *ngFor="let bread of breads" [ngValue]="bread">{{bread.title}}</option>
               </select>
             </section>
 
             <section class="choosing-combo">
               <label for="combo{{burgerIndex}}">Combo: </label>
               <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)" [(ngModel)]="burger.comboEditing">
+                <option [value]="''" disabled>Escolher combo</option>
                 <option>Sem combo</option>
                 <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
               </select>
