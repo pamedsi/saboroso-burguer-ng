@@ -7,6 +7,7 @@ import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {MenuItem} from "../../../factories/Menu/MenuItem";
 import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
+import {OrderService} from "../../../services/OrderService";
 
 @Component({
   selector: 'app-choosing-items',
@@ -26,7 +27,8 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
 
   constructor (
     private menuService: MenuService,
-    currencyPipe: CurrencyPipe
+    currencyPipe: CurrencyPipe,
+    private orderService: OrderService
   ) {
     super(currencyPipe)
 
@@ -56,7 +58,10 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
       console.info('É necessário pedir pelo menos um dis itens: hambúrguer, porção ou bebida!')
       return
     }
-    this.nextStep.emit(this.currentOrder)
+
+    this.orderService.changeOrder(this.currentOrder)
+    // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    this.nextStep.emit()
     this.hidden = true
   }
   addItem(item: MenuItem) {

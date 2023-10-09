@@ -8,19 +8,19 @@
             <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
 
             <section class="choosing-bread">
-              <label for="bread{{burgerIndex}}">Pão: </label>
-              <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing">
-                <option [value]="''" disabled>Escolher pão</option>
-                <option *ngFor="let bread of breads" [ngValue]="bread">{{bread.title}}</option>
-              </select>
-            </section>
+            <label for="bread{{burgerIndex}}">Pão: </label>
+            <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing" [compareWith]="compareBreads">
+              <option [value]="''" disabled>Escolher pão</option>
+              <option *ngFor="let bread of breads" [ngValue]="bread">{{bread.title}}</option>
+            </select>
+          </section>
 
             <section class="choosing-combo">
               <label for="combo{{burgerIndex}}">Combo: </label>
-              <select id="combo{{burgerIndex}}" (change)="onComboChange($event, burger)" [(ngModel)]="burger.comboEditing">
+              <select id="combo{{burgerIndex}}" [(ngModel)]="burger.comboEditing" [compareWith]="compareCombos" (change)="onComboChange($event, burger)">
                 <option [value]="''" disabled>Escolher combo</option>
                 <option>Sem combo</option>
-                <option *ngFor="let combo of combos">{{combo.getTitle()}}</option>
+                <option *ngFor="let combo of combos" [ngValue]="combo">{{combo.getTitle()}}</option>
               </select>
             </section>
 

@@ -17,22 +17,21 @@
 
       <!--  Primeira parte do pedido:  -->
       <section>
-             <app-choosing-items
+        <app-choosing-items
             [hidden]="state !== IOrderState.CHOOSING_ITEMS"
-            (nextStep)="goToItemDetails($event)"
+            (nextStep)="goToItemDetails()"
             (backToMe)="goToChoosingItems()"
-          ></app-choosing-items>
+        ></app-choosing-items>
       </section>
 
       <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
       <section *ngIf="state !== IOrderState.CHOOSING_ITEMS">
         <app-items-details
           [hidden]="state !== IOrderState.ITEMS_DETAILS"
-          [order]="order"
           [addOns]="addOns"
           [combos]="combos"
           [breads]="breads"
-          (nextStep)="goToOrderReview($event)"
+          (nextStep)="goToOrderReview()"
           (backToMe)="goToItemDetails()"
         ></app-items-details>
       </section>

@@ -6,6 +6,7 @@ import {MenuService} from "../../services/MenuService";
 import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
 import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
 import {IOrderState} from "../../models/IOrderState";
+import {OrderService} from "../../services/OrderService";
 
 @Component({
   selector: 'app-order-form',
@@ -23,7 +24,7 @@ export class OrderFormComponent implements OnInit{
   combos!: ComboForMenu[]
   addOns!: AddOnForMenu[]
 
-  constructor(private router: Router, private menuService: MenuService) {
+  constructor(private router: Router, private menuService: MenuService, private orderService: OrderService) {
     this.onHighlights = false
     this.state = IOrderState.CHOOSING_ITEMS
   }
@@ -38,7 +39,6 @@ export class OrderFormComponent implements OnInit{
     this.menuService.getBreadsForMenu().subscribe(breads =>
       this.breads = breads
     )
-
   }
   onChangeOption($event: Event){
     this.onHighlights = String($event) === 'highlights'
@@ -51,12 +51,20 @@ export class OrderFormComponent implements OnInit{
   goToChoosingItems(){
     this.state = IOrderState.CHOOSING_ITEMS
   }
-  goToItemDetails(order?: ClientOrderDTO){
-    if (order) this.order = order
+  goToItemDetails(){
+    // if (order) {
+    //   this.order = order
+    this.orderService.currentOrder.subscribe(order => {
+      this.order = order
+    })
+
     this.state = IOrderState.ITEMS_DETAILS
   }
-  goToOrderReview(order?: ClientOrderDTO) {
-    if (order) this.order = order
+  goToOrderReview() {
+    // if (order) this.order = order
+    this.orderService.currentOrder.subscribe(order => {
+      this.order = order
+    })
     this.state = IOrderState.ORDER_REVIEW
   }
   goToContactInfo() {

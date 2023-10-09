@@ -5,15 +5,16 @@ import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {IAddOnStatus} from "../../../models/IAddOnStatus";
 import {BreadDTO} from "../../../../shared/models/MenuItemDTO/BreadDTO";
 import {ComboForMenu} from "../../../factories/Menu/ComboForMenu";
+import {OrderService} from "../../../services/OrderService";
 
 @Component({
   selector: 'app-items-details',
   templateUrl: './items-details.component.html',
   styleUrls: ['./items-details.component.css']
 })
-export class ItemsDetailsComponent{
+export class ItemsDetailsComponent implements OnInit{
   @Input() hidden!: boolean;
-  @Input() order!: ClientOrderDTO
+  order!: ClientOrderDTO
   @Output() nextStep: EventEmitter<any>
   @Output() backToMe: EventEmitter<any>
 
@@ -24,12 +25,18 @@ export class ItemsDetailsComponent{
   private finishedBurgerAddOns: IAddOnStatus
   private finishedPortionAddOns: IAddOnStatus
 
-  constructor() {
+  constructor(private orderService: OrderService) {
     this.finishedBurgerAddOns = {allRight: true} as IAddOnStatus
     this.finishedPortionAddOns = {allRight: true} as IAddOnStatus
 
     this.nextStep = new EventEmitter()
     this.backToMe = new EventEmitter()
+  }
+
+  ngOnInit() {
+    this.orderService.currentOrder.subscribe(order =>
+      this.order = order
+    )
   }
 
   onBurgerAddOnFinished(burgerAddOnStatus: IAddOnStatus) {
@@ -45,7 +52,6 @@ export class ItemsDetailsComponent{
 
     // Caso a opção "Sem Combo" seja selecionada
     if (index <= -1) burger.setCombo(null)
-
     // Caso contrário
     else burger.setCombo(this.combos[index])
   }
@@ -67,13 +73,23 @@ export class ItemsDetailsComponent{
     }
 
     this.order.burgers.forEach(burger => burger.setBread(burger.breadEditing as BreadDTO))
-    // botei qq coisa só pra ele parar de reclamar
-    this.nextStep.emit(this.order)
+
+    this.orderService.changeOrder(this.order)
+    // this.nextStep.emit(this.order)
+    this.nextStep.emit()
     this.hidden = true
   }
 
   updateItemsDetails(){
     this.backToMe.emit()
     this.hidden = false
+  }
+
+  compareBreads(b1: BreadDTO, b2: BreadDTO) {
+    return b1 && b2 ? b1.identifier === b2.identifier : b1 === b2;
+  }
+
+  compareCombos(combo1: ComboForMenu, combo2: ComboForMenu) {
+    return combo1 && combo2 ? combo1.getIdentifier() === combo2.getIdentifier() : combo1 === combo2;
   }
 }
