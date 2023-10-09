@@ -8,46 +8,64 @@
   <div class="line-container"><div class="separator-line"></div></div>
 
   <main>
-    <!--  Primeira parte do pedido:  -->
-    <section>
-      <div *ngIf="onHighlights; else menu">
+
+    <section *ngIf="onHighlights; else menu">
         <app-highlight-burgers></app-highlight-burgers>
-      </div>
-
-      <ng-template #menu>
-        <app-choosing-items (nextStep)="goToItemDetails($event)" (changeOrder)="goToChoosingItems()"></app-choosing-items>
-      </ng-template>
     </section>
 
-    <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
-    <section *ngIf="state !== IOrderState.CHOOSING_ITEMS">
-      <app-items-details
-        [hidden]="state !== IOrderState.ITEMS_DETAILS"
-        [orderItems]="order"
-        [addOns]="addOns"
-        [combos]="combos"
-        [breads]="breads"
-        (nextStep)="goToOrderReview()"
-      ></app-items-details>
-    </section>
+    <ng-template #menu>
 
-    <section *ngIf="state === IOrderState.ORDER_REVIEW">
+      <!--  Primeira parte do pedido:  -->
+      <section>
+             <app-choosing-items
+            [hidden]="state !== IOrderState.CHOOSING_ITEMS"
+            (nextStep)="goToItemDetails($event)"
+            (backToMe)="goToChoosingItems()"
+          ></app-choosing-items>
+      </section>
 
-      <h2>ESSE AQUI É TEU PEDIDO DA LIGADO, OLHA SÓ AS PRD</h2>
+      <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
+      <section *ngIf="state !== IOrderState.CHOOSING_ITEMS">
+        <app-items-details
+          [hidden]="state !== IOrderState.ITEMS_DETAILS"
+          [order]="order"
+          [addOns]="addOns"
+          [combos]="combos"
+          [breads]="breads"
+          (nextStep)="goToOrderReview($event)"
+          (backToMe)="goToItemDetails()"
+        ></app-items-details>
+      </section>
 
-      <div class="yellow-button" (click)="goToContactInfo()">CONTATO E ENDEREÇO</div>
-    </section>
+      <!--  Revisando o pedido  -->
+      <section *ngIf="state !== IOrderState.CHOOSING_ITEMS && state !== IOrderState.ITEMS_DETAILS">
+        <app-order-review
+          [hidden]="state !== IOrderState.ORDER_REVIEW"
+          [order]="order"
+          (nextStep)="goToContactInfo()"
+          (backToMe)="goToOrderReview()"
+        ></app-order-review>
+      </section>
 
-    <!--  Parte final, revisando o pedido  -->
-    <section *ngIf="state === IOrderState.CONTACT_AND_ADDRESS">
-      <div class="change-order-button">
-        <h1 class="arrow-up-icon">^</h1>
-<!--        <div class="yellow-button" (click)="goToItemDetails(order)">ALTERAR DETALHES</div>-->
-      </div>
+<!--    Passando endereço e contato para confirmar  -->
+      <section *ngIf="state !== IOrderState.CHOOSING_ITEMS && state !== IOrderState.ITEMS_DETAILS && state !== IOrderState.ORDER_REVIEW">
 
-      <h2>Lança o endereço e o zap ae pra nós pae</h2>
-      <div class="yellow-button" >CONFIRMAR PEDIDO</div>
-    </section>
+        <app-contact-and-address
+          [hidden]="state !== IOrderState.CONTACT_AND_ADDRESS"
+        ></app-contact-and-address>
+<!--        <div class="change-order-button">-->
+<!--          <app-yellow-button-->
+<!--            text=""-->
+<!--          ></app-yellow-button>-->
 
+<!--  &lt;!&ndash;        <div class="yellow-button" (click)="goToItemDetails(order)">ALTERAR DETALHES</div>&ndash;&gt;-->
+<!--        </div>-->
+
+        <h2>Lança o endereço e o zap ae pra nós pae</h2>
+<!--        <div class="yellow-button" >CONFIRMAR PEDIDO</div>-->
+      </section>
+
+    </ng-template>
   </main>
+
 </body>

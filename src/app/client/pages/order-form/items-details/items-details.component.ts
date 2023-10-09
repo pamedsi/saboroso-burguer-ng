@@ -11,27 +11,25 @@ import {ComboForMenu} from "../../../factories/Menu/ComboForMenu";
   templateUrl: './items-details.component.html',
   styleUrls: ['./items-details.component.css']
 })
-export class ItemsDetailsComponent implements OnInit{
-  @Input() orderItems!: ClientOrderDTO
+export class ItemsDetailsComponent{
+  @Input() hidden!: boolean;
+  @Input() order!: ClientOrderDTO
+  @Output() nextStep: EventEmitter<any>
+  @Output() backToMe: EventEmitter<any>
 
   @Input() addOns!: AddOnForMenu[]
   @Input() combos!: ComboForMenu[]
   @Input() breads!: BreadDTO[]
 
-  @Output() nextStep: EventEmitter<any>
-
   private finishedBurgerAddOns: IAddOnStatus
   private finishedPortionAddOns: IAddOnStatus
-  @Input() hidden!: boolean;
 
   constructor() {
     this.finishedBurgerAddOns = {allRight: true} as IAddOnStatus
     this.finishedPortionAddOns = {allRight: true} as IAddOnStatus
 
     this.nextStep = new EventEmitter()
-  }
-
-  ngOnInit() {
+    this.backToMe = new EventEmitter()
   }
 
   onBurgerAddOnFinished(burgerAddOnStatus: IAddOnStatus) {
@@ -63,18 +61,19 @@ export class ItemsDetailsComponent implements OnInit{
       return
     }
     // Verifica se tem algum hambúrguer sem pão
-    if(this.orderItems.burgers.some(burger=> !burger.breadEditing)) {
+    if(this.order.burgers.some(burger=> !burger.breadEditing)) {
       console.info('pão pendente')
       return
     }
 
+    this.order.burgers.forEach(burger => burger.setBread(burger.breadEditing as BreadDTO))
     // botei qq coisa só pra ele parar de reclamar
-    this.nextStep.emit(this.orderItems)
-    this.hidden = !this.hidden
+    this.nextStep.emit(this.order)
+    this.hidden = true
   }
 
   updateItemsDetails(){
-    console.log('oieee')
+    this.backToMe.emit()
     this.hidden = false
   }
 }

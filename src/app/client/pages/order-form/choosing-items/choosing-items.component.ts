@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MenuService} from "../../../services/MenuService";
 import {CurrencyPipe} from "@angular/common";
 import {PortionForMenu} from "../../../factories/Menu/PortionForMenu";
@@ -15,9 +15,8 @@ import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
 })
 export class ChoosingItemsComponent extends WIthPriceFormatter {
   @Output() nextStep = new EventEmitter()
-  @Output() changeOrder  = new EventEmitter()
-
-  hidden = false
+  @Output() backToMe  = new EventEmitter()
+  @Input() hidden!: boolean
 
   availableBurgers!: {[category: string]: BurgerForMenu[]}
   availablePortions!: PortionForMenu[]
@@ -100,6 +99,6 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
       portion.setAddOns([])
     })
     this.hidden = false
-    this.changeOrder.emit()
+    this.backToMe.emit()
   }
 }

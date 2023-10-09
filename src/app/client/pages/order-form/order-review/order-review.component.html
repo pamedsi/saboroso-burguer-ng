@@ -1,1 +1,19 @@
-<p>order-review works!</p>
+<ng-template #notHidden>
+  <section>
+    <h2>olha teu pedido como tá</h2>
+    <section>{{order}}</section>
+    <h3>tem certeza que é isso mesmo?</h3>
+
+    <app-yellow-button
+      text="ESTÁ TUDO CERTO! FORNECER CONTATO E ENDEREÇO"
+      (clicked)="goToNextStep()"
+    ></app-yellow-button>
+  </section>
+</ng-template>
+
+
+<app-yellow-button
+  *ngIf="hidden else notHidden"
+  text="REVER PEDIDO"
+  (clicked)="reviewOrder()"
+></app-yellow-button>

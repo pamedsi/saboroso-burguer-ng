@@ -1,9 +1,10 @@
-<main *ngIf="!hidden">
+<ng-template #notHidden>
+  <main>
     <section>
-      <section class="burger-details" *ngIf="orderItems.burgers.length">
+      <section class="burger-details" *ngIf="order.burgers.length">
         <h3>Seus Hambúrgueres</h3>
         <ul>
-          <li class="selects" *ngFor="let burger of orderItems.burgers; let burgerIndex = index">
+          <li class="selects" *ngFor="let burger of order.burgers; let burgerIndex = index">
             <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
 
             <section class="choosing-bread">
@@ -33,10 +34,10 @@
         </ul>
       </section>
 
-      <section class="portion-details" *ngIf="orderItems.portions.length">
+      <section class="portion-details" *ngIf="order.portions.length">
         <h3>Suas porções</h3>
         <ul>
-          <li  class="selects"  *ngFor="let portion of orderItems.portions; let portionIndex = index">
+          <li  class="selects"  *ngFor="let portion of order.portions; let portionIndex = index">
             <h3>{{portionIndex + 1}}º {{portion.getTitle()}}</h3>
             <app-on-add-on-choose
               (addOnsStatus)="onPortionAddOnFinished($event)"
@@ -50,27 +51,29 @@
     </section>
 
     <section class="helpers">
-      <section *ngIf="orderItems.burgers.length">
+      <section *ngIf="order.burgers.length">
         <h3>Entenda os combos</h3>
         <app-menu-helper listTitle="Combos" [itemList]="combos"></app-menu-helper>
         <h3>Entenda os Adicionais</h3>
         <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
       </section>
 
-      <section *ngIf="orderItems.portions.length">
+      <section *ngIf="order.portions.length">
         <h3>Entenda os Adicionais</h3>
         <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
       </section>
     </section>
-</main>
+  </main>
 
-<app-yellow-button *ngIf="!hidden"
-  text="REVISAR PEDIDO"
-  (clicked)="finishItemsDetails()"
-></app-yellow-button>
+  <app-yellow-button
+    text="REVISAR PEDIDO"
+    (clicked)="finishItemsDetails()"
+  ></app-yellow-button>
+
+</ng-template>
 
 <app-yellow-button
-  *ngIf="hidden"
-  text="ALTERAR DETALHES"
-  (clicked)="updateItemsDetails()"
+    *ngIf="hidden else notHidden"
+    text="ALTERAR DETALHES"
+    (clicked)="updateItemsDetails()"
 ></app-yellow-button>

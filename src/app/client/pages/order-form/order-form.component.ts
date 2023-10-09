@@ -51,12 +51,12 @@ export class OrderFormComponent implements OnInit{
   goToChoosingItems(){
     this.state = IOrderState.CHOOSING_ITEMS
   }
-  goToItemDetails(order: ClientOrderDTO){
-    this.order = order
+  goToItemDetails(order?: ClientOrderDTO){
+    if (order) this.order = order
     this.state = IOrderState.ITEMS_DETAILS
   }
-  goToOrderReview() {
-    // CHECAR SE TÁ TUDO CERTO COM OS DETALHES DO PEDIDO
+  goToOrderReview(order?: ClientOrderDTO) {
+    if (order) this.order = order
     this.state = IOrderState.ORDER_REVIEW
   }
   goToContactInfo() {
