@@ -71,9 +71,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
   }
   removeFirstOccurrence(array: MenuItem[], item: MenuItem) {
     const index = array.findIndex(i => i.getIdentifier() === item.getIdentifier());
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
+    if (index !== -1) array.splice(index, 1)
   }
   removeItem(item: MenuItem) {
     if (item instanceof BurgerForMenu) this.removeFirstOccurrence(this.order.burgers, item);
@@ -83,17 +81,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     this.orderService.changeOrder(this.order)
   }
 
-  onOrderChange(){
-    // Resetando detalhes do pão ao voltar à edição
-    this.order.burgers.forEach(burger => {
-      burger.setBread(undefined)
-      burger.setCombo(null)
-      burger.setAddOns([])
-    })
-
-    this.order.portions.forEach(portion => {
-      portion.setAddOns([])
-    })
+  reChooseItems(){
     this.hidden = false
     this.backToMe.emit()
   }
