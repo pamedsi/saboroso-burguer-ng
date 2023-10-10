@@ -99,7 +99,10 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     this.backToMe.emit()
   }
 
-  countBurgers(burgerToCount: BurgerForMenu){
-    return this.order.burgers.filter(burger => burgerToCount.getIdentifier() === burger.getIdentifier()).length
+  countItems(itemToCount: BurgerForMenu | PortionForMenu){
+    if (itemToCount instanceof BurgerForMenu) {
+      return this.order.burgers.filter(burger => itemToCount.getIdentifier() === burger.getIdentifier()).length
+    }
+    return this.order.portions.filter(portion => itemToCount.getIdentifier() === portion.getIdentifier()).length
   }
 }

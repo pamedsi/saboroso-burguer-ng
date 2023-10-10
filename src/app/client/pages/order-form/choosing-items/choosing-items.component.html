@@ -12,7 +12,7 @@
             <h4>{{formatPrice(burgerCaster(burger).getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
-              <div>{{countBurgers(burgerCaster(burger))}}</div>
+              <div>{{countItems(burgerCaster(burger))}}</div>
               <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
             </div>
           </li>
@@ -30,8 +30,7 @@
             <h4>{{formatPrice(portion.getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(portion)">-</button>
-<!--              <div>{{portion.getQuantity()}}</div>-->
-              <div>Implementar contador</div>
+              <div>{{countItems(portion)}}</div>
               <button class="increment-button" (click)="addItem(portion)">+</button>
             </div>
           </li>
