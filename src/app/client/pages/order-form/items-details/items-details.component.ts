@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
+import {ClientOrder} from "../../../models/ClientOrder";
 import {AddOnForMenu} from "../../../factories/Menu/AddOnForMenu";
 import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {IAddOnStatus} from "../../../models/IAddOnStatus";
@@ -14,7 +14,7 @@ import {OrderService} from "../../../services/OrderService";
 })
 export class ItemsDetailsComponent implements OnInit{
   @Input() hidden!: boolean;
-  order!: ClientOrderDTO
+  order!: ClientOrder
   @Output() nextStep: EventEmitter<any>
   @Output() backToMe: EventEmitter<any>
 
@@ -66,16 +66,16 @@ export class ItemsDetailsComponent implements OnInit{
       console.log(this.finishedPortionAddOns.missing)
       return
     }
-    // Verifica se tem algum hambúrguer sem pão
     if(this.order.burgers.some(burger=> !burger.breadEditing)) {
+      // lançar pop-up
       console.info('pão pendente')
       return
     }
 
     this.order.burgers.forEach(burger => burger.setBread(burger.breadEditing as BreadDTO))
+    this.order.portions.forEach(portion => portion.setAddOns(portion.addOnsEditing))
 
     this.orderService.changeOrder(this.order)
-    // this.nextStep.emit(this.order)
     this.nextStep.emit()
     this.hidden = true
   }

@@ -44,5 +44,9 @@ export class PortionForMenu extends MenuItem {
         description: this.description,
         pic: this.pic
       } as PortionDTO
-  }
+    }
+    getIndexesOfChosenAddOns(){
+        const length = Number(this.numberOfAddOns)
+        return Array.from({length}, (_, i) => i)
+    }
 }

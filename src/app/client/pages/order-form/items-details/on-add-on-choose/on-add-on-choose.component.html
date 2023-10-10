@@ -7,9 +7,9 @@
     </select>
   </section>
 
-  <section *ngFor="let addOnIndex of indexesOfChosenAddOns">
+  <section *ngFor="let addOnIndex of item.getIndexesOfChosenAddOns()">
     <label for="item{{itemIndex}}add-on{{addOnIndex}}">Para o {{addOnIndex + 1}}º adicional</label>
-    <select [(ngModel)]="item.addOnsEditing[addOnIndex]" id="item{{itemIndex}}add-on{{addOnIndex}}" (change)="onAddOnChange()">
+    <select [(ngModel)]="item.addOnsEditing[addOnIndex]" id="item{{itemIndex}}add-on{{addOnIndex}}" (change)="onAddOnChange()" [compareWith]="compareAddOns">
       <option [value]="''" disabled>Escolher adicional</option>
       <option *ngFor="let addOnOption of allAddOns" [ngValue]="addOnOption">
         {{addOnOption.getTitle()}}

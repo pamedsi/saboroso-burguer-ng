@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
+import {ClientOrder} from "../../../models/ClientOrder";
 
 @Component({
   selector: 'app-order-review',
@@ -8,7 +8,7 @@ import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
 })
 export class OrderReviewComponent {
   @Input() hidden!: boolean
-  @Input() order!: ClientOrderDTO
+  @Input() order!: ClientOrder
   @Output() nextStep: EventEmitter<any>
   @Output() backToMe:  EventEmitter<any>
 

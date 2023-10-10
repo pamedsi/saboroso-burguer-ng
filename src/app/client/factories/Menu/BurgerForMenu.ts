@@ -20,7 +20,7 @@ export class BurgerForMenu extends MenuItem {
   breadEditing: '' | BreadDTO
   comboEditing: '' | ComboForMenu
   addOnsEditing:  (AddOnForMenu | '')[]
-  numberOfAddOns: number | string
+  numberOfAddOns: number | ''
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
@@ -83,5 +83,10 @@ export class BurgerForMenu extends MenuItem {
       bread: this.bread,
       combo: this.combo
     } as BurgerDTO
+  }
+
+  getIndexesOfChosenAddOns(){
+    const length = Number(this.numberOfAddOns)
+    return Array.from({length}, (_, i) => i)
   }
 }

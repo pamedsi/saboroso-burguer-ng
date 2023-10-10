@@ -16,12 +16,15 @@ export class OnAddOnChooseComponent {
   @Output() addOnsStatus: EventEmitter<IAddOnStatus>
   rangeToChooseAddOns: (number | string)[]
 
-  indexesOfChosenAddOns!: number[];
-
   constructor() {
     this.rangeToChooseAddOns = Array.from({length: 10}, (_, i) => i + 1)
     this.rangeToChooseAddOns.unshift('')
     this.addOnsStatus = new EventEmitter()
+
+  }
+
+  ngOnInit(){
+      console.log(this.item)
   }
 
   chooseNumberOfAddOns() {
@@ -35,7 +38,6 @@ export class OnAddOnChooseComponent {
       this.item.addOnsEditing.push(...new Array(chosenLength - this.item.addOnsEditing.length).fill(''))
     }
 
-    this.indexesOfChosenAddOns = Array.from({length: chosenLength}, (_, i) => i)
     this.addOnsStatus.emit(this.getAddOnStatus())
   }
 
@@ -64,5 +66,9 @@ export class OnAddOnChooseComponent {
     }
 
     return {allRight: true} as IAddOnStatus
+  }
+
+  compareAddOns(addOn1: AddOnForMenu, addOn2: AddOnForMenu){
+    return addOn1 && addOn2 ? addOn1.getIdentifier() === addOn2.getIdentifier() : addOn1 === addOn2
   }
 }

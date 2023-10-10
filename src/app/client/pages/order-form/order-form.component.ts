@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {ClientOrderDTO} from "../../models/ClientOrderDTO";
+import {ClientOrder} from "../../models/ClientOrder";
 import {ComboForMenu} from "../../factories/Menu/ComboForMenu";
 import {MenuService} from "../../services/MenuService";
 import {AddOnForMenu} from "../../factories/Menu/AddOnForMenu";
@@ -16,7 +16,7 @@ import {OrderService} from "../../services/OrderService";
 export class OrderFormComponent implements OnInit{
   onHighlights: boolean
   state: IOrderState
-  order!: ClientOrderDTO
+  order!: ClientOrder
 
   protected readonly IOrderState = IOrderState;
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import {ClientOrderDTO} from "../models/ClientOrderDTO";
+import {ClientOrder} from "../models/ClientOrder";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private orderSource = new BehaviorSubject<ClientOrderDTO>({
+  private orderSource = new BehaviorSubject<ClientOrder>({
     burgers: [],
     portions: [],
     drinks: []
@@ -15,7 +15,7 @@ export class OrderService {
 
   currentOrder = this.orderSource.asObservable();
 
-  changeOrder(order: ClientOrderDTO) {
+  changeOrder(order: ClientOrder) {
     this.orderSource.next(order);
   }
 }

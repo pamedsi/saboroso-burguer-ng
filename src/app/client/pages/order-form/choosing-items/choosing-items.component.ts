@@ -5,7 +5,7 @@ import {PortionForMenu} from "../../../factories/Menu/PortionForMenu";
 import {DrinkForMenu} from "../../../factories/Menu/DrinkForMenu";
 import {BurgerForMenu} from "../../../factories/Menu/BurgerForMenu";
 import {MenuItem} from "../../../factories/Menu/MenuItem";
-import {ClientOrderDTO} from "../../../models/ClientOrderDTO";
+import {ClientOrder} from "../../../models/ClientOrder";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
 import {OrderService} from "../../../services/OrderService";
 
@@ -18,7 +18,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
   @Output() nextStep = new EventEmitter()
   @Output() backToMe  = new EventEmitter()
   @Input() hidden!: boolean
-  order!: ClientOrderDTO
+  order!: ClientOrder
 
   availableBurgers!: {[category: string]: BurgerForMenu[]}
   availablePortions!: PortionForMenu[]
