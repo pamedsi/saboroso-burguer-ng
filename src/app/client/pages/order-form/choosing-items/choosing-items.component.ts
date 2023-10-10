@@ -38,7 +38,6 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     this.menuService.getPortionsForMenu().subscribe(portions => this.availablePortions = portions)
     this.menuService.getDrinksForMenu().subscribe(drinks => this.availableDrinks = drinks)
     this.orderService.currentOrder.subscribe(order => this.order = order)
-    console.log(this.order)
   }
 
   burgerCaster(burger: any): BurgerForMenu {
@@ -98,5 +97,9 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     })
     this.hidden = false
     this.backToMe.emit()
+  }
+
+  countBurgers(burgerToCount: BurgerForMenu){
+    return this.order.burgers.filter(burger => burgerToCount.getIdentifier() === burger.getIdentifier()).length
   }
 }
