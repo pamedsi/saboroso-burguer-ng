@@ -5,7 +5,7 @@ import {BreadDTO} from "./BreadDTO";
 import {ComboDTO} from "./ComboDTO";
 
 export interface BurgerDTO extends BaseMenuItemDTO {
-  category: CategoryDTO
+  categoryDTO: CategoryDTO
   pic: string
   ingredients: IngredientDTO[]
   bread: BreadDTO | undefined

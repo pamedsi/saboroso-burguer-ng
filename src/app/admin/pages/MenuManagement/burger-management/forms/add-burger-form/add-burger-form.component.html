@@ -1,4 +1,5 @@
 <section>
+
   <h3>Adicionar Hambúrguer</h3>
   <div>
     <label for="title">Título:</label>
@@ -15,8 +16,8 @@
 
   <div>
     <label for="price">Preço:</label>
-    <input id="price" type="text" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
-          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    <input (change)="addBurger()" id="price" currencyMask [(ngModel)]="price" placeholder="R$ 0,00"
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" autocomplete="off"/>
   </div>
 
   <div>

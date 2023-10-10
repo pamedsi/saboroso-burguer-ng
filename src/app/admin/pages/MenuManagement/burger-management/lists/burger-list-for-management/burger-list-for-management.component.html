@@ -1,6 +1,6 @@
-<div class="empty-message" *ngIf="burgerList.length === 0">Sem hambúrgueres, adicione novos</div>
+<div class="empty-message" *ngIf="burgerList.length === 0 else notEmptyList">Sem hambúrgueres, adicione novos</div>
+<ng-template #notEmptyList><h3>Gerir Hambúrgueres</h3></ng-template>
 <main *ngFor="let burger of burgerList">
-<h3>Gerir Hambúrgueres</h3>
   <section *ngIf="!burger.getEditable()">
       <div class="prop-container">
         <div>Título:</div>

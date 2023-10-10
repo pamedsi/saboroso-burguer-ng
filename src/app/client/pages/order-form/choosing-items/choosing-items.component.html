@@ -12,7 +12,7 @@
             <h4>{{formatPrice(burgerCaster(burger).getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
-              <div>{{burgerCaster(burger).getQuantity()}}</div>
+              <div>{{order.burgers.length}}</div>
               <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
             </div>
           </li>
@@ -30,7 +30,8 @@
             <h4>{{formatPrice(portion.getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(portion)">-</button>
-              <div>{{portion.getQuantity()}}</div>
+<!--              <div>{{portion.getQuantity()}}</div>-->
+              <div>Implementar contador</div>
               <button class="increment-button" (click)="addItem(portion)">+</button>
             </div>
           </li>
@@ -47,7 +48,8 @@
             <h4>{{formatPrice(drink.getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(drink)">-</button>
-              <div>{{drink.getQuantity()}}</div>
+<!--              <div>{{drink}}</div>-->
+              <div>Implementar contador</div>
               <button class="increment-button" (click)="addItem(drink)">+</button>
             </div>
           </li>

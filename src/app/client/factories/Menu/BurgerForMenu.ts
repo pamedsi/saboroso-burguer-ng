@@ -24,7 +24,7 @@ export class BurgerForMenu extends MenuItem {
 
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
-    this.category = burgerDTO.category
+    this.category = burgerDTO.categoryDTO
     this.pic = burgerDTO.pic
     this.ingredients = burgerDTO.ingredients
     this.combo = null
@@ -77,7 +77,7 @@ export class BurgerForMenu extends MenuItem {
       identifier: this.identifier,
       title: this.title,
       price: this.price,
-      category: this.category,
+      categoryDTO: this.category,
       pic: this.pic,
       ingredients: this.ingredients,
       bread: this.bread,

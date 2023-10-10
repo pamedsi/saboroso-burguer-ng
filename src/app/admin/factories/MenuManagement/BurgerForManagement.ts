@@ -26,7 +26,7 @@ export class BurgerForManagement {
 
   constructor(burgerFromRequest: BurgerDTO) {
     this.identifier = burgerFromRequest.identifier
-    this.category = new CategoryForManagement(burgerFromRequest.category)
+    this.category = new CategoryForManagement(burgerFromRequest.categoryDTO)
     this.title = burgerFromRequest.title
     this.price = Number(burgerFromRequest.price)
     this.pic = burgerFromRequest.pic
@@ -153,7 +153,7 @@ export class BurgerForManagement {
   toDTO(): BurgerDTO {
     return {
       identifier: this.identifier,
-      category: this.category.toDTO(),
+      categoryDTO: this.category.toDTO(),
       title: this.title,
       price: this.price,
       pic: this.pic ? this.pic : null,

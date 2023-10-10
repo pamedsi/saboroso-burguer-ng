@@ -14,16 +14,15 @@ import {OrderService} from "../../../services/OrderService";
   templateUrl: './choosing-items.component.html',
   styleUrls: ['./choosing-items.component.css']
 })
-export class ChoosingItemsComponent extends WIthPriceFormatter {
+export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit {
   @Output() nextStep = new EventEmitter()
   @Output() backToMe  = new EventEmitter()
   @Input() hidden!: boolean
+  order!: ClientOrderDTO
 
   availableBurgers!: {[category: string]: BurgerForMenu[]}
   availablePortions!: PortionForMenu[]
   availableDrinks!: DrinkForMenu[]
-
-  private readonly currentOrder: ClientOrderDTO
 
   constructor (
     private menuService: MenuService,
@@ -31,12 +30,6 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     private orderService: OrderService
   ) {
     super(currencyPipe)
-
-    this.currentOrder = {
-      burgers: [],
-      portions: [],
-      drinks: []
-    } as ClientOrderDTO
   }
 
   ngOnInit() {
@@ -44,6 +37,8 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     this.menuService.getBurgersForMenu().subscribe(burgers => this.availableBurgers = burgers)
     this.menuService.getPortionsForMenu().subscribe(portions => this.availablePortions = portions)
     this.menuService.getDrinksForMenu().subscribe(drinks => this.availableDrinks = drinks)
+    this.orderService.currentOrder.subscribe(order => this.order = order)
+    console.log(this.order)
   }
 
   burgerCaster(burger: any): BurgerForMenu {
@@ -51,30 +46,30 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
   }
   goToNextStep(){
     if (
-      !this.currentOrder.burgers.length &&
-      !this.currentOrder.portions.length &&
-      !this.currentOrder.drinks.length
+      !this.order.burgers.length &&
+      !this.order.portions.length &&
+      !this.order.drinks.length
     ) {
       console.info('É necessário pedir pelo menos um dis itens: hambúrguer, porção ou bebida!')
       return
     }
 
-    this.orderService.changeOrder(this.currentOrder)
+    this.orderService.changeOrder(this.order)
     // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     this.nextStep.emit()
     this.hidden = true
   }
   addItem(item: MenuItem) {
     if (item instanceof BurgerForMenu) {
-      this.currentOrder.burgers.push(new BurgerForMenu(item.toDTO()));
+      this.order.burgers.push(new BurgerForMenu(item.toDTO()));
     }
     else if (item instanceof PortionForMenu) {
-      this.currentOrder.portions.push(new PortionForMenu(item.toDTO()));
+      this.order.portions.push(new PortionForMenu(item.toDTO()));
     }
-    else if (item instanceof DrinkForMenu) this.currentOrder.drinks.push(item);
+    else if (item instanceof DrinkForMenu) this.order.drinks.push(item);
     else return;
 
-    item.incrementQuantity();
+    this.orderService.changeOrder(this.order)
   }
   removeFirstOccurrence(array: MenuItem[], item: MenuItem) {
     const index = array.findIndex(i => i.getIdentifier() === item.getIdentifier());
@@ -83,24 +78,22 @@ export class ChoosingItemsComponent extends WIthPriceFormatter {
     }
   }
   removeItem(item: MenuItem) {
-    if(item.getQuantity() <= 0) return
-    const identifier = item.getIdentifier();
-    if (item instanceof BurgerForMenu) this.removeFirstOccurrence(this.currentOrder.burgers, item);
-    else if (item instanceof PortionForMenu) this.removeFirstOccurrence(this.currentOrder.portions, item);
-    else if (item instanceof DrinkForMenu) this.removeFirstOccurrence(this.currentOrder.drinks, item);
+    if (item instanceof BurgerForMenu) this.removeFirstOccurrence(this.order.burgers, item);
+    else if (item instanceof PortionForMenu) this.removeFirstOccurrence(this.order.portions, item);
+    else if (item instanceof DrinkForMenu) this.removeFirstOccurrence(this.order.drinks, item);
     else return;
-    item.decrementQuantity();
+    this.orderService.changeOrder(this.order)
   }
 
   onOrderChange(){
     // Resetando detalhes do pão ao voltar à edição
-    this.currentOrder.burgers.forEach(burger => {
+    this.order.burgers.forEach(burger => {
       burger.setBread(undefined)
       burger.setCombo(null)
       burger.setAddOns([])
     })
 
-    this.currentOrder.portions.forEach(portion => {
+    this.order.portions.forEach(portion => {
       portion.setAddOns([])
     })
     this.hidden = false

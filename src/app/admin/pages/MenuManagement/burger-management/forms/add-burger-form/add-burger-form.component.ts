@@ -63,14 +63,27 @@ export class AddBurgerFormComponent implements OnInit{
     this.inStock = target.value === 'Sim'
   }
   addBurger(){
-    if (!this.title) return
-    if (!this.category) return
-    if (!this.price) return
-    if (!this.selectedIngredients.length) return
+    if (!this.title) {
+      console.info('Título necessário')
+      return
+    }
+    if (!this.category) {
+      console.info('Categoria necessária')
+      return
+    }
+    if (!this.price) {
+      console.log(this.price)
+      console.info('Preço necessário')
+      return
+    }
+    if (!this.selectedIngredients.length) {
+      console.info('Ingredientes necessários')
+      return
+    }
 
     const burgerDTO = {
       title: this.title,
-      category: this.category.toDTO(),
+      categoryDTO: this.category.toDTO(),
       price: this.price,
       pic: this.pic ? this.pic : null,
       inStock: this.inStock,

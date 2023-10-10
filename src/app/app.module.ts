@@ -7,6 +7,7 @@ import { WelcomeHeaderComponent } from './client/components/welcome-header/welco
 import { HighlightsAndMenuButtonsComponent } from './client/components/highlights-and-menu-buttons/highlights-and-menu-buttons.component';
 import { HttpClientModule } from "@angular/common/http";
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
+
 import { LoginFormComponent } from './admin/pages/login/login-form.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
