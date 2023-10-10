@@ -52,8 +52,6 @@ export class OrderFormComponent implements OnInit{
     this.state = IOrderState.CHOOSING_ITEMS
   }
   goToItemDetails(){
-    // if (order) {
-    //   this.order = order
     this.orderService.currentOrder.subscribe(order => {
       this.order = order
     })
@@ -61,7 +59,6 @@ export class OrderFormComponent implements OnInit{
     this.state = IOrderState.ITEMS_DETAILS
   }
   goToOrderReview() {
-    // if (order) this.order = order
     this.orderService.currentOrder.subscribe(order => {
       this.order = order
     })
@@ -69,9 +66,5 @@ export class OrderFormComponent implements OnInit{
   }
   goToContactInfo() {
     this.state = IOrderState.CONTACT_AND_ADDRESS
-  }
-
-  updateItemsDetails() {
-    // RESGATAR AS INFORMAÇÕE DE DETALHES E VOLTAR PARA O STATE DE ITEMS_DETAILS
   }
 }

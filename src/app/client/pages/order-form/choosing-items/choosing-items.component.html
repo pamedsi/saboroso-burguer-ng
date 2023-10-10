@@ -56,7 +56,7 @@
     </section>
 
     <app-yellow-button
-      text="ESCOLHER PÃES, COMBOS E ADICIONAIS"
+      [text]="buttonLabelForNextStep()"
       (clicked)="goToNextStep()"
     ></app-yellow-button>
 

@@ -15,10 +15,12 @@ import {OrderService} from "../../../services/OrderService";
   styleUrls: ['./choosing-items.component.css']
 })
 export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit {
-  @Output() nextStep = new EventEmitter()
+  @Output() goToItemsDetails = new EventEmitter()
+  @Output() goToOrderReview = new EventEmitter()
   @Output() backToMe  = new EventEmitter()
   @Input() hidden!: boolean
   order!: ClientOrder
+  onlyDrinks = false
 
   availableBurgers!: {[category: string]: BurgerForMenu[]}
   availablePortions!: PortionForMenu[]
@@ -54,7 +56,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     }
 
     this.orderService.changeOrder(this.order)
-    this.nextStep.emit()
+    this.onlyDrinks ? this.goToOrderReview.emit() : this.goToItemsDetails.emit()
     this.hidden = true
   }
   addItem(item: MenuItem) {
@@ -94,4 +96,21 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
 
     return listToSearch.reduce((count, item) => count + (item.getIdentifier() === itemToCount.getIdentifier() ? 1 : 0), 0);
   }
+
+  buttonLabelForNextStep(): string {
+    const hasBurgers = this.order.burgers.length
+    const hasPortions = this.order.portions.length
+
+    if (hasBurgers || hasPortions) {
+      this.onlyDrinks = false;
+      return hasBurgers ? 'ESCOLHER PÃES, COMBOS E ADICIONAIS' : 'ESCOLHER ADICIONAIS';
+    }
+
+    if (this.order.drinks.length) {
+      this.onlyDrinks = true;
+      return 'REVISAR PEDIDO';
+    }
+    return 'ESCOLHA ALGUM ITEM PARA AVANÇAR';
+  }
+
 }

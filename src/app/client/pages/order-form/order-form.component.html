@@ -19,13 +19,14 @@
       <section>
         <app-choosing-items
             [hidden]="state !== IOrderState.CHOOSING_ITEMS"
-            (nextStep)="goToItemDetails()"
+            (goToItemsDetails)="goToItemDetails()"
+            (goToOrderReview)="goToOrderReview()"
             (backToMe)="goToChoosingItems()"
         ></app-choosing-items>
       </section>
 
       <!--  Segunda parte, escolhendo pães, adicionais e combos  -->
-      <section *ngIf="state !== IOrderState.CHOOSING_ITEMS">
+      <section *ngIf="state !== IOrderState.CHOOSING_ITEMS && (order.portions.length || order.burgers.length)">
         <app-items-details
           [hidden]="state !== IOrderState.ITEMS_DETAILS"
           [addOns]="addOns"
