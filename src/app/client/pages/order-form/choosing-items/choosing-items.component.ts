@@ -54,7 +54,6 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     }
 
     this.orderService.changeOrder(this.order)
-    // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     this.nextStep.emit()
     this.hidden = true
   }
