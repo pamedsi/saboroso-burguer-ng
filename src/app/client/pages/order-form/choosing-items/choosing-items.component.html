@@ -47,8 +47,7 @@
             <h4>{{formatPrice(drink.getPrice())}}</h4>
             <div class="adding-item">
               <button class="decrement-button" (click)="removeItem(drink)">-</button>
-<!--              <div>{{drink}}</div>-->
-              <div>Implementar contador</div>
+              <div>{{countItems(drink)}}</div>
               <button class="increment-button" (click)="addItem(drink)">+</button>
             </div>
           </li>

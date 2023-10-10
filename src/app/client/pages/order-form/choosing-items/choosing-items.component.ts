@@ -98,10 +98,12 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     this.backToMe.emit()
   }
 
-  countItems(itemToCount: BurgerForMenu | PortionForMenu){
-    if (itemToCount instanceof BurgerForMenu) {
-      return this.order.burgers.filter(burger => itemToCount.getIdentifier() === burger.getIdentifier()).length
-    }
-    return this.order.portions.filter(portion => itemToCount.getIdentifier() === portion.getIdentifier()).length
+  countItems(itemToCount: MenuItem){
+    let listToSearch: MenuItem[]
+    if (itemToCount instanceof BurgerForMenu) listToSearch = this.order.burgers
+    else if (itemToCount instanceof PortionForMenu) listToSearch = this.order.portions
+    else listToSearch = this.order.drinks
+
+    return listToSearch.reduce((count, item) => count + (item.getIdentifier() === itemToCount.getIdentifier() ? 1 : 0), 0);
   }
 }
