@@ -23,10 +23,6 @@ export class OnAddOnChooseComponent {
 
   }
 
-  ngOnInit(){
-      console.log(this.item)
-  }
-
   chooseNumberOfAddOns() {
     let chosenLength = Number(this.item.numberOfAddOns)
     if(isNaN(chosenLength)) chosenLength = 0
