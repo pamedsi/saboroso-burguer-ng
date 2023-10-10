@@ -1,8 +1,34 @@
 <ng-template #notHidden>
   <section>
     <h2>olha teu pedido como tá</h2>
-    <section>{{order}}</section>
-    <h3>tem certeza que é isso mesmo?</h3>
+
+    <section *ngIf="order.burgers.length">
+      <h2>Seus hambúrgueres</h2>
+      <div *ngFor="let burger of order.burgers; let i = index">
+        <h3>{{i + 1}}º Hambúrguer</h3>
+        <div>{{burger.getTitle()}} </div>
+        <div>{{burger.getBread()?.title}}</div>
+        <div>{{burger.getAddOns()}}</div>
+      </div>
+    </section>
+
+    <section *ngIf="order.portions.length">
+      <h2>Suas porções</h2>
+      <div *ngFor="let portion of order.portions; let i = index">
+        <h3>{{i + 1}}ª Porção</h3>
+        <div>{{portion.getTitle()}}</div>
+      </div>
+    </section>
+
+    <section *ngIf="order.drinks.length">
+      <h2>Suas bebidas</h2>
+      <div *ngFor="let drink of order.drinks; let i = index">
+        <h3>{{i + 1}}ª Bebida</h3>
+        <div>{{drink.getTitle()}}</div>
+      </div>
+    </section>
+
+    <h3>tem certeza que é isso mermo?</h3>
 
     <app-yellow-button
       text="ESTÁ TUDO CERTO! FORNECER CONTATO E ENDEREÇO"
