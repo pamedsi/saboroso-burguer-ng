@@ -1,14 +1,29 @@
-<section>
-  <div class="ddd">
-    <label for="ddd">DDD</label>
-    <input id="ddd" type="tel" maxlength="2" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
-  </div>
+<main>
+  <div>Qual o seu número de celular e/ou WhatsApp?</div>
+  <span>Vamos usar para confirmar o pedido ou avisar sobre eventuais imprevistos.</span>
+  <section>
+    <div class="input-container">
+      <label for="ddd">DDD</label>
+      <input id="ddd" type="tel" maxlength="2" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
+    </div>
 
-  <div class="main-phone-number">
-    <label for="phone-number">Celular</label>
-    <span class="input-number-container">
+    <div class="input-container">
+      <label for="phone-number">Celular</label>
+      <span class="input-number-container">
       <input id="phone-number" type="tel" maxlength="10" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')">
       <span>(apenas números)</span>
     </span>
+    </div>
+  </section>
+
+  <div class="input-container">
+    <label for="address">Qual será o endereço de entrega?</label>
+    <textarea id="address" rows="5" cols="50" [(ngModel)]="address"></textarea>
   </div>
-</section>
+
+  <app-yellow-button
+    text="CONFIRMAR PEDIDO"
+    (clicked)="confirmOrder()"
+  ></app-yellow-button>
+</main>
+
