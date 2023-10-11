@@ -1,0 +1,21 @@
+section {
+  display: flex;
+  flex-direction: row;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+#ddd {
+  width: 2rem;
+}
+
+#phone-number {
+  width: 7rem;
+}
+
+input {
+  margin-right: 1rem;
+}
