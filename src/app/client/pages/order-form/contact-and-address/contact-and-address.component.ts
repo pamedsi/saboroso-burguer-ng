@@ -10,6 +10,7 @@ import {ClientOrder} from "../../../models/ClientOrder";
 export class ContactAndAddressComponent implements OnInit{
   ddd!: string;
   phoneNumber!: string;
+  name!: string
   address!: string
   order!: ClientOrder
 

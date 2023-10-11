@@ -4,21 +4,26 @@
   <section>
     <div class="input-container">
       <label for="ddd">DDD</label>
-      <input id="ddd" type="tel" maxlength="2" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
+      <input id="ddd" type="tel" maxlength="2" placeholder="XX" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
     </div>
 
     <div class="input-container">
       <label for="phone-number">Celular</label>
       <span class="input-number-container">
-      <input id="phone-number" type="tel" maxlength="10" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')">
+      <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')">
       <span>(apenas números)</span>
     </span>
     </div>
   </section>
 
   <div class="input-container">
+    <label for="name">Como podemos te chamar?</label>
+    <input id="name" placeholder="Digite seu nome ou apelido" [(ngModel)]="name">
+  </div>
+
+  <div class="input-container">
     <label for="address">Qual será o endereço de entrega?</label>
-    <textarea id="address" rows="5" cols="50" [(ngModel)]="address"></textarea>
+    <textarea id="address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
   </div>
 
   <app-yellow-button
