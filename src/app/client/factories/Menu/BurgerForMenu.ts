@@ -98,7 +98,10 @@ export class BurgerForMenu extends MenuItem {
     }
 
     let totalValue = addOnsValue + this.price
-    if (this.combo) totalValue += this.combo.getPrice()
+    if (this.combo) {
+      totalValue += this.combo.getPrice()
+      return {addOnsValue, comboValue: this.combo.getPrice(), totalValue} as PurchasePrice
+    }
 
     return {addOnsValue, totalValue} as PurchasePrice
   }
