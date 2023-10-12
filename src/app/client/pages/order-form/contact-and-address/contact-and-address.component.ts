@@ -24,10 +24,11 @@ export class ContactAndAddressComponent {
   ddd!: string;
   phoneNumber!: string;
   name: UserName
-  address!: string
+  address: string
   order!: ClientOrder
 
   userFound: UserClientDTO | null
+  sameAddress: boolean | undefined
 
   constructor(private orderService: OrderService, private userService: UserService) {
     this.userFound = null
@@ -36,6 +37,8 @@ export class ContactAndAddressComponent {
       stringName: '',
       finishedTypingName: false
     } as UserName
+
+    this.address = ''
   }
 
   ngOnInit() {
@@ -54,15 +57,6 @@ export class ContactAndAddressComponent {
         document.getElementById('phone-number')!.focus();
       }
     });
-
-    // document.getElementById('phone-number')!.addEventListener('keyup', (event) => {
-    //   const input = event.target as HTMLInputElement;
-    //   if (input.value.length >= 10) {
-    //     this.confirmPhoneNumber()
-    //   }
-    // });
-    //
-    // if(this.phoneNumber.length >= 10) this.confirmPhoneNumber()
   }
 
   formatPhoneNumber() {
@@ -74,8 +68,8 @@ export class ContactAndAddressComponent {
   confirmPhoneNumber(){
     if (this.phoneNumber.length < 10) return
 
-    const phoneNumber = '+55' + this.ddd + this.phoneNumber.replace('-', '')
-    const {isValid} = phone(phoneNumber)
+    const phoneNumber =this.ddd + this.phoneNumber.replace('-', '')
+    const {isValid} = phone( '+55' + phoneNumber)
     if (!isValid) {
       console.info("Número de celular inválido!")
       return
@@ -89,10 +83,6 @@ export class ContactAndAddressComponent {
       else this.state = IUserInfoState.USER_WITH_ADDRESS
     })
     document.getElementById('phone-number')!.blur();
-  }
-
-  getAddresses(){
-
   }
 
   confirmOrder() {

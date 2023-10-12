@@ -21,7 +21,7 @@
     <button (click)="confirmPhoneNumber()">Confirmar Número</button>
   </section>
 
-  <section *ngIf="state === IUserInfoState.FIRST_TIME_ORDERING">
+  <section *ngIf="state === IUserInfoState.FIRST_TIME_ORDERING && phoneNumber.length === 10">
     <section class="getting-name">
       <div>Parece que é a sua primeira vez pedindo com a gente</div>
       <div class="input-container">
@@ -48,7 +48,7 @@
 
   </section>
 
-  <section *ngIf="state === IUserInfoState.USER_WITH_NO_ADDRESS && userFound">
+  <section *ngIf="state === IUserInfoState.USER_WITH_NO_ADDRESS && userFound && phoneNumber.length === 10">
     <div>Olá, {{userFound.name}}! Qual será o endereço de entrega?</div>
 
     <div class="input-container">
@@ -56,6 +56,11 @@
       <textarea id="address-with-user" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
     </div>
 
+    <app-yellow-button
+      *ngIf="address.length >= 10"
+      text="CONFIRMAR PEDIDO"
+      (clicked)="confirmOrder()"
+    ></app-yellow-button>
   </section>
 
   <section *ngIf="state === IUserInfoState.USER_WITH_ADDRESS && userFound">
@@ -63,15 +68,33 @@
     <div>Vi aqui que na última vez que você pediu foi no endereço:</div>
     <p>{{userFound.addresses[0]}}</p>
 
-    <div>Gostaria de pedir novamente nesse endereço?</div>
-    <input type="radio">
-  </section>
+    <p>Gostaria de pedir novamente nesse endereço?</p>
+    <div>
+      <label for="yes">Sim</label>
+      <input type="radio" name="same-address" id="yes" [value]="true" [(ngModel)]="sameAddress">
+      <label for="no">Não</label>
+      <input id="no" type="radio" name="same-address" [value]=false [(ngModel)]="sameAddress">
+    </div>
 
-<!-- 1ª Não ter "cadastro" (firstTimeOrdering) -->
-<!-- 2ª Ter "cadastro" mas nunca ter fornecido endereço -->
-<!-- 3ª Ter cadastro e endereço -->
-<!-- 3.1 Perguntar se quer usar endereço do último pedido -->
-<!-- 3.2 (if length >= 2) Mostrar os endereços já pedidos e perguntar se é em algum desses -->
-<!-- 3.3 Fornecer campo de endereço -->
+<!--  Como essa variável inicializa como "undefined" fiz um if que compara estritamente com 'false'  -->
+    <div class="input-container" *ngIf="sameAddress === false">
+      <label for="new-address">Certo, {{name.stringName}}. Qual será o endereço de entrega?</label>
+      <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
+      <textarea id="new-address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
+
+      <app-yellow-button
+        *ngIf="address.length >= 10"
+        text="CONFIRMAR PEDIDO"
+        (clicked)="confirmOrder()"
+      ></app-yellow-button>
+    </div>
+
+    <app-yellow-button
+      *ngIf="sameAddress"
+      text="CONFIRMAR PEDIDO"
+      (clicked)="confirmOrder()"
+    ></app-yellow-button>
+
+  </section>
 </main>
 
