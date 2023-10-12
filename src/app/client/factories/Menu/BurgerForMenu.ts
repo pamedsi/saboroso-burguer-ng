@@ -5,6 +5,7 @@ import {BurgerDTO} from "../../../shared/models/MenuItemDTO/BurgerDTO";
 import {BreadDTO} from "../../../shared/models/MenuItemDTO/BreadDTO";
 import {ComboForMenu} from "./ComboForMenu";
 import {AddOnForMenu} from "./AddOnForMenu";
+import {PurchasePrice} from "../../models/PurchasePrice";
 
 export class BurgerForMenu extends MenuItem {
   private readonly category: CategoryDTO
@@ -88,5 +89,17 @@ export class BurgerForMenu extends MenuItem {
   getIndexesOfChosenAddOns(){
     const length = Number(this.numberOfAddOns)
     return Array.from({length}, (_, i) => i)
+  }
+
+  getPurchasePrice(): PurchasePrice{
+    let addOnsValue= 0
+    if (this.addOns) {
+      this.addOns.forEach(addOn => addOnsValue += addOn.getPrice())
+    }
+
+    let totalValue = addOnsValue + this.price
+    if (this.combo) totalValue += this.combo.getPrice()
+
+    return {addOnsValue, totalValue} as PurchasePrice
   }
 }

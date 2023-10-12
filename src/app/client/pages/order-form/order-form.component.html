@@ -41,7 +41,6 @@
       <section *ngIf="state !== IOrderState.CHOOSING_ITEMS && state !== IOrderState.ITEMS_DETAILS">
         <app-order-review
           [hidden]="state !== IOrderState.ORDER_REVIEW"
-          [order]="order"
           (nextStep)="goToContactInfo()"
           (backToMe)="goToOrderReview()"
         ></app-order-review>

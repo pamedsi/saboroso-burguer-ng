@@ -1,6 +1,7 @@
 import {MenuItem} from "./MenuItem";
 import {PortionDTO} from "../../../shared/models/MenuItemDTO/PortionDTO";
 import {AddOnForMenu} from "./AddOnForMenu";
+import {PurchasePrice} from "../../models/PurchasePrice";
 
 export class PortionForMenu extends MenuItem {
     private readonly pic: string | null
@@ -48,5 +49,15 @@ export class PortionForMenu extends MenuItem {
     getIndexesOfChosenAddOns(){
         const length = Number(this.numberOfAddOns)
         return Array.from({length}, (_, i) => i)
+    }
+
+    getPurchasePrice(): PurchasePrice{
+        let addOnsValue= 0
+        if (this.addOns) {
+            this.addOns.forEach(addOn => addOnsValue += addOn.getPrice())
+        }
+        const totalValue = addOnsValue + this.price
+
+        return {addOnsValue, totalValue} as PurchasePrice
     }
 }
