@@ -24,11 +24,14 @@ export class ContactAndAddressComponent {
   ddd!: string;
   phoneNumber!: string;
   name: UserName
-  address: string
+  chosenAddress: string
   order!: ClientOrder
 
   userFound: UserClientDTO | null
   sameAddress: boolean | undefined
+  newAddress!: string
+  showButtonForConfirmOrder!: boolean
+
 
   constructor(private orderService: OrderService, private userService: UserService) {
     this.userFound = null
@@ -38,14 +41,14 @@ export class ContactAndAddressComponent {
       finishedTypingName: false
     } as UserName
 
-    this.address = ''
+    this.chosenAddress = ''
   }
 
   ngOnInit() {
     this.orderService.currentOrder.subscribe(order => this.order = order)
   }
 
-  numberOnly(pressedKey: KeyboardEvent, id: string) {
+  numberOnly(pressedKey: KeyboardEvent) {
     const key = pressedKey.key;
     if (key !== 'Backspace' && isNaN(Number(key))) {
       pressedKey.preventDefault();
@@ -95,5 +98,9 @@ export class ContactAndAddressComponent {
       document.getElementById('name')!.blur();
     }
     else console.info('Nome inválido! Digite pelo menos duas letras.')
+  }
+
+  updateButtonVisibility(value: boolean) {
+    this.showButtonForConfirmOrder = value
   }
 }

@@ -6,13 +6,13 @@
     <section class="phone-number-input">
       <div class="input-container">
         <label for="ddd">DDD</label>
-        <input id="ddd" type="tel" maxlength="2" placeholder="XX" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
+        <input id="ddd" type="tel" maxlength="2" placeholder="XX" [(ngModel)]="ddd" (keydown)="numberOnly($event)">
       </div>
 
       <div class="input-container">
         <label for="phone-number">Celular</label>
         <div>
-          <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber(); confirmPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')" (keydown.enter)="confirmPhoneNumber()">
+          <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber(); confirmPhoneNumber()" (keydown)="numberOnly($event)" (keydown.enter)="confirmPhoneNumber()">
           <span>(apenas números)</span>
          </div>
       </div>
@@ -36,11 +36,11 @@
       <div class="input-container">
         <label for="address">Certo, {{name.stringName}}. Qual será o endereço de entrega?</label>
         <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
-        <textarea id="address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
+        <textarea id="address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="chosenAddress"></textarea>
       </div>
 
       <app-yellow-button
-        *ngIf="address.length >= 10"
+        *ngIf="chosenAddress.length >= 10"
         text="CONFIRMAR PEDIDO"
         (clicked)="confirmOrder()"
       ></app-yellow-button>
@@ -53,11 +53,11 @@
 
     <div class="input-container">
       <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
-      <textarea id="address-with-user" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
+      <textarea id="address-with-user" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="chosenAddress"></textarea>
     </div>
 
     <app-yellow-button
-      *ngIf="address.length >= 10"
+      *ngIf="chosenAddress.length >= 10"
       text="CONFIRMAR PEDIDO"
       (clicked)="confirmOrder()"
     ></app-yellow-button>
@@ -78,15 +78,39 @@
 
 <!--  Como essa variável inicializa como "undefined" fiz um if que compara estritamente com 'false'  -->
     <div class="input-container" *ngIf="sameAddress === false">
-      <label for="new-address">Certo, {{name.stringName}}. Qual será o endereço de entrega?</label>
-      <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
-      <textarea id="new-address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
 
-      <app-yellow-button
-        *ngIf="address.length >= 10"
-        text="CONFIRMAR PEDIDO"
-        (clicked)="confirmOrder()"
-      ></app-yellow-button>
+      <section *ngIf="userFound.addresses.length > 1">
+        <p>Gostaria de pedir em algum dos outros endereços que você já pediu?</p>
+        <div *ngFor="let address of userFound.addresses; let i = index">
+          <input type="radio" name="other-address" id="address{{i}}" [value]="address" [(ngModel)]="chosenAddress" (change)="updateButtonVisibility(true)">
+          <label for="address{{i}}">{{address}}</label>
+        </div>
+        <input id="address{{userFound.addresses.length}}" type="radio" name="other-address" value="new" [(ngModel)]="chosenAddress" (change)="updateButtonVisibility(false)">
+        <label for="address{{userFound.addresses.length}}">Não, quero inserir um novo endereço.</label>
+
+        <section *ngIf="chosenAddress === 'new'" class="input-container">
+          <label for="new-address">Certo, {{name.stringName}}. Qual será o endereço de entrega?</label>
+          <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
+          <textarea id="new-address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="newAddress"></textarea>
+        </section>
+
+        <app-yellow-button
+          *ngIf="showButtonForConfirmOrder else addingNewAddress"
+          text="CONFIRMAR PEDIDO"
+          (clicked)="confirmOrder()"
+        ></app-yellow-button>
+
+        <ng-template #addingNewAddress>
+          <app-yellow-button
+            *ngIf="newAddress.length >= 10"
+            text="CONFIRMAR PEDIDO"
+            (clicked)="confirmOrder()"
+          ></app-yellow-button>
+        </ng-template>
+
+
+      </section>
+
     </div>
 
     <app-yellow-button
@@ -97,4 +121,3 @@
 
   </section>
 </main>
-
