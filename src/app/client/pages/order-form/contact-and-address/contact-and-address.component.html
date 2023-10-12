@@ -1,34 +1,75 @@
 <main>
-  <div>Qual o seu número de celular e/ou WhatsApp?</div>
-  <span>Vamos usar para confirmar o pedido ou avisar sobre eventuais imprevistos.</span>
-  <section>
-    <div class="input-container">
-      <label for="ddd">DDD</label>
-      <input id="ddd" type="tel" maxlength="2" placeholder="XX" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
-    </div>
+  <section class="phone-number-state">
+    <div>Qual o seu número de celular e/ou WhatsApp?</div>
+    <div>Vamos usar para confirmar o pedido ou avisar sobre eventuais imprevistos.</div>
 
-    <div class="input-container">
-      <label for="phone-number">Celular</label>
-      <span class="input-number-container">
-      <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')">
-      <span>(apenas números)</span>
-    </span>
-    </div>
+    <section class="phone-number-input">
+      <div class="input-container">
+        <label for="ddd">DDD</label>
+        <input id="ddd" type="tel" maxlength="2" placeholder="XX" [(ngModel)]="ddd" (keydown)="numberOnly($event, 'ddd')">
+      </div>
+
+      <div class="input-container">
+        <label for="phone-number">Celular</label>
+        <div>
+          <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')" (keydown.enter)="confirmPhoneNumber()">
+          <span>(apenas números)</span>
+         </div>
+      </div>
+    </section>
+
+    <button (click)="confirmPhoneNumber()">Confirmar Número</button>
   </section>
 
-  <div class="input-container">
-    <label for="name">Como podemos te chamar?</label>
-    <input id="name" placeholder="Digite seu nome ou apelido" [(ngModel)]="name">
-  </div>
+  <section *ngIf="state === IUserInfoState.FIRST_TIME_ORDERING">
+    <section class="getting-name">
+      <div>Parece que é a sua primeira vez pedindo com a gente</div>
+      <div class="input-container">
+        <label for="name">Como podemos te chamar?</label>
+        <input id="name" placeholder="Digite seu nome ou apelido" [(ngModel)]="name.stringName" (keydown.enter)="confirmName()">
+      </div>
 
-  <div class="input-container">
-    <label for="address">Qual será o endereço de entrega?</label>
-    <textarea id="address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
-  </div>
+      <button (click)="confirmName()">Confirmar nome</button>
+    </section>
 
-  <app-yellow-button
-    text="CONFIRMAR PEDIDO"
-    (clicked)="confirmOrder()"
-  ></app-yellow-button>
+    <section class="getting-address" *ngIf="name.finishedTypingName">
+      <div class="input-container">
+        <label for="address">Certo, {{name.stringName}}. Qual será o endereço de entrega?</label>
+        <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
+        <textarea id="address" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
+      </div>
+
+      <app-yellow-button
+        *ngIf="address.length >= 10"
+        text="CONFIRMAR PEDIDO"
+        (clicked)="confirmOrder()"
+      ></app-yellow-button>
+    </section>
+
+  </section>
+
+  <section *ngIf="state === IUserInfoState.USER_WITH_NO_ADDRESS">
+
+  </section>
+
+  <section *ngIf="state === IUserInfoState.USER_WITH_ADDRESS">
+
+  </section>
+
+<!-- 1ª Não ter "cadastro" (firstTimeOrdering) -->
+<!-- 2ª Ter "cadastro" mas nunca ter fornecido endereço -->
+<!-- 3ª Ter cadastro e endereço -->
+<!-- 3.1 Perguntar se quer usar endereço do último pedido -->
+<!-- 3.2 (if length >= 2) Mostrar os endereços já pedidos e perguntar se é em algum desses -->
+<!-- 3.3 Fornecer campo de endereço -->
+
+<!--  <section *ngIf="userFound && userFound.addresses.length">-->
+<!--    <div>Olá, {{userFound.name}}!</div>-->
+<!--    <div>Vi aqui que na última vez que você pediu foi no endereço:</div>-->
+<!--    <p>{{userFound.addresses[0]}}</p>-->
+
+<!--    <div>Gostaria de pedir novamente nesse endereço?</div>-->
+<!--    <input type="radio">-->
+
 </main>
 
