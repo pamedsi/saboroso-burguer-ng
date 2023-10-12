@@ -20,6 +20,7 @@
     "dotenv": "^16.3.1",
     "ng-multiselect-dropdown": "^1.0.0",
     "ngx-currency": "^4.0.0",
+    "phone": "^3.1.41",
     "process": "^0.11.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

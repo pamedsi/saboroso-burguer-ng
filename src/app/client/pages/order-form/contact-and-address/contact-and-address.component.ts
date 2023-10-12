@@ -1,4 +1,6 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+import {phone} from 'phone'
+
 import {OrderService} from "../../../services/OrderService";
 import {ClientOrder} from "../../../models/ClientOrder";
 import {UserService} from "../../../services/UserService";
@@ -9,7 +11,6 @@ interface UserName {
   stringName: string,
   finishedTypingName: boolean
 }
-
 @Component({
   selector: 'app-contact-and-address',
   templateUrl: './contact-and-address.component.html',
@@ -53,6 +54,15 @@ export class ContactAndAddressComponent {
         document.getElementById('phone-number')!.focus();
       }
     });
+
+    // document.getElementById('phone-number')!.addEventListener('keyup', (event) => {
+    //   const input = event.target as HTMLInputElement;
+    //   if (input.value.length >= 10) {
+    //     this.confirmPhoneNumber()
+    //   }
+    // });
+    //
+    // if(this.phoneNumber.length >= 10) this.confirmPhoneNumber()
   }
 
   formatPhoneNumber() {
@@ -62,8 +72,11 @@ export class ContactAndAddressComponent {
   }
 
   confirmPhoneNumber(){
-    const phoneNumber = this.ddd + this.phoneNumber.replace('-', '')
-    if (phoneNumber.length !== 11) {
+    if (this.phoneNumber.length < 10) return
+
+    const phoneNumber = '+55' + this.ddd + this.phoneNumber.replace('-', '')
+    const {isValid} = phone(phoneNumber)
+    if (!isValid) {
       console.info("Número de celular inválido!")
       return
     }

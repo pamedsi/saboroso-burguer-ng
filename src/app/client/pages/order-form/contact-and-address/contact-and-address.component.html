@@ -12,7 +12,7 @@
       <div class="input-container">
         <label for="phone-number">Celular</label>
         <div>
-          <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')" (keydown.enter)="confirmPhoneNumber()">
+          <input id="phone-number" type="tel" maxlength="10" placeholder="XXXXX-XXXX" [autocomplete]=false [(ngModel)]="phoneNumber" (ngModelChange)="formatPhoneNumber(); confirmPhoneNumber()" (keydown)="numberOnly($event, 'phone-number')" (keydown.enter)="confirmPhoneNumber()">
           <span>(apenas números)</span>
          </div>
       </div>
@@ -48,12 +48,23 @@
 
   </section>
 
-  <section *ngIf="state === IUserInfoState.USER_WITH_NO_ADDRESS">
+  <section *ngIf="state === IUserInfoState.USER_WITH_NO_ADDRESS && userFound">
+    <div>Olá, {{userFound.name}}! Qual será o endereço de entrega?</div>
+
+    <div class="input-container">
+      <span class="address-example">Ex: Rua do Rumo, 181 - Venda da Cruz, São Gonçalo</span>
+      <textarea id="address-with-user" rows="5" cols="50" placeholder="Digite aqui seu endereço" [(ngModel)]="address"></textarea>
+    </div>
 
   </section>
 
-  <section *ngIf="state === IUserInfoState.USER_WITH_ADDRESS">
+  <section *ngIf="state === IUserInfoState.USER_WITH_ADDRESS && userFound">
+    <div>Olá, {{userFound.name}}!</div>
+    <div>Vi aqui que na última vez que você pediu foi no endereço:</div>
+    <p>{{userFound.addresses[0]}}</p>
 
+    <div>Gostaria de pedir novamente nesse endereço?</div>
+    <input type="radio">
   </section>
 
 <!-- 1ª Não ter "cadastro" (firstTimeOrdering) -->
@@ -62,14 +73,5 @@
 <!-- 3.1 Perguntar se quer usar endereço do último pedido -->
 <!-- 3.2 (if length >= 2) Mostrar os endereços já pedidos e perguntar se é em algum desses -->
 <!-- 3.3 Fornecer campo de endereço -->
-
-<!--  <section *ngIf="userFound && userFound.addresses.length">-->
-<!--    <div>Olá, {{userFound.name}}!</div>-->
-<!--    <div>Vi aqui que na última vez que você pediu foi no endereço:</div>-->
-<!--    <p>{{userFound.addresses[0]}}</p>-->
-
-<!--    <div>Gostaria de pedir novamente nesse endereço?</div>-->
-<!--    <input type="radio">-->
-
 </main>
 
