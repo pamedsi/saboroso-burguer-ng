@@ -5,10 +5,15 @@ export abstract class MenuItem {
   protected readonly title: string
   protected readonly price: number
 
+  protected obs!: string
+  obsEditing!: string
+  withObs: boolean | ''
+
   protected constructor(menuItem: BaseMenuItemDTO) {
     this.identifier = menuItem.identifier
     this.title = menuItem.title
     this.price = Number(menuItem.price)
+    this.withObs = ''
   }
 
   getIdentifier(){
@@ -19,5 +24,11 @@ export abstract class MenuItem {
   }
   getPrice(){
     return this.price
+  }
+  setObs(obs: string){
+    this.obs = obs
+  }
+  getObs(){
+    return this.obs
   }
 }

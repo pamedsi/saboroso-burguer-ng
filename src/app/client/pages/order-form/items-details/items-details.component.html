@@ -1,21 +1,22 @@
 <ng-template #notHidden>
   <main>
-    <section>
+    <section class="burgers-and-portions-details">
+
       <section class="burger-details" *ngIf="order.burgers.length">
         <h3>Seus Hambúrgueres</h3>
         <ul>
           <li class="selects" *ngFor="let burger of order.burgers; let burgerIndex = index">
             <h3>{{burgerIndex + 1}}º Hambúrguer: {{burger.getTitle()}}</h3>
 
-            <section class="choosing-bread">
-            <label for="bread{{burgerIndex}}">Pão: </label>
-            <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing" [compareWith]="compareBreads">
-              <option [value]="''" disabled>Escolher pão</option>
-              <option *ngFor="let bread of breads" [ngValue]="bread">{{bread.title}}</option>
-            </select>
-          </section>
+            <section class="select-field">
+              <label for="bread{{burgerIndex}}">Pão: </label>
+              <select id="bread{{burgerIndex}}" [(ngModel)]="burger.breadEditing" [compareWith]="compareBreads">
+                <option [value]="''" disabled>Escolher pão</option>
+                <option *ngFor="let bread of breads" [ngValue]="bread">{{bread.title}}</option>
+              </select>
+            </section>
 
-            <section class="choosing-combo">
+            <section class="select-field">
               <label for="combo{{burgerIndex}}">Combo: </label>
               <select id="combo{{burgerIndex}}" [(ngModel)]="burger.comboEditing" [compareWith]="compareCombos" (change)="onComboChange($event, burger)">
                 <option [value]="''" disabled>Escolher combo</option>
@@ -30,6 +31,13 @@
               [itemIndex]="burgerIndex"
               [allAddOns]="addOns">
             </app-on-add-on-choose>
+
+            <app-item-obs
+              [item]="burger"
+              [itemIndex]="burgerIndex"
+              exObs="Ex: Ponto da carne, retirar algum ingrediente ou trocar por outro."
+            ></app-item-obs>
+
           </li>
         </ul>
       </section>
@@ -45,9 +53,16 @@
               [itemIndex]="portionIndex"
               [allAddOns]="addOns">
             </app-on-add-on-choose>
+
+            <app-item-obs
+              [item]="portion"
+              [itemIndex]="portionIndex"
+              exObs="Ex: Ponto do sal, retirar algum molho ou trocar por outro."
+            ></app-item-obs>
           </li>
         </ul>
       </section>
+
     </section>
 
     <section class="helpers">
@@ -63,6 +78,7 @@
         <app-menu-helper listTitle="Adicionais" [itemList]="addOns"></app-menu-helper>
       </section>
     </section>
+
   </main>
 
   <app-yellow-button

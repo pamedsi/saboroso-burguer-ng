@@ -1,0 +1,15 @@
+<section>
+  <div class="select-field">
+    <label for="obs{{itemIndex}}">Alguma observação?</label>
+    <select id="obs{{itemIndex}}" [(ngModel)]="item.withObs">
+      <option value='' disabled>Selecionar opção</option>
+      <option [ngValue]="false">Não, obrigado!</option>
+      <option [ngValue]="true">Sim</option>
+    </select>
+  </div>
+
+  <section *ngIf="item.withObs" class="obs-field">
+    <div class="obs-example">{{exObs}}</div>
+    <textarea rows="5" cols="30" placeholder="Digite aqui sua observação:" [(ngModel)]="item.obsEditing"></textarea>
+  </section>
+</section>

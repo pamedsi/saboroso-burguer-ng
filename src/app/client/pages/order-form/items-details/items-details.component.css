@@ -9,12 +9,13 @@ select {
   margin: 0.5rem;
 }
 
-.selects {
+.selects{
   display: flex;
   flex-direction: column;
 }
 
-.choosing-combo, .choosing-bread {
+.select-field {
+  width: 20rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
