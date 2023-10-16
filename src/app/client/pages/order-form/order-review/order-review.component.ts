@@ -50,11 +50,21 @@ export class OrderReviewComponent extends WIthPriceFormatter{
   }
 
   goToNextStep(){
+    if (this.paymentMethod === IPaymentMethod.PENDING_TO_CHOOSE) {
+      console.info("Escolha um método de pagamento.")
+      return
+    }
+    if (this.paymentMethod === IPaymentMethod.HYBRID && !this.hybridPayment) {
+      console.info("Explique como você pretende pagar.")
+      return
+    }
+
     this.order.paymentMethod = this.paymentMethod
     if (this.order.paymentMethod === IPaymentMethod.HYBRID) {
       this.order.howClientWillPay = this.hybridPayment
     }
 
+    this.order.totalToPay = this.totalValue
     this.orderService.changeOrder(this.order)
     this.nextStep.emit()
     this.hidden = true

@@ -9,4 +9,5 @@ export interface ClientOrder {
   drinks: DrinkForMenu[]
   paymentMethod: IPaymentMethod
   howClientWillPay?: string
+  totalToPay: number
 }

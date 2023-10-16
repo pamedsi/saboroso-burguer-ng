@@ -12,7 +12,8 @@ export class OrderService {
     burgers: [],
     portions: [],
     drinks: [],
-    paymentMethod: IPaymentMethod.PENDING_TO_CHOOSE
+    paymentMethod: IPaymentMethod.PENDING_TO_CHOOSE,
+    totalToPay: 0
   });
 
   currentOrder = this.orderSource.asObservable();

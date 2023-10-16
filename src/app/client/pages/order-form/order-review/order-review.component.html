@@ -51,15 +51,33 @@
       <h2>Suas porções</h2>
       <div *ngFor="let portion of order.portions; let i = index">
         <h3>{{i + 1}}ª Porção</h3>
-        <div>{{portion.getTitle()}}</div>
+
+        <section class="item-and-price">
+          <div>{{portion.getTitle()}}</div>
+          <div>{{formatPrice(portion.getPrice())}}</div>
+        </section>
+
+        <div *ngIf="portion.getAddOns().length else noAddOn">
+          <div>Adicionais:</div>
+          <section>
+            <div *ngFor="let addOn of portion.getAddOns()" class="item-and-price">
+              <div>{{addOn.getTitle()}}</div>
+              <div>{{formatPrice(addOn.getPrice())}}</div>
+            </div>
+          </section>
+        </div>
+        <ng-template #noAddOn>Sem adicionais</ng-template>
+
       </div>
     </section>
 
     <section *ngIf="order.drinks.length">
       <h2>Suas bebidas</h2>
       <div *ngFor="let drink of order.drinks; let i = index">
-        <h3>{{i + 1}}ª Bebida</h3>
-        <div>{{drink.getTitle()}}</div>
+        <section class="item-and-price">
+          <div>{{drink.getTitle()}}</div>
+          <div>{{formatPrice(drink.getPrice())}}</div>
+        </section>
       </div>
     </section>
 
@@ -67,7 +85,6 @@
       <div>Total a pagar:</div>
       <div>{{formatPrice(totalValue)}}</div>
     </div>
-
 
     <section class="payment-method">
 
@@ -113,7 +130,6 @@
     ></app-yellow-button>
   </section>
 </ng-template>
-
 
 <app-yellow-button
   *ngIf="hidden else notHidden"
