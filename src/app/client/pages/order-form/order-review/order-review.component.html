@@ -1,17 +1,51 @@
 <ng-template #notHidden>
   <section>
-    <h2>olha teu pedido como tá</h2>
-    <div>deu {{totalValue}} conto</div>
 
     <section *ngIf="order.burgers.length">
       <h2>Seus hambúrgueres</h2>
-      <div *ngFor="let burger of order.burgers; let i = index">
+      <section class="burger-details" *ngFor="let burger of order.burgers; let i = index">
         <h3>{{i + 1}}º Hambúrguer</h3>
-        <div>{{burger.getTitle()}} </div>
-        <div>{{burger.getBread()?.title}}</div>
-        <div>{{burger.getAddOns()}}</div>
-      </div>
+
+        <section class="item-and-price">
+          <div>{{burger.getTitle()}}</div>
+          <div>{{formatPrice(burger.getPrice())}}</div>
+        </section>
+
+        <section class="item-and-price">
+          <div>{{burger.getBread()!.title}}</div>
+          <div>{{formatPrice(0)}}</div>
+        </section>
+
+        <div *ngIf="burger.getAddOns().length else noAddOn">
+          <div>Adicionais:</div>
+          <section>
+            <div *ngFor="let addOn of burger.getAddOns()" class="item-and-price">
+              <div>{{addOn.getTitle()}}</div>
+              <div>{{formatPrice(addOn.getPrice())}}</div>
+            </div>
+          </section>
+        </div>
+        <ng-template #noAddOn>Sem adicionais</ng-template>
+
+        <section *ngIf="burger.getCombo() else noCombo" class="item-and-price">
+          <div>Combo: {{burger.getCombo()!.getTitle()}}</div>
+          <div>{{formatPrice(burger.getCombo()?.getPrice()!)}}</div>
+        </section>
+        <ng-template #noCombo><div>Sem combo</div></ng-template>
+
+        <section>
+          <div *ngIf="burger.withObs else noObs">{{burger.getObs()}}</div>
+          <ng-template #noObs><div>Sem observações</div></ng-template>
+        </section>
+
+        <section class="item-and-price">
+          <div>Valor deste hambúrguer:</div>
+          <div>{{formatPrice(burger.getPurchasePrice().totalValue)}}</div>
+        </section>
+
+      </section>
     </section>
+
 
     <section *ngIf="order.portions.length">
       <h2>Suas porções</h2>
@@ -29,7 +63,49 @@
       </div>
     </section>
 
-    <h3>tem certeza que é isso mermo?</h3>
+    <div class="item-and-price">
+      <div>Total a pagar:</div>
+      <div>{{formatPrice(totalValue)}}</div>
+    </div>
+
+
+    <section class="payment-method">
+
+      <div> Qual será a forma de pagamento?</div>
+      <section class="input-radio-container">
+        <div class="input-radio">
+          <input id="credit-card" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.CREDIT_CARD">
+          <label for="credit-card">Cartão de crédito</label>
+        </div>
+
+        <div class="input-radio">
+          <input id="debit-card" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.DEBIT_CARD">
+          <label for="debit-card">Cartão de débito</label>
+        </div>
+
+        <div class="input-radio">
+          <input id="cash" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.CASH">
+          <label for="cash">Dinheiro</label>
+        </div>
+
+        <div class="input-radio">
+          <input id="pix" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.PIX">
+          <label for="pix">Pix</label>
+        </div>
+
+        <div class="input-radio">
+          <input id="hybrid" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.HYBRID">
+          <label for="hybrid">Duas ou mais formas de pagamento diferentes</label>
+        </div>
+      </section>
+
+      <section *ngIf="paymentMethod === PaymentMethod.HYBRID" class="textarea">
+        <label for="hybrid-payment">Conta pra a gente, como você pretende nos pagar?</label>
+        <textarea id="hybrid-payment" placeholder="Digite aqui quais serão as formas de pagamento:" [(ngModel)]="hybridPayment" rows="6"></textarea>
+      </section>
+
+      <p>OBS: Ainda não recebemos pagamentos por este site, aqui é feito apenas o pedido.</p>
+    </section>
 
     <app-yellow-button
       text="ESTÁ TUDO CERTO! FORNECER CONTATO E ENDEREÇO"

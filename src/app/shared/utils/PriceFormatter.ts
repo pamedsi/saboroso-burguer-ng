@@ -5,6 +5,11 @@ export class WIthPriceFormatter {
   constructor(private currencyPipe: CurrencyPipe) {}
 
   formatPrice(price: number) {
+      if (price < 10) {
+        const stringToBeReturned = String(this.currencyPipe.transform(price, 'BRL', 'symbol', '1.2-2', 'pt-BR'));
+        const characterToRepeat = stringToBeReturned[2]
+        return stringToBeReturned.replace(characterToRepeat, characterToRepeat.repeat(3))
+      }
       return String(this.currencyPipe.transform(price, 'BRL', 'symbol', '1.2-2', 'pt-BR'));
     }
 }

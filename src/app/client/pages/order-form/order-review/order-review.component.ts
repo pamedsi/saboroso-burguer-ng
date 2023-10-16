@@ -1,21 +1,35 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
 import {ClientOrder} from "../../../models/ClientOrder";
 import {OrderService} from "../../../services/OrderService";
+import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
+import {CurrencyPipe} from "@angular/common";
+
+enum PaymentMethod {
+  CREDIT_CARD ,
+  DEBIT_CARD,
+  CASH,
+  PIX,
+  HYBRID
+}
 
 @Component({
   selector: 'app-order-review',
   templateUrl: './order-review.component.html',
   styleUrls: ['./order-review.component.css']
 })
-export class OrderReviewComponent {
+export class OrderReviewComponent extends WIthPriceFormatter{
   @Input() hidden!: boolean
   order!: ClientOrder
   @Output() nextStep: EventEmitter<any>
   @Output() backToMe:  EventEmitter<any>
+  paymentMethod!: PaymentMethod
+  protected readonly PaymentMethod = PaymentMethod;
+  hybridPayment!: string
 
   totalValue!: number
 
-  constructor(private orderService: OrderService) {
+  constructor(currencyPipe: CurrencyPipe, private orderService: OrderService) {
+    super(currencyPipe);
     this.nextStep = new EventEmitter()
     this.backToMe = new EventEmitter()
   }

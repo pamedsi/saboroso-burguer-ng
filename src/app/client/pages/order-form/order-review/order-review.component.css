@@ -1,0 +1,15 @@
+.item-and-price {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.input-radio-container, .textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-radio {
+  display: flex;
+  flex-direction: row;
+}
