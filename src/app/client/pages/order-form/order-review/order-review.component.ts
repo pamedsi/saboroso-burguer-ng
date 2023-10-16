@@ -1,16 +1,11 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CurrencyPipe} from "@angular/common";
+
 import {ClientOrder} from "../../../models/ClientOrder";
 import {OrderService} from "../../../services/OrderService";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
-import {CurrencyPipe} from "@angular/common";
+import {IPaymentMethod} from "../../../models/IPaymentMethod";
 
-enum PaymentMethod {
-  CREDIT_CARD ,
-  DEBIT_CARD,
-  CASH,
-  PIX,
-  HYBRID
-}
 
 @Component({
   selector: 'app-order-review',
@@ -22,8 +17,8 @@ export class OrderReviewComponent extends WIthPriceFormatter{
   order!: ClientOrder
   @Output() nextStep: EventEmitter<any>
   @Output() backToMe:  EventEmitter<any>
-  paymentMethod!: PaymentMethod
-  protected readonly PaymentMethod = PaymentMethod;
+  paymentMethod: IPaymentMethod
+  protected readonly PaymentMethod = IPaymentMethod;
   hybridPayment!: string
 
   totalValue!: number
@@ -32,6 +27,7 @@ export class OrderReviewComponent extends WIthPriceFormatter{
     super(currencyPipe);
     this.nextStep = new EventEmitter()
     this.backToMe = new EventEmitter()
+    this.paymentMethod = IPaymentMethod.PENDING_TO_CHOOSE
   }
 
   ngOnInit(){
@@ -54,6 +50,12 @@ export class OrderReviewComponent extends WIthPriceFormatter{
   }
 
   goToNextStep(){
+    this.order.paymentMethod = this.paymentMethod
+    if (this.order.paymentMethod === IPaymentMethod.HYBRID) {
+      this.order.howClientWillPay = this.hybridPayment
+    }
+
+    this.orderService.changeOrder(this.order)
     this.nextStep.emit()
     this.hidden = true
   }
