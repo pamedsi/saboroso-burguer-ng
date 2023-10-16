@@ -6,6 +6,11 @@ import {ClientOrder} from "../../../models/ClientOrder";
 import {UserService} from "../../../services/UserService";
 import {UserClientDTO} from "../../../models/UserClientDTO";
 import {IUserInfoState} from "../../../models/IUserInfoState";
+import {Router} from "@angular/router";
+import {OrderDTO} from "../../../models/OrderDTO";
+import {PurchasedBurgerDTO} from "../../../models/PurchasedBurgerDTO";
+import {PurchasedPortionDTO} from "../../../models/PurchasedPortionDTO";
+import {IPaymentMethod} from "../../../models/IPaymentMethod";
 
 interface UserName {
   stringName: string,
@@ -21,27 +26,25 @@ export class ContactAndAddressComponent {
   state!: IUserInfoState
   protected readonly IUserInfoState = IUserInfoState;
 
-  ddd!: string;
-  phoneNumber!: string;
+  ddd = ''
+  phoneNumber = ''
   name: UserName
-  chosenAddress: string
+  chosenAddress = ''
   order!: ClientOrder
 
   userFound: UserClientDTO | null
   sameAddress: boolean | undefined
-  newAddress!: string
+  newAddress = ''
   showButtonForConfirmOrder!: boolean
 
 
-  constructor(private orderService: OrderService, private userService: UserService) {
+  constructor(private orderService: OrderService, private userService: UserService, private router: Router) {
     this.userFound = null
 
     this.name = {
       stringName: '',
       finishedTypingName: false
     } as UserName
-
-    this.chosenAddress = ''
   }
 
   ngOnInit() {
@@ -89,7 +92,27 @@ export class ContactAndAddressComponent {
   }
 
   confirmOrder() {
+      if (this.userFound) {
+        this.order.clientName = this.userFound.name
+        this.order.clientPhoneNumber = this.userFound.phoneNumber
+      }
+      else {
+        this.order.clientName = this.name.stringName
+        this.order.clientPhoneNumber = this.ddd + this.phoneNumber
+      }
+      if (this.sameAddress) {
+        this.order.addressToDeliver = this.userFound!.addresses[0]
+      }
+      else if (!this.chosenAddress && this.chosenAddress !== 'new'){
+        this.order.addressToDeliver = this.chosenAddress
+      }
+      else if (this.chosenAddress === 'new'){
+        this.order.addressToDeliver = this.newAddress
+      }
 
+      this.orderService.changeOrder(this.order)
+      this.orderService.makeOrder(this.toOrderDTO())
+      this.router.navigate!(['/order-confirmation'])
   }
 
   confirmName() {
@@ -102,5 +125,37 @@ export class ContactAndAddressComponent {
 
   updateButtonVisibility(value: boolean) {
     this.showButtonForConfirmOrder = value
+  }
+
+  toOrderDTO (): OrderDTO {
+    return {
+      clientName: this.order.clientName,
+      clientPhoneNumber: this.order.clientPhoneNumber,
+      addressToDeliver: this.order.addressToDeliver,
+
+      burgers: this.order.burgers.map(burger => {
+        return {
+          identifier: burger.getIdentifier(),
+          addOnsIdentifiers: burger.getAddOns().map(addOn => addOn.getIdentifier()),
+          bread: burger.getBread(),
+          combo: burger.getCombo(),
+          obs: burger.getObs(),
+          itemSoldBy: burger.getPurchasePrice().totalValue
+        } as PurchasedBurgerDTO
+      }),
+      portions: this.order.portions.map(portion => {
+        return {
+          identifier: portion.getIdentifier(),
+          addOnsIdentifiers: portion.getAddOns().map(addOn => addOn.getIdentifier()),
+          obs: portion.getObs(),
+          itemSoldBy: portion.getPurchasePrice().totalValue
+        } as PurchasedPortionDTO
+      }),
+      drinksIdentifiers: this.order.drinks.map(drink => drink.getIdentifier()),
+
+      paymentMethod: this.order.paymentMethod,
+      howClientWillPay: this.order.paymentMethod === IPaymentMethod.HYBRID ? this.order.howClientWillPay : null,
+      totalToPay: this.order.totalToPay
+    } as OrderDTO
   }
 }

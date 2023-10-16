@@ -4,9 +4,14 @@ import {DrinkForMenu} from "../factories/Menu/DrinkForMenu";
 import {IPaymentMethod} from "./IPaymentMethod";
 
 export interface ClientOrder {
+  clientName: string
+  clientPhoneNumber: string
+  addressToDeliver: string
+
   burgers: BurgerForMenu[]
   portions: PortionForMenu[]
   drinks: DrinkForMenu[]
+
   paymentMethod: IPaymentMethod
   howClientWillPay?: string
   totalToPay: number

@@ -8,6 +8,4 @@ export interface BurgerDTO extends BaseMenuItemDTO {
   categoryDTO: CategoryDTO
   pic: string
   ingredients: IngredientDTO[]
-  bread: BreadDTO | undefined
-  combo: ComboDTO | null
 }

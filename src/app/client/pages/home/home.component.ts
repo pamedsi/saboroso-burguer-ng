@@ -11,10 +11,10 @@ export class HomeComponent {
   constructor(private router: Router){}
 
   redirectToOrderForm() {
-    this.router.navigate(['/order-form'])
+    this.router.navigate!(['/order-form'])
   }
 
   redirectToOrderStatus() {
-    this.router.navigate(['/order-status'])
+    this.router.navigate!(['/order-status'])
   }
 }

@@ -35,12 +35,6 @@ export class BurgerForMenu extends MenuItem {
     this.comboEditing = ''
     this.breadEditing = ''
   }
-  getCategory() {
-    return this.category;
-  }
-  getPic() {
-    return this.pic;
-  }
 
   // Order details
   getBread(){
@@ -80,9 +74,7 @@ export class BurgerForMenu extends MenuItem {
       price: this.price,
       categoryDTO: this.category,
       pic: this.pic,
-      ingredients: this.ingredients,
-      bread: this.bread,
-      combo: this.combo
+      ingredients: this.ingredients
     } as BurgerDTO
   }
 

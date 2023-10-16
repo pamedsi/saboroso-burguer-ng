@@ -6,7 +6,6 @@ import {OrderService} from "../../../services/OrderService";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
 import {IPaymentMethod} from "../../../models/IPaymentMethod";
 
-
 @Component({
   selector: 'app-order-review',
   templateUrl: './order-review.component.html',
@@ -19,7 +18,7 @@ export class OrderReviewComponent extends WIthPriceFormatter{
   @Output() backToMe:  EventEmitter<any>
   paymentMethod: IPaymentMethod
   protected readonly PaymentMethod = IPaymentMethod;
-  hybridPayment!: string
+  hybridPayment: string
 
   totalValue!: number
 
@@ -28,6 +27,7 @@ export class OrderReviewComponent extends WIthPriceFormatter{
     this.nextStep = new EventEmitter()
     this.backToMe = new EventEmitter()
     this.paymentMethod = IPaymentMethod.PENDING_TO_CHOOSE
+    this.hybridPayment = ''
   }
 
   ngOnInit(){
@@ -54,7 +54,7 @@ export class OrderReviewComponent extends WIthPriceFormatter{
       console.info("Escolha um método de pagamento.")
       return
     }
-    if (this.paymentMethod === IPaymentMethod.HYBRID && !this.hybridPayment) {
+    if (this.paymentMethod === IPaymentMethod.HYBRID && this.hybridPayment.length < 3) {
       console.info("Explique como você pretende pagar.")
       return
     }
