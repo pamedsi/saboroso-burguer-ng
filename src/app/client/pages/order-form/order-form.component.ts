@@ -39,6 +39,7 @@ export class OrderFormComponent implements OnInit{
     this.menuService.getBreadsForMenu().subscribe(breads =>
       this.breads = breads
     )
+    sessionStorage.clear()
   }
   onChangeOption($event: Event){
     this.onHighlights = String($event) === 'highlights'

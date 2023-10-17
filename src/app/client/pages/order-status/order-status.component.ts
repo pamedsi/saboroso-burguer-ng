@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-status.component.css']
 })
 export class OrderStatusComponent {
-
+  ngOnInit(){
+    sessionStorage.clear()
+  }
 }

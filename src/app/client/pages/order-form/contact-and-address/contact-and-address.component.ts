@@ -160,7 +160,7 @@ export class ContactAndAddressComponent {
 
   finishOrder(){
     const successful = (response: any) => {
-      console.info(response)
+      sessionStorage.setItem('order-made-successfully', "true")
       this.router.navigate!(['/order-confirmation'])
     }
     const error = (response: any) => {

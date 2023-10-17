@@ -9,11 +9,13 @@ import {ClientOrder} from "../../models/ClientOrder";
 })
 export class OrderConfirmationComponent {
   order!: ClientOrder
+  orderMadeSuccessfully = false
 
   constructor(private orderService: OrderService) {}
 
   ngOnInit(){
     this.orderService.currentOrder.subscribe(order => this.order = order)
+    this.orderMadeSuccessfully = sessionStorage.getItem('order-made-successfully') === "true"
   }
 
   goToHomePage(){

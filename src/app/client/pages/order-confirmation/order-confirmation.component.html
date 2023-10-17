@@ -1,22 +1,52 @@
-<h1>Deu tudo certo, {{order.clientName}}! Seu pedido já está na fila!</h1>
+<section *ngIf="orderMadeSuccessfully else notOrderYet">
+  <h1>Deu tudo certo, {{order.clientName}}! Seu pedido já está na fila!</h1>
 
-<p>
-  O código: <span>{{order.orderCode}}</span> é o código do pedido que você acabou de fazer.<br>
-  Caso queira ver como está o andamento do seu pedido, você pode usar este código para consultar.
-</p>
+  <p>
+    O código: <span>{{order.orderCode}}</span> é o código do pedido que você acabou de fazer.<br>
+    Caso queira ver como está o andamento do seu pedido, você pode usar este código para consultar.
+  </p>
 
-<app-yellow-button
-  text="VER COMO ESTÁ MEU PEDIDO"
-  (clicked)="goToOrderStatus()"
-></app-yellow-button>
+  <app-yellow-button
+    text="VER COMO ESTÁ MEU PEDIDO"
+    (clicked)="goToOrderStatus()"
+  ></app-yellow-button>
 
-<app-yellow-button
-  text="FAZER OUTRO PEDIDO"
-  (clicked)="goToOrderForm()"
-></app-yellow-button>
+  <app-yellow-button
+    text="FAZER OUTRO PEDIDO"
+    (clicked)="goToOrderForm()"
+  ></app-yellow-button>
 
-<app-yellow-button
-  text="VOLTAR À PÁGINA INICIAL"
-  (clicked)="goToHomePage()"
-></app-yellow-button>
+  <app-yellow-button
+    text="VOLTAR À PÁGINA INICIAL"
+    (clicked)="goToHomePage()"
+  ></app-yellow-button>
+</section>
+
+<ng-template #notOrderYet>
+  <section>
+    <h1>Vi aqui que seu pedido ainda não foi feito.</h1>
+    <p>
+      Mas você pode fazer. Fique à vontade.<br>
+      Caso já tenha feito e eu vi errado, você pode clicar em "JÁ FIZ UM PEDIDO E QUERO SABER COMO ESTÁ"<br>
+      Aì você vai poder consultar seu pedido usando seu número de celular ou o código do pedido.
+    </p>
+
+    <h2>Escolha uma das opções abaixo:</h2>
+
+    <app-yellow-button
+      text="FAZER UM PEDIDO"
+      (clicked)="goToOrderForm()"
+    ></app-yellow-button>
+
+    <app-yellow-button
+      text="JÁ FIZ UM PEDIDO E QUERO SABER COMO ESTÁ"
+      (clicked)="goToOrderStatus()"
+    ></app-yellow-button>
+
+    <app-yellow-button
+      text="VOLTAR À PÁGINA INICIAL"
+      (clicked)="goToHomePage()"
+    ></app-yellow-button>
+  </section>
+</ng-template>
 

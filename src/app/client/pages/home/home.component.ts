@@ -17,4 +17,8 @@ export class HomeComponent {
   redirectToOrderStatus() {
     this.router.navigate!(['/order-status'])
   }
+
+  ngOnInit(){
+    sessionStorage.clear()
+  }
 }
