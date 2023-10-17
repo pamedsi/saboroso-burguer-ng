@@ -51,6 +51,7 @@
 
         <app-contact-and-address
           [hidden]="state !== IOrderState.CONTACT_AND_ADDRESS"
+          (onOrderFinished)="goToChoosingItems()"
         ></app-contact-and-address>
 
       </section>

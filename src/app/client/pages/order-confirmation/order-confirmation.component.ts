@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {OrderService} from "../../services/OrderService";
 
 @Component({
   selector: 'app-order-confirmation',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class OrderConfirmationComponent {
 
+  constructor(private orderService: OrderService) {
+
+  }
 }

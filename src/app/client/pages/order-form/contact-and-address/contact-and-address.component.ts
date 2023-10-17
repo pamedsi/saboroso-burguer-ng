@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {phone} from 'phone'
 
 import {OrderService} from "../../../services/OrderService";
@@ -22,7 +22,7 @@ interface UserName {
   styleUrls: ['./contact-and-address.component.css']
 })
 export class ContactAndAddressComponent {
-
+  @Output() onOrderFinished!: EventEmitter<any>
   state!: IUserInfoState
   protected readonly IUserInfoState = IUserInfoState;
 
@@ -110,9 +110,9 @@ export class ContactAndAddressComponent {
         this.order.addressToDeliver = this.newAddress
       }
 
+      this.order.orderCode = this.orderService.generateOrderCode()
       this.orderService.changeOrder(this.order)
-      this.orderService.makeOrder(this.toOrderDTO())
-      this.router.navigate!(['/order-confirmation'])
+      this.finishOrder()
   }
 
   confirmName() {
@@ -157,5 +157,33 @@ export class ContactAndAddressComponent {
       howClientWillPay: this.order.paymentMethod === IPaymentMethod.HYBRID ? this.order.howClientWillPay : null,
       totalToPay: this.order.totalToPay
     } as OrderDTO
+  }
+
+  finishOrder(){
+    const successful = (response: any) => {
+      // const cleanOrder: ClientOrder = {
+      //   clientName: '',
+      //   clientPhoneNumber: '',
+      //   addressToDeliver: '',
+      //   burgers: [],
+      //   portions: [],
+      //   drinks: [],
+      //   paymentMethod: IPaymentMethod.PENDING_TO_CHOOSE,
+      //   totalToPay: 0
+      // }
+
+      // implementar mensagem amigável ao usuário de sucesso
+      // this.orderService.changeOrder(cleanOrder)
+      // this.onOrderFinished.emit()
+
+      console.info(response)
+      this.router.navigate!(['/order-confirmation'])
+    }
+    const error = (response: any) => {
+      console.info(response)
+      // Provavelmente vai ser porque algum produto ta em falta, aí vai pedir pra voltar e alterar o pedido.
+    }
+
+    this.orderService.makeOrder(this.toOrderDTO()).subscribe(successful, error)
   }
 }

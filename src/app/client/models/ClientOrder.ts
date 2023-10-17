@@ -7,6 +7,7 @@ export interface ClientOrder {
   clientName: string
   clientPhoneNumber: string
   addressToDeliver: string
+  orderCode: string
 
   burgers: BurgerForMenu[]
   portions: PortionForMenu[]

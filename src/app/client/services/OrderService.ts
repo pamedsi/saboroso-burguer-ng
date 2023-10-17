@@ -15,6 +15,7 @@ export class OrderService {
     clientName: '',
     clientPhoneNumber: '',
     addressToDeliver: '',
+    orderCode: '',
     burgers: [],
     portions: [],
     drinks: [],
@@ -31,7 +32,17 @@ export class OrderService {
   }
 
   makeOrder(orderDTO: OrderDTO){
-    this.http.post(`${environment}/make-order`, orderDTO, {headers: defaultHeaders})
-      .subscribe(console.info)
+   return this.http.post(`${environment}/make-order`, orderDTO, {headers: defaultHeaders})
+  }
+
+  generateOrderCode(): string{
+    const [quantityOfCharacters, base] = [4, 36]
+
+    const limit = parseInt("z".repeat(quantityOfCharacters), base)
+    const codeInDecimal = Math.round(Math.random() * limit)
+    let codeIn36Base = codeInDecimal.toString(base).toUpperCase()
+    if (codeIn36Base.length < quantityOfCharacters)  codeIn36Base = codeIn36Base.padStart(quantityOfCharacters, "0")
+
+    return codeIn36Base
   }
 }
