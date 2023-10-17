@@ -75,9 +75,13 @@ export class ItemsDetailsComponent implements OnInit{
     this.order.burgers.forEach(burger => {
       burger.setBread(burger.breadEditing as BreadDTO)
       burger.setAddOns(burger.addOnsEditing as AddOnForMenu[])
+      burger.setObs(burger.obsEditing)
       if (burger.comboEditing) burger.setCombo(burger.comboEditing)
     })
-    this.order.portions.forEach(portion => portion.setAddOns(portion.addOnsEditing))
+    this.order.portions.forEach(portion => {
+      portion.setAddOns(portion.addOnsEditing)
+      portion.setObs(portion.obsEditing)
+    })
 
     this.orderService.changeOrder(this.order)
     this.nextStep.emit()

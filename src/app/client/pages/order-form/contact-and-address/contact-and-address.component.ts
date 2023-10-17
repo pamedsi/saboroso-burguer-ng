@@ -136,9 +136,9 @@ export class ContactAndAddressComponent {
         return {
           identifier: burger.getIdentifier(),
           addOnsIdentifiers: burger.getAddOns().map(addOn => addOn.getIdentifier()),
-          bread: burger.getBread(),
-          combo: burger.getCombo(),
-          obs: burger.getObs(),
+          breadIdentifier: burger.getBread()!.identifier,
+          comboIdentifier: burger.getCombo() ? burger.getCombo()!.getIdentifier() : null,
+          obs: burger.getObs() ?? null,
           itemSoldBy: burger.getPurchasePrice().totalValue
         } as PurchasedBurgerDTO
       }),
@@ -146,7 +146,7 @@ export class ContactAndAddressComponent {
         return {
           identifier: portion.getIdentifier(),
           addOnsIdentifiers: portion.getAddOns().map(addOn => addOn.getIdentifier()),
-          obs: portion.getObs(),
+          obs: portion.getObs() ?? null,
           itemSoldBy: portion.getPurchasePrice().totalValue
         } as PurchasedPortionDTO
       }),
@@ -165,6 +165,7 @@ export class ContactAndAddressComponent {
     }
     const error = (response: any) => {
       console.info(response)
+      console.log(JSON.stringify(this.toOrderDTO()))
       // Provavelmente vai ser porque algum produto ta em falta, aí vai pedir pra voltar e alterar o pedido.
     }
 
