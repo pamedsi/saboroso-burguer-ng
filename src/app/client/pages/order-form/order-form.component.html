@@ -48,12 +48,9 @@
 
 <!--    Passando endereço e contato para confirmar  -->
       <section *ngIf="state !== IOrderState.CHOOSING_ITEMS && state !== IOrderState.ITEMS_DETAILS && state !== IOrderState.ORDER_REVIEW">
-
         <app-contact-and-address
           [hidden]="state !== IOrderState.CONTACT_AND_ADDRESS"
-          (onOrderFinished)="goToChoosingItems()"
         ></app-contact-and-address>
-
       </section>
 
     </ng-template>

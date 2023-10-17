@@ -1,1 +1,22 @@
-<p>order-confirmation works!</p>
+<h1>Deu tudo certo, {{order.clientName}}! Seu pedido já está na fila!</h1>
+
+<p>
+  O código: <span>{{order.orderCode}}</span> é o código do pedido que você acabou de fazer.<br>
+  Caso queira ver como está o andamento do seu pedido, você pode usar este código para consultar.
+</p>
+
+<app-yellow-button
+  text="VER COMO ESTÁ MEU PEDIDO"
+  (clicked)="goToOrderStatus()"
+></app-yellow-button>
+
+<app-yellow-button
+  text="FAZER OUTRO PEDIDO"
+  (clicked)="goToOrderForm()"
+></app-yellow-button>
+
+<app-yellow-button
+  text="VOLTAR À PÁGINA INICIAL"
+  (clicked)="goToHomePage()"
+></app-yellow-button>
+

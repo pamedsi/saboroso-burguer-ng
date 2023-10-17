@@ -22,7 +22,6 @@ interface UserName {
   styleUrls: ['./contact-and-address.component.css']
 })
 export class ContactAndAddressComponent {
-  @Output() onOrderFinished!: EventEmitter<any>
   state!: IUserInfoState
   protected readonly IUserInfoState = IUserInfoState;
 
@@ -161,21 +160,6 @@ export class ContactAndAddressComponent {
 
   finishOrder(){
     const successful = (response: any) => {
-      // const cleanOrder: ClientOrder = {
-      //   clientName: '',
-      //   clientPhoneNumber: '',
-      //   addressToDeliver: '',
-      //   burgers: [],
-      //   portions: [],
-      //   drinks: [],
-      //   paymentMethod: IPaymentMethod.PENDING_TO_CHOOSE,
-      //   totalToPay: 0
-      // }
-
-      // implementar mensagem amigável ao usuário de sucesso
-      // this.orderService.changeOrder(cleanOrder)
-      // this.onOrderFinished.emit()
-
       console.info(response)
       this.router.navigate!(['/order-confirmation'])
     }
