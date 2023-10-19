@@ -128,6 +128,7 @@ export class ContactAndAddressComponent {
 
   toOrderDTO (): OrderDTO {
     return {
+      orderCode: this.order.orderCode,
       clientName: this.order.clientName,
       clientPhoneNumber: this.order.clientPhoneNumber,
       addressToDeliver: this.order.addressToDeliver,

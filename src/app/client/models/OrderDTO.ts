@@ -8,6 +8,7 @@ export interface DrinkAndQuantity {
 }
 
 export interface OrderDTO {
+  orderCode: string
   clientName: string
   clientPhoneNumber: string
   addressToDeliver: string
