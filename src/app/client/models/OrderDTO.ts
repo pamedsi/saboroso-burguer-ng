@@ -2,6 +2,11 @@ import {IPaymentMethod} from "./IPaymentMethod";
 import {PurchasedPortionDTO} from "./PurchasedPortionDTO";
 import {PurchasedBurgerDTO} from "./PurchasedBurgerDTO";
 
+export interface DrinkAndQuantity {
+  drinkIdentifier: string
+  quantity: number
+}
+
 export interface OrderDTO {
   clientName: string
   clientPhoneNumber: string
@@ -9,7 +14,7 @@ export interface OrderDTO {
 
   burgers: PurchasedBurgerDTO[]
   portions: PurchasedPortionDTO[]
-  drinksIdentifiers: string[]
+  drinks: DrinkAndQuantity[]
 
   paymentMethod: IPaymentMethod
   howClientWillPay: string | null

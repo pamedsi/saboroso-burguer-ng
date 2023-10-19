@@ -7,7 +7,7 @@ import {UserService} from "../../../services/UserService";
 import {UserClientDTO} from "../../../models/UserClientDTO";
 import {IUserInfoState} from "../../../models/IUserInfoState";
 import {Router} from "@angular/router";
-import {OrderDTO} from "../../../models/OrderDTO";
+import {DrinkAndQuantity, OrderDTO} from "../../../models/OrderDTO";
 import {PurchasedBurgerDTO} from "../../../models/PurchasedBurgerDTO";
 import {PurchasedPortionDTO} from "../../../models/PurchasedPortionDTO";
 import {IPaymentMethod} from "../../../models/IPaymentMethod";
@@ -150,8 +150,7 @@ export class ContactAndAddressComponent {
           itemSoldBy: portion.getPurchasePrice().totalValue
         } as PurchasedPortionDTO
       }),
-      drinksIdentifiers: this.order.drinks.map(drink => drink.getIdentifier()),
-
+      drinks: this.countDrinksForDTO(),
       paymentMethod: this.order.paymentMethod,
       howClientWillPay: this.order.paymentMethod === IPaymentMethod.HYBRID ? this.order.howClientWillPay : null,
       totalToPay: this.order.totalToPay
@@ -170,5 +169,24 @@ export class ContactAndAddressComponent {
     }
 
     this.orderService.makeOrder(this.toOrderDTO()).subscribe(successful, error)
+  }
+
+  countDrinksForDTO(): DrinkAndQuantity[]{
+    const drinksAndQuantities: DrinkAndQuantity[] = []
+
+    this.order.drinks.forEach(drink => {
+      const index = drinksAndQuantities.findIndex((countedDrink) => countedDrink.drinkIdentifier === drink.getIdentifier())
+      if(index !== -1) drinksAndQuantities[index].quantity++
+      else {
+        drinksAndQuantities.push(
+          {
+            drinkIdentifier: drink.getIdentifier(),
+            quantity: 1
+          }
+        )
+      }
+    })
+
+    return drinksAndQuantities
   }
 }
