@@ -32,7 +32,7 @@ export class OrderService {
   }
 
   makeOrder(orderDTO: OrderDTO){
-   return this.http.post(`${environment}/make-order`, orderDTO, {headers: defaultHeaders})
+   return this.http.post(`${environment.API_URL}/make-order`, orderDTO, {headers: defaultHeaders})
   }
 
   generateOrderCode(): string{
