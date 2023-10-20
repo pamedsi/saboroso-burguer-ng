@@ -1,6 +1,7 @@
 import {IPaymentMethod} from "./IPaymentMethod";
 import {PurchasedPortionDTO} from "./PurchasedPortionDTO";
 import {PurchasedBurgerDTO} from "./PurchasedBurgerDTO";
+import {IOrderStatus} from "./IOrderStatus";
 
 export interface DrinkAndQuantity {
   drinkIdentifier: string
@@ -9,6 +10,8 @@ export interface DrinkAndQuantity {
 
 export interface OrderDTO {
   orderCode: string
+  status: IOrderStatus
+
   clientName: string
   clientPhoneNumber: string
   addressToDeliver: string

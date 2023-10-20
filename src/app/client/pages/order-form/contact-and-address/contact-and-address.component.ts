@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {phone} from 'phone'
 
 import {OrderService} from "../../../services/OrderService";
@@ -11,6 +11,7 @@ import {DrinkAndQuantity, OrderDTO} from "../../../models/OrderDTO";
 import {PurchasedBurgerDTO} from "../../../models/PurchasedBurgerDTO";
 import {PurchasedPortionDTO} from "../../../models/PurchasedPortionDTO";
 import {IPaymentMethod} from "../../../models/IPaymentMethod";
+import {IOrderStatus} from "../../../models/IOrderStatus";
 
 interface UserName {
   stringName: string,
@@ -129,6 +130,8 @@ export class ContactAndAddressComponent {
   toOrderDTO (): OrderDTO {
     return {
       orderCode: this.order.orderCode,
+      status: IOrderStatus.IN_QUEUE,
+
       clientName: this.order.clientName,
       clientPhoneNumber: this.order.clientPhoneNumber,
       addressToDeliver: this.order.addressToDeliver,
@@ -165,7 +168,7 @@ export class ContactAndAddressComponent {
     }
     const error = (response: any) => {
       console.info(response)
-      console.log(JSON.stringify(this.toOrderDTO()))
+      // console.log(JSON.stringify(this.toOrderDTO()))
       // Provavelmente vai ser porque algum produto ta em falta, aí vai pedir pra voltar e alterar o pedido.
     }
 
