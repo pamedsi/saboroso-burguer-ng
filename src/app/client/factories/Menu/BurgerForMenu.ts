@@ -14,7 +14,7 @@ export class BurgerForMenu extends MenuItem {
 
   private bread: BreadDTO | undefined
   private combo: ComboForMenu | null
-  private addOns!: AddOnForMenu[]
+  private addOns: AddOnForMenu[]
 
   // Component Props
 
@@ -34,6 +34,7 @@ export class BurgerForMenu extends MenuItem {
     this.numberOfAddOns = ''
     this.comboEditing = ''
     this.breadEditing = ''
+    this.addOns = new Array(0)
   }
 
   // Order details
@@ -85,7 +86,7 @@ export class BurgerForMenu extends MenuItem {
 
   getPurchasePrice(): PurchasePrice{
     let addOnsValue= 0
-    if (this.addOns) {
+    if (!this.addOns.length) {
       this.addOns.forEach(addOn => addOnsValue += addOn.getPrice())
     }
 

@@ -1,6 +1,6 @@
 export interface PurchasedPortionDTO {
   identifier: string
-  addOnsIdentifiers: string[] | null
+  addOnsIdentifiers: string[]
   obs: string | null
   itemSoldBy: number
 }
