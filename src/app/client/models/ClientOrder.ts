@@ -1,7 +1,7 @@
 import {BurgerForMenu} from "../factories/Menu/BurgerForMenu";
 import {PortionForMenu} from "../factories/Menu/PortionForMenu";
 import {DrinkForMenu} from "../factories/Menu/DrinkForMenu";
-import {IPaymentMethod} from "./IPaymentMethod";
+import {IPaymentMethod} from "../../shared/models/IPaymentMethod";
 
 export interface ClientOrder {
   clientName: string

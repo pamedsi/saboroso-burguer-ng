@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 import {DrinkAndQuantity, OrderDTO} from "../../../models/OrderDTO";
 import {PurchasedBurgerDTO} from "../../../models/PurchasedBurgerDTO";
 import {PurchasedPortionDTO} from "../../../models/PurchasedPortionDTO";
-import {IPaymentMethod} from "../../../models/IPaymentMethod";
-import {IOrderStatus} from "../../../models/IOrderStatus";
+import {IPaymentMethod} from "../../../../shared/models/IPaymentMethod";
+import {IOrderStatus} from "../../../../shared/models/IOrderStatus";
 
 interface UserName {
   stringName: string,

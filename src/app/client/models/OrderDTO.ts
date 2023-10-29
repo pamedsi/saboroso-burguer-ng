@@ -1,7 +1,7 @@
-import {IPaymentMethod} from "./IPaymentMethod";
+import {IPaymentMethod} from "../../shared/models/IPaymentMethod";
 import {PurchasedPortionDTO} from "./PurchasedPortionDTO";
 import {PurchasedBurgerDTO} from "./PurchasedBurgerDTO";
-import {IOrderStatus} from "./IOrderStatus";
+import {IOrderStatus} from "../../shared/models/IOrderStatus";
 
 export interface DrinkAndQuantity {
   drinkIdentifier: string
