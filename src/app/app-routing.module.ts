@@ -4,7 +4,7 @@ import { LoginFormComponent } from "./admin/pages/login/login-form.component";
 import { NotFoundComponent } from "./shared/components/not-found/not-found.component";
 import { HomeComponent } from "./client/pages/home/home.component";
 import { HomeAdminComponent } from "./admin/pages/home/home.admin.component";
-import { OrderManagementComponent } from "./admin/pages/order-management/order-management.component"
+import { OrderManagerComponent } from "./admin/pages/order-manager/order-manager.component"
 import { canActivate } from "./shared/security/AuthGuardService";
 import {OrderFormComponent} from "./client/pages/order-form/order-form.component";
 import {OrderStatusComponent} from "./client/pages/order-status/order-status.component";
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'orders-management',
-    component: OrderManagementComponent,
+    component: OrderManagerComponent,
     canActivate: [canActivate]
   },
   {

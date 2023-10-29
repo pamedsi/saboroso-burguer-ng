@@ -14,7 +14,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 import { HomeComponent } from './client/pages/home/home.component';
 import { FormsModule } from "@angular/forms";
-import { OrderManagementComponent } from './admin/pages/order-management/order-management.component';
+import { OrderManagerComponent } from './admin/pages/order-manager/order-manager.component';
 import { HomeAdminComponent } from './admin/pages/home/home.admin.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -58,6 +58,7 @@ import { ItemsDetailsComponent } from './client/pages/order-form/items-details/i
 import { ContactAndAddressComponent } from './client/pages/order-form/contact-and-address/contact-and-address.component';
 import { YellowButtonComponent } from './shared/components/yellow-button/yellow-button.component';
 import { ItemObsComponent } from './client/pages/order-form/items-details/item-obs/item-obs.component';
+import {StompService} from "./admin/services/StompService";
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -70,7 +71,7 @@ registerLocaleData(localePtBr);
     NotFoundComponent,
     BurgerManagementComponent,
     HomeComponent,
-    OrderManagementComponent,
+    OrderManagerComponent,
     HomeAdminComponent,
     BurgerListForManagementComponent,
     PortionListForManagementComponent,
@@ -117,7 +118,8 @@ registerLocaleData(localePtBr);
   ],
   providers: [
     CurrencyPipe,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    StompService
   ],
   bootstrap: [AppComponent]
 })

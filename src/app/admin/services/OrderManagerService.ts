@@ -1,18 +1,19 @@
-// import { webSocket } from 'rxjs/webSocket';
-console.log("oieee")
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
 
-// export class OrderService {
-//
-//   private socket$ = webSocket('ws://localhost:8080/websocket-demo');
-//
-//   constructor() {
-//     this.socket$.subscribe(
-//       msg => {
-//         console.log('Pedido recebido: ', msg);
-//       },
-//       err => console.error(err),
-//       () => console.log('Conexão encerrada')
-//     );
-//   }
-//
-// }
+import {environment} from "../../../environment/environment";
+import {defaultWithToken} from "../utils/Headers";
+import {WebSocketService} from "./WebSocketService";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrderManagerService {
+
+  constructor(private http: HttpClient, private webSocketService: WebSocketService) {}
+
+  getAllOrders(){
+    return this.http.get(`${environment.API_URL}/order-manager`, {headers: defaultWithToken})
+  }
+
+}
