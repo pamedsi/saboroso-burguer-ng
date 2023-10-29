@@ -17,17 +17,11 @@ export class OrderManagerComponent {
 
   ngOnInit(){
     this.webSocketService.connect()
-
-
-    // this.webSocketService.connectEvent.subscribe(() => {
-    //     console.log('Conectado com sucesso!');
-    //     this.webSocketService.client.subscribe("/topic/greetings", (message) => {
-    //         console.log(message);
-    //         this.messages.push(message); // Adiciona a nova mensagem ao array
-    //   })
-    // })
-
     this.refreshOrderList()
+
+    this.webSocketService.responseSubject.subscribe(() => {
+      this.alertNewOrder()
+    })
   }
 
   refreshOrderList(){
@@ -36,7 +30,11 @@ export class OrderManagerComponent {
     )
   }
 
-  mandarSalve(){
-    this.webSocketService.sendMessage("um salve do front!")
+  alertNewOrder(){
+    // Implementar algum efeito sonoro
+    // Implementar algo semelhante a um pop-up
+    alert("Novo pedido ae na base")
+    this.refreshOrderList()
   }
+
 }

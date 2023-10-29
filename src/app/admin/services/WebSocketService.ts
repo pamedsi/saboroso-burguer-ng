@@ -13,10 +13,6 @@ export class WebSocketService {
   topic = '/topic/greetings'
   responseSubject = new Subject()
 
-  constructor() {
-
-  }
-
   connect(){
     console.log("Conectando...")
     const ws = SockJS(this.url)
@@ -24,7 +20,7 @@ export class WebSocketService {
 
     this.stompClient.connect({headers: defaultWithToken}, (frame: any) => {
       this.stompClient.subscribe(this.topic, (greetingResponse: any) => {
-        this.oneMessageReceived(greetingResponse)
+        this.onMessageReceived(greetingResponse)
       })
     }, this.errorCallBack)
 
@@ -49,7 +45,7 @@ export class WebSocketService {
     this.stompClient.send('/app/hello', {}, JSON.stringify(message))
   }
 
-  oneMessageReceived(receivedMessage: any){
+  onMessageReceived(receivedMessage: any){
     console.log("Message received from server:", receivedMessage.body)
     const object = JSON.parse(receivedMessage.body)
     this.responseSubject.next(object)
