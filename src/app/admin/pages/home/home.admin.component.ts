@@ -34,7 +34,7 @@ export class HomeAdminComponent implements OnInit{
   redirectToOrderHistory(){
     this.router.navigate(['/order-history'])
   }
-  redirectToOrderManagement() {
+  redirectToOrderManager() {
     this.router.navigate(['/orders-management'])
   }
 }
