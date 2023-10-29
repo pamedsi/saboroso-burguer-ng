@@ -8,32 +8,18 @@
 <!-- Fonte do Header (ADM) -->
 <app-home-admin-header></app-home-admin-header>
 <body>
-  <section>
-    <H1>Cardápio:</H1>
-    <div class="yellow-button" (click)="redirectToBurgersManagement()">
-      GESTOR DE HAMBÚRGUERES
-    </div>
-    <div class="yellow-button" (click)="redirectToPortionsManagement()">
-      GESTOR DE PORÇÕES
-    </div>
-    <div class="yellow-button" (click)="redirectToDrinksManagement()">
-      GESTOR DE BEBIDAS
-    </div>
-    <div class="yellow-button" (click)="redirectToAddOnsManagement()">
-      GESTOR DE ADICIONAIS
-    </div>
-    <div class="yellow-button" (click)="redirectToCombosManagement()">
-      GESTOR DE COMBOS
-    </div>
-  </section>
+<section>
+  <H1>Cardápio:</H1>
+  <app-yellow-button text="GESTOR DE HAMBÚRGUERES" (clicked)="redirectToBurgersManagement()"></app-yellow-button>
+  <app-yellow-button text="GESTOR DE PORÇÕES" (clicked)="redirectToPortionsManagement()"></app-yellow-button>
+  <app-yellow-button text="GESTOR DE BEBIDAS" (clicked)="redirectToDrinksManagement()"></app-yellow-button>
+  <app-yellow-button text="GESTOR DE ADICIONAIS" (clicked)="redirectToAddOnsManagement()"></app-yellow-button>
+  <app-yellow-button text="GESTOR DE COMBOS" (clicked)="redirectToCombosManagement()"></app-yellow-button>
+</section>
 
-  <section>
-    <h1>Pedidos</h1>
-    <div class="yellow-button" (click)="redirectToOrderManagement()">
-      GESTOR DE PEDIDOS
-    </div>
-    <div class="yellow-button" (click)="redirectToOrderHistory()">
-      HISTÓRICO DE PEDIDOS
-    </div>
-  </section>
+<section>
+  <h1>Pedidos</h1>
+  <app-yellow-button text="GESTOR DE PEDIDOS" (clicked)="redirectToOrderManager()"></app-yellow-button>
+  <app-yellow-button text="HISTÓRICO DE PEDIDOS" (clicked)="redirectToOrderHistory()"></app-yellow-button>
+</section>
 </body>
