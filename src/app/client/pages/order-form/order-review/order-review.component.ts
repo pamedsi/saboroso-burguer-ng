@@ -4,7 +4,7 @@ import {CurrencyPipe} from "@angular/common";
 import {ClientOrder} from "../../../models/ClientOrder";
 import {OrderService} from "../../../services/OrderService";
 import {WIthPriceFormatter} from "../../../../shared/utils/PriceFormatter";
-import {IPaymentMethod} from "../../../models/IPaymentMethod";
+import {IPaymentMethod} from "../../../../shared/models/IPaymentMethod";
 
 @Component({
   selector: 'app-order-review',
