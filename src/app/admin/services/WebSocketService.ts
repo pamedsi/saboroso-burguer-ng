@@ -10,7 +10,6 @@ import {defaultWithToken} from "../utils/Headers";
 export class WebSocketService {
   private readonly url = 'http://localhost:8080/orders';
   stompClient: any
-  topic = '/topic/greetings'
   responseSubject = new Subject()
 
   connect(){
@@ -18,9 +17,9 @@ export class WebSocketService {
     const ws = SockJS(this.url)
     this.stompClient = Stomp.over(ws)
 
-    this.stompClient.connect({headers: defaultWithToken}, (frame: any) => {
-      this.stompClient.subscribe(this.topic, (greetingResponse: any) => {
-        this.onMessageReceived(greetingResponse)
+    this.stompClient.connect({headers: defaultWithToken}, () => {
+      this.stompClient.subscribe('/topic/orders', (newOrderMessage: any) => {
+        this.onMessageReceived(newOrderMessage)
       })
     }, this.errorCallBack)
 
