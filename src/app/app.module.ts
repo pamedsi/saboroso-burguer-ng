@@ -58,7 +58,6 @@ import { ItemsDetailsComponent } from './client/pages/order-form/items-details/i
 import { ContactAndAddressComponent } from './client/pages/order-form/contact-and-address/contact-and-address.component';
 import { YellowButtonComponent } from './shared/components/yellow-button/yellow-button.component';
 import { ItemObsComponent } from './client/pages/order-form/items-details/item-obs/item-obs.component';
-import {StompService} from "./admin/services/StompService";
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -118,8 +117,7 @@ registerLocaleData(localePtBr);
   ],
   providers: [
     CurrencyPipe,
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
-    StompService
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

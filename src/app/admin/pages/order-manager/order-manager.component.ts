@@ -9,7 +9,6 @@ import {WebSocketService} from "../../services/WebSocketService";
 })
 export class OrderManagerComponent {
   orders: any = []
-  messages: any = []
 
   constructor(private orderManagerService: OrderManagerService, private webSocketService: WebSocketService) {
 
