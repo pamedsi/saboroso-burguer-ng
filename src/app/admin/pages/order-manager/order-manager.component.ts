@@ -61,23 +61,40 @@ export class OrderManagerComponent extends WIthPriceFormatter{
     return ''
   }
 
-  getStatus(status: IOrderStatus){
-    switch (status) {
-      case (IOrderStatus.IN_QUEUE):
-        return 'Na fila'
-      case (IOrderStatus.PREPARING):
-        return 'Em preparo'
-      case (IOrderStatus.READY):
-        return 'Pronto'
-      case (IOrderStatus.OUT_TO_DELIVERY):
-        return 'Saiu para a entrega'
-      case (IOrderStatus.DELIVERED):
-        return 'Entregue'
-      case (IOrderStatus.CANCELED):
-        return 'Cancelado'
-    }
+  getStatusLabel(status: IOrderStatus){
+    return this.statusOptions.find(element => element.value === status)?.label
+  }
+
+  updateStatus(order: OrderResponseDTO) {
+    this.orderManagerService.updateOrderStatus(order.identifier, order.status).subscribe(console.info)
   }
 
 
+  protected readonly statusOptions = [
+    {
+      label: 'Na fila',
+      value: IOrderStatus.IN_QUEUE
+    },
+    {
+      label: 'Em preparo',
+      value: IOrderStatus.PREPARING
+    },
+    {
+      label: 'Pronto',
+      value: IOrderStatus.READY
+    },
+    {
+      label: 'Saiu para a entrega',
+      value: IOrderStatus.OUT_TO_DELIVERY
+    },
+    {
+      label: 'Entregue',
+      value: IOrderStatus.DELIVERED
+    },
+    {
+      label: 'Cancelado',
+      value: IOrderStatus.CANCELED
+    }
+  ]
 
 }

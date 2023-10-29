@@ -12,8 +12,11 @@
           <div class="value">{{order.orderCode}}</div>
         </div>
         <div class="key-and-value">
-          <div class="key">Status:</div>
-          <div class="value">{{getStatus(order.status)}}</div>
+          <label class="key" for="status">Status:</label>
+          <select class="value" id="status" (change)="updateStatus(order)" [(ngModel)]="order.status">
+              <option *ngFor="let option of statusOptions" [value]="option.value" [selected]="option.value === order.status">{{option.label}}</option>
+          </select>
+
         </div>
         <div class="key-and-value">
           <div class="key">Cliente:</div>
@@ -141,14 +144,6 @@
           </ul>
         </ng-template>
 
-      </section>
-
-      <h2>Atualizar status</h2>
-      <section>
-        <label for="status"></label>
-        <select id="status">
-          <option></option>
-        </select>
       </section>
     </section>
 

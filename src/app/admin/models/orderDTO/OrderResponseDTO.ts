@@ -1,10 +1,11 @@
-import {IOrderStatus} from "../../../client/models/IOrderStatus";
-import {IPaymentMethod} from "../../../client/models/IPaymentMethod";
+import {IOrderStatus} from "../../../shared/models/IOrderStatus";
+import {IPaymentMethod} from "../../../shared/models/IPaymentMethod";
 import {BurgerFromResponseOrderDTO} from "./BurgerFromResponseOrderDTO";
 import {PortionFromResponseOrderDTO} from "./PortionFromResponseOrderDTO";
 import {DrinkAndQuantityFromResponseOrderDTO} from "./DrinkAndQuantityFromResponseOrderDTO";
 
 export interface OrderResponseDTO {
+  identifier: string
   orderCode: string
   status: IOrderStatus
   clientName: string
