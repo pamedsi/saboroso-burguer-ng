@@ -14,7 +14,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 import { HomeComponent } from './client/pages/home/home.component';
 import { FormsModule } from "@angular/forms";
-import { OrderManagementComponent } from './admin/pages/order-management/order-management.component';
+import { OrderManagerComponent } from './admin/pages/order-manager/order-manager.component';
 import { HomeAdminComponent } from './admin/pages/home/home.admin.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -70,7 +70,7 @@ registerLocaleData(localePtBr);
     NotFoundComponent,
     BurgerManagementComponent,
     HomeComponent,
-    OrderManagementComponent,
+    OrderManagerComponent,
     HomeAdminComponent,
     BurgerListForManagementComponent,
     PortionListForManagementComponent,

@@ -9,7 +9,6 @@ import {Router} from "@angular/router";
 export class HomeComponent {
 
   constructor(private router: Router){}
-
   redirectToOrderForm() {
     this.router.navigate!(['/order-form'])
   }
