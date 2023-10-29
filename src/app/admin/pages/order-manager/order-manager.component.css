@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-admin {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+}
+
+.key-and-value{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section {
+  width: 30rem;
+}

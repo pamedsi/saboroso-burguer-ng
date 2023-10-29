@@ -1,1 +1,156 @@
-<p>{{orders.length}}</p>
+<header>
+  <h1>Gestor de Pedidos</h1>
+  <button class="back-to-admin">Voltar</button>
+</header>
+
+<main>
+    <section *ngFor="let order of orders">
+      <h2>Informações:</h2>
+      <section>
+        <div class="key-and-value">
+          <div class="key">Código:</div>
+          <div class="value">{{order.orderCode}}</div>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Status:</div>
+          <div class="value">{{getStatus(order.status)}}</div>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Cliente:</div>
+          <div class="value">{{order.clientName}}</div>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Número do celular:</div>
+          <div class="value">{{order.clientPhoneNumber}}</div>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Endereço de entrega:</div>
+          <div class="value">{{order.address}}</div>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Forma de pagamento:</div>
+          <div *ngIf="order.paymentMethod === IPaymentMethod.HYBRID; else commonMethod" class="value">{{order.howClientPaid}}</div>
+          <ng-template #commonMethod>
+            <div class="value">{{getPaymentMethod(order.paymentMethod)}}</div>
+          </ng-template>
+        </div>
+        <div class="key-and-value">
+          <div class="key">Valor do pedido:</div>
+          <div class="value">{{formatPrice(order.totalPaid)}}</div>
+        </div>
+
+      </section>
+
+      <h2>Pedido:</h2>
+      <section>
+        <h3>Hambúrgueres</h3>
+        <div *ngIf="!order.burgers.length; else burgerList">Sem hambúrgueres</div>
+        <ng-template #burgerList>
+          <ul>
+            <li *ngFor="let burger of order.burgers">
+              <div class="key-and-value">
+                <div class="key">Hambúrguer:</div>
+                <div class="value">{{burger.title}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Pão:</div>
+                <div class="value">{{burger.bread}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Combo:</div>
+                <div class="value">{{burger.combo}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div>Adicionais:</div>
+                <div *ngIf="!burger.addOns.length; else burgerAddOnList">Sem adicionais</div>
+                <ng-template #burgerAddOnList>
+                  <div *ngFor="let addOn of burger.addOns">
+                    <div>{{addOn.title}}</div>
+                    <div>{{addOn.price}}</div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Observações:</div>
+                <div class="value">{{burger.obs ? burger.obs : 'Sem observações'}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Valor pago no hambúrguer:</div>
+                <div class="value">{{formatPrice(burger.burgerSoldBy)}}</div>
+              </div>
+            </li>
+          </ul>
+        </ng-template>
+
+        <h3>Porções</h3>
+        <div *ngIf="!order.portions.length; else portionList">Sem hambúrgueres</div>
+        <ng-template #portionList>
+          <ul>
+            <li *ngFor="let portion of order.portions">
+              <div class="key-and-value">
+                <div class="key">Porção:</div>
+                <div class="value">{{portion.title}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Porção:</div>
+                <div class="value">{{portion.title}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div>Adicionais:</div>
+                <div *ngIf="!portion.addOns.length ; else burgerAddOnList">Sem adicionais</div>
+                <ng-template #burgerAddOnList>
+                  <div *ngFor="let addOn of portion.addOns">
+                    <div>{{addOn.title}}</div>
+                    <div>{{addOn.price}}</div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Observações:</div>
+                <div class="value">{{portion.obs ? portion.obs : 'Sem observações'}}</div>
+              </div>
+
+              <div class="key-and-value">
+                <div class="key">Valor pago pela porção:</div>
+                <div class="value">{{formatPrice(portion.price)}}</div>
+              </div>
+
+            </li>
+          </ul>
+        </ng-template>
+
+        <h3>Bebidas</h3>
+        <div *ngIf="!order.drinks.length; else drinkList">Sem Bebidas</div>
+        <ng-template #drinkList>
+          <ul>
+            <li *ngFor="let drink of order.drinks">
+              <div class="value">{{drink.quantity}} {{drink.title}} {{drink.ml}}mL</div>
+              <div class="key-and-value">
+                <div class="key">Valor de cada:</div>
+                <div class="value">{{formatPrice(drink.price)}}</div>
+              </div>
+            </li>
+          </ul>
+        </ng-template>
+
+      </section>
+
+      <h2>Atualizar status</h2>
+      <section>
+        <label for="status"></label>
+        <select id="status">
+          <option></option>
+        </select>
+      </section>
+    </section>
+
+</main>
+
