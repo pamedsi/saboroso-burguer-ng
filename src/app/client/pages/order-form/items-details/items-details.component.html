@@ -20,7 +20,7 @@
               <label for="combo{{burgerIndex}}">Combo: </label>
               <select id="combo{{burgerIndex}}" [(ngModel)]="burger.comboEditing" [compareWith]="compareCombos" (change)="onComboChange($event, burger)">
                 <option [value]="''" disabled>Escolher combo</option>
-                <option>Sem combo</option>
+                <option [ngValue]="null">Sem combo</option>
                 <option *ngFor="let combo of combos" [ngValue]="combo">{{combo.getTitle()}}</option>
               </select>
             </section>

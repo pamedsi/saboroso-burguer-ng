@@ -19,7 +19,7 @@ export class BurgerForMenu extends MenuItem {
   // Component Props
 
   breadEditing: '' | BreadDTO
-  comboEditing: '' | ComboForMenu
+  comboEditing: '' | null | ComboForMenu
   addOnsEditing:  (AddOnForMenu | '')[]
   numberOfAddOns: number | ''
 
@@ -89,6 +89,7 @@ export class BurgerForMenu extends MenuItem {
     if (!this.addOns.length) {
       this.addOns.forEach(addOn => addOnsValue += addOn.getPrice())
     }
+    console.log(addOnsValue)
 
     let totalValue = addOnsValue + this.price
     if (this.combo) {

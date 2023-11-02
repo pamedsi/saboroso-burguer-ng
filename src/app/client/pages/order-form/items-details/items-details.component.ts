@@ -51,7 +51,7 @@ export class ItemsDetailsComponent implements OnInit{
     const index = selectedCombo.target.selectedIndex - 1
 
     // Caso a opção "Sem Combo" seja selecionada
-    if (index <= -1) burger.setCombo(null)
+    if (index <= 0) burger.setCombo(null)
     // Caso contrário
     else burger.setCombo(this.combos[index])
   }
@@ -98,6 +98,8 @@ export class ItemsDetailsComponent implements OnInit{
   }
 
   compareCombos(combo1: ComboForMenu, combo2: ComboForMenu) {
+    console.log(combo2)
+    console.log(Boolean(combo2))
     return combo1 && combo2 ? combo1.getIdentifier() === combo2.getIdentifier() : combo1 === combo2;
   }
 }
