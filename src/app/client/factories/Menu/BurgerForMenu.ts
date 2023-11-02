@@ -86,10 +86,9 @@ export class BurgerForMenu extends MenuItem {
 
   getPurchasePrice(): PurchasePrice{
     let addOnsValue= 0
-    if (!this.addOns.length) {
+    if (this.addOns.length) {
       this.addOns.forEach(addOn => addOnsValue += addOn.getPrice())
     }
-    console.log(addOnsValue)
 
     let totalValue = addOnsValue + this.price
     if (this.combo) {
