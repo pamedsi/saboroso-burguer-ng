@@ -6,6 +6,7 @@ import {DrinkAndQuantityFromResponseOrderDTO} from "./DrinkAndQuantityFromRespon
 
 export interface OrderResponseDTO {
   identifier: string
+  timeOfPurchase: Date
   orderCode: string
   status: IOrderStatus
   clientName: string

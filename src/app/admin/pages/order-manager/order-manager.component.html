@@ -42,6 +42,11 @@
           <div class="value">{{formatPrice(order.totalPaid)}}</div>
         </div>
 
+        <div class="key-and-value">
+          <div class="key">Hora do pedido:</div>
+          <div class="value">{{formatHour(order.timeOfPurchase)}}</div>
+        </div>
+
       </section>
 
       <h2>Pedido:</h2>
@@ -129,15 +134,14 @@
         </ng-template>
 
         <h3>Bebidas</h3>
-        <div *ngIf="!order.drinks.length; else drinkList">Sem Bebidas</div>
+        <div *ngIf="!order.drinks.length; else drinkList" class="no-drinks">Sem Bebidas</div>
         <ng-template #drinkList>
           <ul>
             <li *ngFor="let drink of order.drinks">
-              {{drink.quantity}} {{drink.title}} {{drink.ml}}mL {{formatPrice(drink.price)}}
-<!--              <div class="key-and-value">-->
-<!--                <div class="key">Valor de cada:</div>-->
-<!--                <div class="value">{{formatPrice(drink.price)}}</div>-->
-<!--              </div>-->
+              <div class="key-and-value">
+                <div class="key">{{drink.quantity}} {{drink.title}} {{drink.ml}}mL {{formatPrice(drink.price)}}</div>
+                <div class="value">{{formatPrice(drink.quantity * drink.price)}}</div>
+              </div>
             </li>
           </ul>
         </ng-template>

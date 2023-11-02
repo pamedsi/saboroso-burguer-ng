@@ -36,3 +36,7 @@ section {
   display: flex;
   flex-direction: column;
 }
+
+.no-drinks {
+  margin-bottom: 1rem;
+}

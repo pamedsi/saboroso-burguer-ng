@@ -31,15 +31,16 @@ export class OrderManagerComponent extends WIthPriceFormatter{
   }
 
   refreshOrderList(){
-    this.orderManagerService.getAllOrders().subscribe(orders =>
+    this.orderManagerService.getAllOrders().subscribe(orders => {
+      orders.forEach(order => order.timeOfPurchase = new Date(order.timeOfPurchase))
       this.orders = orders
-    )
+    })
   }
 
   alertNewOrder(){
     // Implementar algum efeito sonoro
     // Implementar algo semelhante a um pop-up
-    alert("Novo pedido ae na base")
+    alert("Novo pedido!")
     this.refreshOrderList()
   }
 
@@ -67,7 +68,11 @@ export class OrderManagerComponent extends WIthPriceFormatter{
 
   updateStatus(order: OrderResponseDTO) {
     this.orderManagerService.updateOrderStatus(order.identifier, order.status).subscribe(console.info)
-    console.log(this.orders)
+  }
+
+  formatHour(time: Date): string{
+    const minutes = time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes().toString()
+    return `${time.getHours()}:${minutes}`
   }
 
 
@@ -97,5 +102,4 @@ export class OrderManagerComponent extends WIthPriceFormatter{
       value: IOrderStatus.CANCELED
     }
   ]
-
 }
