@@ -67,6 +67,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
 
   updateStatus(order: OrderResponseDTO) {
     this.orderManagerService.updateOrderStatus(order.identifier, order.status).subscribe(console.info)
+    console.log(this.orders)
   }
 
 

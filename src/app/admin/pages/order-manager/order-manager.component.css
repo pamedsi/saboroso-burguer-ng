@@ -17,6 +17,22 @@ header {
   align-items: center;
 }
 
+.value {
+  text-align: right;
+}
+
 section {
   width: 30rem;
+}
+
+.ticket-order{
+  border: solid 0.15rem white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-on-list {
+  display: flex;
+  flex-direction: column;
 }

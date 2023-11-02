@@ -32,7 +32,7 @@ export class OrderService {
   }
 
   makeOrder(orderDTO: OrderDTO){
-    console.log(JSON.stringify(orderDTO))
+    // console.log(JSON.stringify(orderDTO))
    return this.http.post(`${environment.API_URL}/make-order`, orderDTO, {headers: defaultHeaders})
   }
 

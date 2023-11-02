@@ -4,7 +4,7 @@
 </header>
 
 <main>
-    <section *ngFor="let order of orders">
+    <section *ngFor="let order of orders" class="ticket-order">
       <h2>Informações:</h2>
       <section>
         <div class="key-and-value">
@@ -58,21 +58,20 @@
 
               <div class="key-and-value">
                 <div class="key">Pão:</div>
-                <div class="value">{{burger.bread}}</div>
+                <div class="value">{{burger.bread.title}}</div>
               </div>
 
               <div class="key-and-value">
                 <div class="key">Combo:</div>
-                <div class="value">{{burger.combo}}</div>
+                <div class="value">{{burger.combo ? burger.combo.title + ' ' + formatPrice(burger.combo.price) : 'Sem combo'}}</div>
               </div>
 
               <div class="key-and-value">
-                <div>Adicionais:</div>
-                <div *ngIf="!burger.addOns.length; else burgerAddOnList">Sem adicionais</div>
+                <div class="key">Adicionais:</div>
+                <div *ngIf="!burger.addOns.length; else burgerAddOnList" class="value">Sem adicionais</div>
                 <ng-template #burgerAddOnList>
-                  <div *ngFor="let addOn of burger.addOns">
-                    <div>{{addOn.title}}</div>
-                    <div>{{addOn.price}}</div>
+                  <div class="value">
+                    <div class="value" *ngFor="let addOn of burger.addOns">{{addOn.title + ' ' + formatPrice(addOn.price)}}</div>
                   </div>
                 </ng-template>
               </div>
@@ -91,7 +90,7 @@
         </ng-template>
 
         <h3>Porções</h3>
-        <div *ngIf="!order.portions.length; else portionList">Sem hambúrgueres</div>
+        <div *ngIf="!order.portions.length; else portionList">Sem porções</div>
         <ng-template #portionList>
           <ul>
             <li *ngFor="let portion of order.portions">
@@ -106,12 +105,11 @@
               </div>
 
               <div class="key-and-value">
-                <div>Adicionais:</div>
-                <div *ngIf="!portion.addOns.length ; else burgerAddOnList">Sem adicionais</div>
+                <div class="key">Adicionais:</div>
+                <div *ngIf="!portion.addOns.length; else burgerAddOnList" class="value">Sem adicionais</div>
                 <ng-template #burgerAddOnList>
-                  <div *ngFor="let addOn of portion.addOns">
-                    <div>{{addOn.title}}</div>
-                    <div>{{addOn.price}}</div>
+                  <div class="value">
+                    <div class="value" *ngFor="let addOn of portion.addOns">{{addOn.title + ' ' + formatPrice(addOn.price)}}</div>
                   </div>
                 </ng-template>
               </div>
@@ -135,11 +133,11 @@
         <ng-template #drinkList>
           <ul>
             <li *ngFor="let drink of order.drinks">
-              <div class="value">{{drink.quantity}} {{drink.title}} {{drink.ml}}mL</div>
-              <div class="key-and-value">
-                <div class="key">Valor de cada:</div>
-                <div class="value">{{formatPrice(drink.price)}}</div>
-              </div>
+              {{drink.quantity}} {{drink.title}} {{drink.ml}}mL {{formatPrice(drink.price)}}
+<!--              <div class="key-and-value">-->
+<!--                <div class="key">Valor de cada:</div>-->
+<!--                <div class="value">{{formatPrice(drink.price)}}</div>-->
+<!--              </div>-->
             </li>
           </ul>
         </ng-template>
