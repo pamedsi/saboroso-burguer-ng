@@ -6,6 +6,7 @@ import {WIthPriceFormatter} from "../../../shared/utils/PriceFormatter";
 import {CurrencyPipe} from "@angular/common";
 import {IPaymentMethod} from "../../../shared/models/IPaymentMethod";
 import {IOrderStatus} from "../../../shared/models/IOrderStatus";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-manager',
@@ -16,7 +17,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
   pendingOrders:  OrderResponseDTO[]
   protected readonly IPaymentMethod = IPaymentMethod;
 
-  constructor(private orderManagerService: OrderManagerService, private webSocketService: WebSocketService, currencyPipe: CurrencyPipe,) {
+  constructor(private orderManagerService: OrderManagerService, private webSocketService: WebSocketService, currencyPipe: CurrencyPipe, private router: Router) {
     super(currencyPipe);
     this.pendingOrders = []
   }
@@ -108,4 +109,8 @@ export class OrderManagerComponent extends WIthPriceFormatter{
       value: IOrderStatus.CANCELED
     }
   ]
+
+  goBackToAdminPage() {
+    this.router.navigate(['admin'])
+  }
 }
