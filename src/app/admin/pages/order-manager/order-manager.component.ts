@@ -13,12 +13,12 @@ import {IOrderStatus} from "../../../shared/models/IOrderStatus";
   styleUrls: ['./order-manager.component.css']
 })
 export class OrderManagerComponent extends WIthPriceFormatter{
-  orders:  OrderResponseDTO[]
+  pendingOrders:  OrderResponseDTO[]
   protected readonly IPaymentMethod = IPaymentMethod;
 
   constructor(private orderManagerService: OrderManagerService, private webSocketService: WebSocketService, currencyPipe: CurrencyPipe,) {
     super(currencyPipe);
-    this.orders = []
+    this.pendingOrders = []
   }
 
   ngOnInit(){
@@ -31,9 +31,10 @@ export class OrderManagerComponent extends WIthPriceFormatter{
   }
 
   refreshOrderList(){
-    this.orderManagerService.getAllOrders().subscribe(orders => {
+    this.orderManagerService.getUnfinishedOrders().subscribe(orders => {
       orders.forEach(order => order.timeOfPurchase = new Date(order.timeOfPurchase))
-      this.orders = orders
+      orders.sort((a,b) => a.timeOfPurchase.valueOf() - b.timeOfPurchase.valueOf())
+      this.pendingOrders = orders
     })
   }
 
@@ -68,6 +69,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
 
   updateStatus(order: OrderResponseDTO) {
     this.orderManagerService.updateOrderStatus(order.identifier, order.status).subscribe(console.info)
+    this.refreshOrderList()
   }
 
   formatHour(time: Date): string{

@@ -18,6 +18,10 @@ export class OrderManagerService {
     return this.http.get<OrderResponseDTO[]>(`${environment.API_URL}/order-manager`, {headers: defaultWithToken})
   }
 
+  getUnfinishedOrders(){
+    return this.http.get<OrderResponseDTO[]>(`${environment.API_URL}/unfinished-orders`, {headers: defaultWithToken})
+  }
+
   updateOrderStatus(orderIdentifier: string, status: IOrderStatus) {
     return this.http.put(`${environment.API_URL}/update-order-status`, {orderIdentifier, status}, {headers: withTokenAndBody})
   }
