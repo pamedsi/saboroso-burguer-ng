@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environment/environment";
 import {defaultWithToken, withTokenAndBody} from "../utils/Headers";
 import {WebSocketService} from "./WebSocketService";
-import {OrderResponseDTO} from "../models/orderDTO/OrderResponseDTO";
+import {OrderResponseDTO} from "../../shared/models/OrderResponseDTO";
 import {IOrderStatus} from "../../shared/models/IOrderStatus";
 
 @Injectable({
