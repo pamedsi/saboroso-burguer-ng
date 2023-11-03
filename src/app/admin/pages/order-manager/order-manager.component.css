@@ -4,6 +4,20 @@ header {
   justify-content: center;
 }
 
+section {
+  width: 30rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+  gap: 1rem;
+}
+
+.ticket-order {
+  padding: 1rem;
+}
+
 .back-to-admin {
   position: absolute;
   right: 1%;
@@ -21,9 +35,6 @@ header {
   text-align: right;
 }
 
-section {
-  width: 30rem;
-}
 
 .ticket-order{
   border: solid 0.15rem white;

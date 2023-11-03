@@ -63,20 +63,24 @@ export class OrderManagerComponent extends WIthPriceFormatter{
     return ''
   }
 
-  getStatusLabel(status: IOrderStatus){
-    return this.statusOptions.find(element => element.value === status)?.label
-  }
-
   updateStatus(order: OrderResponseDTO) {
     this.orderManagerService.updateOrderStatus(order.identifier, order.status).subscribe(console.info)
-    this.refreshOrderList()
+  }
+
+
+  finishOrder(order: OrderResponseDTO){
+    if (order.status === IOrderStatus.CANCELED || order.status === IOrderStatus.DELIVERED) {
+      this.pendingOrders = this.pendingOrders.filter(currentOrder => currentOrder.identifier !== order.identifier)
+      return
+    }
+
+    console.error('Atualize o status para "CANCELADO" ou "ENTREGUE" antes de encerrar o pedido.')
   }
 
   formatHour(time: Date): string{
     const minutes = time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes().toString()
     return `${time.getHours()}:${minutes}`
   }
-
 
   protected readonly statusOptions = [
     {
