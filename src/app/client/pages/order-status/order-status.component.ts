@@ -4,6 +4,7 @@ import {OrderResponseDTO} from "../../../shared/models/OrderResponseDTO";
 import {removeSpecialChars} from "../../utils/removeSpecialChars";
 import {IOrderStatus} from "../../../shared/models/IOrderStatus";
 import {statusOptions} from "../../../shared/models/statusOptions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-status',
@@ -15,7 +16,7 @@ export class OrderStatusComponent {
   order!: OrderResponseDTO
   finder!: string
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit(){
     sessionStorage.clear()
@@ -43,4 +44,7 @@ export class OrderStatusComponent {
     return statusOptions.find(update => update.value === status)?.label
   }
 
+  goBackToHome() {
+    this.router.navigate(['/'])
+  }
 }

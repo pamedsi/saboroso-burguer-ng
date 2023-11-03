@@ -1,26 +1,41 @@
-<section class="input">
-  <h1>Use o código do seu pedido ou seu número<br>de celular para checar o status do seu pedido</h1>
-  <input id="order-finder" [(ngModel)]="finder" placeholder="Código do pedido ou número de celular">
-  <div>Se for digitar o seu número de celular, use o DDD</div>
-  <div>Ex: 21 98765-4321</div>
+<body>
 
-  <br>
-  <app-yellow-button
-    text="CHECAR PEDIDO"
-    (clicked)="getOrder()"
-  ></app-yellow-button>
-</section>
+  <header>
+    <h1>Use o código do seu pedido ou seu número<br>de celular para checar o status do seu pedido</h1>
+    <div class="input-container">
+      <input id="order-finder" [(ngModel)]="finder" placeholder="Código do pedido ou número de celular">
+      <div>Se for digitar o seu número de celular, use o DDD</div>
+      <div>Ex: 21 98765-4321</div>
+    </div>
+    <br>
+  </header>
 
-<section class="output" *ngIf="orders.length">
-  <h2>Olá, {{orders[0].clientName}}!</h2>
-  <div *ngFor="let order of orders">
-    O pedido {{order.orderCode}} está {{getStatusLabel(order.status)}}
-  </div>
-</section>
+  <main>
+    <div class="button">
+      <app-yellow-button
+        text="CHECAR PEDIDO"
+        (clicked)="getOrder()"
+      ></app-yellow-button>
+    </div>
 
-<section class="output" *ngIf="order">
-  <h2>Olá, {{order.clientName}}!</h2>
-  <div>
-    O pedido {{order.orderCode}} está {{getStatusLabel(order.status)}}
-  </div>
-</section>
+    <section class="output" *ngIf="orders.length">
+      <h2>Olá, {{orders[0].clientName}}!</h2>
+      <div *ngFor="let order of orders">
+        O pedido {{order.orderCode}} está {{getStatusLabel(order.status)}}
+      </div>
+    </section>
+
+    <section class="output" *ngIf="order">
+      <h2>Olá, {{order.clientName}}!</h2>
+      <div>
+        O pedido {{order.orderCode}} está {{getStatusLabel(order.status)}}
+      </div>
+    </section>
+    <div class="button">
+      <app-yellow-button
+        text="VOLTAR À PAGINA INICIAL"
+        (clicked)="goBackToHome()"
+      ></app-yellow-button>
+    </div>
+  </main>
+</body>
