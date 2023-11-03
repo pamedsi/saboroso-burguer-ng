@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {OrderDTO} from "../models/OrderDTO";
 import {environment} from "../../../environment/environment";
 import {defaultHeaders} from "../../admin/utils/Headers";
+import {OrderResponseDTO} from "../../shared/models/OrderResponseDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,13 @@ export class OrderService {
   makeOrder(orderDTO: OrderDTO){
     // console.log(JSON.stringify(orderDTO))
    return this.http.post(`${environment.API_URL}/make-order`, orderDTO, {headers: defaultHeaders})
+  }
+
+  getOrdersByPhoneNumber(phoneNumber: string){
+    return this.http.get<OrderResponseDTO[]>(`${environment.API_URL}/get-orders-by-phone-number/${phoneNumber}`, {headers: defaultHeaders})
+  }
+  getOrderByCode(code: string){
+    return this.http.get<OrderResponseDTO>(`${environment.API_URL}/get-order-by-code/${code}`, {headers: defaultHeaders})
   }
 
   generateOrderCode(): string{

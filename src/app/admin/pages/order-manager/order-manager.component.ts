@@ -7,6 +7,7 @@ import {CurrencyPipe} from "@angular/common";
 import {IPaymentMethod} from "../../../shared/models/IPaymentMethod";
 import {IOrderStatus} from "../../../shared/models/IOrderStatus";
 import {Router} from "@angular/router";
+import {statusOptions} from "../../../shared/models/statusOptions";
 
 @Component({
   selector: 'app-order-manager',
@@ -83,32 +84,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
     return `${time.getHours()}:${minutes}`
   }
 
-  protected readonly statusOptions = [
-    {
-      label: 'Na fila',
-      value: IOrderStatus.IN_QUEUE
-    },
-    {
-      label: 'Em preparo',
-      value: IOrderStatus.PREPARING
-    },
-    {
-      label: 'Pronto',
-      value: IOrderStatus.READY
-    },
-    {
-      label: 'Saiu para a entrega',
-      value: IOrderStatus.OUT_TO_DELIVERY
-    },
-    {
-      label: 'Entregue',
-      value: IOrderStatus.DELIVERED
-    },
-    {
-      label: 'Cancelado',
-      value: IOrderStatus.CANCELED
-    }
-  ]
+  protected readonly statusOptions = statusOptions
 
   goBackToAdminPage() {
     this.router.navigate(['admin'])
