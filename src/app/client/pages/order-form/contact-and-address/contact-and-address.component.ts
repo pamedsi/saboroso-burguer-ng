@@ -103,7 +103,7 @@ export class ContactAndAddressComponent {
       if (this.sameAddress) {
         this.order.addressToDeliver = this.userFound!.addresses[0]
       }
-      else if (!this.chosenAddress && this.chosenAddress !== 'new'){
+      else if (this.chosenAddress && this.chosenAddress !== 'new'){
         this.order.addressToDeliver = this.chosenAddress
       }
       else if (this.chosenAddress === 'new'){
@@ -168,6 +168,7 @@ export class ContactAndAddressComponent {
     }
     const error = (response: any) => {
       console.info(response)
+      alert("Ocorreu um erro em nosso sistema. Tente novamente mais tarde.")
       // console.log(JSON.stringify(this.toOrderDTO()))
       // Provavelmente vai ser porque algum produto ta em falta, aí vai pedir pra voltar e alterar o pedido.
     }
