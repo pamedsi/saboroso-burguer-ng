@@ -57,18 +57,15 @@ export class ItemsDetailsComponent implements OnInit{
   }
   finishItemsDetails() {
     if (!this.finishedBurgerAddOns.allRight) {
-      // lançar pop-up
-      console.log(this.finishedBurgerAddOns.missing)
+      alert(this.finishedBurgerAddOns.missing)
       return
     }
     if (!this.finishedPortionAddOns.allRight) {
-      // lançar pop-up
-      console.log(this.finishedPortionAddOns.missing)
+      alert(this.finishedPortionAddOns.missing)
       return
     }
     if(this.order.burgers.some(burger=> !burger.breadEditing)) {
-      // lançar pop-up
-      console.info('pão pendente')
+      alert('Escolha algum pão.')
       return
     }
 

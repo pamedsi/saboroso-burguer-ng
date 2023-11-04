@@ -51,7 +51,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
       !this.order.portions.length &&
       !this.order.drinks.length
     ) {
-      console.info('É necessário pedir pelo menos um dis itens: hambúrguer, porção ou bebida!')
+      alert('É necessário pedir pelo menos um dis itens: hambúrguer, porção ou bebida para avançar!')
       return
     }
 

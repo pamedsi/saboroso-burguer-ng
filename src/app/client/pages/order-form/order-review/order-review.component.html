@@ -2,10 +2,9 @@
   <section>
 
     <section *ngIf="order.burgers.length">
-      <h2>Seus hambúrgueres</h2>
+      <h1>Seus hambúrgueres</h1>
       <section class="burger-details" *ngFor="let burger of order.burgers; let i = index">
-        <h3>{{i + 1}}º Hambúrguer</h3>
-
+        <h2>{{i + 1}}º Hambúrguer</h2>
         <section class="item-and-price">
           <div>{{burger.getTitle()}}</div>
           <div>{{formatPrice(burger.getPrice())}}</div>
@@ -48,9 +47,9 @@
 
 
     <section *ngIf="order.portions.length">
-      <h2>Suas porções</h2>
+      <h1>Suas porções</h1>
       <div *ngFor="let portion of order.portions; let i = index">
-        <h3>{{i + 1}}ª Porção</h3>
+        <h2>{{i + 1}}ª Porção</h2>
 
         <section class="item-and-price">
           <div>{{portion.getTitle()}}</div>
@@ -88,7 +87,7 @@
 
     <section class="payment-method">
 
-      <div> Qual será a forma de pagamento?</div>
+      <h1> Qual será a forma de pagamento?</h1>
       <section class="input-radio-container">
         <div class="input-radio">
           <input id="credit-card" type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" [value]="PaymentMethod.CREDIT_CARD">

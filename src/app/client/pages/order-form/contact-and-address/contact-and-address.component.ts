@@ -77,7 +77,7 @@ export class ContactAndAddressComponent {
     const phoneNumber =this.ddd + this.phoneNumber.replace('-', '')
     const {isValid} = phone( '+55' + phoneNumber)
     if (!isValid) {
-      console.info("Número de celular inválido!")
+      alert("Número de celular inválido!")
       return
     }
 
@@ -120,7 +120,7 @@ export class ContactAndAddressComponent {
       this.name.finishedTypingName = true
       document.getElementById('name')!.blur();
     }
-    else console.info('Nome inválido! Digite pelo menos duas letras.')
+    else alert('Nome inválido! Digite pelo menos duas letras.')
   }
 
   updateButtonVisibility(value: boolean) {

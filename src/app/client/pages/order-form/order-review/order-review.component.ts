@@ -51,11 +51,11 @@ export class OrderReviewComponent extends WIthPriceFormatter{
 
   goToNextStep(){
     if (this.paymentMethod === IPaymentMethod.PENDING_TO_CHOOSE) {
-      console.info("Escolha um método de pagamento.")
+      alert("Escolha um método de pagamento.")
       return
     }
     if (this.paymentMethod === IPaymentMethod.HYBRID && this.hybridPayment.length < 3) {
-      console.info("Explique como você pretende pagar.")
+      alert("Explique como você pretende pagar.")
       return
     }
 
