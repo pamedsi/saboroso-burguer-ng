@@ -3,12 +3,13 @@ import {Subject} from "rxjs";
 import * as SockJS from 'sockjs-client'
 import * as Stomp from 'stompjs'
 import {defaultWithToken} from "../utils/Headers";
+import {environment} from "../../../environment/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
-  private readonly url = 'http://localhost:8080/orders';
+  private readonly url = `${environment.API_URL.replace('api', 'orders')}`
   stompClient: any
   responseSubject = new Subject()
 
