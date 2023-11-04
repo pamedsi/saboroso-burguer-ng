@@ -37,7 +37,7 @@ export class OrderStatusComponent {
       this.orders = order
     })
 
-    else console.error("Seu número de celular deve estar faltando ou sobrando algum dígito")
+    else alert("Seu número de celular ou código de pedido deve estar faltando ou sobrando algum dígito")
   }
 
   getStatusLabel(status: IOrderStatus) {
