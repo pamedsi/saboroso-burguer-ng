@@ -76,7 +76,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
       return
     }
 
-    console.error('Atualize o status para "CANCELADO" ou "ENTREGUE" antes de encerrar o pedido.')
+    alert('Atualize o status para "CANCELADO" ou "ENTREGUE" antes de encerrar o pedido.')
   }
 
   formatHour(time: Date): string{
