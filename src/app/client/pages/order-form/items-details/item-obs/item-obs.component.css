@@ -2,6 +2,7 @@ select {
   margin: 0.5rem;
 }
 .select-field {
+  /*width: 25rem;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +11,7 @@ select {
   color: #c0c0c0;
 }
 .obs-field {
-  max-width: 20rem;
+  /*max-width: 20rem;*/
   display: flex;
   flex-direction: column;
 }

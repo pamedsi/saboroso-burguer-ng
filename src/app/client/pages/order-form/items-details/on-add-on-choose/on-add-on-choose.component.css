@@ -1,7 +1,8 @@
 select {
   margin: 0.5rem;
 }
-.selecting-amount {
+.selecting {
+  /*width: 25rem;*/
   display: flex;
   justify-content: space-between;
   align-items: center;

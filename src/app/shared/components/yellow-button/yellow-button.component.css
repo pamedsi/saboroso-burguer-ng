@@ -5,6 +5,7 @@ div {
   color: #303030;
   border-radius: 0.6rem;
   min-width: 15rem;
+  /*max-width: 80vw;*/
   height: 3.2rem;
 
   border-style: none;
