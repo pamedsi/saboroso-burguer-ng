@@ -101,7 +101,7 @@ export class ContactAndAddressComponent {
         this.order.clientPhoneNumber = this.ddd + this.phoneNumber
       }
       if (this.sameAddress) {
-        this.order.addressToDeliver = this.userFound!.addresses[0]
+        this.order.addressToDeliver = this.userFound!.addresses[this.userFound!.addresses.length - 1]
       }
       else if (this.chosenAddress && this.chosenAddress !== 'new'){
         this.order.addressToDeliver = this.chosenAddress
