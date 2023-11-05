@@ -3,3 +3,7 @@
   background-color: #232222;
   color: white;
 }
+
+body > * {
+  max-width: 40rem;
+}

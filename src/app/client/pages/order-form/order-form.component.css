@@ -1,14 +1,7 @@
-body {
-  background: brown;
-  display: flex;
-  justify-items: center;
-  flex-direction: column;
-}
-main {
+body, main  {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /*align-items:  center;*/
+  align-items: center;
 }
 
 .home-button {
