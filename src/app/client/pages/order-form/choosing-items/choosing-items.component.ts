@@ -26,9 +26,9 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
   availablePortions!: PortionForMenu[]
   availableDrinks!: DrinkForMenu[]
 
-  burgersLoaded = false
-  portionsLoaded = false
-  drinksLoaded = false
+  burgersLoading = true
+  portionsLoading = true
+  drinksLoading = true
 
   constructor (
     private menuService: MenuService,
@@ -42,15 +42,31 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
     this.menuService.getMenu()
     this.menuService.getBurgersForMenu().subscribe(burgers => {
       this.availableBurgers = burgers
-      this.burgersLoaded = true
+      this.burgersLoading = false
+
+      try {
+        document.getElementById("burger-spinner")!.hidden = true
+      }
+      catch (e){}
+
     })
     this.menuService.getPortionsForMenu().subscribe(portions => {
       this.availablePortions = portions
-      this.portionsLoaded = true
+      this.portionsLoading = false
+
+      try {
+        document.getElementById("portion-spinner")!.hidden = true
+      }
+      catch (e){}
     })
     this.menuService.getDrinksForMenu().subscribe(drinks => {
       this.availableDrinks = drinks
-      this.drinksLoaded = true
+      this.drinksLoading = false
+
+      try {
+        document.getElementById("drink-spinner")!.hidden = true
+      }
+      catch (e){}
     })
     this.orderService.currentOrder.subscribe(order => this.order = order)
   }

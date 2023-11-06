@@ -3,7 +3,7 @@
 
     <section class="burgers">
       <h2>Hambúrgueres:</h2>
-      <app-loading-spinner [isLoading]="!burgersLoaded"></app-loading-spinner>
+      <app-loading-spinner [isLoading]="true" id="burger-spinner"></app-loading-spinner>
       <div *ngFor="let category of availableBurgers | keyvalue">
         <h4>{{category.key}}</h4>
         <ul>
@@ -22,8 +22,8 @@
     </section>
 
     <section class="portions">
-      <app-loading-spinner [isLoading]="!portionsLoaded"></app-loading-spinner>
       <h2>Porções:</h2>
+      <app-loading-spinner [isLoading]="true" id="portion-spinner"></app-loading-spinner>
       <div *ngFor="let portion of availablePortions">
         <ul>
           <li>
@@ -42,7 +42,7 @@
 
     <section class="drinks">
       <h2>Bebidas:</h2>
-      <app-loading-spinner [isLoading]="!drinksLoaded"></app-loading-spinner>
+      <app-loading-spinner [isLoading]="true" id="drink-spinner"></app-loading-spinner>
       <div *ngFor="let drink of availableDrinks">
         <ul>
           <li>
