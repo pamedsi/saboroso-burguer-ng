@@ -1,3 +1,8 @@
+* {
+  background-color: transparent;
+}
+
+
 /* Firefox */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -16,9 +21,45 @@ input {
     text-align: center;
 }
 
+li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  border: solid white 0.2rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding: 0;
+}
+
+img {
+  object-fit: contain;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  width: 8rem;
+  height: 8rem;
+}
+
+.about-burger {
+  min-width: 14rem;
+  padding-right: 0.5rem;
+}
+
 .adding-item {
-    width: 5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  width: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.quantity-and-price {
+  position: relative;
+  left: 55%;
+  width: min-content;
 }
