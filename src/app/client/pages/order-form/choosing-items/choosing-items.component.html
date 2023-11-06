@@ -1,15 +1,15 @@
-<ng-template #notHidden>
-  <main>
+<main *ngIf="!hidden">
 
     <section class="burgers">
       <h1>Hambúrgueres:</h1>
-      <app-loading-spinner [isLoading]="true" id="burger-spinner"></app-loading-spinner>
+      <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
       <div *ngFor="let category of availableBurgers | keyvalue">
         <h2>{{category.key}}</h2>
         <ul>
           <li *ngFor="let burger of category.value">
               <img ngSrc="assets/krabby-patty.webp" height="100" width="100" alt="">
-              <section class="about-burger">
+              <section class="about-item">
                 <h3>{{burgerCaster(burger).getTitle()}}</h3>
                 <p>{{burgerCaster(burger).ingredientsToString()}}</p>
 
@@ -30,39 +30,45 @@
 
     <section class="portions">
       <h1>Porções:</h1>
-      <app-loading-spinner [isLoading]="true" id="portion-spinner"></app-loading-spinner>
-      <div *ngFor="let portion of availablePortions">
+      <app-loading-spinner *ngIf="loading"></app-loading-spinner>
         <ul>
-          <li>
-            <h2>{{portion.getTitle()}}</h2>
-            <p>{{portion.getDescription()}}</p>
-            <h2>{{formatPrice(portion.getPrice())}}</h2>
-            <div class="adding-item">
-              <button class="decrement-button" (click)="removeItem(portion)">-</button>
-              <div>{{countItems(portion)}}</div>
-              <button class="increment-button" (click)="addItem(portion)">+</button>
-            </div>
+          <li *ngFor="let portion of availablePortions">
+            <img ngSrc="assets/coral-bits.webp" height="100" width="100" alt="">
+            <section class="about-item">
+              <h3>{{portion.getTitle()}}</h3>
+              <p>{{portion.getDescription()}}</p>
+              <div class="quantity-and-price">
+                <h3>{{formatPrice(portion.getPrice())}}</h3>
+                <div class="adding-item">
+                  <button class="decrement-button" (click)="removeItem(portion)">-</button>
+                  <div>{{countItems(portion)}}</div>
+                  <button class="increment-button" (click)="addItem(portion)">+</button>
+                </div>
+              </div>
+            </section>
           </li>
         </ul>
-      </div>
     </section>
 
     <section class="drinks">
       <h2>Bebidas:</h2>
-      <app-loading-spinner [isLoading]="true" id="drink-spinner"></app-loading-spinner>
-      <div *ngFor="let drink of availableDrinks">
+      <app-loading-spinner *ngIf="loading"></app-loading-spinner>
         <ul>
-          <li>
-            <h3>{{drink.getTitle()}} {{drink.getMl()}}mL</h3>
-            <h4>{{formatPrice(drink.getPrice())}}</h4>
-            <div class="adding-item">
-              <button class="decrement-button" (click)="removeItem(drink)">-</button>
-              <div>{{countItems(drink)}}</div>
-              <button class="increment-button" (click)="addItem(drink)">+</button>
-            </div>
+          <li *ngFor="let drink of availableDrinks">
+            <img ngSrc="assets/Undersea_Adventures_Krabby_Kola.webp" height="100" width="100" alt="">
+            <section class="about-item">
+              <h3>{{drink.getTitle()}} {{drink.getMl()}}mL</h3>
+              <h4>{{formatPrice(drink.getPrice())}}</h4>
+              <div class="quantity-and-price">
+                <div class="adding-item">
+                  <button class="decrement-button" (click)="removeItem(drink)">-</button>
+                  <div>{{countItems(drink)}}</div>
+                  <button class="increment-button" (click)="addItem(drink)">+</button>
+                </div>
+              </div>
+            </section>
           </li>
         </ul>
-      </div>
     </section>
 
     <app-yellow-button
@@ -70,11 +76,10 @@
       (clicked)="goToNextStep()"
     ></app-yellow-button>
 
-  </main>
-</ng-template>
+</main>
 
 <app-yellow-button
-  *ngIf="hidden; else notHidden"
+  *ngIf="hidden"
   text="ALTERAR PEDIDO"
   (clicked)="reChooseItems()"
 ></app-yellow-button>

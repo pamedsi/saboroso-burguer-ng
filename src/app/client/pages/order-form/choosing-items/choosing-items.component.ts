@@ -26,9 +26,7 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
   availablePortions!: PortionForMenu[]
   availableDrinks!: DrinkForMenu[]
 
-  burgersLoading = true
-  portionsLoading = true
-  drinksLoading = true
+  loading = true
 
   constructor (
     private menuService: MenuService,
@@ -39,35 +37,17 @@ export class ChoosingItemsComponent extends WIthPriceFormatter implements OnInit
   }
 
   ngOnInit() {
-    this.menuService.getMenu()
+    this.menuService.getMenu().subscribe(() => {this.loading = false})
+
     this.menuService.getBurgersForMenu().subscribe(burgers => {
       this.availableBurgers = burgers
-      this.burgersLoading = false
-
-      try {
-        document.getElementById("burger-spinner")!.hidden = true
-      }
-      catch (e){}
-
-    })
+      })
     this.menuService.getPortionsForMenu().subscribe(portions => {
       this.availablePortions = portions
-      this.portionsLoading = false
-
-      try {
-        document.getElementById("portion-spinner")!.hidden = true
-      }
-      catch (e){}
-    })
+      })
     this.menuService.getDrinksForMenu().subscribe(drinks => {
       this.availableDrinks = drinks
-      this.drinksLoading = false
-
-      try {
-        document.getElementById("drink-spinner")!.hidden = true
-      }
-      catch (e){}
-    })
+      })
     this.orderService.currentOrder.subscribe(order => this.order = order)
   }
 
