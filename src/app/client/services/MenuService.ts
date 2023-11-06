@@ -68,13 +68,13 @@ export class MenuService {
     );
   }
   getMenu(){
-    this.http.get<MenuForClientDTO>(`${environment.API_URL}/get-menu`).pipe(
+    return this.http.get<MenuForClientDTO>(`${environment.API_URL}/get-menu`).pipe(
         tap(menu => this.menuSource.next(menu)),
         catchError(error => {
           console.error('Erro buscando o cardápio', error);
           return throwError(() => error);
         })
-    ).subscribe()
+    )
   }
   burgersToModel(burgers: {[category: string]: BurgerDTO[]}){
     const model: any = {};
