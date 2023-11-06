@@ -20,7 +20,7 @@
 
     <button (click)="confirmPhoneNumber()">Confirmar Número</button>
   </section>
-
+     <app-loading-spinner [isLoading]="loading"></app-loading-spinner>
   <section *ngIf="state === IUserInfoState.FIRST_TIME_ORDERING && phoneNumber.length === 10">
     <section class="getting-name">
       <div>Parece que é a sua primeira vez pedindo com a gente</div>

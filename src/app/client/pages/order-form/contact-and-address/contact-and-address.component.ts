@@ -36,6 +36,7 @@ export class ContactAndAddressComponent {
   sameAddress: boolean | undefined
   newAddress = ''
   showButtonForConfirmOrder!: boolean
+  loading = false
 
 
   constructor(private orderService: OrderService, private userService: UserService, private router: Router) {
@@ -73,6 +74,7 @@ export class ContactAndAddressComponent {
 
   confirmPhoneNumber(){
     if (this.phoneNumber.length < 10) return
+    this.loading = true
 
     const phoneNumber =this.ddd + this.phoneNumber.replace('-', '')
     const {isValid} = phone( '+55' + phoneNumber)
@@ -87,6 +89,7 @@ export class ContactAndAddressComponent {
       if(!user) this.state = IUserInfoState.FIRST_TIME_ORDERING
       else if (!user.addresses.length) this.state = IUserInfoState.USER_WITH_NO_ADDRESS
       else this.state = IUserInfoState.USER_WITH_ADDRESS
+      this.loading = false
     })
     document.getElementById('phone-number')!.blur();
   }
