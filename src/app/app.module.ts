@@ -58,6 +58,7 @@ import { ItemsDetailsComponent } from './client/pages/order-form/items-details/i
 import { ContactAndAddressComponent } from './client/pages/order-form/contact-and-address/contact-and-address.component';
 import { YellowButtonComponent } from './shared/components/yellow-button/yellow-button.component';
 import { ItemObsComponent } from './client/pages/order-form/items-details/item-obs/item-obs.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 registerLocaleData(localePtBr);
 @NgModule({
@@ -104,6 +105,7 @@ registerLocaleData(localePtBr);
     ContactAndAddressComponent,
     YellowButtonComponent,
     ItemObsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

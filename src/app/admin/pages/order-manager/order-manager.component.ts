@@ -35,7 +35,7 @@ export class OrderManagerComponent extends WIthPriceFormatter{
   refreshOrderList(){
     this.orderManagerService.getUnfinishedOrders().subscribe(orders => {
       orders.forEach(order => order.timeOfPurchase = new Date(order.timeOfPurchase))
-      orders.sort((a,b) => a.timeOfPurchase.valueOf() - b.timeOfPurchase.valueOf())
+      // orders.sort((a,b) => a.timeOfPurchase.valueOf() - b.timeOfPurchase.valueOf())
       this.pendingOrders = orders
     })
   }
