@@ -1,6 +1,12 @@
 select {
+  background-color: transparent;
   margin: 0.5rem;
 }
+
+option {
+  background-color: #232222;
+}
+
 .select-field {
   /*width: 25rem;*/
   display: flex;

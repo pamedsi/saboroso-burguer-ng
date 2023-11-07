@@ -1,3 +1,11 @@
+select {
+  background-color: transparent;
+}
+
+option {
+  background-color: #232222;
+}
+
 body, main {
   display: flex;
   flex-direction: column;

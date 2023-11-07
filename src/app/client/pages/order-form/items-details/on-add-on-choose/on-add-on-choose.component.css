@@ -1,8 +1,11 @@
 select {
+  background-color: transparent;
   margin: 0.5rem;
 }
+option {
+  background-color: #232222;
+}
 .selecting {
-  /*width: 25rem;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
