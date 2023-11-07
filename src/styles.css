@@ -7,6 +7,10 @@ body > * {
   max-width: 40rem;
 }
 
-html {
+html, option{
   background-color: #232222;
+}
+
+select, input, button {
+  background-color: transparent;
 }
