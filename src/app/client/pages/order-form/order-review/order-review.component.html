@@ -38,8 +38,8 @@
         </section>
 
         <section class="item-and-price">
-          <div>Valor deste hambúrguer:</div>
-          <div>{{formatPrice(burger.getPurchasePrice().totalValue)}}</div>
+          <h2>Valor deste hambúrguer:</h2>
+          <h2>{{formatPrice(burger.getPurchasePrice().totalValue)}}</h2>
         </section>
 
       </section>
@@ -65,6 +65,12 @@
             </div>
           </section>
         </div>
+
+        <section class="item-and-price">
+          <h2>Valor desta porção:</h2>
+          <h2>{{formatPrice(portion.getPurchasePrice().totalValue)}}</h2>
+        </section>
+
         <ng-template #noAddOn>Sem adicionais</ng-template>
 
       </div>
@@ -81,8 +87,8 @@
     </section>
 
     <div class="item-and-price">
-      <div>Total a pagar:</div>
-      <div>{{formatPrice(totalValue)}}</div>
+      <h1>Total a pagar:</h1>
+      <h1>{{formatPrice(totalValue)}}</h1>
     </div>
 
     <section class="payment-method">
