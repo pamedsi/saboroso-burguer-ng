@@ -1,0 +1,5 @@
+<body class="input-image">
+  <input type="file" (change)="selectFile($event)">
+
+  <img [src]="preview" *ngIf="picUploaded">
+</body>
