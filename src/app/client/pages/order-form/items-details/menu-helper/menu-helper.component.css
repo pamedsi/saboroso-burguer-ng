@@ -1,3 +1,21 @@
-section {
-  max-width: 20rem;
+li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding: 0;
+}
+
+img {
+  object-fit: contain;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  width: 8rem;
+  height: 8rem;
 }

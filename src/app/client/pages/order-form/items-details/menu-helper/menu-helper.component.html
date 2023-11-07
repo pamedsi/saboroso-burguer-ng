@@ -1,11 +1,15 @@
 <section class="portions">
   <h4>{{listTitle}}</h4>
-  <div *ngFor="let item of itemList">
+  <div >
     <ul>
-      <li>
-        <h4>{{item.getTitle()}}</h4>
-        <p *ngIf="hasDescription(item)"> {{comboCaster(item).getDescription()}}</p>
-        <h5>{{formatPrice(item.getPrice())}}</h5>
+      <li *ngFor="let item of itemList">
+        <img ngSrc="assets/CannedBreadStock.webp" height="100" width="100" alt="">
+
+        <section class="about-item">
+          <h4>{{item.getTitle()}}</h4>
+          <p *ngIf="hasDescription(item)"> {{comboCaster(item).getDescription()}}</p>
+          <h4>{{formatPrice(item.getPrice())}}</h4>
+        </section>
       </li>
     </ul>
   </div>
