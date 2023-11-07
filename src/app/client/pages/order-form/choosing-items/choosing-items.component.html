@@ -10,17 +10,21 @@
           <li *ngFor="let burger of category.value">
               <img ngSrc="assets/krabby-patty.webp" height="100" width="100" alt="">
               <section class="about-item">
+
+
                 <h3>{{burgerCaster(burger).getTitle()}}</h3>
                 <p>{{burgerCaster(burger).ingredientsToString()}}</p>
 
-                <div class="quantity-and-price">
-                  <h3>{{formatPrice(burgerCaster(burger).getPrice())}}</h3>
-                  <div class="adding-item">
-                    <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
-                    <div>{{countItems(burgerCaster(burger))}}</div>
-                    <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
+                <section class="quantity-and-price">
+                  <div>
+                    <h3>{{formatPrice(burgerCaster(burger).getPrice())}}</h3>
+                    <div class="adding-item">
+                      <button class="decrement-button" (click)="removeItem(burgerCaster(burger))">-</button>
+                      <div>{{countItems(burgerCaster(burger))}}</div>
+                      <button class="increment-button" (click)="addItem(burgerCaster(burger))">+</button>
+                    </div>
                   </div>
-                </div>
+                </section>
 
               </section>
           </li>
@@ -37,14 +41,18 @@
             <section class="about-item">
               <h3>{{portion.getTitle()}}</h3>
               <p>{{portion.getDescription()}}</p>
-              <div class="quantity-and-price">
-                <h3>{{formatPrice(portion.getPrice())}}</h3>
-                <div class="adding-item">
-                  <button class="decrement-button" (click)="removeItem(portion)">-</button>
-                  <div>{{countItems(portion)}}</div>
-                  <button class="increment-button" (click)="addItem(portion)">+</button>
+
+              <section class="quantity-and-price">
+                <div>
+                  <h3>{{formatPrice(portion.getPrice())}}</h3>
+                  <div class="adding-item">
+                    <button class="decrement-button" (click)="removeItem(portion)">-</button>
+                    <div>{{countItems(portion)}}</div>
+                    <button class="increment-button" (click)="addItem(portion)">+</button>
+                  </div>
                 </div>
-              </div>
+              </section>
+
             </section>
           </li>
         </ul>

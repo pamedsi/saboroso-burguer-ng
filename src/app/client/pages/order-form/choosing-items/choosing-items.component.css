@@ -46,7 +46,7 @@ img {
 }
 
 .about-item {
-  min-width: 14rem;
+  width: 100%;
   padding-right: 0.5rem;
 }
 
@@ -59,7 +59,15 @@ img {
 }
 
 .quantity-and-price {
-  position: relative;
-  left: 55%;
-  width: min-content;
+  display: flex;
+  justify-content: flex-end;
+  width: 98%;
 }
+/*.about-item {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: flex-start;*/
+/*  align-items: flex-start;*/
+/*  width: 100%;*/
+/*  padding-right: 0.5rem;*/
+/*}*/
