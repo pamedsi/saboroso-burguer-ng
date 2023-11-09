@@ -20,7 +20,7 @@
       <div class="prop-container">
         <div *ngIf="burger.getPic(); else noPic">
           <div>Foto:</div>
-          <img ngSrc="{{burger.getPic()}}" alt="{{burger.getTitle()}}" fill="false">
+          <img [src]="burger.getPic()" alt="{{burger.getTitle()}}">
         </div>
         <ng-template #noPic>
           <div>Foto:</div>
