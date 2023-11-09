@@ -22,7 +22,10 @@
 
   <div>
     <label for="pic">Foto:</label>
-    <input id="pic" [(ngModel)]="pic">
+    <app-upload-image
+      id="pic"
+      (onChosenPic)="setPic($event)"
+    ></app-upload-image>
   </div>
 
   <div>Ingredientes:</div>

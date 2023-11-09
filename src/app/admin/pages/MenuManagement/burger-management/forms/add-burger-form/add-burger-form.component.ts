@@ -42,6 +42,7 @@ export class AddBurgerFormComponent implements OnInit{
       }
     )
   }
+
   addIngredient(ingredientIndex: any) {
     const index = ingredientIndex.options.selectedIndex - 1
     if (index === -1) return
@@ -62,7 +63,7 @@ export class AddBurgerFormComponent implements OnInit{
   setInStock(target: any){
     this.inStock = target.value === 'Sim'
   }
-  addBurger(){
+  async addBurger(){
     if (!this.title) {
       console.info('Título necessário')
       return
@@ -85,7 +86,7 @@ export class AddBurgerFormComponent implements OnInit{
       title: this.title,
       categoryDTO: this.category.toDTO(),
       price: this.price,
-      pic: this.pic ? this.pic : null,
+      pic: this.pic ?? null,
       inStock: this.inStock,
       ingredients: this.selectedIngredients.map(ingredient => ingredient.toDTO())
     } as BurgerDTO
@@ -95,5 +96,11 @@ export class AddBurgerFormComponent implements OnInit{
     this.title = ''
     this.price = 0
     this.selectedIngredients = []
+    this.pic = ''
   }
+
+  setPic(pic: string) {
+    this.pic = pic
+  }
+
 }
