@@ -8,7 +8,7 @@
         <h2>{{category.key}}</h2>
         <ul>
           <li *ngFor="let burger of category.value">
-              <img ngSrc="assets/krabby-patty.webp" height="100" width="100" alt="">
+              <img [ngSrc]=" burger.getPic() ?? 'assets/krabby-patty.webp'" height="100" width="100" alt="">
               <section class="about-item">
 
 
@@ -37,7 +37,7 @@
       <app-loading-spinner *ngIf="loading"></app-loading-spinner>
         <ul>
           <li *ngFor="let portion of availablePortions">
-            <img ngSrc="assets/coral-bits.webp" height="100" width="100" alt="">
+            <img [ngSrc]="portion.getPic() ?? 'assets/coral-bits.webp'" height="100" width="100" alt="">
             <section class="about-item">
               <h3>{{portion.getTitle()}}</h3>
               <p>{{portion.getDescription()}}</p>
@@ -63,7 +63,7 @@
       <app-loading-spinner *ngIf="loading"></app-loading-spinner>
         <ul>
           <li *ngFor="let drink of availableDrinks">
-            <img ngSrc="assets/Undersea_Adventures_Krabby_Kola.webp" height="100" width="100" alt="">
+            <img [ngSrc]="drink.getPic() ?? 'assets/Undersea_Adventures_Krabby_Kola.webp'" height="100" width="100" alt="">
             <section class="about-item">
               <h3>{{drink.getTitle()}} {{drink.getMl()}}mL</h3>
               <h4>{{formatPrice(drink.getPrice())}}</h4>

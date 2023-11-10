@@ -4,7 +4,6 @@ import {AddOnForMenu} from "./AddOnForMenu";
 import {PurchasePrice} from "../../models/PurchasePrice";
 
 export class PortionForMenu extends MenuItem {
-    private readonly pic: string | null
     private readonly description: string
 
     private addOns!: AddOnForMenu[]
@@ -14,15 +13,10 @@ export class PortionForMenu extends MenuItem {
 
     constructor(portionDTO: PortionDTO) {
         super(portionDTO);
-        this.pic = portionDTO.pic
         this.description = portionDTO.description
 
         this.addOnsEditing = new Array(0)
         this.numberOfAddOns = ''
-    }
-
-    getPic(){
-        return this.pic
     }
     getDescription(){
         return this.description

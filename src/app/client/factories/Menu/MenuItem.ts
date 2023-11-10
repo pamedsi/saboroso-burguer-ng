@@ -4,6 +4,7 @@ export abstract class MenuItem {
   protected readonly identifier: string
   protected readonly title: string
   protected readonly price: number
+  protected readonly pic: string | null
 
   protected obs!: string
   obsEditing!: string
@@ -14,6 +15,7 @@ export abstract class MenuItem {
     this.title = menuItem.title
     this.price = Number(menuItem.price)
     this.withObs = ''
+    this.pic = menuItem.pic
   }
 
   getIdentifier(){
@@ -30,5 +32,8 @@ export abstract class MenuItem {
   }
   getObs(){
     return this.obs
+  }
+  getPic(){
+    return this.pic
   }
 }

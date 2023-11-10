@@ -9,7 +9,6 @@ import {PurchasePrice} from "../../models/PurchasePrice";
 
 export class BurgerForMenu extends MenuItem {
   private readonly category: CategoryDTO
-  private readonly pic: string | null
   private readonly ingredients: IngredientDTO[]
 
   private bread: BreadDTO | undefined
@@ -26,7 +25,6 @@ export class BurgerForMenu extends MenuItem {
   constructor(burgerDTO: BurgerDTO) {
     super(burgerDTO);
     this.category = burgerDTO.categoryDTO
-    this.pic = burgerDTO.pic
     this.ingredients = burgerDTO.ingredients
     this.combo = null
 
