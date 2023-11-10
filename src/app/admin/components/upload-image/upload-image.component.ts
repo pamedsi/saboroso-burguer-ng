@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {emit} from "process";
 import {StorageService} from "../../services/StorageService";
 import {environment} from "../../../../environment/environment";
@@ -10,7 +10,7 @@ import {environment} from "../../../../environment/environment";
 })
 export class UploadImageComponent {
   preview: any
-  picUploaded = false
+  @Input() picUploaded!: boolean
   @Output() onChosenPic = new EventEmitter<string>()
 
   constructor(private storageService: StorageService) {
@@ -26,8 +26,9 @@ export class UploadImageComponent {
       reader.onload = (e: any) => {
         this.preview = e.target.result;
 
-        if (imageSaved) this.onChosenPic.emit(`${environment.BASE_STORAGE_URL}/${file.name}`);
-        else alert('Erro ao salvar imagem no banco de dados.')
+        // if (imageSaved) this.onChosenPic.emit(`${environment.BASE_STORAGE_URL}/${file.name}`);
+        // else alert('Erro ao salvar imagem no banco de dados.')
+        this.onChosenPic.emit(`${environment.BASE_STORAGE_URL}/${file.name}`);
       }
 
       reader.readAsDataURL(file)

@@ -25,6 +25,7 @@
     <app-upload-image
       id="pic"
       (onChosenPic)="setPic($event)"
+      [picUploaded]="!!pic"
     ></app-upload-image>
   </div>
 
