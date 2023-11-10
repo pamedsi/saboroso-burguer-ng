@@ -11,6 +11,6 @@ html, option{
   background-color: #232222;
 }
 
-select, input, button {
+select, input, button, textarea {
   background-color: transparent;
 }
