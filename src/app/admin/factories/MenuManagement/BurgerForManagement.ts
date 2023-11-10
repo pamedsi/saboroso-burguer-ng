@@ -97,6 +97,7 @@ export class BurgerForManagement {
   setEditable(value: boolean){
     this.editable = value
   }
+  setPicEditing(pic: string){ this.picEditing = pic }
 
   onInStockSelected(target: any) {
     this.inStockEditing = target.value === 'Sim'

@@ -1,5 +1,6 @@
 section {
   border: white solid 0.1rem;
+  margin-bottom: 1rem;
 }
 .prop-container {
   display: flex;
@@ -55,4 +56,11 @@ img{
   background-color: transparent;
   color: red;
   cursor: pointer;
+}
+
+.pic-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
