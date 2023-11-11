@@ -95,4 +95,7 @@ export class PortionForManagement {
   getOptionsForInStock() {
       return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
   }
+  setPicEditing(pic: string) {
+      this.picEditing = pic
+  }
 }

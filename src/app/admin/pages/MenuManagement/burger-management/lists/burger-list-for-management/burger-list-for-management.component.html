@@ -17,7 +17,7 @@
         <div>{{burger.getPriceToString()}}</div>
       </div>
 
-      <div class="prop-container">
+      <div>
         <div class="pic-container" *ngIf="burger.getPic(); else noPic" >
           <div>Foto:</div>
           <img [src]="burger.getPic()" alt="{{burger.getTitle()}}">

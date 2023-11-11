@@ -21,6 +21,10 @@ export class AddPortionFormComponent {
     this.inStock = target.value === 'Sim'
   }
 
+  setPic(pic: string) {
+    this.pic = pic
+  }
+
   addPortion() {
     if (!this.title) return
     if (!this.description) return

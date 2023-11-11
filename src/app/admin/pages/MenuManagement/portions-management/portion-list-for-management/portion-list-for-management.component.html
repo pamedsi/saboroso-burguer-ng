@@ -18,10 +18,10 @@
       </div>
     </div>
 
-    <div class="prop-container">
-      <div *ngIf="portion.getPic(); else noPic">
-        <div class="key">>Foto:</div>
-        <img class="value" ngSrc="{{portion.getPic()}}" alt="{{portion.getTitle()}}" fill="false">
+    <div>
+      <div *ngIf="portion.getPic(); else noPic" class="prop-container">
+        <div class="key">Foto:</div>
+        <img class="value" [src]="portion.getPic()" alt="{{portion.getTitle()}}">
       </div>
       <ng-template #noPic>
         <div class="key">Foto:</div>
@@ -62,9 +62,18 @@
              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
     </div>
 
-    <div class="prop-container">
+<!--    <div class="prop-container">-->
+<!--      <label for="pic">Foto:</label>-->
+<!--      <input id="pic" [(ngModel)]="portion.picEditing">-->
+<!--    </div>-->
+
+    <div>
       <label for="pic">Foto:</label>
-      <input id="pic" [(ngModel)]="portion.picEditing">
+      <app-upload-image
+        id="pic"
+        [picUploaded]="!!portion.picEditing"
+        (onChosenPic)="portion.setPicEditing($event)"
+      ></app-upload-image>
     </div>
 
     <div class="prop-container">
