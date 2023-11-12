@@ -45,6 +45,10 @@ export class ComboListForManagementComponent implements OnInit{
       combo.setPrice(combo.priceEditing);
       changes++
     }
+    if (combo.getPic() !== combo.picEditing) {
+      combo.setPic(combo.picEditing);
+      changes++
+    }
     if (combo.isInStock() !== combo.inStockEditing) {
       combo.setInStock(combo.inStockEditing);
       changes++

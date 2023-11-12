@@ -11,11 +11,17 @@ export class AddComboFormComponent {
   title!: string;
   description!: string;
   price!: number;
+  pic!: string;
   inStock: boolean = true
+
   constructor(private comboService: ComboService) {}
 
   setInStock(target: any) {
     this.inStock = target.value === 'Sim'
+  }
+
+  setPic(pic: string) {
+    this.pic = pic
   }
 
   addCombo() {
@@ -33,12 +39,14 @@ export class AddComboFormComponent {
       title: this.title,
       price: this.price,
       description: this.description,
+      pic: this.pic ?? null,
       inStock: this.inStock
     } as ComboDTO
 
     this.title = ''
     this.description = ''
     this.price = 0
+    this.pic = ''
     this.inStock = true
 
     this.comboService.saveCombo(newCombo)

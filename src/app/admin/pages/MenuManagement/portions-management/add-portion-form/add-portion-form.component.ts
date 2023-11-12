@@ -34,7 +34,7 @@ export class AddPortionFormComponent {
       title: this.title,
       price: this.price,
       description: this.description,
-      pic: this.pic ? this.pic: null,
+      pic: this.pic ?? null,
       inStock: this.inStock
     } as PortionDTO
 

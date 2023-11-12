@@ -4,6 +4,7 @@ export class Combo {
   private readonly identifier: string;
   private title: string;
   private price: number;
+  private pic: string | null
   private description: string;
   private inStock: boolean;
 
@@ -13,21 +14,26 @@ export class Combo {
   descriptionEditing: string;
   inStockEditing: boolean;
   editable: boolean;
+  picEditing: string | null;
 
   constructor(combo: ComboDTO) {
     this.identifier = combo.identifier;
     this.title = combo.title;
     this.price = combo.price;
+    this.pic = combo.pic
     this.description = combo.description;
     this.inStock = combo.inStock;
 
     // Component Props
     this.titleEditing = this.title;
     this.priceEditing = this.price;
+    this.picEditing = this.pic
     this.descriptionEditing = this.description;
     this.inStockEditing = this.inStock;
     this.editable = false;
-  }  // Component methods:
+  }
+
+  // Component methods:
 
   isEditable(){
     return this.editable
@@ -43,12 +49,16 @@ export class Combo {
       identifier: this.identifier,
       title: this.title,
       price: this.price,
+      pic: this.pic,
       description: this.description,
       inStock: this.inStock
     } as ComboDTO
   }
   getOptionsForInStock() {
     return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
+  }
+  setPicEditing(pic: string | null){
+    this.picEditing = pic
   }
 
   // Model methods:
@@ -87,5 +97,12 @@ export class Combo {
 
   setInStock(value: boolean) {
     this.inStock = value;
+  }
+  getPic() {
+    return this.pic
+  }
+
+  setPic(pic: string | null) {
+    this.pic = pic
   }
 }
