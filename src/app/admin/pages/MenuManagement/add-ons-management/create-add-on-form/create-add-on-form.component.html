@@ -11,6 +11,15 @@
   </div>
 
   <div>
+    <label for="pic">Foto:</label>
+    <app-upload-image
+      id="pic"
+      [picUploaded]="!!pic"
+      (onChosenPic)="setPic($event)"
+    ></app-upload-image>
+  </div>
+
+  <div>
     <label for="in-stock">Em estoque:</label>
     <select id="in-stock" (change)="setInStock($event.target)">
       <option>Sim</option>

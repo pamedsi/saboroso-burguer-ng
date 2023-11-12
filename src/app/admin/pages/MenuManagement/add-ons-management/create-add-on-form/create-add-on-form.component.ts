@@ -11,6 +11,7 @@ import {BaseMenuItemDTO} from "../../../../../shared/models/BaseMenuItemDTO";
 export class CreateAddOnFormComponent {
   title!: string
   price!: number
+  pic!: string
   inStock = true
 
   constructor(private addOnService: AddOnService) {}
@@ -31,14 +32,19 @@ export class CreateAddOnFormComponent {
     const addOnDTO = {
       title: this.title,
       price: this.price,
+      pic: this.pic,
       inStock: this.inStock
     } as BaseMenuItemDTO
 
     this.title = ''
     this.price = 0
+    this.pic = ''
     this.inStock = true
 
     this.addOnService.insertAddOn(addOnDTO)
   }
 
+  setPic(pic: string) {
+    this.pic = pic
+  }
 }

@@ -23,6 +23,7 @@
     <label for="pic">Foto:</label>
     <app-upload-image
       id="pic"
+      [picUploaded]="!!pic"
       (onChosenPic)="setPic($event)"
     ></app-upload-image>
   </div>
