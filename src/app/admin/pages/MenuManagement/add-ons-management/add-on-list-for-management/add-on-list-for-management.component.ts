@@ -41,6 +41,10 @@ export class AddOnListForManagementComponent implements OnInit{
         addOn.setPrice(addOn.priceEditing);
         changes++
       }
+    if (addOn.getPic() !== addOn.picEditing) {
+      addOn.setPic(addOn.picEditing);
+      changes++
+    }
       if (addOn.isInStock() !== addOn.inStockEditing) {
         addOn.setInStock(addOn.inStockEditing);
         changes++

@@ -4,12 +4,15 @@ export class AddOnForManagement {
   private identifier: string;
   private title: string;
   private price: number;
+  private pic: string | null
   private inStock: boolean;
+
 
   // Component props
   titleEditing: string;
   priceEditing: number;
   inStockEditing: boolean;
+  picEditing: string | null
   editable: boolean;
 
   constructor(addOnDTO: BaseMenuItemDTO) {
@@ -17,11 +20,13 @@ export class AddOnForManagement {
     this.title = addOnDTO.title;
     this.price = addOnDTO.price;
     this.inStock = addOnDTO.inStock;
+    this.pic = addOnDTO.pic
 
     this.titleEditing = this.title;
     this.priceEditing = this.price;
     this.inStockEditing = this.inStock;
     this.editable = false;
+    this.picEditing = this.pic
   }
   // Component methods
   isEditable(): boolean {
@@ -35,6 +40,9 @@ export class AddOnForManagement {
   }
   getOptionsForInStock() {
     return this.inStock ? ['Sim', 'Não'] : ['Não', 'Sim']
+  }
+  setPicEditing(pic: string | null){
+    this.picEditing = pic
   }
 
   // Model methods
@@ -68,7 +76,15 @@ export class AddOnForManagement {
       identifier: this.identifier,
       title: this.title,
       price: this.price,
+      pic: this.pic,
       inStock: this.inStock
     } as BaseMenuItemDTO
+  }
+
+  getPic() {
+   return this.pic
+  }
+  setPic(pic: string | null) {
+    this.pic = pic
   }
 }
