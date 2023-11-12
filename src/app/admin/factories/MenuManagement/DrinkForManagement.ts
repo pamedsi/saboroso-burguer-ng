@@ -50,6 +50,7 @@ export class DrinkForManagement {
       identifier: this.identifier,
       title: this.title,
       ml: this.ml,
+      pic: this.pic,
       price: this.price,
       inStock: this.inStock
     } as DrinkDTO
@@ -96,11 +97,11 @@ export class DrinkForManagement {
   getPic(){
     return this.pic
   }
-  setPic(pic: string){
+  setPic(pic: string | null){
     this.pic = pic
   }
 
   setPicEditing(pic: string) {
-    this.pic = pic
+    this.picEditing = pic
   }
 }

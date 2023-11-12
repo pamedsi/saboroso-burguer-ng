@@ -37,6 +37,7 @@ export class DrinkListForManagementComponent implements OnInit{
 
   editDrink(drink: DrinkForManagement) {
     let changes = 0
+
     if (drink.getTitle() !== drink.titleEditing) {
       drink.setTitle(drink.titleEditing);
       changes++
@@ -53,6 +54,10 @@ export class DrinkListForManagementComponent implements OnInit{
       drink.setInStock(drink.inStockEditing);
       changes++
     }
+    if (drink.getPic() !==  drink.picEditing) {
+      drink.setPic(drink.picEditing);
+      changes++
+    }
     if (!changes) {
       console.info('Nenhuma mudança foi feita!')
       drink.setEditable(false)
@@ -60,6 +65,7 @@ export class DrinkListForManagementComponent implements OnInit{
     }
 
     this.drinkService.updateDrink(drink.toDTO())
+    console.log(drink.toDTO())
     drink.setEditable(false)
   }
 

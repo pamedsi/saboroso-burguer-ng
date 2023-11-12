@@ -10,6 +10,12 @@ section {
 h3 {
   text-align: center;
 }
+
+img {
+  object-fit: contain;
+  width: 7rem;
+  height: 7rem;
+}
 .buttons {
   margin: 1rem;
   display: flex;
