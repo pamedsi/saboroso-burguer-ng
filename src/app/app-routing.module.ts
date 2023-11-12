@@ -14,6 +14,7 @@ import {DrinksManagementComponent} from "./admin/pages/MenuManagement/drinks-man
 import {PortionsManagementComponent} from "./admin/pages/MenuManagement/portions-management/portions-management.component";
 import {AddOnsManagementComponent} from "./admin/pages/MenuManagement/add-ons-management/add-ons-management.component";
 import {CombosManagementComponent} from "./admin/pages/MenuManagement/combos-management/combos-management.component";
+import {AddNewAdminComponent} from "./admin/pages/add-new-admin/add-new-admin.component";
 
 const routes: Routes = [
   {
@@ -70,6 +71,11 @@ const routes: Routes = [
   {
     path: 'order-confirmation',
     component: OrderConfirmationComponent
+  },
+  {
+    path: 'add-new-admin',
+    component: AddNewAdminComponent,
+    canActivate: [canActivate]
   },
   {
     path: '**',

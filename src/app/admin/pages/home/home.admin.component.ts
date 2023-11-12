@@ -37,4 +37,8 @@ export class HomeAdminComponent implements OnInit{
   redirectToOrderManager() {
     this.router.navigate(['/orders-management'])
   }
+
+  redirectToAddNewAdmin() {
+    this.router.navigate(['/add-new-admin'])
+  }
 }
