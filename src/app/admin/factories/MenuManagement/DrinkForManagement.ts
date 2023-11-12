@@ -1,18 +1,20 @@
 import {DrinkDTO} from "../../../shared/models/MenuItemDTO/DrinkDTO";
 
 export class DrinkForManagement {
-  private readonly identifier: string;
-  private title: string;
-  private ml: number;
-  private price: number;
-  private inStock: boolean;
+  private readonly identifier: string
+  private title: string
+  private ml: number
+  private price: number
+  private inStock: boolean
+  private pic: string | null
 
-  // Component props
-  titleEditing: string;
-  mlEditing: number;
-  priceEditing: number;
-  inStockEditing: boolean;
+  // Component prop
+  titleEditing: string
+  mlEditing: number
+  priceEditing: number
+  inStockEditing: boolean
   editable: boolean
+  picEditing: string | null;
 
   constructor(drinkDTO: DrinkDTO) {
     this.identifier = drinkDTO.identifier;
@@ -20,12 +22,14 @@ export class DrinkForManagement {
     this.ml = drinkDTO.ml;
     this.price = drinkDTO.price;
     this.inStock = drinkDTO.inStock;
+    this.pic = drinkDTO.pic
 
     this.titleEditing = this.title
     this.mlEditing = this.ml
     this.priceEditing = this.price
     this.inStockEditing = this.inStock
     this.editable = false
+    this.picEditing = drinkDTO.pic
   }
 
   // Component methods
@@ -87,5 +91,16 @@ export class DrinkForManagement {
 
   setInStock(value: boolean) {
     this.inStock = value;
+  }
+
+  getPic(){
+    return this.pic
+  }
+  setPic(pic: string){
+    this.pic = pic
+  }
+
+  setPicEditing(pic: string) {
+    this.pic = pic
   }
 }

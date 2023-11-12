@@ -12,6 +12,7 @@ export class AddDrinkFormComponent {
   ml!: number
   inStock = true
   price!: number
+  pic!: string
 
   constructor(private drinkService: DrinkService) {}
 
@@ -43,5 +44,9 @@ export class AddDrinkFormComponent {
     this.inStock = true
 
     this.drinkService.saveDrink(drinkDTO)
+  }
+
+  setPic(pic: string) {
+    this.pic = pic
   }
 }

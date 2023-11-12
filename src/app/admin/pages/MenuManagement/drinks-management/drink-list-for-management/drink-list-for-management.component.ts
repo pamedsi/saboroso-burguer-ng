@@ -63,32 +63,5 @@ export class DrinkListForManagementComponent implements OnInit{
     drink.setEditable(false)
   }
 
-  // updateProperty(drink: DrinkForManagement, property: string): boolean {
-  //   const originalValue = (drink[`get${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof DrinkForManagement] as Function)();
-  //   const editingValue = drink[`${property.toLowerCase()}Editing` as keyof DrinkForManagement];
-  //
-  //   if (originalValue !== editingValue) {
-  //     (drink[`set${property.charAt(0).toUpperCase() + property.slice(1).toLowerCase()}` as keyof DrinkForManagement] as Function)(editingValue);
-  //     return true;
-  //   }
-  //
-  //   return false;
-  // }
-  //
-  // editDrink(drink: DrinkForManagement) {
-  //   const properties = ['title', 'price', 'ml', 'inStock']
-  //   const changes = properties.map(property => this.updateProperty(drink, property)).filter(Boolean).length;
-  //
-  //   if (!changes) {
-  //     console.info(`Nenhuma mudança foi feita na bebida ${drink.getTitle()}!`);
-  //     drink.setEditable(false);
-  //     return;
-  //   }
-  //   try {
-  //     this.drinkService.updateDrink(drink.toDTO());
-  //     drink.setEditable(false);
-  //   } catch (error) {
-  //     console.error(`Erro ao atualizar a bebida ${drink.getTitle()}: ${error}`);
-  //   }
-  // }
+
 }
